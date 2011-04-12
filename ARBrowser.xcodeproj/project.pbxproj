@@ -14,8 +14,32 @@
 		7E2336C7134AD1FF00BEFB33 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E2336C6134AD1FF00BEFB33 /* main.m */; };
 		7E2336CA134AD1FF00BEFB33 /* ARBrowserAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E2336C9134AD1FF00BEFB33 /* ARBrowserAppDelegate.m */; };
 		7E2336CD134AD1FF00BEFB33 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E2336CB134AD1FF00BEFB33 /* MainWindow.xib */; };
-		7E2336D0134AD1FF00BEFB33 /* ARBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E2336CF134AD1FF00BEFB33 /* ARBrowserViewController.m */; };
-		7E2336D3134AD1FF00BEFB33 /* ARBrowserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E2336D1134AD1FF00BEFB33 /* ARBrowserViewController.xib */; };
+		7E2336D0134AD1FF00BEFB33 /* ARBrowserViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7E2336CF134AD1FF00BEFB33 /* ARBrowserViewController.mm */; };
+		7E233715134AD2C500BEFB33 /* EAGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E233714134AD2C500BEFB33 /* EAGLView.m */; };
+		7E23371E134AD67700BEFB33 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E23371D134AD67700BEFB33 /* CoreFoundation.framework */; };
+		7E233720134AD67C00BEFB33 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E23371F134AD67C00BEFB33 /* OpenGLES.framework */; };
+		7E233722134AD6C100BEFB33 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E233721134AD6C100BEFB33 /* QuartzCore.framework */; };
+		7E233725134AE94400BEFB33 /* Texture2D.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E233724134AE94400BEFB33 /* Texture2D.m */; };
+		7E233728134AE99D00BEFB33 /* ARVideoFrameController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E233727134AE99D00BEFB33 /* ARVideoFrameController.m */; };
+		7E23372B134AEAC100BEFB33 /* ARVideoBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E23372A134AEAC100BEFB33 /* ARVideoBackground.m */; };
+		7E23372D134B2D2000BEFB33 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E23372C134B2D2000BEFB33 /* AVFoundation.framework */; };
+		7E23372F134B3E1500BEFB33 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E23372E134B3E1500BEFB33 /* CoreVideo.framework */; };
+		7E233731134B3E5B00BEFB33 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E233730134B3E5B00BEFB33 /* CoreMedia.framework */; };
+		7E233735134B3FBF00BEFB33 /* Model.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7E233734134B3FBF00BEFB33 /* Model.mm */; };
+		7E233738134B40C200BEFB33 /* ARWorldLocation.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7E233737134B40C200BEFB33 /* ARWorldLocation.mm */; };
+		7E23374E134B41F100BEFB33 /* Matrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E23373B134B41F100BEFB33 /* Matrix.cpp */; };
+		7E233750134B41F100BEFB33 /* Transform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E233740134B41F100BEFB33 /* Transform.cpp */; };
+		7E233751134B41F100BEFB33 /* Vector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E233742134B41F100BEFB33 /* Vector.cpp */; };
+		7E233752134B41F100BEFB33 /* neon_matrix_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E233745134B41F100BEFB33 /* neon_matrix_impl.cpp */; };
+		7E233753134B41F100BEFB33 /* matrix_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E233749134B41F100BEFB33 /* matrix_impl.cpp */; };
+		7E233754134B41F100BEFB33 /* utility_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E23374B134B41F100BEFB33 /* utility_impl.cpp */; };
+		7E61C9741354A51B00857A4D /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E61C9731354A51B00857A4D /* CoreMotion.framework */; };
+		7E61C9771354AA2700857A4D /* ARLocationController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7E61C9761354AA2700857A4D /* ARLocationController.mm */; };
+		7E61C9791354ACE200857A4D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E61C9781354ACE200857A4D /* CoreLocation.framework */; };
+		7E61C97C1354B44B00857A4D /* ARWorldPoint.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7E61C97B1354B44B00857A4D /* ARWorldPoint.mm */; };
+		7E61C97F1354B4E100857A4D /* ARModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7E61C97E1354B4E000857A4D /* ARModel.mm */; };
+		7E61C98B1354B69C00857A4D /* Models in Resources */ = {isa = PBXBuildFile; fileRef = 7E61C98A1354B69C00857A4D /* Models */; };
+		7E8D4CB1134FE04A00868D6B /* ARBrowserView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7E8D4CB0134FE04A00868D6B /* ARBrowserView.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,16 +47,60 @@
 		7E2336B9134AD1FF00BEFB33 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7E2336BB134AD1FF00BEFB33 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7E2336BD134AD1FF00BEFB33 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		7E2336C1134AD1FF00BEFB33 /* ARBrowser-Info.plist */ = {isa = PBXFileReference; path = "ARBrowser-Info.plist"; sourceTree = "<group>"; };
+		7E2336C1134AD1FF00BEFB33 /* ARBrowser-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ARBrowser-Info.plist"; sourceTree = "<group>"; };
 		7E2336C3134AD1FF00BEFB33 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		7E2336C5134AD1FF00BEFB33 /* ARBrowser-Prefix.pch */ = {isa = PBXFileReference; path = "ARBrowser-Prefix.pch"; sourceTree = "<group>"; };
+		7E2336C5134AD1FF00BEFB33 /* ARBrowser-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ARBrowser-Prefix.pch"; sourceTree = "<group>"; };
 		7E2336C6134AD1FF00BEFB33 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		7E2336C8134AD1FF00BEFB33 /* ARBrowserAppDelegate.h */ = {isa = PBXFileReference; path = ARBrowserAppDelegate.h; sourceTree = "<group>"; };
+		7E2336C8134AD1FF00BEFB33 /* ARBrowserAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ARBrowserAppDelegate.h; sourceTree = "<group>"; };
 		7E2336C9134AD1FF00BEFB33 /* ARBrowserAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ARBrowserAppDelegate.m; sourceTree = "<group>"; };
 		7E2336CC134AD1FF00BEFB33 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
-		7E2336CE134AD1FF00BEFB33 /* ARBrowserViewController.h */ = {isa = PBXFileReference; path = ARBrowserViewController.h; sourceTree = "<group>"; };
-		7E2336CF134AD1FF00BEFB33 /* ARBrowserViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ARBrowserViewController.m; sourceTree = "<group>"; };
-		7E2336D2134AD1FF00BEFB33 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ARBrowserViewController.xib; sourceTree = "<group>"; };
+		7E2336CE134AD1FF00BEFB33 /* ARBrowserViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ARBrowserViewController.h; sourceTree = "<group>"; };
+		7E2336CF134AD1FF00BEFB33 /* ARBrowserViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ARBrowserViewController.mm; sourceTree = "<group>"; };
+		7E233713134AD2C500BEFB33 /* EAGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLView.h; sourceTree = "<group>"; };
+		7E233714134AD2C500BEFB33 /* EAGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLView.m; sourceTree = "<group>"; };
+		7E23371D134AD67700BEFB33 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		7E23371F134AD67C00BEFB33 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		7E233721134AD6C100BEFB33 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		7E233723134AE94400BEFB33 /* Texture2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Texture2D.h; sourceTree = "<group>"; };
+		7E233724134AE94400BEFB33 /* Texture2D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Texture2D.m; sourceTree = "<group>"; };
+		7E233726134AE99D00BEFB33 /* ARVideoFrameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARVideoFrameController.h; sourceTree = "<group>"; };
+		7E233727134AE99D00BEFB33 /* ARVideoFrameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARVideoFrameController.m; sourceTree = "<group>"; };
+		7E233729134AEAC100BEFB33 /* ARVideoBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARVideoBackground.h; sourceTree = "<group>"; };
+		7E23372A134AEAC100BEFB33 /* ARVideoBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARVideoBackground.m; sourceTree = "<group>"; };
+		7E23372C134B2D2000BEFB33 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		7E23372E134B3E1500BEFB33 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		7E233730134B3E5B00BEFB33 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		7E233733134B3FBF00BEFB33 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
+		7E233734134B3FBF00BEFB33 /* Model.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Model.mm; sourceTree = "<group>"; };
+		7E233736134B40C200BEFB33 /* ARWorldLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARWorldLocation.h; sourceTree = "<group>"; };
+		7E233737134B40C200BEFB33 /* ARWorldLocation.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ARWorldLocation.mm; sourceTree = "<group>"; };
+		7E23373A134B41F100BEFB33 /* Endian.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Endian.h; sourceTree = "<group>"; };
+		7E23373B134B41F100BEFB33 /* Matrix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Matrix.cpp; sourceTree = "<group>"; };
+		7E23373C134B41F100BEFB33 /* Matrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Matrix.h; sourceTree = "<group>"; };
+		7E23373D134B41F100BEFB33 /* Quaternion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Quaternion.h; sourceTree = "<group>"; };
+		7E233740134B41F100BEFB33 /* Transform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Transform.cpp; sourceTree = "<group>"; };
+		7E233741134B41F100BEFB33 /* Transform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transform.h; sourceTree = "<group>"; };
+		7E233742134B41F100BEFB33 /* Vector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Vector.cpp; sourceTree = "<group>"; };
+		7E233743134B41F100BEFB33 /* Vector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector.h; sourceTree = "<group>"; };
+		7E233745134B41F100BEFB33 /* neon_matrix_impl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = neon_matrix_impl.cpp; sourceTree = "<group>"; };
+		7E233746134B41F100BEFB33 /* neon_matrix_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = neon_matrix_impl.h; sourceTree = "<group>"; };
+		7E233748134B41F100BEFB33 /* common_macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = common_macros.h; sourceTree = "<group>"; };
+		7E233749134B41F100BEFB33 /* matrix_impl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = matrix_impl.cpp; sourceTree = "<group>"; };
+		7E23374A134B41F100BEFB33 /* matrix_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = matrix_impl.h; sourceTree = "<group>"; };
+		7E23374B134B41F100BEFB33 /* utility_impl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = utility_impl.cpp; sourceTree = "<group>"; };
+		7E23374C134B41F100BEFB33 /* utility_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utility_impl.h; sourceTree = "<group>"; };
+		7E23374D134B41F100BEFB33 /* vfp_clobbers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vfp_clobbers.h; sourceTree = "<group>"; };
+		7E61C9731354A51B00857A4D /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		7E61C9751354AA2700857A4D /* ARLocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARLocationController.h; sourceTree = "<group>"; };
+		7E61C9761354AA2700857A4D /* ARLocationController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ARLocationController.mm; sourceTree = "<group>"; };
+		7E61C9781354ACE200857A4D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		7E61C97A1354B44B00857A4D /* ARWorldPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARWorldPoint.h; sourceTree = "<group>"; };
+		7E61C97B1354B44B00857A4D /* ARWorldPoint.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ARWorldPoint.mm; sourceTree = "<group>"; };
+		7E61C97D1354B4E000857A4D /* ARModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARModel.h; sourceTree = "<group>"; };
+		7E61C97E1354B4E000857A4D /* ARModel.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ARModel.mm; sourceTree = "<group>"; };
+		7E61C98A1354B69C00857A4D /* Models */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Models; sourceTree = SOURCE_ROOT; };
+		7E8D4CAF134FE04A00868D6B /* ARBrowserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARBrowserView.h; sourceTree = "<group>"; };
+		7E8D4CB0134FE04A00868D6B /* ARBrowserView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ARBrowserView.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,9 +108,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E61C9791354ACE200857A4D /* CoreLocation.framework in Frameworks */,
+				7E61C9741354A51B00857A4D /* CoreMotion.framework in Frameworks */,
+				7E233731134B3E5B00BEFB33 /* CoreMedia.framework in Frameworks */,
+				7E23372F134B3E1500BEFB33 /* CoreVideo.framework in Frameworks */,
+				7E23372D134B2D2000BEFB33 /* AVFoundation.framework in Frameworks */,
+				7E233722134AD6C100BEFB33 /* QuartzCore.framework in Frameworks */,
 				7E2336BA134AD1FF00BEFB33 /* UIKit.framework in Frameworks */,
 				7E2336BC134AD1FF00BEFB33 /* Foundation.framework in Frameworks */,
 				7E2336BE134AD1FF00BEFB33 /* CoreGraphics.framework in Frameworks */,
+				7E23371E134AD67700BEFB33 /* CoreFoundation.framework in Frameworks */,
+				7E233720134AD67C00BEFB33 /* OpenGLES.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,6 +145,14 @@
 		7E2336B8134AD1FF00BEFB33 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7E61C9781354ACE200857A4D /* CoreLocation.framework */,
+				7E61C9731354A51B00857A4D /* CoreMotion.framework */,
+				7E233730134B3E5B00BEFB33 /* CoreMedia.framework */,
+				7E23372E134B3E1500BEFB33 /* CoreVideo.framework */,
+				7E23372C134B2D2000BEFB33 /* AVFoundation.framework */,
+				7E233721134AD6C100BEFB33 /* QuartzCore.framework */,
+				7E23371F134AD67C00BEFB33 /* OpenGLES.framework */,
+				7E23371D134AD67700BEFB33 /* CoreFoundation.framework */,
 				7E2336B9134AD1FF00BEFB33 /* UIKit.framework */,
 				7E2336BB134AD1FF00BEFB33 /* Foundation.framework */,
 				7E2336BD134AD1FF00BEFB33 /* CoreGraphics.framework */,
@@ -79,12 +163,31 @@
 		7E2336BF134AD1FF00BEFB33 /* ARBrowser */ = {
 			isa = PBXGroup;
 			children = (
+				7E233739134B41F100BEFB33 /* Math */,
 				7E2336C8134AD1FF00BEFB33 /* ARBrowserAppDelegate.h */,
 				7E2336C9134AD1FF00BEFB33 /* ARBrowserAppDelegate.m */,
 				7E2336CB134AD1FF00BEFB33 /* MainWindow.xib */,
 				7E2336CE134AD1FF00BEFB33 /* ARBrowserViewController.h */,
-				7E2336CF134AD1FF00BEFB33 /* ARBrowserViewController.m */,
-				7E2336D1134AD1FF00BEFB33 /* ARBrowserViewController.xib */,
+				7E2336CF134AD1FF00BEFB33 /* ARBrowserViewController.mm */,
+				7E233713134AD2C500BEFB33 /* EAGLView.h */,
+				7E233714134AD2C500BEFB33 /* EAGLView.m */,
+				7E233723134AE94400BEFB33 /* Texture2D.h */,
+				7E233724134AE94400BEFB33 /* Texture2D.m */,
+				7E233736134B40C200BEFB33 /* ARWorldLocation.h */,
+				7E233737134B40C200BEFB33 /* ARWorldLocation.mm */,
+				7E61C97D1354B4E000857A4D /* ARModel.h */,
+				7E61C97E1354B4E000857A4D /* ARModel.mm */,
+				7E61C97A1354B44B00857A4D /* ARWorldPoint.h */,
+				7E61C97B1354B44B00857A4D /* ARWorldPoint.mm */,
+				7E233726134AE99D00BEFB33 /* ARVideoFrameController.h */,
+				7E233727134AE99D00BEFB33 /* ARVideoFrameController.m */,
+				7E233729134AEAC100BEFB33 /* ARVideoBackground.h */,
+				7E23372A134AEAC100BEFB33 /* ARVideoBackground.m */,
+				7E8D4CAF134FE04A00868D6B /* ARBrowserView.h */,
+				7E8D4CB0134FE04A00868D6B /* ARBrowserView.mm */,
+				7E61C9751354AA2700857A4D /* ARLocationController.h */,
+				7E61C9761354AA2700857A4D /* ARLocationController.mm */,
+				7E233732134B3F6500BEFB33 /* Private */,
 				7E2336C0134AD1FF00BEFB33 /* Supporting Files */,
 			);
 			path = ARBrowser;
@@ -93,12 +196,61 @@
 		7E2336C0134AD1FF00BEFB33 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				7E61C98A1354B69C00857A4D /* Models */,
 				7E2336C1134AD1FF00BEFB33 /* ARBrowser-Info.plist */,
 				7E2336C2134AD1FF00BEFB33 /* InfoPlist.strings */,
 				7E2336C5134AD1FF00BEFB33 /* ARBrowser-Prefix.pch */,
 				7E2336C6134AD1FF00BEFB33 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7E233732134B3F6500BEFB33 /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				7E233733134B3FBF00BEFB33 /* Model.h */,
+				7E233734134B3FBF00BEFB33 /* Model.mm */,
+			);
+			name = Private;
+			sourceTree = "<group>";
+		};
+		7E233739134B41F100BEFB33 /* Math */ = {
+			isa = PBXGroup;
+			children = (
+				7E23373A134B41F100BEFB33 /* Endian.h */,
+				7E23373B134B41F100BEFB33 /* Matrix.cpp */,
+				7E23373C134B41F100BEFB33 /* Matrix.h */,
+				7E23373D134B41F100BEFB33 /* Quaternion.h */,
+				7E233740134B41F100BEFB33 /* Transform.cpp */,
+				7E233741134B41F100BEFB33 /* Transform.h */,
+				7E233742134B41F100BEFB33 /* Vector.cpp */,
+				7E233743134B41F100BEFB33 /* Vector.h */,
+				7E233744134B41F100BEFB33 /* neonmath */,
+				7E233747134B41F100BEFB33 /* vfpmath */,
+			);
+			path = Math;
+			sourceTree = "<group>";
+		};
+		7E233744134B41F100BEFB33 /* neonmath */ = {
+			isa = PBXGroup;
+			children = (
+				7E233745134B41F100BEFB33 /* neon_matrix_impl.cpp */,
+				7E233746134B41F100BEFB33 /* neon_matrix_impl.h */,
+			);
+			path = neonmath;
+			sourceTree = "<group>";
+		};
+		7E233747134B41F100BEFB33 /* vfpmath */ = {
+			isa = PBXGroup;
+			children = (
+				7E233748134B41F100BEFB33 /* common_macros.h */,
+				7E233749134B41F100BEFB33 /* matrix_impl.cpp */,
+				7E23374A134B41F100BEFB33 /* matrix_impl.h */,
+				7E23374B134B41F100BEFB33 /* utility_impl.cpp */,
+				7E23374C134B41F100BEFB33 /* utility_impl.h */,
+				7E23374D134B41F100BEFB33 /* vfp_clobbers.h */,
+			);
+			path = vfpmath;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -153,7 +305,7 @@
 			files = (
 				7E2336C4134AD1FF00BEFB33 /* InfoPlist.strings in Resources */,
 				7E2336CD134AD1FF00BEFB33 /* MainWindow.xib in Resources */,
-				7E2336D3134AD1FF00BEFB33 /* ARBrowserViewController.xib in Resources */,
+				7E61C98B1354B69C00857A4D /* Models in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,7 +318,23 @@
 			files = (
 				7E2336C7134AD1FF00BEFB33 /* main.m in Sources */,
 				7E2336CA134AD1FF00BEFB33 /* ARBrowserAppDelegate.m in Sources */,
-				7E2336D0134AD1FF00BEFB33 /* ARBrowserViewController.m in Sources */,
+				7E2336D0134AD1FF00BEFB33 /* ARBrowserViewController.mm in Sources */,
+				7E233715134AD2C500BEFB33 /* EAGLView.m in Sources */,
+				7E233725134AE94400BEFB33 /* Texture2D.m in Sources */,
+				7E233728134AE99D00BEFB33 /* ARVideoFrameController.m in Sources */,
+				7E23372B134AEAC100BEFB33 /* ARVideoBackground.m in Sources */,
+				7E233735134B3FBF00BEFB33 /* Model.mm in Sources */,
+				7E233738134B40C200BEFB33 /* ARWorldLocation.mm in Sources */,
+				7E23374E134B41F100BEFB33 /* Matrix.cpp in Sources */,
+				7E233750134B41F100BEFB33 /* Transform.cpp in Sources */,
+				7E233751134B41F100BEFB33 /* Vector.cpp in Sources */,
+				7E233752134B41F100BEFB33 /* neon_matrix_impl.cpp in Sources */,
+				7E233753134B41F100BEFB33 /* matrix_impl.cpp in Sources */,
+				7E233754134B41F100BEFB33 /* utility_impl.cpp in Sources */,
+				7E8D4CB1134FE04A00868D6B /* ARBrowserView.mm in Sources */,
+				7E61C9771354AA2700857A4D /* ARLocationController.mm in Sources */,
+				7E61C97C1354B44B00857A4D /* ARWorldPoint.mm in Sources */,
+				7E61C97F1354B4E100857A4D /* ARModel.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,14 +355,6 @@
 				7E2336CC134AD1FF00BEFB33 /* en */,
 			);
 			name = MainWindow.xib;
-			sourceTree = "<group>";
-		};
-		7E2336D1134AD1FF00BEFB33 /* ARBrowserViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				7E2336D2134AD1FF00BEFB33 /* en */,
-			);
-			name = ARBrowserViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -236,11 +396,16 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ARBrowser/ARBrowser-Prefix.pch";
 				INFOPLIST_FILE = "ARBrowser/ARBrowser-Info.plist";
 				INSTALL_PATH = "$(LOCAL_APPS_DIR)";
+				OTHER_CFLAGS = "-marm";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -251,10 +416,18 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ARBrowser/ARBrowser-Prefix.pch";
 				INFOPLIST_FILE = "ARBrowser/ARBrowser-Info.plist";
 				INSTALL_PATH = "$(LOCAL_APPS_DIR)";
+				OTHER_CFLAGS = (
+					"-DNS_BLOCK_ASSERTIONS=1",
+					"-marm",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
@@ -280,6 +453,7 @@
 				7E2336D8134AD1FF00BEFB33 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

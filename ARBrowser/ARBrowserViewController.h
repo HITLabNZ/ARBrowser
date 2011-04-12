@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface ARBrowserViewController : UIViewController {
-    
+	NSArray * _worldPoints;
 }
 
 @end
