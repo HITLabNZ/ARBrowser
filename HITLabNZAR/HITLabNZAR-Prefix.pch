@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'HITLabNZAR' target in the 'HITLabNZAR' project
+//
+
+#ifdef __OBJC__
+	#import <Foundation/Foundation.h>
+#endif
