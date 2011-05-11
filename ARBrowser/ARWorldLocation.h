@@ -3,15 +3,15 @@
 //  ARBrowser
 //
 //  Created by Samuel Williams on 6/04/11.
-//  Copyright 2011 Orion Transfer Ltd. All rights reserved.
+//  Copyright 2011 Samuel Williams. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
 #import <CoreLocation/CoreLocation.h>
 
-#import "Math/Vector.h"
-#import "Math/Matrix.h"
+#import "Vector.h"
+#import "Matrix.h"
 
 const double EARTH_RADIUS = 6378.1 * 1000.0;
 

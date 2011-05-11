@@ -3,7 +3,7 @@
 //  ARBrowser
 //
 //  Created by Samuel Williams on 13/04/11.
-//  Copyright 2011 Orion Transfer Ltd. All rights reserved.
+//  Copyright 2011 Samuel Williams. All rights reserved.
 //
 
 #import "ARWorldPoint.h"
@@ -11,7 +11,7 @@
 
 @implementation ARWorldPoint
 
-@synthesize model;
+@synthesize model, metadata;
 
 - (id)init
 {

@@ -3,7 +3,7 @@
 //  ARBrowser
 //
 //  Created by Samuel Williams on 5/04/11.
-//  Copyright 2011 Orion Transfer Ltd. All rights reserved.
+//  Copyright 2011 Samuel Williams. All rights reserved.
 //
 
 #import "ARBrowserAppDelegate.h"
@@ -20,9 +20,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 	// Override point for customization after application launch.
-	 
 	self.window.rootViewController = self.viewController;
 	[self.window makeKeyAndVisible];
+	
     return YES;
 }
 

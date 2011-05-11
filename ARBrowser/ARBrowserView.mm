@@ -3,7 +3,7 @@
 //  ARBrowser
 //
 //  Created by Samuel Williams on 9/04/11.
-//  Copyright 2011 Orion Transfer Ltd. All rights reserved.
+//  Copyright 2011 Samuel Williams. All rights reserved.
 //
 
 #import "ARBrowserView.h"
@@ -106,7 +106,7 @@ struct ARBrowserInternalState {
 	glGetFloatv(GL_MODELVIEW_MATRIX, state->view.f);
 	
 	if ([_delegate respondsToSelector:@selector(worldPoints)]) {
-		NSArray * worldPoints = [_delegate worldPoints];
+		NSArray * worldPoints = [_delegate performSelector:@selector(worldPoints)];
 		
 		for (ARWorldPoint * point in worldPoints) {
 			Vec3 delta = [point position] - [origin position];
