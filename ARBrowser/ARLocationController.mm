@@ -9,8 +9,8 @@
 #import "ARLocationController.h"
 #import "ARWorldLocation.h"
 
-#define kAccelerometerFrequency     60.0 // Hz
-#define kFilteringFactor 0.1
+#define kAccelerometerFrequency     30.0 // Hz
+#define kFilteringFactor 0.5
 
 @implementation ARLocationController
 
