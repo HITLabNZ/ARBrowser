@@ -105,6 +105,8 @@ namespace ARBrowser {
 		// Convert to bounding sphere
 		Vec3 center() const;
 		float radius() const;
+		
+		bool intersectsWith(Vec3 origin, Vec3 direction, float & t1, float & t2) const;
 	};
 	
 	struct BoundingSphere {
@@ -144,8 +146,8 @@ namespace ARBrowser {
 		std::size_t index;
 		float t1, t2;
 	};
-	
-	//bool findIntersection(const Mat44 & proj, const Mat44 & view, Vec3 origin, Vec2 screenCoords, const std::vector<ARToolKit::WorldPoint> & worldPoints, IntersectionResult & result);
+		
+	bool findIntersection(const Mat44 & proj, const Mat44 & view, float viewport[4], const Vec3 & origin, Vec2 screenCoords, const std::vector<BoundingSphere> & spheres, IntersectionResult & result);
 }
 
 #endif

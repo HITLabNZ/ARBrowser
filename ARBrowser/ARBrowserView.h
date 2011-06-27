@@ -12,20 +12,26 @@
 #import "ARVideoFrameController.h"
 #import "ARVideoBackground.h"
 
-struct ARBrowserInternalState;
+@class ARBrowserView, ARWorldPoint;
 
 @protocol ARBrowserViewDelegate <NSObject>
 
 // Return a list of world points, e.g. instances of ARWorldPoint objects.
 - (NSArray*)worldPoints;
 
+- (void) browserView: (ARBrowserView*)view didSelect:(ARWorldPoint*)point;
+
 @end
+
+struct ARBrowserViewState;
 
 @interface ARBrowserView : EAGLView {
 	ARVideoFrameController * videoFrameController;
-    ARVideoBackground * videoBackground;
+	ARVideoBackground * videoBackground;
 	
-	struct ARBrowserInternalState * state;	
+	struct ARBrowserViewState * state;
 }
+
+@property(assign) id<ARBrowserViewDelegate> delegate;
 
 @end

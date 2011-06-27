@@ -13,12 +13,25 @@
 #import "ARWorldPoint.h"
 #import "ARModel.h"
 
-struct ARBrowserInternalState {
+struct ARBrowserViewState {
+	Mat44 projectionMatrix, viewMatrix;
+	
 	ARBrowser::VerticesT grid;
-	Mat44 proj, view;
+	
+	ARBrowser::IntersectionResult intersectionResult;
 };
 
+static Vec2 positionInView (UIView * view, UITouch * touch)
+{
+	CGPoint locationInView = [touch locationInView:view];
+	CGRect bounds = [view bounds];
+	
+	return Vec2(locationInView.x, bounds.size.height - locationInView.y);
+}
+
 @implementation ARBrowserView
+
+@synthesize delegate;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -33,11 +46,48 @@ struct ARBrowserInternalState {
 		// Initialise the location controller
 		[ARLocationController sharedInstance];
 		
-		state = new ARBrowserInternalState;
+		state = new ARBrowserViewState;
 		ARBrowser::generateGrid(state->grid);
     }
 	
     return self;
+}
+
+- (void)touchesBegan: (NSSet *)touches withEvent: (UIEvent *)event
+{
+	for (UITouch * touch in touches) {
+		Vec2 now = positionInView(self, touch);
+		ARBrowser::IntersectionResult result;
+		
+		ARWorldLocation * origin = [[ARLocationController sharedInstance] worldLocation];
+		NSArray * worldPoints = [[self delegate] worldPoints];
+		std::vector<ARBrowser::BoundingSphere> spheres;
+		
+		for (ARWorldPoint * worldPoint in worldPoints) {
+			ARBoundingSphere boundingSphere = [[worldPoint model] boundingSphere];
+			ARBrowser::BoundingSphere sphere(boundingSphere.center, boundingSphere.radius);
+
+			// We don't support this yet, but it was supported in the old API.
+			// sphere.transform([worldPoint transformation]);
+			
+			// We need to calculate collision detection in the same coordinate system as drawn on screen.
+			Vec3 offset = [origin calculateRelativePositionOf:worldPoint];
+			sphere.center += offset;
+			
+			spheres.push_back(sphere);
+		}
+		
+		Vec3 worldOrigin(0, 0, 0);
+		
+		// viewport: (X, Y, Width, Height)
+		CGRect bounds = [self bounds];
+		float viewport[4] = {bounds.origin.x, bounds.origin.y, bounds.size.width, bounds.size.height};
+
+		if (ARBrowser::findIntersection(state->projectionMatrix, state->viewMatrix, viewport, worldOrigin, now, spheres, result)) {
+			ARWorldPoint * selected = [worldPoints objectAtIndex:result.index];
+			[self.delegate browserView:self didSelect:selected];
+		}
+	}
 }
 
 - (void) update {
@@ -62,6 +112,9 @@ struct ARBrowserInternalState {
 		glMatrixMode(GL_MODELVIEW);
 		glLoadIdentity();
 		
+		// This moves the camera back slightly and improves the perspective for debugging purposes.
+		//glTranslatef(0.0, 0.0, -2.0);
+		
 		// F defines the negative normal for the plain
 		// x -> latitude, y -> longitude, z -> altitude
 		Vec3 _f(gravity.x, gravity.y, gravity.z);
@@ -84,6 +137,7 @@ struct ARBrowserInternalState {
 			glRotatef(sz * (180.0 / M_PI), s.x, s.y, s.z);
 		}
 		
+		// Move the origin down 1 meter.
 		glTranslatef(0.0, 0.0, -1.0);
 	}
 	
@@ -99,25 +153,31 @@ struct ARBrowserInternalState {
 	
 	glRotatef([origin rotation], 0, 0, 1);
 	
+	glGetFloatv(GL_PROJECTION_MATRIX, state->projectionMatrix.f);
+	glGetFloatv(GL_MODELVIEW_MATRIX, state->viewMatrix.f);
+	
+	glColor4f(0.7, 0.7, 0.7, 1.0);
 	ARBrowser::renderVertices(state->grid);
 	ARBrowser::renderAxis();
 	
-	glGetFloatv(GL_PROJECTION_MATRIX, state->proj.f);
-	glGetFloatv(GL_MODELVIEW_MATRIX, state->view.f);
-	
-	if ([_delegate respondsToSelector:@selector(worldPoints)]) {
-		NSArray * worldPoints = [_delegate performSelector:@selector(worldPoints)];
+	NSArray * worldPoints = [[self delegate] worldPoints];
 		
-		for (ARWorldPoint * point in worldPoints) {
-			Vec3 delta = [point position] - [origin position];
-			
-			glPushMatrix();
-			glTranslatef(delta.x, delta.y, delta.z);
-			
-			[[point model] draw];
-			
-			glPopMatrix();
-		}
+	for (ARWorldPoint * point in worldPoints) {
+		Vec3 delta = [origin calculateRelativePositionOf:point];
+		
+		glPushMatrix();
+		glTranslatef(delta.x, delta.y, delta.z);
+		
+		[[point model] draw];
+		
+		ARBrowser::VerticesT points;
+		ARBoundingSphere sphere = [[point model] boundingSphere];
+		ARBrowser::generateGlobe(points, sphere.radius);
+		
+		glTranslatef(sphere.center.x, sphere.center.y, sphere.center.z);
+		ARBrowser::renderVertices(points);
+		
+		glPopMatrix();
 	}
 	
 	[super update];

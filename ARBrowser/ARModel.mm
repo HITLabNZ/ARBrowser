@@ -8,41 +8,14 @@
 
 #import "ARModel.h"
 
-#import "Model.h"
-
-struct ARModelState {
-	ARBrowser::Model * model;
-};
+#import "ARObjectModel.h"
 
 @implementation ARModel
 
-- initWithName: (NSString*)name inDirectory: (NSString*)directory
++ (id<ARRenderable>) objectModelWithName:(NSString*)name inDirectory:(NSString*)directory
 {
-    self = [super init];
-    if (self) {
-        state = new ARModelState;
-		state->model = new ARBrowser::Model([name UTF8String], [directory UTF8String]);
-    }
-    
-    return self;
+	return [[ARObjectModel alloc] initWithName:name inDirectory:directory];
 }
 
-- (void)dealloc
-{
-	if (state) {
-		if (state->model)
-			delete state->model;
-		
-		delete state;
-	}
-	
-    [super dealloc];
-}
-
-- (void) draw
-{
-	if (state && state->model)
-		state->model->render();
-}
 
 @end

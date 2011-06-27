@@ -12,29 +12,68 @@ const double D2R = (M_PI / 180.0);
 
 @implementation ARWorldLocation
 
-@synthesize position, rotation;
+@synthesize location, altitude, position, rotation;
 
-- (void) setCoordinate: (CLLocationCoordinate2D)location altitude: (double)radius
+- (void) setCoordinate: (CLLocationCoordinate2D)_location altitude: (double)_altitude
 {
+	// Retain original coordinates
+	location = _location;
+	altitude = _altitude;
+
 	// longitude (-180 -> 180)
-	float phi = (location.longitude + 180) * D2R;
-	
+	float phi = (180 - location.longitude) * D2R;
+
 	// latitude (-90 -> 90)
-	float theta = (location.latitude + 90) * D2R;
-	
+	float theta = (90 - location.latitude) * D2R;
+
 	// Calculate coordinates spherical -> rectangular
 	// Y axis points north
-	position.x = radius * sin(theta) * sin(phi);
-	position.y = radius * sin(theta) * cos(phi);
-	
-	// This isn't quite correct, so we set it to zero =)
-	//position.z = radius * cos(theta);
-	position.z = 0;
+	position.x = altitude * sin(theta) * sin(phi);
+	position.y = altitude * sin(theta) * cos(phi);
+	position.z = altitude * cos(theta);
 }
 
-- (void) setLocation: (CLLocation*)location globalRadius:(double)radius
+// Calculates the distance between two Vec2(latitude,longitude) points, on a sphere of the given radius.
+double distanceBetween(const CLLocationCoordinate2D & a, const CLLocationCoordinate2D & b, double radius) {
+	CLLocationCoordinate2D d;
+	d.latitude = (b.latitude - a.latitude) * D2R;
+	d.longitude = (b.longitude - a.longitude) * D2R;
+	
+	double sx = sin(d.latitude/2.0), sy = sin(d.longitude/2.0);
+	double t = sx*sx + cos(a.latitude*D2R) * cos(b.latitude*D2R) * sy*sy;
+	double c = 2.0 * atan2(sqrt(t), sqrt(1.0-t));
+	
+	return abs(radius * c);
+}
+
+- (Vec3) calculateRelativePositionOf: (ARWorldLocation*)other
+{	
+	CLLocationCoordinate2D horizontal = {location.latitude, other->location.longitude};
+	CLLocationCoordinate2D vertical = {other->location.latitude, location.longitude};
+		
+	Vec3 r;
+	// We calculate x by varying longitude (east <-> west)
+	r.x = distanceBetween(location, horizontal, altitude);
+	
+	// We calculate y by varying latitude (north <-> south)
+	r.y = distanceBetween(location, vertical, altitude);
+	
+	// If longitude is less than origin, inverse x coordinate.
+	if (other->location.longitude < location.longitude)
+		r.x *= -1;
+	
+	// If latitude is less than origin, inverse y coordinate
+	if (other->location.latitude < location.latitude)
+		r.y *= -1;
+	
+	r.z = 0;
+	
+	return r;
+}
+
+- (void) setLocation:(CLLocation*)_location globalRadius:(double)radius
 {
-	[self setCoordinate:[location coordinate] altitude:radius + [location altitude]];
+	[self setCoordinate:[_location coordinate] altitude:radius + [_location altitude]];
 }
 
 - (void) setHeading: (CLHeading*)heading

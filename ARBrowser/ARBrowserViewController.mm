@@ -101,4 +101,8 @@
 	// Additional OpenGL Rendering here.
 }
 
+- (void) browserView: (ARBrowserView*)view didSelect:(ARWorldPoint*)point {
+	NSLog(@"Browser view did select: %@", point);
+}
+
 @end

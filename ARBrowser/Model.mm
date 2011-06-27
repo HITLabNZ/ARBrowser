@@ -454,7 +454,7 @@ namespace ARBrowser {
 	BoundingBox::BoundingBox(Vec3 _min, Vec3 _max) : min(_min), max(_max), count(0) {
 		
 	}
-/*	
+	
 	bool raySlabsIntersection(float start, float dir, float min, float max, float & tfirst, float & tlast)
 	{
 		if (dir == 0.0)
@@ -489,7 +489,6 @@ namespace ARBrowser {
 		
 		return true;
 	}
-*/
 
 	BoundingSphere::BoundingSphere(Vec3 _center, float _radius) : center(_center), radius(_radius) {
 		
@@ -566,17 +565,34 @@ namespace ARBrowser {
 		return (max - min).length() / 2.0;
 	}
 	
-	/*
-	bool findIntersection(const Mat44 & proj, const Mat44 & view, Vec3 worldOrigin, Vec2 screenCoords, const std::vector<ARToolKit::WorldPoint> & worldPoints, IntersectionResult & result) {
-		Mat44 projectionInv, viewInv;
+	// Runs a point through the inverse project and view matrix - convenience function.
+	Vec3 calculatePoint(const Mat44 & projInv, const Mat44 viewInv, Vec3 p) {
+		Vec4 t0(p.x, p.y, p.z, 1.0);
 		
-		MatrixInverse(projectionInv, proj);
+		Vec4 t1, t2;
+		
+		MatrixVec4Multiply(t1, t0, projInv);
+		MatrixVec4Multiply(t2, t1, viewInv);
+		
+		Vec3 r(t2.x, t2.y, t2.z);
+		r /= t2.w;
+		
+		return r;
+	}
+	
+	std::ostream & operator<< (std::ostream & output, const Vec3 & v) {
+		output << v.x << ", " << v.y << ", " << v.z;
+		
+		return output;
+	}
+	
+	bool findIntersection(const Mat44 & proj, const Mat44 & view, float viewport[4], const Vec3 & worldOrigin, Vec2 screenCoords, const std::vector<BoundingSphere> & spheres, IntersectionResult & result) {
+		Mat44 projInv, viewInv;
+		
+		MatrixInverse(projInv, proj);
 		MatrixInverse(viewInv, view);
 		
-		// Viewport = (X, Y, Width, Height)
-		GLint viewport[4];
-		glGetIntegerv(GL_VIEWPORT, viewport);
-		
+		// viewport = (X, Y, Width, Height)
 		// Convert screen coordinate to clip coordinates
 		screenCoords.x -= viewport[0];
 		screenCoords.y -= viewport[1];
@@ -587,18 +603,14 @@ namespace ARBrowser {
 		screenCoords.x = (screenCoords.x * 2.0) - 1.0;
 		screenCoords.y = (screenCoords.y * 2.0) - 1.0;
 		
-		// Convert to eye coordinates
-		Vec3 v1(screenCoords.x, screenCoords.y, -1);
-		Vec3 c1;
-		
-		MatrixVec3Multiply(c1, v1, projectionInv);
-		
-		// Convert to object coordinates
-		Vec3 o1;
-		MatrixVec3Multiply(o1, c1, viewInv);
-		
+		// We are looking down -z axis
+		// I'm not completely sure why this is 1, and not -1, but the coordinates end up reversed otherwise!
+		Vec3 front(screenCoords.x, screenCoords.y, 1);
+		Vec3 p2 = calculatePoint(projInv, viewInv, front);
+				
 		Vec3 origin(viewInv.f[12], viewInv.f[13], viewInv.f[14]);
-		Vec3 direction = (o1 - origin).normalized();
+		Vec3 direction = (p2 - origin).normalized();
+				
 		float t1, t2;
 		
 		bool hit = false;
@@ -607,31 +619,20 @@ namespace ARBrowser {
 		result.origin = origin;
 		result.direction = direction;
 		
-		for (std::size_t i = 0; i < worldPoints.size(); i++) {
-			const WorldPoint & pt = worldPoints[i];
-			
-			if (pt.model) {
-				BoundingBox box = pt.model->boundingBox();
+		for (std::size_t i = 0; i < spheres.size(); i++) {
+			if (spheres[i].intersectsWith(origin + worldOrigin, direction, t1, t2)) {
+				result.hits++;
 				
-				BoundingSphere sphere(box.center(), box.radius());
-				// Update the sphere center
-				sphere = sphere.transform(pt.transformation);
-				sphere.center += pt.position;
-				
-				if (sphere.intersectsWith(origin + worldOrigin, direction, t1, t2)) {
-					result.hits++;
-					
-					if (!hit) {
-						hit = true;
+				if (!hit) {
+					hit = true;
+					result.index = i;
+					result.t1 = t1;
+					result.t2 = t2;
+				} else {
+					if (t1 < result.t1) {
 						result.index = i;
 						result.t1 = t1;
 						result.t2 = t2;
-					} else {
-						if (t1 < result.t1) {
-							result.index = i;
-							result.t1 = t1;
-							result.t2 = t2;
-						}
 					}
 				}
 			}
@@ -639,6 +640,5 @@ namespace ARBrowser {
 		
 		return hit;
 	}
-	*/
 }
 

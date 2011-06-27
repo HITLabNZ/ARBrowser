@@ -76,6 +76,8 @@
 		7E7E2A731370EB0B00338606 /* Quaternion.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E23373D134B41F100BEFB33 /* Quaternion.h */; };
 		7E7E2A741370EB1500338606 /* Endian.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E23373A134B41F100BEFB33 /* Endian.h */; };
 		7E8D4CB1134FE04A00868D6B /* ARBrowserView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7E8D4CB0134FE04A00868D6B /* ARBrowserView.mm */; };
+		7EBCD90913B85459007892CA /* ARObjectModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7EBCD90813B85457007892CA /* ARObjectModel.mm */; };
+		7EBCD90A13B87967007892CA /* ARObjectModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7EBCD90813B85457007892CA /* ARObjectModel.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -170,6 +172,8 @@
 		7E7E29571370D8C100338606 /* HITLabNZAR-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HITLabNZAR-Prefix.pch"; sourceTree = "<group>"; };
 		7E8D4CAF134FE04A00868D6B /* ARBrowserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARBrowserView.h; sourceTree = "<group>"; };
 		7E8D4CB0134FE04A00868D6B /* ARBrowserView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ARBrowserView.mm; sourceTree = "<group>"; };
+		7EBCD90713B85456007892CA /* ARObjectModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARObjectModel.h; sourceTree = "<group>"; };
+		7EBCD90813B85457007892CA /* ARObjectModel.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ARObjectModel.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -252,10 +256,12 @@
 				7E233724134AE94400BEFB33 /* Texture2D.m */,
 				7E233736134B40C200BEFB33 /* ARWorldLocation.h */,
 				7E233737134B40C200BEFB33 /* ARWorldLocation.mm */,
-				7E61C97D1354B4E000857A4D /* ARModel.h */,
-				7E61C97E1354B4E000857A4D /* ARModel.mm */,
 				7E61C97A1354B44B00857A4D /* ARWorldPoint.h */,
 				7E61C97B1354B44B00857A4D /* ARWorldPoint.mm */,
+				7E61C97D1354B4E000857A4D /* ARModel.h */,
+				7E61C97E1354B4E000857A4D /* ARModel.mm */,
+				7EBCD90713B85456007892CA /* ARObjectModel.h */,
+				7EBCD90813B85457007892CA /* ARObjectModel.mm */,
 				7E233726134AE99D00BEFB33 /* ARVideoFrameController.h */,
 				7E233727134AE99D00BEFB33 /* ARVideoFrameController.m */,
 				7E233729134AEAC100BEFB33 /* ARVideoBackground.h */,
@@ -448,6 +454,7 @@
 				7E61C9771354AA2700857A4D /* ARLocationController.mm in Sources */,
 				7E61C97C1354B44B00857A4D /* ARWorldPoint.mm in Sources */,
 				7E61C97F1354B4E100857A4D /* ARModel.mm in Sources */,
+				7EBCD90913B85459007892CA /* ARObjectModel.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -471,6 +478,7 @@
 				7E7E29691370D97100338606 /* ARBrowserView.mm in Sources */,
 				7E7E296A1370D97400338606 /* ARLocationController.mm in Sources */,
 				7E7E296B1370D97E00338606 /* Model.mm in Sources */,
+				7EBCD90A13B87967007892CA /* ARObjectModel.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -507,7 +515,7 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -521,7 +529,7 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 			};

@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-#import "EAGLView.h"
+#import "ARBrowserView.h"
 
-@interface ARBrowserViewController : UIViewController <EAGLViewDelegate> {
+@interface ARBrowserViewController : UIViewController <EAGLViewDelegate, ARBrowserViewDelegate> {
 	NSArray * _worldPoints;
 }
 

@@ -8,13 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-struct ARModelState;
+#import "ARWorldPoint.h"
 
-@interface ARModel : NSObject {
-	struct ARModelState * state;
-}
+/// This class represents a 3D model.
+@interface ARModel : NSObject
 
-- initWithName: (NSString*)name inDirectory: (NSString*)directory;
-- (void) draw;
++ (id<ARRenderable>) objectModelWithName:(NSString*)name inDirectory:(NSString*)directory;
 
 @end
