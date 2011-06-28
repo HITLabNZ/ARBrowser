@@ -171,12 +171,13 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 		
 		[[point model] draw];
 		
-		ARBrowser::VerticesT points;
-		ARBoundingSphere sphere = [[point model] boundingSphere];
-		ARBrowser::generateGlobe(points, sphere.radius);
+		// Render the bounding sphere for debugging.
+		//ARBrowser::VerticesT points;
+		//ARBoundingSphere sphere = [[point model] boundingSphere];
+		//ARBrowser::generateGlobe(points, sphere.radius);
 		
-		glTranslatef(sphere.center.x, sphere.center.y, sphere.center.z);
-		ARBrowser::renderVertices(points);
+		//glTranslatef(sphere.center.x, sphere.center.y, sphere.center.z);
+		//ARBrowser::renderVertices(points);
 		
 		glPopMatrix();
 	}
