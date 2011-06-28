@@ -81,4 +81,9 @@ double distanceBetween(const CLLocationCoordinate2D & a, const CLLocationCoordin
 	rotation = [heading trueHeading];
 }
 
+- (NSString*) description
+{
+	return [NSString stringWithFormat:@"<ARWorldPoint: %0.5f %0.5f>", location.latitude, location.longitude];
+}
+
 @end
