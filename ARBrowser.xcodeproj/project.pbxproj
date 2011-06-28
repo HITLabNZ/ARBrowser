@@ -6,6 +6,21 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		7E68E76913B9CF8F00AF5C31 /* ARBrowser-Demo */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 7E68E76A13B9CF8F00AF5C31 /* Build configuration list for PBXAggregateTarget "ARBrowser-Demo" */;
+			buildPhases = (
+				7E68E76F13B9CF9C00AF5C31 /* ShellScript */,
+			);
+			dependencies = (
+				7E68E76E13B9CF9600AF5C31 /* PBXTargetDependency */,
+			);
+			name = "ARBrowser-Demo";
+			productName = "ARBrowser-Demo";
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		7E2336BA134AD1FF00BEFB33 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E2336B9134AD1FF00BEFB33 /* UIKit.framework */; };
 		7E2336BC134AD1FF00BEFB33 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E2336BB134AD1FF00BEFB33 /* Foundation.framework */; };
@@ -39,6 +54,10 @@
 		7E61C97C1354B44B00857A4D /* ARWorldPoint.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7E61C97B1354B44B00857A4D /* ARWorldPoint.mm */; };
 		7E61C97F1354B4E100857A4D /* ARModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7E61C97E1354B4E000857A4D /* ARModel.mm */; };
 		7E61C98B1354B69C00857A4D /* Models in Resources */ = {isa = PBXBuildFile; fileRef = 7E61C98A1354B69C00857A4D /* Models */; };
+		7E68E75E13B9C81800AF5C31 /* Doxyfile in Resources */ = {isa = PBXBuildFile; fileRef = 7E68E75D13B9C81800AF5C31 /* Doxyfile */; };
+		7E68E76013B9C85D00AF5C31 /* Doxyfile in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E68E75D13B9C81800AF5C31 /* Doxyfile */; };
+		7E68E76213B9CE5700AF5C31 /* MainWindow.xib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E2336CB134AD1FF00BEFB33 /* MainWindow.xib */; };
+		7E68E76813B9CF0B00AF5C31 /* Readme.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 7E68E76713B9CF0B00AF5C31 /* Readme.rtf */; };
 		7E7E29541370D8C100338606 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E2336BB134AD1FF00BEFB33 /* Foundation.framework */; };
 		7E7E295C1370D92E00338606 /* Matrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E23373B134B41F100BEFB33 /* Matrix.cpp */; };
 		7E7E295D1370D93300338606 /* Transform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E233740134B41F100BEFB33 /* Transform.cpp */; };
@@ -64,7 +83,6 @@
 		7E7E297F1370E5D900338606 /* Transform.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E233741134B41F100BEFB33 /* Transform.h */; };
 		7E7E29801370E5E200338606 /* ARBrowserAppDelegate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E2336C8134AD1FF00BEFB33 /* ARBrowserAppDelegate.h */; };
 		7E7E29811370E5EA00338606 /* ARBrowserAppDelegate.m in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E2336C9134AD1FF00BEFB33 /* ARBrowserAppDelegate.m */; };
-		7E7E29821370E60500338606 /* MainWindow.xib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E2336CB134AD1FF00BEFB33 /* MainWindow.xib */; };
 		7E7E29831370E60A00338606 /* ARBrowserViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E2336CE134AD1FF00BEFB33 /* ARBrowserViewController.h */; };
 		7E7E29841370E60D00338606 /* ARBrowserViewController.mm in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E2336CF134AD1FF00BEFB33 /* ARBrowserViewController.mm */; };
 		7E7E29851370E61300338606 /* Texture2D.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E233723134AE94400BEFB33 /* Texture2D.h */; };
@@ -80,6 +98,16 @@
 		7EBCD90A13B87967007892CA /* ARObjectModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7EBCD90813B85457007892CA /* ARObjectModel.mm */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		7E68E76D13B9CF9600AF5C31 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7E2336AC134AD1FF00BEFB33 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7E7E29521370D8C100338606;
+			remoteInfo = HITLabNZAR;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		7E7E29771370E4CF00338606 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -87,6 +115,7 @@
 			dstPath = source;
 			dstSubfolderSpec = 16;
 			files = (
+				7E68E76013B9C85D00AF5C31 /* Doxyfile in CopyFiles */,
 				7E7E29811370E5EA00338606 /* ARBrowserAppDelegate.m in CopyFiles */,
 				7E7E297C1370E59300338606 /* Matrix.h in CopyFiles */,
 				7E7E2A731370EB0B00338606 /* Quaternion.h in CopyFiles */,
@@ -105,7 +134,7 @@
 				7E7E29831370E60A00338606 /* ARBrowserViewController.h in CopyFiles */,
 				7E7E29841370E60D00338606 /* ARBrowserViewController.mm in CopyFiles */,
 				7E7E29851370E61300338606 /* Texture2D.h in CopyFiles */,
-				7E7E29821370E60500338606 /* MainWindow.xib in CopyFiles */,
+				7E68E76213B9CE5700AF5C31 /* MainWindow.xib in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,6 +197,8 @@
 		7E61C97D1354B4E000857A4D /* ARModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARModel.h; sourceTree = "<group>"; };
 		7E61C97E1354B4E000857A4D /* ARModel.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ARModel.mm; sourceTree = "<group>"; };
 		7E61C98A1354B69C00857A4D /* Models */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Models; sourceTree = SOURCE_ROOT; };
+		7E68E75D13B9C81800AF5C31 /* Doxyfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Doxyfile; sourceTree = "<group>"; };
+		7E68E76713B9CF0B00AF5C31 /* Readme.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Readme.rtf; sourceTree = "<group>"; };
 		7E7E29531370D8C100338606 /* libHITLabNZAR.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libHITLabNZAR.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E7E29571370D8C100338606 /* HITLabNZAR-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HITLabNZAR-Prefix.pch"; sourceTree = "<group>"; };
 		7E8D4CAF134FE04A00868D6B /* ARBrowserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARBrowserView.h; sourceTree = "<group>"; };
@@ -341,6 +372,8 @@
 		7E7E29551370D8C100338606 /* HITLabNZAR */ = {
 			isa = PBXGroup;
 			children = (
+				7E68E76713B9CF0B00AF5C31 /* Readme.rtf */,
+				7E68E75D13B9C81800AF5C31 /* Doxyfile */,
 				7E7E29561370D8C100338606 /* Supporting Files */,
 			);
 			path = HITLabNZAR;
@@ -381,6 +414,7 @@
 				7E7E294F1370D8C100338606 /* Sources */,
 				7E7E29501370D8C100338606 /* Frameworks */,
 				7E7E29771370E4CF00338606 /* CopyFiles */,
+				7E68E76113B9C86400AF5C31 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -413,6 +447,7 @@
 			targets = (
 				7E2336B4134AD1FF00BEFB33 /* ARBrowser */,
 				7E7E29521370D8C100338606 /* HITLabNZAR */,
+				7E68E76913B9CF8F00AF5C31 /* ARBrowser-Demo */,
 			);
 		};
 /* End PBXProject section */
@@ -425,10 +460,42 @@
 				7E2336C4134AD1FF00BEFB33 /* InfoPlist.strings in Resources */,
 				7E2336CD134AD1FF00BEFB33 /* MainWindow.xib in Resources */,
 				7E61C98B1354B69C00857A4D /* Models in Resources */,
+				7E68E75E13B9C81800AF5C31 /* Doxyfile in Resources */,
+				7E68E76813B9CF0B00AF5C31 /* Readme.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7E68E76113B9C86400AF5C31 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=/opt/local/bin/:$PATH\nexport DOXYGEN=`which doxygen`\n\ncd $BUILT_PRODUCTS_DIR/source\n\nls -la\necho \"Running doxygen: $DOXYGEN\"\n\n$DOXYGEN\n";
+			showEnvVarsInLog = 0;
+		};
+		7E68E76F13B9CF9C00AF5C31 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export ARBROWSER_DEMO=$PROJECT_DIR/ARBrowser-Demo\n\n# Make the appropriate destination directory.\nmkdir -p $ARBROWSER_DEMO/libHITLabNZAR/\n\n# Copy in the source and compiled library.\ncp -R $BUILT_PRODUCTS_DIR/libHITLabNZAR.a $ARBROWSER_DEMO/libHITLabNZAR/\ncp -R $BUILT_PRODUCTS_DIR/source $ARBROWSER_DEMO/libHITLabNZAR/\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7E2336B1134AD1FF00BEFB33 /* Sources */ = {
@@ -483,6 +550,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7E68E76E13B9CF9600AF5C31 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7E7E29521370D8C100338606 /* HITLabNZAR */;
+			targetProxy = 7E68E76D13B9CF9600AF5C31 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		7E2336C2134AD1FF00BEFB33 /* InfoPlist.strings */ = {
@@ -580,6 +655,20 @@
 			};
 			name = Release;
 		};
+		7E68E76B13B9CF8F00AF5C31 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		7E68E76C13B9CF8F00AF5C31 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		7E7E29581370D8C100338606 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -629,6 +718,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		7E68E76A13B9CF8F00AF5C31 /* Build configuration list for PBXAggregateTarget "ARBrowser-Demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7E68E76B13B9CF8F00AF5C31 /* Debug */,
+				7E68E76C13B9CF8F00AF5C31 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		7E7E295A1370D8C100338606 /* Build configuration list for PBXNativeTarget "HITLabNZAR" */ = {
 			isa = XCConfigurationList;
