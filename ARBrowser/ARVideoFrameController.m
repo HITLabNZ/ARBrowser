@@ -8,6 +8,9 @@
 
 #import "ARVideoFrameController.h"
 
+// Some implementation was based on the implementation from
+// http://www.benjaminloulier.com/posts/2-ios4-and-direct-access-to-the-camera
+
 @implementation ARVideoFrameController
 
 - init

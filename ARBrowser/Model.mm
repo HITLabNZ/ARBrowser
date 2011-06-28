@@ -188,7 +188,6 @@ namespace ARBrowser {
 	const char * TOKEN_FACE = "f";
 	const char * TOKEN_USE_MATERIAL = "usemtl";
 
-	/* Internal structure */
 	struct _ObjMeshFaceIndex{
 		std::string material;
 		int pos_index[3];
@@ -196,7 +195,7 @@ namespace ARBrowser {
 		int nor_index[3];
 	};
 
-	/* Call this function to load a model, only loads triangulated meshes */
+	/// Call this function to load a model, only loads triangulated meshes.
 	void loadMesh(std::string filename, std::vector<ObjMesh> & mesh) {
 		std::vector<Vec3> positions;
 		std::vector<Vec2> texcoords;
@@ -312,6 +311,7 @@ namespace ARBrowser {
 		}
 	}
 	
+	/// Loads textures from a directory for the given materials.
 	void loadTextures(std::string directory, Model::MaterialMapT & materials) {
 		for (Model::MaterialMapT::iterator i = materials.begin(); i != materials.end(); i++) {
 			ObjMaterial & material = (*i).second;

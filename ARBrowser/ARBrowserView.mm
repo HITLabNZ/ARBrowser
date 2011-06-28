@@ -13,6 +13,7 @@
 #import "ARWorldPoint.h"
 #import "ARModel.h"
 
+/// @internal
 struct ARBrowserViewState {
 	Mat44 projectionMatrix, viewMatrix;
 	

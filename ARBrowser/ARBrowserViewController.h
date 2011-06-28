@@ -10,10 +10,9 @@
 
 #import "ARBrowserView.h"
 
+/// Simple example of an ARBrowserViewDelegate.
 @interface ARBrowserViewController : UIViewController <EAGLViewDelegate, ARBrowserViewDelegate> {
 	NSArray * _worldPoints;
 }
-
-
 
 @end

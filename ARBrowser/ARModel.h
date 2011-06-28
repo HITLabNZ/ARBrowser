@@ -10,9 +10,11 @@
 
 #import "ARWorldPoint.h"
 
-/// This class represents a 3D model.
+/// Provides a simple interface for loading ARRenderable models for use with ARWorldPoint.
 @interface ARModel : NSObject
 
+/// Load a given .obj model.
+/// Because .obj models consist of more than one file, we need to know the files <tt>[name].obj</tt> and <tt>[name].mtl</tt> and the associated directory for loading texture data.
 + (id<ARRenderable>) objectModelWithName:(NSString*)name inDirectory:(NSString*)directory;
 
 @end

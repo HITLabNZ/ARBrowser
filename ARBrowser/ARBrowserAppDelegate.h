@@ -10,18 +10,11 @@
 
 @class ARBrowserViewController;
 
+/// The main application delegate which initialises the window and manages the associated view controller.
 @interface ARBrowserAppDelegate : NSObject <UIApplicationDelegate> {
-	//ARBRowserViewController * browserViewController;
-	//ARMapViewController * mapViewController;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet ARBrowserViewController *viewController;
-
-// setWorldPoints
-// worldPoints
-
-// showBrowserView
-// showMapView
 
 @end

@@ -1,34 +1,10 @@
 /*
  *  Model.h
- *  ARToolKit-oe
+ *  ARBrowser
  *
  *  Created by Samuel Williams on 11/11/10.
  *  Copyright 2010 Samuel Williams. All rights reserved.
  *
- */
-
-/**
- * The MIT License
- *
- * Copyright (c) 2010 Wouter Lindenhof (http://limegarden.net)
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
  */
  
 #ifndef _ARTOOLKIT_MODEL_H
@@ -43,6 +19,7 @@
 #include <fstream>
 #include <map>
 
+/// The main namespace for the ARBrowser C++ implementation.
 namespace ARBrowser {
 	typedef std::vector<Vec3> VerticesT;
 	
@@ -51,31 +28,36 @@ namespace ARBrowser {
 
 	void renderVertices(const VerticesT & vertices, GLenum mode = GL_LINES);
 	
-	// Primarily for debugging..
+	/// Renders a square box of size s.
 	void renderMarker (float s);
+	
+	/// Renders an x,y,z axis at the origin.
 	void renderAxis ();
-
+	
+	/// Simple representation of 4-component colour.
 	struct Color4f {
 		float r, g, b, a;
 	};
 	
+	/// The position, texture coordinate and normal of a vertex.
 	struct ObjMeshVertex {
 		Vec3 pos;
 		Vec2 texcoord;
 		Vec3 normal;
 	};
 
-	/* This is a triangle, that we can render */
+	/// A triangle that can be rendered as part of an object model.
 	struct ObjMeshFace{
 		ObjMeshVertex vertices[3];
 	};
 
-	/* This contains a list of triangles */
+	/// A mesh consists of a list of triangle faces and an associated material
 	struct ObjMesh{
 		std::string material;
 		std::vector<ObjMeshFace> faces;
 	};
 	
+	/// A material references any required textures for rendering.
 	struct ObjMaterial {
 	public:
 		ObjMaterial ();
@@ -87,28 +69,48 @@ namespace ARBrowser {
 		void enable ();
 		void disable ();
 		
+		
 		Color4f ambient;
 		
+		/// Path to the diffuse map texture (e.g. basic surface colour).
 		std::string diffuseMapPath;
+		
+		/// The actual reference to the loaded texture.
 		Texture2D * diffuseMapTexture;
 	};
 	
+	/// An aligned bounding box class which provides basic intersection tests.
 	struct BoundingBox {
 		BoundingBox();
 		BoundingBox(Vec3 _min, Vec3 _max);
 		
+		/// Add a point to the box.
+		/// If the point is outside the box, the box is expanded to include the point.
 		void add(Vec3 pt);
 		
-		Vec3 min, max;
+		/// The lower left coordinate of the box.
+		Vec3 min;
+		
+		/// The upper right coordinate of the box.
+		Vec3 max;
+		
+		/// Incremented when a point is added to the box.
 		unsigned count;
 
-		// Convert to bounding sphere
+		/// Convert to bounding sphere - this is the center of the box.
 		Vec3 center() const;
+		
+		/// Convert to bounding sphere - this is the distance from the center to the corner.
 		float radius() const;
 		
+		/// Check if a line from origin in direction intersects with the box.
+		/// To calculate the point of entrace or exit, use t1 or t2 respectively: <tt>origin + (direction * tn)</tt>
+		/// @returns t1 The time of entry of the line into the box.
+		/// @returns t2 The time of exit of the line into the box.
 		bool intersectsWith(Vec3 origin, Vec3 direction, float & t1, float & t2) const;
 	};
 	
+	/// A basic sphere that can be transformed and provides basic intersection tests.
 	struct BoundingSphere {
 		BoundingSphere(Vec3 _center, float _radius);
 		
@@ -120,6 +122,7 @@ namespace ARBrowser {
 		bool intersectsWith(Vec3 origin, Vec3 direction, float & t1, float & t2) const;
 	};
 	
+	/// Main .obj format model loader.
 	class Model {
 		public:
 			typedef std::map<std::string, ObjMaterial> MaterialMapT;
@@ -139,6 +142,7 @@ namespace ARBrowser {
 			const BoundingBox & boundingBox () const { return m_boundingBox; }
 	};
 	
+	/// Result of intersection tests using findIntersection().
 	struct IntersectionResult {
 		unsigned hits;
 		Vec3 origin, direction;
@@ -146,7 +150,8 @@ namespace ARBrowser {
 		std::size_t index;
 		float t1, t2;
 	};
-		
+	
+	/// Find intersections using a given point on the screen, and a set of bounding spheres.
 	bool findIntersection(const Mat44 & proj, const Mat44 & view, float viewport[4], const Vec3 & origin, Vec2 screenCoords, const std::vector<BoundingSphere> & spheres, IntersectionResult & result);
 }
 

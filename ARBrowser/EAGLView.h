@@ -66,32 +66,26 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 #import <OpenGLES/ES1/gl.h>
 #import <OpenGLES/ES1/glext.h>
 
-//CLASSES:
-
 @class EAGLView;
 
-//PROTOCOLS:
-
+/// The main EAGL delegate callbacks.
 @protocol EAGLViewDelegate <NSObject>
 @optional
-- (void) didResizeEAGLSurfaceForView:(EAGLView*)view; //Called whenever the EAGL surface has been resized
+/// Called whenever the EAGL surface has been resized.
+- (void) didResizeEAGLSurfaceForView:(EAGLView*)view; 
 
 - (void)touchesBegan: (NSSet *)touches withEvent: (UIEvent *)event inView: (EAGLView*)view;
 - (void)touchesMoved: (NSSet *)touches withEvent: (UIEvent *)event inView: (EAGLView*)view;
 - (void)touchesEnded: (NSSet *)touches withEvent: (UIEvent *)event inView: (EAGLView*)view;
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event inView: (EAGLView*)view;
 
-// Update the view
+/// Update the view by drawing using OpenGL commands.
 - (void)update: (EAGLView*)view;
 @end
 
-//CLASS INTERFACE:
-
-/*
-This class wraps the CAEAGLLayer from CoreAnimation into a convenient UIView subclass.
-The view content is basically an EAGL surface you render your OpenGL scene into.
-Note that setting the view non-opaque will only work if the EAGL surface has an alpha channel.
-*/
+/// Wraps the CAEAGLLayer from CoreAnimation into a convenient UIView subclass.
+/// The view content is basically an EAGL surface you render your OpenGL scene into.
+/// Note that setting the view non-opaque will only work if the EAGL surface has an alpha channel.
 @interface EAGLView : UIView
 {
 	GLuint					_format;
@@ -107,7 +101,8 @@ Note that setting the view non-opaque will only work if the EAGL surface has an 
 	
 	NSTimer * _frameTimer;
 }
-- (id) initWithFrame:(CGRect)frame; //These also set the current context
+
+- (id) initWithFrame:(CGRect)frame;
 - (id) initWithFrame:(CGRect)frame pixelFormat:(GLuint)format;
 - (id) initWithFrame:(CGRect)frame pixelFormat:(GLuint)format depthFormat:(GLuint)depth preserveBackbuffer:(BOOL)retained;
 
@@ -116,7 +111,8 @@ Note that setting the view non-opaque will only work if the EAGL surface has an 
 @property(readonly) GLuint depthFormat;
 @property(readonly) EAGLContext *context;
 
-@property BOOL autoresizesSurface; //NO by default - Set to YES to have the EAGL surface automatically resized when the view bounds change, otherwise the EAGL surface contents is rendered scaled
+/// Controls whether the EAGL surface automatically resizes when the view bounds change. Otherwise, the EAGL surface contents are scaled to fix when rendered. NO by default.
+@property BOOL autoresizesSurface;
 @property(readonly, nonatomic) CGSize surfaceSize;
 
 @property(assign) id<EAGLViewDelegate> delegate;
@@ -125,7 +121,9 @@ Note that setting the view non-opaque will only work if the EAGL surface has an 
 - (BOOL) isCurrentContext;
 - (void) clearCurrentContext;
 
-- (void) swapBuffers; //This also checks the current OpenGL error and logs an error if needed
+/// Swap the back and front buffers so that the buffer than has been drawn is now visible.
+/// This also checks the current OpenGL error and logs an error if needed.
+- (void) swapBuffers; 
 
 - (void) update;
 
