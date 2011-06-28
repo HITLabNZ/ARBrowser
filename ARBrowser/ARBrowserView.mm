@@ -32,7 +32,7 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 
 @implementation ARBrowserView
 
-@synthesize delegate;
+@synthesize delegate, distanceScale;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -49,6 +49,8 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 		
 		state = new ARBrowserViewState;
 		ARBrowser::generateGrid(state->grid);
+		
+		distanceScale = 1.0;
     }
 	
     return self;
@@ -72,7 +74,7 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 			// sphere.transform([worldPoint transformation]);
 			
 			// We need to calculate collision detection in the same coordinate system as drawn on screen.
-			Vec3 offset = [origin calculateRelativePositionOf:worldPoint];
+			Vec3 offset = [origin calculateRelativePositionOf:worldPoint] * distanceScale;
 			sphere.center += offset;
 			
 			spheres.push_back(sphere);
@@ -164,7 +166,7 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 	NSArray * worldPoints = [[self delegate] worldPoints];
 		
 	for (ARWorldPoint * point in worldPoints) {
-		Vec3 delta = [origin calculateRelativePositionOf:point];
+		Vec3 delta = [origin calculateRelativePositionOf:point] * distanceScale;
 		
 		glPushMatrix();
 		glTranslatef(delta.x, delta.y, delta.z);
