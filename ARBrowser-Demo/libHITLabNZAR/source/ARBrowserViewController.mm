@@ -37,45 +37,41 @@
 	NSString * coffeePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Models/coffee"];
 	id<ARRenderable> coffeeCupModel = [ARModel objectModelWithName:@"model" inDirectory:coffeePath];
 	
-	// 234 Maidstone Road
-	//ARWorldPoint * maidstone = [ARWorldPoint new];
-	//location.latitude = -43.51588910685966;
-	//location.longitude = 172.5535400211811;
-	//[maidstone setCoordinate:location altitude:EARTH_RADIUS];
-	//[maidstone setModel:coffeeCupModel];
-	
-	//[worldPoints addObject:maidstone];
-	
 	// 2 Derenzy Pl
-	ARWorldPoint * derenzy2 = [ARWorldPoint new];
+	ARWorldPoint * derenzy = [ARWorldPoint new];
 	location.latitude = -43.516215;
 	location.longitude = 172.554560;
-	[derenzy2 setCoordinate:location altitude:EARTH_RADIUS];
-	[derenzy2 setModel:coffeeCupModel];
+	[derenzy setCoordinate:location altitude:EARTH_RADIUS];
+	[derenzy setModel:coffeeCupModel];
 	
-	// 230 Maidstone Road (-43.516264, 172.554696)
-	ARWorldPoint * maidstone = [ARWorldPoint new];
-	location.latitude = -43.516264;
-	location.longitude = 172.554696;
-	[maidstone setCoordinate:location altitude:EARTH_RADIUS];
-	[maidstone setModel:coffeeCupModel];
+	// This name is used for debugging output.
+	[derenzy.metadata setObject:@"2 Derenzy Pl" forKey:@"name"];
 	
-	[worldPoints addObject:maidstone];
-	
+	// This information is printed out below.
+	[derenzy.metadata setObject:@"2 Derenzy Pl" forKey:@"address"];
+	[derenzy.metadata setObject:@"Samuel Williams" forKey:@"developer"];
+	[worldPoints addObject:derenzy];
+		
 	// HitLab NZ
 	ARWorldPoint * hitlab = [ARWorldPoint new];
 	location.latitude = -43.522190;
 	location.longitude = 172.583020;
 	[hitlab setCoordinate:location altitude:EARTH_RADIUS];
 	[hitlab setModel:coffeeCupModel];
+	[hitlab.metadata setObject:@"HITLabNZ" forKey:@"name"];
+	[hitlab.metadata setObject:@"University of Canterbury" forKey:@"address"];
+	[hitlab.metadata setObject:@"Mark Billinghurst" forKey:@"developer"];
 	[worldPoints addObject:hitlab];
-
+	
 	// HitLab NZ
 	ARWorldPoint * cuteCenter = [ARWorldPoint new];
 	location.latitude = 1.29231;
 	location.longitude = 103.775769;
 	[cuteCenter setCoordinate:location altitude:EARTH_RADIUS];
 	[cuteCenter setModel:coffeeCupModel];
+	[cuteCenter.metadata setObject:@"Cute Center" forKey:@"name"];
+	[cuteCenter.metadata setObject:@"Singapore" forKey:@"address"];
+	[cuteCenter.metadata setObject:@"Wang Yuan" forKey:@"developer"];
 	[worldPoints addObject:cuteCenter];
 	
 	_worldPoints = worldPoints;
@@ -119,6 +115,11 @@
 
 - (void) browserView: (ARBrowserView*)view didSelect:(ARWorldPoint*)point {
 	NSLog(@"Browser view did select: %@", point);
+	
+	NSString * developer = [point.metadata objectForKey:@"developer"];
+	NSString * address = [point.metadata objectForKey:@"address"];
+	
+	NSLog(@"Developer %@ at %@", developer, address);
 }
 
 @end
