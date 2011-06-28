@@ -8,13 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-struct ARModelState;
+#import "ARWorldPoint.h"
 
-@interface ARModel : NSObject {
-	struct ARModelState * state;
-}
+/// Provides a simple interface for loading ARRenderable models for use with ARWorldPoint.
+@interface ARModel : NSObject
 
-- initWithName: (NSString*)name inDirectory: (NSString*)directory;
-- (void) draw;
+/// Load a given .obj model.
+/// Because .obj models consist of more than one file, we need to know the files <tt>[name].obj</tt> and <tt>[name].mtl</tt> and the associated directory for loading texture data.
++ (id<ARRenderable>) objectModelWithName:(NSString*)name inDirectory:(NSString*)directory;
 
 @end

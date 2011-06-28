@@ -1,0 +1,58 @@
+\hypertarget{interface_e_a_g_l_view}{
+\section{EAGLView Class Reference}
+\label{interface_e_a_g_l_view}\index{EAGLView@{EAGLView}}
+}
+
+
+Wraps the CAEAGLLayer from CoreAnimation into a convenient UIView subclass.  
+
+
+
+
+{\ttfamily \#import $<$EAGLView.h$>$}
+
+Inheritance diagram for EAGLView:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{interface_e_a_g_l_view}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+(void) -\/ \hyperlink{interface_e_a_g_l_view_a9e6bb4e8a5bb54ecffb384abcc154504}{swapBuffers}
+\begin{DoxyCompactList}\small\item\em Swap the back and front buffers so that the buffer than has been drawn is now visible. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{interface_e_a_g_l_view_a40b2efdb8bd6e5dd3ad25e9947f8d98c}{
+BOOL \hyperlink{interface_e_a_g_l_view_a40b2efdb8bd6e5dd3ad25e9947f8d98c}{autoresizesSurface}}
+\label{interface_e_a_g_l_view_a40b2efdb8bd6e5dd3ad25e9947f8d98c}
+
+\begin{DoxyCompactList}\small\item\em Controls whether the EAGL surface automatically resizes when the view bounds change. Otherwise, the EAGL surface contents are scaled to fix when rendered. NO by default. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Wraps the CAEAGLLayer from CoreAnimation into a convenient UIView subclass. 
+
+The view content is basically an EAGL surface you render your OpenGL scene into. Note that setting the view non-\/opaque will only work if the EAGL surface has an alpha channel. 
+
+\subsection{Member Function Documentation}
+\hypertarget{interface_e_a_g_l_view_a9e6bb4e8a5bb54ecffb384abcc154504}{
+\index{EAGLView@{EAGLView}!swapBuffers@{swapBuffers}}
+\index{swapBuffers@{swapBuffers}!EAGLView@{EAGLView}}
+\subsubsection[{swapBuffers}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (void) swapBuffers 
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+}}
+\label{interface_e_a_g_l_view_a9e6bb4e8a5bb54ecffb384abcc154504}
+
+
+Swap the back and front buffers so that the buffer than has been drawn is now visible. 
+
+This also checks the current OpenGL error and logs an error if needed. 
+
+The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
+\item 
+EAGLView.h\end{DoxyCompactItemize}

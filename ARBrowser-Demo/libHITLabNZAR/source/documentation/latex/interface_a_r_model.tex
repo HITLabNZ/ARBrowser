@@ -1,0 +1,43 @@
+\hypertarget{interface_a_r_model}{
+\section{ARModel Class Reference}
+\label{interface_a_r_model}\index{ARModel@{ARModel}}
+}
+
+
+Provides a simple interface for loading \hyperlink{protocol_a_r_renderable-p}{ARRenderable} models for use with \hyperlink{interface_a_r_world_point}{ARWorldPoint}.  
+
+
+
+
+{\ttfamily \#import $<$ARModel.h$>$}
+
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+(id$<$ \hyperlink{protocol_a_r_renderable-p}{ARRenderable} $>$) + \hyperlink{interface_a_r_model_af9d39a3ae81b5f821f6601566db9b7db}{objectModelWithName:inDirectory:}
+\begin{DoxyCompactList}\small\item\em Load a given .obj model. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Provides a simple interface for loading \hyperlink{protocol_a_r_renderable-p}{ARRenderable} models for use with \hyperlink{interface_a_r_world_point}{ARWorldPoint}. 
+
+\subsection{Member Function Documentation}
+\hypertarget{interface_a_r_model_af9d39a3ae81b5f821f6601566db9b7db}{
+\index{ARModel@{ARModel}!objectModelWithName:inDirectory:@{objectModelWithName:inDirectory:}}
+\index{objectModelWithName:inDirectory:@{objectModelWithName:inDirectory:}!ARModel@{ARModel}}
+\subsubsection[{objectModelWithName:inDirectory:}]{\setlength{\rightskip}{0pt plus 5cm}+ (id$<${\bf ARRenderable}$>$) objectModelWithName: 
+\begin{DoxyParamCaption}
+\item[{dummy(NSString $\ast$)}]{name}
+\item[{inDirectory:(NSString $\ast$)}]{directory}
+\end{DoxyParamCaption}
+}}
+\label{interface_a_r_model_af9d39a3ae81b5f821f6601566db9b7db}
+
+
+Load a given .obj model. 
+
+Because .obj models consist of more than one file, we need to know the files {\ttfamily \mbox{[}name\mbox{]}.obj} and {\ttfamily \mbox{[}name\mbox{]}.mtl} and the associated directory for loading texture data. 
+
+The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
+\item 
+ARModel.h\end{DoxyCompactItemize}

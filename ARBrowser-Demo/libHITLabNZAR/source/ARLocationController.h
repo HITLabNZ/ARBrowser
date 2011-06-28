@@ -14,6 +14,7 @@
 
 @class ARWorldLocation;
 
+/// Provides access to location information via a shared instance.
 @interface ARLocationController : NSObject<CLLocationManagerDelegate,UIAccelerometerDelegate> {
 	CLLocationManager * locationManager;
 
@@ -23,15 +24,20 @@
 	CMAcceleration currentAcceleration;
 }
 
+/// @internal
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation;
+
+/// @internal
 - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading;
 
 @property(readonly, nonatomic) CLLocation * currentLocation;
 @property(readonly, nonatomic) CLHeading * currentHeading;
 @property(readonly, nonatomic) CMAcceleration currentAcceleration;
 
+/// Get the origin of the current device.
 - (ARWorldLocation*) worldLocation;
 
+/// Get the shared location controller.
 + sharedInstance;
 
 @end

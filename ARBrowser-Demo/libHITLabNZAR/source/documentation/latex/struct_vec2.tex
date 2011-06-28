@@ -1,0 +1,306 @@
+\hypertarget{struct_vec2}{
+\section{Vec2 Struct Reference}
+\label{struct_vec2}\index{Vec2@{Vec2}}
+}
+
+
+{\ttfamily \#include $<$Vector.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{struct_vec2_a76080feed7005893ecc634f903cfbae0}{Vec2} ()
+\item 
+\hyperlink{struct_vec2_a0f9a03e6c57a2dbbf919a237b710a999}{Vec2} (VERTTYPE fX, VERTTYPE fY)
+\item 
+\hyperlink{struct_vec2_ae5da8d83c3892ebae914574d83217335}{Vec2} (VERTTYPE fValue)
+\item 
+\hyperlink{struct_vec2_afa596caa96f79e58094d0313c9041c4e}{Vec2} (const VERTTYPE $\ast$pVec)
+\item 
+\hyperlink{struct_vec2}{Vec2} \hyperlink{struct_vec2_a5aa4bd05c9e8e57239ad1e0991553417}{operator+} (const \hyperlink{struct_vec2}{Vec2} \&rhs) const 
+\item 
+\hyperlink{struct_vec2}{Vec2} \hyperlink{struct_vec2_aa166669546d349bfa132966953ff8c9a}{operator-\/} (const \hyperlink{struct_vec2}{Vec2} \&rhs) const 
+\item 
+\hyperlink{struct_vec2}{Vec2} \& \hyperlink{struct_vec2_aa922a520def297fde9d46b95c1c849dc}{operator+=} (const \hyperlink{struct_vec2}{Vec2} \&rhs)
+\item 
+\hyperlink{struct_vec2}{Vec2} \& \hyperlink{struct_vec2_acf1ae949d266fbfe8573de7486d48827}{operator-\/=} (const \hyperlink{struct_vec2}{Vec2} \&rhs)
+\item 
+\hyperlink{struct_vec2}{Vec2} \hyperlink{struct_vec2_aeee78669b299d7862a54cb4abf6a11d0}{operator$\ast$} (const VERTTYPE \&rhs) const 
+\item 
+\hyperlink{struct_vec2}{Vec2} \& \hyperlink{struct_vec2_a4fa394b17bebe0ab2ffadf2cc983803d}{operator$\ast$=} (const VERTTYPE \&rhs)
+\item 
+\hyperlink{struct_vec2}{Vec2} \& \hyperlink{struct_vec2_a0d257366c26da3996836419178b9c400}{operator$\ast$=} (const \hyperlink{struct_vec2}{Vec2} \&rhs)
+\item 
+\hyperlink{struct_vec2}{Vec2} \hyperlink{struct_vec2_a4e1cae1a5baf0ff8fb7da7ea31a1eb6c}{operator/} (const VERTTYPE \&rhs) const 
+\item 
+\hyperlink{struct_vec2}{Vec2} \& \hyperlink{struct_vec2_ac23977b34224ad02d6f303db5fbd237c}{operator/=} (const VERTTYPE \&rhs)
+\item 
+\hyperlink{struct_vec2}{Vec2} \& \hyperlink{struct_vec2_aaf8cc3919507d44a8ffed063d37aec2f}{operator/=} (const \hyperlink{struct_vec2}{Vec2} \&rhs)
+\item 
+VERTTYPE \hyperlink{struct_vec2_a0b4ec6940ed57339197e4486e4ce6c26}{lenSqr} () const 
+\item 
+VERTTYPE \hyperlink{struct_vec2_a7d5789c0c0f3d16b31c0ac77faf542e5}{length} () const 
+\item 
+\hyperlink{struct_vec2}{Vec2} \hyperlink{struct_vec2_aacee0f5c936d87c803c0d632f3d9f4f0}{normalize} ()
+\item 
+\hyperlink{struct_vec2}{Vec2} \hyperlink{struct_vec2_a2e1afd5523eb873c98e664bae843e2e6}{normalized} () const 
+\item 
+\hyperlink{struct_vec2}{Vec2} \hyperlink{struct_vec2_ad06cefdb2997fc86367747c3b59d744f}{rotated90} () const 
+\item 
+VERTTYPE \hyperlink{struct_vec2_a48d6efb6b49362b494a17536b90c489e}{dot} (const \hyperlink{struct_vec2}{Vec2} \&rhs)
+\item 
+VERTTYPE $\ast$ \hyperlink{struct_vec2_a0c2d5dff96a1ce4457294b8b8b4bca0f}{ptr} ()
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{struct_vec2}{Vec2} \hyperlink{struct_vec2_af222d9fd4967729d928b01c4a64376fc}{operator-\/} (const \hyperlink{struct_vec2}{Vec2} \&rhs)
+\item 
+\hyperlink{struct_vec2}{Vec2} \hyperlink{struct_vec2_ac17cb14c3e37f6f40d65f99704540873}{operator$\ast$} (const VERTTYPE lhs, const \hyperlink{struct_vec2}{Vec2} \&rhs)
+\item 
+\hyperlink{struct_vec2}{Vec2} \hyperlink{struct_vec2_a2bcd87497cdc905436f457b41bd47e87}{operator/} (const VERTTYPE lhs, const \hyperlink{struct_vec2}{Vec2} \&rhs)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$ Forward Declarations for vector and matrix structs
+
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$ \hyperlink{struct_vec2}{Vec2} 2 component vector 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{struct_vec2_a76080feed7005893ecc634f903cfbae0}{
+\index{Vec2@{Vec2}!Vec2@{Vec2}}
+\index{Vec2@{Vec2}!Vec2@{Vec2}}
+\subsubsection[{Vec2}]{\setlength{\rightskip}{0pt plus 5cm}Vec2::Vec2 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{struct_vec2_a76080feed7005893ecc634f903cfbae0}
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$ Constructors
+
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$  \hyperlink{struct_vec2}{Vec2}  Blank constructor. \hypertarget{struct_vec2_a0f9a03e6c57a2dbbf919a237b710a999}{
+\index{Vec2@{Vec2}!Vec2@{Vec2}}
+\index{Vec2@{Vec2}!Vec2@{Vec2}}
+\subsubsection[{Vec2}]{\setlength{\rightskip}{0pt plus 5cm}Vec2::Vec2 (
+\begin{DoxyParamCaption}
+\item[{VERTTYPE}]{fX, }
+\item[{VERTTYPE}]{fY}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{struct_vec2_a0f9a03e6c57a2dbbf919a237b710a999}
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$  \hyperlink{struct_vec2}{Vec2}  fX X component of vector  fY Y component of vector  Simple constructor from 2 values. \hypertarget{struct_vec2_ae5da8d83c3892ebae914574d83217335}{
+\index{Vec2@{Vec2}!Vec2@{Vec2}}
+\index{Vec2@{Vec2}!Vec2@{Vec2}}
+\subsubsection[{Vec2}]{\setlength{\rightskip}{0pt plus 5cm}Vec2::Vec2 (
+\begin{DoxyParamCaption}
+\item[{VERTTYPE}]{fValue}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{struct_vec2_ae5da8d83c3892ebae914574d83217335}
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$  \hyperlink{struct_vec2}{Vec2}  fValue a component value  Constructor from a single value. \hypertarget{struct_vec2_afa596caa96f79e58094d0313c9041c4e}{
+\index{Vec2@{Vec2}!Vec2@{Vec2}}
+\index{Vec2@{Vec2}!Vec2@{Vec2}}
+\subsubsection[{Vec2}]{\setlength{\rightskip}{0pt plus 5cm}Vec2::Vec2 (
+\begin{DoxyParamCaption}
+\item[{const VERTTYPE $\ast$}]{pVec}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{struct_vec2_afa596caa96f79e58094d0313c9041c4e}
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$  \hyperlink{struct_vec2}{Vec2}  pVec an array  Constructor from an array 
+
+\subsection{Member Function Documentation}
+\hypertarget{struct_vec2_a48d6efb6b49362b494a17536b90c489e}{
+\index{Vec2@{Vec2}!dot@{dot}}
+\index{dot@{dot}!Vec2@{Vec2}}
+\subsubsection[{dot}]{\setlength{\rightskip}{0pt plus 5cm}VERTTYPE Vec2::dot (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vec2} \&}]{rhs}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{struct_vec2_a48d6efb6b49362b494a17536b90c489e}
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$  dot  rhs a single value  scalar product  calculate the scalar product of two Vec3s \hypertarget{struct_vec2_a7d5789c0c0f3d16b31c0ac77faf542e5}{
+\index{Vec2@{Vec2}!length@{length}}
+\index{length@{length}!Vec2@{Vec2}}
+\subsubsection[{length}]{\setlength{\rightskip}{0pt plus 5cm}VERTTYPE Vec2::length (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{struct_vec2_a7d5789c0c0f3d16b31c0ac77faf542e5}
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$  length  the of the magnitude of the vector  calculates the magnitude of the vector \hypertarget{struct_vec2_a0b4ec6940ed57339197e4486e4ce6c26}{
+\index{Vec2@{Vec2}!lenSqr@{lenSqr}}
+\index{lenSqr@{lenSqr}!Vec2@{Vec2}}
+\subsubsection[{lenSqr}]{\setlength{\rightskip}{0pt plus 5cm}VERTTYPE Vec2::lenSqr (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{struct_vec2_a0b4ec6940ed57339197e4486e4ce6c26}
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$  lenSqr  the square of the magnitude of the vector  calculates the square of the magnitude of the vector \hypertarget{struct_vec2_aacee0f5c936d87c803c0d632f3d9f4f0}{
+\index{Vec2@{Vec2}!normalize@{normalize}}
+\index{normalize@{normalize}!Vec2@{Vec2}}
+\subsubsection[{normalize}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vec2} Vec2::normalize (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{struct_vec2_aacee0f5c936d87c803c0d632f3d9f4f0}
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$  normalize  the normalized value of the vector  normalizes the vector \hypertarget{struct_vec2_a2e1afd5523eb873c98e664bae843e2e6}{
+\index{Vec2@{Vec2}!normalized@{normalized}}
+\index{normalized@{normalized}!Vec2@{Vec2}}
+\subsubsection[{normalized}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vec2} Vec2::normalized (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{struct_vec2_a2e1afd5523eb873c98e664bae843e2e6}
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$  normalized  returns the normalized value of the vector  returns a normalized vector of the same direction as this vector \hypertarget{struct_vec2_aeee78669b299d7862a54cb4abf6a11d0}{
+\index{Vec2@{Vec2}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Vec2@{Vec2}}
+\subsubsection[{operator$\ast$}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vec2} Vec2::operator$\ast$ (
+\begin{DoxyParamCaption}
+\item[{const VERTTYPE \&}]{rhs}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{struct_vec2_aeee78669b299d7862a54cb4abf6a11d0}
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$  $\ast$  rhs a scalar  result of multiplication  componentwise multiplication by scalar for \hyperlink{struct_vec2}{Vec2} \hypertarget{struct_vec2_a4fa394b17bebe0ab2ffadf2cc983803d}{
+\index{Vec2@{Vec2}!operator$\ast$=@{operator$\ast$=}}
+\index{operator$\ast$=@{operator$\ast$=}!Vec2@{Vec2}}
+\subsubsection[{operator$\ast$=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vec2}\& Vec2::operator$\ast$= (
+\begin{DoxyParamCaption}
+\item[{const VERTTYPE \&}]{rhs}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{struct_vec2_a4fa394b17bebe0ab2ffadf2cc983803d}
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$  $\ast$=  rhs a scalar  result of multiplication and assignment  componentwise multiplication and assignment by scalar for \hyperlink{struct_vec2}{Vec2} \hypertarget{struct_vec2_a0d257366c26da3996836419178b9c400}{
+\index{Vec2@{Vec2}!operator$\ast$=@{operator$\ast$=}}
+\index{operator$\ast$=@{operator$\ast$=}!Vec2@{Vec2}}
+\subsubsection[{operator$\ast$=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vec2}\& Vec2::operator$\ast$= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vec2} \&}]{rhs}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{struct_vec2_a0d257366c26da3996836419178b9c400}
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$  $\ast$=  rhs a \hyperlink{struct_vec2}{Vec2}  result of multiplication and assignment  componentwise multiplication and assignment by \hyperlink{struct_vec2}{Vec2} for \hyperlink{struct_vec2}{Vec2} \hypertarget{struct_vec2_a5aa4bd05c9e8e57239ad1e0991553417}{
+\index{Vec2@{Vec2}!operator+@{operator+}}
+\index{operator+@{operator+}!Vec2@{Vec2}}
+\subsubsection[{operator+}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vec2} Vec2::operator+ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vec2} \&}]{rhs}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{struct_vec2_a5aa4bd05c9e8e57239ad1e0991553417}
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$  \hyperlink{struct_vec2}{Vec2}  v3Vec a \hyperlink{struct_vec3}{Vec3}  Constructor from a \hyperlink{struct_vec3}{Vec3}
+
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$ Operators
+
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$  +  rhs another \hyperlink{struct_vec2}{Vec2}  result of addition  componentwise addition operator for two Vec2s \hypertarget{struct_vec2_aa922a520def297fde9d46b95c1c849dc}{
+\index{Vec2@{Vec2}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!Vec2@{Vec2}}
+\subsubsection[{operator+=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vec2}\& Vec2::operator+= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vec2} \&}]{rhs}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{struct_vec2_aa922a520def297fde9d46b95c1c849dc}
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$  +=  rhs another \hyperlink{struct_vec2}{Vec2}  result of addition  componentwise addition and assignment operator for two Vec2s \hypertarget{struct_vec2_aa166669546d349bfa132966953ff8c9a}{
+\index{Vec2@{Vec2}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!Vec2@{Vec2}}
+\subsubsection[{operator-\/}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vec2} Vec2::operator-\/ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vec2} \&}]{rhs}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{struct_vec2_aa166669546d349bfa132966953ff8c9a}
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$  -\/  rhs another \hyperlink{struct_vec2}{Vec2}  result of subtraction  componentwise subtraction operator for two Vec2s \hypertarget{struct_vec2_acf1ae949d266fbfe8573de7486d48827}{
+\index{Vec2@{Vec2}!operator-\/=@{operator-\/=}}
+\index{operator-\/=@{operator-\/=}!Vec2@{Vec2}}
+\subsubsection[{operator-\/=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vec2}\& Vec2::operator-\/= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vec2} \&}]{rhs}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{struct_vec2_acf1ae949d266fbfe8573de7486d48827}
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$  -\/=  rhs another \hyperlink{struct_vec2}{Vec2}  result of subtraction  componentwise subtraction and assignment operator for two Vec2s \hypertarget{struct_vec2_a4e1cae1a5baf0ff8fb7da7ea31a1eb6c}{
+\index{Vec2@{Vec2}!operator/@{operator/}}
+\index{operator/@{operator/}!Vec2@{Vec2}}
+\subsubsection[{operator/}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vec2} Vec2::operator/ (
+\begin{DoxyParamCaption}
+\item[{const VERTTYPE \&}]{rhs}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{struct_vec2_a4e1cae1a5baf0ff8fb7da7ea31a1eb6c}
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$  /  rhs a scalar  result of division  componentwise division by scalar for \hyperlink{struct_vec2}{Vec2} \hypertarget{struct_vec2_aaf8cc3919507d44a8ffed063d37aec2f}{
+\index{Vec2@{Vec2}!operator/=@{operator/=}}
+\index{operator/=@{operator/=}!Vec2@{Vec2}}
+\subsubsection[{operator/=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vec2}\& Vec2::operator/= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vec2} \&}]{rhs}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{struct_vec2_aaf8cc3919507d44a8ffed063d37aec2f}
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$  /=  rhs a \hyperlink{struct_vec2}{Vec2}  result of division and assignment  componentwise division and assignment by \hyperlink{struct_vec2}{Vec2} for \hyperlink{struct_vec2}{Vec2} \hypertarget{struct_vec2_ac23977b34224ad02d6f303db5fbd237c}{
+\index{Vec2@{Vec2}!operator/=@{operator/=}}
+\index{operator/=@{operator/=}!Vec2@{Vec2}}
+\subsubsection[{operator/=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vec2}\& Vec2::operator/= (
+\begin{DoxyParamCaption}
+\item[{const VERTTYPE \&}]{rhs}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{struct_vec2_ac23977b34224ad02d6f303db5fbd237c}
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$  /=  rhs a scalar  result of division and assignment  componentwise division and assignment by scalar for \hyperlink{struct_vec2}{Vec2} \hypertarget{struct_vec2_a0c2d5dff96a1ce4457294b8b8b4bca0f}{
+\index{Vec2@{Vec2}!ptr@{ptr}}
+\index{ptr@{ptr}!Vec2@{Vec2}}
+\subsubsection[{ptr}]{\setlength{\rightskip}{0pt plus 5cm}VERTTYPE$\ast$ Vec2::ptr (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{struct_vec2_a0c2d5dff96a1ce4457294b8b8b4bca0f}
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$  ptr  pointer  returns a pointer to memory containing the values of the \hyperlink{struct_vec3}{Vec3} \hypertarget{struct_vec2_ad06cefdb2997fc86367747c3b59d744f}{
+\index{Vec2@{Vec2}!rotated90@{rotated90}}
+\index{rotated90@{rotated90}!Vec2@{Vec2}}
+\subsubsection[{rotated90}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vec2} Vec2::rotated90 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{struct_vec2_ad06cefdb2997fc86367747c3b59d744f}
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$  rotated90  returns the vector rotated 90ﾰ  returns the vector rotated 90ﾰ 
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{struct_vec2_ac17cb14c3e37f6f40d65f99704540873}{
+\index{Vec2@{Vec2}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Vec2@{Vec2}}
+\subsubsection[{operator$\ast$}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vec2} operator$\ast$ (
+\begin{DoxyParamCaption}
+\item[{const VERTTYPE}]{lhs, }
+\item[{const {\bf Vec2} \&}]{rhs}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}friend\mbox{]}}}}
+\label{struct_vec2_ac17cb14c3e37f6f40d65f99704540873}
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$  $\ast$  lhs scalar  rhs a \hyperlink{struct_vec2}{Vec2}  result of negation  negation operator for a \hyperlink{struct_vec2}{Vec2} \hypertarget{struct_vec2_af222d9fd4967729d928b01c4a64376fc}{
+\index{Vec2@{Vec2}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!Vec2@{Vec2}}
+\subsubsection[{operator-\/}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vec2} operator-\/ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vec2} \&}]{rhs}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}friend\mbox{]}}}}
+\label{struct_vec2_af222d9fd4967729d928b01c4a64376fc}
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$  -\/  rhs another \hyperlink{struct_vec2}{Vec2}  result of negation  negation operator for a \hyperlink{struct_vec2}{Vec2} \hypertarget{struct_vec2_a2bcd87497cdc905436f457b41bd47e87}{
+\index{Vec2@{Vec2}!operator/@{operator/}}
+\index{operator/@{operator/}!Vec2@{Vec2}}
+\subsubsection[{operator/}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vec2} operator/ (
+\begin{DoxyParamCaption}
+\item[{const VERTTYPE}]{lhs, }
+\item[{const {\bf Vec2} \&}]{rhs}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}friend\mbox{]}}}}
+\label{struct_vec2_a2bcd87497cdc905436f457b41bd47e87}
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$  /  lhs scalar  rhs a \hyperlink{struct_vec2}{Vec2}  result of division  division operator for scalar and \hyperlink{struct_vec2}{Vec2} 
+
+The documentation for this struct was generated from the following file:\begin{DoxyCompactItemize}
+\item 
+Vector.h\end{DoxyCompactItemize}

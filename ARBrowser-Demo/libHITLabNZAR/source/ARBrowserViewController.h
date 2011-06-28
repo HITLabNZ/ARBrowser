@@ -8,12 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-#import "EAGLView.h"
+#import "ARBrowserView.h"
 
-@interface ARBrowserViewController : UIViewController <EAGLViewDelegate> {
+/// Simple example of an ARBrowserViewDelegate.
+@interface ARBrowserViewController : UIViewController <EAGLViewDelegate, ARBrowserViewDelegate> {
 	NSArray * _worldPoints;
 }
-
-
 
 @end

@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7E1084E11370FC4100197AEC /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E1084E01370FC4100197AEC /* MainWindow.xib */; };
 		7E1084EB1370FD0E00197AEC /* Models in Resources */ = {isa = PBXBuildFile; fileRef = 7E1084EA1370FD0E00197AEC /* Models */; };
+		7E68E76613B9CE8B00AF5C31 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E68E76413B9CE8B00AF5C31 /* MainWindow.xib */; };
 		7E7E2A341370EA3100338606 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E7E2A331370EA3100338606 /* UIKit.framework */; };
 		7E7E2A361370EA3100338606 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E7E2A351370EA3100338606 /* Foundation.framework */; };
 		7E7E2A3E1370EA3200338606 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7E7E2A3C1370EA3200338606 /* InfoPlist.strings */; };
@@ -23,12 +23,11 @@
 		7E7E2A831370EC8000338606 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E7E2A821370EC8000338606 /* QuartzCore.framework */; };
 		7E7E2A9A1370FBC300338606 /* ARBrowserAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E7E2A851370FBC300338606 /* ARBrowserAppDelegate.m */; };
 		7E7E2A9B1370FBC300338606 /* ARBrowserViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7E7E2A881370FBC300338606 /* ARBrowserViewController.mm */; };
-		7E7E2A9D1370FBC300338606 /* Texture2D.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E7E2A971370FBC300338606 /* Texture2D.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7E1084E01370FC4100197AEC /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		7E1084EA1370FD0E00197AEC /* Models */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Models; sourceTree = SOURCE_ROOT; };
+		7E68E76513B9CE8B00AF5C31 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
 		7E7E2A2F1370EA3100338606 /* ARBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E7E2A331370EA3100338606 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7E7E2A351370EA3100338606 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -62,7 +61,6 @@
 		7E7E2A941370FBC300338606 /* Matrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Matrix.h; sourceTree = "<group>"; };
 		7E7E2A951370FBC300338606 /* Quaternion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Quaternion.h; sourceTree = "<group>"; };
 		7E7E2A961370FBC300338606 /* Texture2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Texture2D.h; sourceTree = "<group>"; };
-		7E7E2A971370FBC300338606 /* Texture2D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Texture2D.m; sourceTree = "<group>"; };
 		7E7E2A981370FBC300338606 /* Transform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transform.h; sourceTree = "<group>"; };
 		7E7E2A991370FBC300338606 /* Vector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -156,7 +154,7 @@
 		7E7E2A5A1370EA4A00338606 /* source */ = {
 			isa = PBXGroup;
 			children = (
-				7E1084E01370FC4100197AEC /* MainWindow.xib */,
+				7E68E76413B9CE8B00AF5C31 /* MainWindow.xib */,
 				7E7E2A841370FBC300338606 /* ARBrowserAppDelegate.h */,
 				7E7E2A851370FBC300338606 /* ARBrowserAppDelegate.m */,
 				7E7E2A861370FBC300338606 /* ARBrowserView.h */,
@@ -173,7 +171,6 @@
 				7E7E2A941370FBC300338606 /* Matrix.h */,
 				7E7E2A951370FBC300338606 /* Quaternion.h */,
 				7E7E2A961370FBC300338606 /* Texture2D.h */,
-				7E7E2A971370FBC300338606 /* Texture2D.m */,
 				7E7E2A981370FBC300338606 /* Transform.h */,
 				7E7E2A991370FBC300338606 /* Vector.h */,
 			);
@@ -231,8 +228,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E7E2A3E1370EA3200338606 /* InfoPlist.strings in Resources */,
-				7E1084E11370FC4100197AEC /* MainWindow.xib in Resources */,
 				7E1084EB1370FD0E00197AEC /* Models in Resources */,
+				7E68E76613B9CE8B00AF5C31 /* MainWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,13 +243,20 @@
 				7E7E2A411370EA3200338606 /* main.m in Sources */,
 				7E7E2A9A1370FBC300338606 /* ARBrowserAppDelegate.m in Sources */,
 				7E7E2A9B1370FBC300338606 /* ARBrowserViewController.mm in Sources */,
-				7E7E2A9D1370FBC300338606 /* Texture2D.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		7E68E76413B9CE8B00AF5C31 /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7E68E76513B9CE8B00AF5C31 /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
 		7E7E2A3C1370EA3200338606 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

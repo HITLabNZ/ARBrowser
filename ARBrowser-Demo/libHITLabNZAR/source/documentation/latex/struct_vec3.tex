@@ -1,0 +1,293 @@
+\hypertarget{struct_vec3}{
+\section{Vec3 Struct Reference}
+\label{struct_vec3}\index{Vec3@{Vec3}}
+}
+
+
+{\ttfamily \#include $<$Vector.h$>$}
+
+Inheritance diagram for Vec3:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{struct_vec3}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{struct_vec3_aae7a1ffaa1108a30c281da216d1cd312}{Vec3} ()
+\item 
+\hyperlink{struct_vec3_a11b912ffee98b8131bafd07862e190fd}{Vec3} (VERTTYPE fX, VERTTYPE fY, VERTTYPE fZ)
+\item 
+\hyperlink{struct_vec3_a77df65b759292867312a32472ce63a25}{Vec3} (const VERTTYPE fValue)
+\item 
+\hyperlink{struct_vec3_a9c01845901d10707568cdebc8c211b0f}{Vec3} (const VERTTYPE $\ast$pVec)
+\item 
+\hyperlink{struct_vec3}{Vec3} \hyperlink{struct_vec3_a93eb39d022851b48795f794b4bcf78ea}{operator+} (const \hyperlink{struct_vec3}{Vec3} \&rhs) const 
+\item 
+\hyperlink{struct_vec3}{Vec3} \hyperlink{struct_vec3_ae64fd4e2f0f35d4b27bfee4d8cba665f}{operator-\/} (const \hyperlink{struct_vec3}{Vec3} \&rhs) const 
+\item 
+\hyperlink{struct_vec3}{Vec3} \& \hyperlink{struct_vec3_a6721548a281336cf0047f21896befbd0}{operator+=} (const \hyperlink{struct_vec3}{Vec3} \&rhs)
+\item 
+\hyperlink{struct_vec3}{Vec3} \& \hyperlink{struct_vec3_a3f1a7c8642549891d1eed6dddfe2e12b}{operator-\/=} (const \hyperlink{struct_vec3}{Vec3} \&rhs)
+\item 
+\hyperlink{struct_vec3}{Vec3} \hyperlink{struct_vec3_a0cc157c29980fef10046b52a8a3f76f7}{operator$\ast$} (const VERTTYPE \&rhs) const 
+\item 
+\hyperlink{struct_vec3}{Vec3} \& \hyperlink{struct_vec3_a9f850360a7b1050952383bcaea2a5c39}{operator$\ast$=} (const VERTTYPE \&rhs)
+\item 
+\hyperlink{struct_vec3}{Vec3} \hyperlink{struct_vec3_a0161abcc7f6cf05b59a601eba283623f}{operator/} (const VERTTYPE \&rhs) const 
+\item 
+\hyperlink{struct_vec3}{Vec3} \& \hyperlink{struct_vec3_a47169024ad383398f1128683b66a5640}{operator/=} (const VERTTYPE \&rhs)
+\item 
+VERTTYPE \hyperlink{struct_vec3_a36d9184d9e098ad5caf944c1aea4f496}{lenSqr} () const 
+\item 
+VERTTYPE \hyperlink{struct_vec3_ab45419fb66ad8d8397818349b2e4da10}{length} () const 
+\item 
+\hyperlink{struct_vec3}{Vec3} \hyperlink{struct_vec3_addb4fc8b8f3a27a0b95d0a07fbb98a7a}{normalize} ()
+\item 
+\hyperlink{struct_vec3}{Vec3} \hyperlink{struct_vec3_a8a0ad811b0676d6374aed339f3c4f761}{normalized} () const 
+\item 
+VERTTYPE \hyperlink{struct_vec3_a023376cc99a6242ef1c29fcdd524f539}{dot} (const \hyperlink{struct_vec3}{Vec3} \&rhs)
+\item 
+\hyperlink{struct_vec3}{Vec3} \hyperlink{struct_vec3_a66159f5b4b7a94ea76960a8fc5c6258f}{cross} (const \hyperlink{struct_vec3}{Vec3} \&rhs)
+\item 
+VERTTYPE $\ast$ \hyperlink{struct_vec3_a101702fe80bc952ee0863025c57acfbc}{ptr} ()
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{struct_vec3}{Vec3} \hyperlink{struct_vec3_a15e92ceaedb52c1548c61f172a8eebaf}{operator-\/} (const \hyperlink{struct_vec3}{Vec3} \&rhs)
+\item 
+\hyperlink{struct_vec3}{Vec3} \hyperlink{struct_vec3_ac785bebf82b971d858b37b05ae378ec9}{operator$\ast$} (const VERTTYPE lhs, const \hyperlink{struct_vec3}{Vec3} \&rhs)
+\item 
+\hyperlink{struct_vec3}{Vec3} \hyperlink{struct_vec3_a2dce2669678387453cb8c356eac6dffd}{operator/} (const VERTTYPE lhs, const \hyperlink{struct_vec3}{Vec3} \&rhs)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$ \hyperlink{struct_vec3}{Vec3} 3 component vector 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{struct_vec3_aae7a1ffaa1108a30c281da216d1cd312}{
+\index{Vec3@{Vec3}!Vec3@{Vec3}}
+\index{Vec3@{Vec3}!Vec3@{Vec3}}
+\subsubsection[{Vec3}]{\setlength{\rightskip}{0pt plus 5cm}Vec3::Vec3 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{struct_vec3_aae7a1ffaa1108a30c281da216d1cd312}
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$ Constructors
+
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$  \hyperlink{struct_vec3}{Vec3}  Blank constructor. \hypertarget{struct_vec3_a11b912ffee98b8131bafd07862e190fd}{
+\index{Vec3@{Vec3}!Vec3@{Vec3}}
+\index{Vec3@{Vec3}!Vec3@{Vec3}}
+\subsubsection[{Vec3}]{\setlength{\rightskip}{0pt plus 5cm}Vec3::Vec3 (
+\begin{DoxyParamCaption}
+\item[{VERTTYPE}]{fX, }
+\item[{VERTTYPE}]{fY, }
+\item[{VERTTYPE}]{fZ}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{struct_vec3_a11b912ffee98b8131bafd07862e190fd}
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$  \hyperlink{struct_vec3}{Vec3}  fX X component of vector  fY Y component of vector  fZ Z component of vector  Simple constructor from 3 values. \hypertarget{struct_vec3_a77df65b759292867312a32472ce63a25}{
+\index{Vec3@{Vec3}!Vec3@{Vec3}}
+\index{Vec3@{Vec3}!Vec3@{Vec3}}
+\subsubsection[{Vec3}]{\setlength{\rightskip}{0pt plus 5cm}Vec3::Vec3 (
+\begin{DoxyParamCaption}
+\item[{const VERTTYPE}]{fValue}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{struct_vec3_a77df65b759292867312a32472ce63a25}
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$  \hyperlink{struct_vec3}{Vec3}  fValue a component value  Constructor from a single value. \hypertarget{struct_vec3_a9c01845901d10707568cdebc8c211b0f}{
+\index{Vec3@{Vec3}!Vec3@{Vec3}}
+\index{Vec3@{Vec3}!Vec3@{Vec3}}
+\subsubsection[{Vec3}]{\setlength{\rightskip}{0pt plus 5cm}Vec3::Vec3 (
+\begin{DoxyParamCaption}
+\item[{const VERTTYPE $\ast$}]{pVec}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{struct_vec3_a9c01845901d10707568cdebc8c211b0f}
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$  \hyperlink{struct_vec3}{Vec3}  pVec an array  Constructor from an array 
+
+\subsection{Member Function Documentation}
+\hypertarget{struct_vec3_a66159f5b4b7a94ea76960a8fc5c6258f}{
+\index{Vec3@{Vec3}!cross@{cross}}
+\index{cross@{cross}!Vec3@{Vec3}}
+\subsubsection[{cross}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vec3} Vec3::cross (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vec3} \&}]{rhs}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{struct_vec3_a66159f5b4b7a94ea76960a8fc5c6258f}
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$  dot  scalar product  calculate the scalar product of two VECTOR3s \hypertarget{struct_vec3_a023376cc99a6242ef1c29fcdd524f539}{
+\index{Vec3@{Vec3}!dot@{dot}}
+\index{dot@{dot}!Vec3@{Vec3}}
+\subsubsection[{dot}]{\setlength{\rightskip}{0pt plus 5cm}VERTTYPE Vec3::dot (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vec3} \&}]{rhs}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{struct_vec3_a023376cc99a6242ef1c29fcdd524f539}
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$  dot  rhs a single value  scalar product  calculate the scalar product of two VECTOR3s \hypertarget{struct_vec3_ab45419fb66ad8d8397818349b2e4da10}{
+\index{Vec3@{Vec3}!length@{length}}
+\index{length@{length}!Vec3@{Vec3}}
+\subsubsection[{length}]{\setlength{\rightskip}{0pt plus 5cm}VERTTYPE Vec3::length (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{struct_vec3_ab45419fb66ad8d8397818349b2e4da10}
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$  length  the of the magnitude of the vector  calculates the magnitude of the vector \hypertarget{struct_vec3_a36d9184d9e098ad5caf944c1aea4f496}{
+\index{Vec3@{Vec3}!lenSqr@{lenSqr}}
+\index{lenSqr@{lenSqr}!Vec3@{Vec3}}
+\subsubsection[{lenSqr}]{\setlength{\rightskip}{0pt plus 5cm}VERTTYPE Vec3::lenSqr (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{struct_vec3_a36d9184d9e098ad5caf944c1aea4f496}
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$  lenSqr  the square of the magnitude of the vector  calculates the square of the magnitude of the vector \hypertarget{struct_vec3_addb4fc8b8f3a27a0b95d0a07fbb98a7a}{
+\index{Vec3@{Vec3}!normalize@{normalize}}
+\index{normalize@{normalize}!Vec3@{Vec3}}
+\subsubsection[{normalize}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vec3} Vec3::normalize (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{struct_vec3_addb4fc8b8f3a27a0b95d0a07fbb98a7a}
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$  normalize  the normalized value of the vector  normalizes the vector \hypertarget{struct_vec3_a8a0ad811b0676d6374aed339f3c4f761}{
+\index{Vec3@{Vec3}!normalized@{normalized}}
+\index{normalized@{normalized}!Vec3@{Vec3}}
+\subsubsection[{normalized}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vec3} Vec3::normalized (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{struct_vec3_a8a0ad811b0676d6374aed339f3c4f761}
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$  normalized  returns the normalized value of the vector  returns a normalized vector of the same direction as this vector \hypertarget{struct_vec3_a0cc157c29980fef10046b52a8a3f76f7}{
+\index{Vec3@{Vec3}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Vec3@{Vec3}}
+\subsubsection[{operator$\ast$}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vec3} Vec3::operator$\ast$ (
+\begin{DoxyParamCaption}
+\item[{const VERTTYPE \&}]{rhs}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{struct_vec3_a0cc157c29980fef10046b52a8a3f76f7}
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$  $\ast$  rhs a PVRTMat3  result of multiplication  matrix multiplication operator \hyperlink{struct_vec3}{Vec3} and PVRTMat3
+
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$  $\ast$=  rhs a PVRTMat3  result of multiplication and assignment  matrix multiplication and assignment operator for \hyperlink{struct_vec3}{Vec3} and PVRTMat3
+
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$  $\ast$  rhs a single value  result of multiplication  componentwise multiplication by single dimension value for \hyperlink{struct_vec3}{Vec3} \hypertarget{struct_vec3_a9f850360a7b1050952383bcaea2a5c39}{
+\index{Vec3@{Vec3}!operator$\ast$=@{operator$\ast$=}}
+\index{operator$\ast$=@{operator$\ast$=}!Vec3@{Vec3}}
+\subsubsection[{operator$\ast$=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vec3}\& Vec3::operator$\ast$= (
+\begin{DoxyParamCaption}
+\item[{const VERTTYPE \&}]{rhs}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{struct_vec3_a9f850360a7b1050952383bcaea2a5c39}
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$  $\ast$  rhs a single value  result of multiplication and assignment  componentwise multiplication and assignement by single dimension value for \hyperlink{struct_vec3}{Vec3} \hypertarget{struct_vec3_a93eb39d022851b48795f794b4bcf78ea}{
+\index{Vec3@{Vec3}!operator+@{operator+}}
+\index{operator+@{operator+}!Vec3@{Vec3}}
+\subsubsection[{operator+}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vec3} Vec3::operator+ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vec3} \&}]{rhs}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{struct_vec3_a93eb39d022851b48795f794b4bcf78ea}
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$  \hyperlink{struct_vec3}{Vec3}  v4Vec a \hyperlink{struct_vec4}{Vec4}  Constructor from a \hyperlink{struct_vec4}{Vec4}
+
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$ Operators
+
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$  +  rhs another \hyperlink{struct_vec3}{Vec3}  result of addition  componentwise addition operator for two VECTOR3s \hypertarget{struct_vec3_a6721548a281336cf0047f21896befbd0}{
+\index{Vec3@{Vec3}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!Vec3@{Vec3}}
+\subsubsection[{operator+=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vec3}\& Vec3::operator+= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vec3} \&}]{rhs}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{struct_vec3_a6721548a281336cf0047f21896befbd0}
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$  +=  rhs another \hyperlink{struct_vec3}{Vec3}  result of addition  componentwise addition and assignement operator for two VECTOR3s \hypertarget{struct_vec3_ae64fd4e2f0f35d4b27bfee4d8cba665f}{
+\index{Vec3@{Vec3}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!Vec3@{Vec3}}
+\subsubsection[{operator-\/}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vec3} Vec3::operator-\/ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vec3} \&}]{rhs}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{struct_vec3_ae64fd4e2f0f35d4b27bfee4d8cba665f}
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$  -\/  rhs another \hyperlink{struct_vec3}{Vec3}  result of subtraction  componentwise subtraction operator for two VECTOR3s \hypertarget{struct_vec3_a3f1a7c8642549891d1eed6dddfe2e12b}{
+\index{Vec3@{Vec3}!operator-\/=@{operator-\/=}}
+\index{operator-\/=@{operator-\/=}!Vec3@{Vec3}}
+\subsubsection[{operator-\/=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vec3}\& Vec3::operator-\/= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vec3} \&}]{rhs}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{struct_vec3_a3f1a7c8642549891d1eed6dddfe2e12b}
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$  -\/=  rhs another \hyperlink{struct_vec3}{Vec3}  result of subtraction  componentwise subtraction and assignement operator for two VECTOR3s \hypertarget{struct_vec3_a0161abcc7f6cf05b59a601eba283623f}{
+\index{Vec3@{Vec3}!operator/@{operator/}}
+\index{operator/@{operator/}!Vec3@{Vec3}}
+\subsubsection[{operator/}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vec3} Vec3::operator/ (
+\begin{DoxyParamCaption}
+\item[{const VERTTYPE \&}]{rhs}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{struct_vec3_a0161abcc7f6cf05b59a601eba283623f}
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$  /  rhs a single value  result of division  componentwise division by single dimension value for \hyperlink{struct_vec3}{Vec3} \hypertarget{struct_vec3_a47169024ad383398f1128683b66a5640}{
+\index{Vec3@{Vec3}!operator/=@{operator/=}}
+\index{operator/=@{operator/=}!Vec3@{Vec3}}
+\subsubsection[{operator/=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vec3}\& Vec3::operator/= (
+\begin{DoxyParamCaption}
+\item[{const VERTTYPE \&}]{rhs}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{struct_vec3_a47169024ad383398f1128683b66a5640}
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$  /=  rhs a single value  result of division and assignment  componentwise division and assignement by single dimension value for \hyperlink{struct_vec3}{Vec3} \hypertarget{struct_vec3_a101702fe80bc952ee0863025c57acfbc}{
+\index{Vec3@{Vec3}!ptr@{ptr}}
+\index{ptr@{ptr}!Vec3@{Vec3}}
+\subsubsection[{ptr}]{\setlength{\rightskip}{0pt plus 5cm}VERTTYPE$\ast$ Vec3::ptr (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{struct_vec3_a101702fe80bc952ee0863025c57acfbc}
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$  ptr  pointer  returns a pointer to memory containing the values of the \hyperlink{struct_vec3}{Vec3} 
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{struct_vec3_ac785bebf82b971d858b37b05ae378ec9}{
+\index{Vec3@{Vec3}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Vec3@{Vec3}}
+\subsubsection[{operator$\ast$}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vec3} operator$\ast$ (
+\begin{DoxyParamCaption}
+\item[{const VERTTYPE}]{lhs, }
+\item[{const {\bf Vec3} \&}]{rhs}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}friend\mbox{]}}}}
+\label{struct_vec3_ac785bebf82b971d858b37b05ae378ec9}
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$  $\ast$  lhs single value  rhs a \hyperlink{struct_vec3}{Vec3}  result of negation  negation operator for a \hyperlink{struct_vec3}{Vec3} \hypertarget{struct_vec3_a15e92ceaedb52c1548c61f172a8eebaf}{
+\index{Vec3@{Vec3}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!Vec3@{Vec3}}
+\subsubsection[{operator-\/}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vec3} operator-\/ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vec3} \&}]{rhs}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}friend\mbox{]}}}}
+\label{struct_vec3_a15e92ceaedb52c1548c61f172a8eebaf}
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$  -\/  rhs another \hyperlink{struct_vec3}{Vec3}  result of negation  negation operator for a \hyperlink{struct_vec3}{Vec3} \hypertarget{struct_vec3_a2dce2669678387453cb8c356eac6dffd}{
+\index{Vec3@{Vec3}!operator/@{operator/}}
+\index{operator/@{operator/}!Vec3@{Vec3}}
+\subsubsection[{operator/}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vec3} operator/ (
+\begin{DoxyParamCaption}
+\item[{const VERTTYPE}]{lhs, }
+\item[{const {\bf Vec3} \&}]{rhs}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}friend\mbox{]}}}}
+\label{struct_vec3_a2dce2669678387453cb8c356eac6dffd}
+$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$$\ast$  $\ast$  lhs single value  rhs a \hyperlink{struct_vec3}{Vec3}  result of negation  negation operator for a \hyperlink{struct_vec3}{Vec3} 
+
+The documentation for this struct was generated from the following file:\begin{DoxyCompactItemize}
+\item 
+Vector.h\end{DoxyCompactItemize}

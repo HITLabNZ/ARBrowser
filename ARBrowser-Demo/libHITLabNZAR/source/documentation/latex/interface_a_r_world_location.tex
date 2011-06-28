@@ -1,0 +1,95 @@
+\hypertarget{interface_a_r_world_location}{
+\section{ARWorldLocation Class Reference}
+\label{interface_a_r_world_location}\index{ARWorldLocation@{ARWorldLocation}}
+}
+
+
+A intrinsic location on the surface of a sphere.  
+
+
+
+
+{\ttfamily \#import $<$ARWorldLocation.h$>$}
+
+Inheritance diagram for ARWorldLocation:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{interface_a_r_world_location}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{interface_a_r_world_location_a602a1aa29f7aa4403091ffae9eaa76ba}{
+(void) -\/ \hyperlink{interface_a_r_world_location_a602a1aa29f7aa4403091ffae9eaa76ba}{setCoordinate:altitude:}}
+\label{interface_a_r_world_location_a602a1aa29f7aa4403091ffae9eaa76ba}
+
+\begin{DoxyCompactList}\small\item\em Calculates the position in cartesian coordinates from a given latitude/longitude pair and altitude. \end{DoxyCompactList}\item 
+(Vec3) -\/ \hyperlink{interface_a_r_world_location_a3e62f3cc4265c32e4044aa0ac161679a}{calculateRelativePositionOf:}
+\begin{DoxyCompactList}\small\item\em Calculate the relative position of one object to another. \end{DoxyCompactList}\item 
+\hypertarget{interface_a_r_world_location_a16a712dce023f2813ac41696ec5fc441}{
+(void) -\/ \hyperlink{interface_a_r_world_location_a16a712dce023f2813ac41696ec5fc441}{setLocation:globalRadius:}}
+\label{interface_a_r_world_location_a16a712dce023f2813ac41696ec5fc441}
+
+\begin{DoxyCompactList}\small\item\em Helper function to set location from a given CLLocation. \end{DoxyCompactList}\item 
+\hypertarget{interface_a_r_world_location_a622c231529aa0d3ff78e4650c32c4b0a}{
+(void) -\/ \hyperlink{interface_a_r_world_location_a622c231529aa0d3ff78e4650c32c4b0a}{setHeading:}}
+\label{interface_a_r_world_location_a622c231529aa0d3ff78e4650c32c4b0a}
+
+\begin{DoxyCompactList}\small\item\em Helper function to set heading from a given CLHeading. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{interface_a_r_world_location_a433d62d8d53e8c6004b18f0a4ced7420}{
+CLLocationCoordinate2D \hyperlink{interface_a_r_world_location_a433d62d8d53e8c6004b18f0a4ced7420}{location}}
+\label{interface_a_r_world_location_a433d62d8d53e8c6004b18f0a4ced7420}
+
+\begin{DoxyCompactList}\small\item\em The location in latitude/longitude. \end{DoxyCompactList}\item 
+\hypertarget{interface_a_r_world_location_a433183faaa54db70be30a6367eab070f}{
+double \hyperlink{interface_a_r_world_location_a433183faaa54db70be30a6367eab070f}{altitude}}
+\label{interface_a_r_world_location_a433183faaa54db70be30a6367eab070f}
+
+\begin{DoxyCompactList}\small\item\em The distance from the center of the sphere. \end{DoxyCompactList}\item 
+\hypertarget{interface_a_r_world_location_a51ba96d39c18d08b5fc9df1d30c99bb8}{
+Vec3 \hyperlink{interface_a_r_world_location_a51ba96d39c18d08b5fc9df1d30c99bb8}{position}}
+\label{interface_a_r_world_location_a51ba96d39c18d08b5fc9df1d30c99bb8}
+
+\begin{DoxyCompactList}\small\item\em The cartesian location in x,y,z. \end{DoxyCompactList}\item 
+\hypertarget{interface_a_r_world_location_a9666c2204abf7340a81f46ab97853a24}{
+float \hyperlink{interface_a_r_world_location_a9666c2204abf7340a81f46ab97853a24}{rotation}}
+\label{interface_a_r_world_location_a9666c2204abf7340a81f46ab97853a24}
+
+\begin{DoxyCompactList}\small\item\em The rotation from north, i.e. heading direction. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A intrinsic location on the surface of a sphere. 
+
+Provides functionality to convert between spherical and cartesian coordinates. 
+
+\subsection{Member Function Documentation}
+\hypertarget{interface_a_r_world_location_a3e62f3cc4265c32e4044aa0ac161679a}{
+\index{ARWorldLocation@{ARWorldLocation}!calculateRelativePositionOf:@{calculateRelativePositionOf:}}
+\index{calculateRelativePositionOf:@{calculateRelativePositionOf:}!ARWorldLocation@{ARWorldLocation}}
+\subsubsection[{calculateRelativePositionOf:}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (Vec3) calculateRelativePositionOf: 
+\begin{DoxyParamCaption}
+\item[{dummy({\bf ARWorldLocation} $\ast$)}]{other}
+\end{DoxyParamCaption}
+}}
+\label{interface_a_r_world_location_a3e62f3cc4265c32e4044aa0ac161679a}
+
+
+Calculate the relative position of one object to another. 
+
+This function may fail at the north and south pole due to inherent limitations of spherical coordinates. \begin{DoxyReturn}{Returns}
+{\ttfamily x} corresponding to longitude (east, west) 
+
+{\ttfamily y} corresponding to latitude (north, south) 
+
+{\ttfamily z} corresponding to altitude (up, down). 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
+\item 
+ARWorldLocation.h\end{DoxyCompactItemize}

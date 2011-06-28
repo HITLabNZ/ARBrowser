@@ -35,16 +35,32 @@
 
 	// Coffee cup model
 	NSString * coffeePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Models/coffee"];
-	ARModel * coffeeCupModel = [[ARModel alloc] initWithName:@"model" inDirectory:coffeePath];
+	id<ARRenderable> coffeeCupModel = [ARModel objectModelWithName:@"model" inDirectory:coffeePath];
 	
-	// Derenzy Pl
-	ARWorldPoint * derenzy = [ARWorldPoint new];
+	// 234 Maidstone Road
+	//ARWorldPoint * maidstone = [ARWorldPoint new];
+	//location.latitude = -43.51588910685966;
+	//location.longitude = 172.5535400211811;
+	//[maidstone setCoordinate:location altitude:EARTH_RADIUS];
+	//[maidstone setModel:coffeeCupModel];
+	
+	//[worldPoints addObject:maidstone];
+	
+	// 2 Derenzy Pl
+	ARWorldPoint * derenzy2 = [ARWorldPoint new];
 	location.latitude = -43.516215;
 	location.longitude = 172.554560;
-	[derenzy setCoordinate:location altitude:EARTH_RADIUS];
-	[derenzy setModel:coffeeCupModel];
+	[derenzy2 setCoordinate:location altitude:EARTH_RADIUS];
+	[derenzy2 setModel:coffeeCupModel];
 	
-	[worldPoints addObject:derenzy];
+	// 230 Maidstone Road (-43.516264, 172.554696)
+	ARWorldPoint * maidstone = [ARWorldPoint new];
+	location.latitude = -43.516264;
+	location.longitude = 172.554696;
+	[maidstone setCoordinate:location altitude:EARTH_RADIUS];
+	[maidstone setModel:coffeeCupModel];
+	
+	[worldPoints addObject:maidstone];
 	
 	// HitLab NZ
 	ARWorldPoint * hitlab = [ARWorldPoint new];
@@ -99,6 +115,10 @@
 
 - (void) update: (EAGLView*) view {
 	// Additional OpenGL Rendering here.
+}
+
+- (void) browserView: (ARBrowserView*)view didSelect:(ARWorldPoint*)point {
+	NSLog(@"Browser view did select: %@", point);
 }
 
 @end
