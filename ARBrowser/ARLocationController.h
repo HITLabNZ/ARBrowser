@@ -12,6 +12,10 @@
 #import <CoreMotion/CoreMotion.h>
 #import <UIKit/UIAccelerometer.h>
 
+extern NSString * const ARLocationChanged;
+extern NSString * const ARHeadingChanged;
+extern NSString * const ARAccelerationChanged;
+
 @class ARWorldLocation;
 
 /// Provides access to location information via a shared instance.

@@ -12,6 +12,10 @@
 #define kAccelerometerFrequency     30.0 // Hz
 #define kFilteringFactor 0.5
 
+NSString * const ARLocationChanged = @"ARLocationChanged";
+NSString * const ARHeadingChanged = @"ARHeadingChanged";
+NSString * const ARAccelerationChanged = @"ARAccelerationChanged";
+
 @implementation ARLocationController
 
 - (id)init {
