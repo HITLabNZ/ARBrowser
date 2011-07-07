@@ -227,9 +227,9 @@ int __OPENGLES_VERSION = 1;
 }
 
 - (void) startRendering {
-	[self stopRendering];
-	
-	_frameTimer = [NSTimer scheduledTimerWithTimeInterval:(1.0 / 30.0) target:self selector:@selector(update) userInfo:nil repeats:YES];
+	if (_frameTimer == nil) {
+		_frameTimer = [NSTimer scheduledTimerWithTimeInterval:(1.0 / 30.0) target:self selector:@selector(update) userInfo:nil repeats:YES];
+	}
 }
 
 - (void) stopRendering {

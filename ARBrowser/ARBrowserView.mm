@@ -187,6 +187,20 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 	[super update];
 }
 
+- (void) stopRendering
+{
+	[videoFrameController stop];
+	
+	[super stopRendering];
+}
+
+- (void) startRendering
+{
+	[videoFrameController start];
+	
+	[super startRendering];
+}
+
 - (void)dealloc
 {
 	[videoFrameController release];	

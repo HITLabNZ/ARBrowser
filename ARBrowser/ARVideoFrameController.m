@@ -107,7 +107,7 @@
     CVPixelBufferLockBaseAddress(imageBuffer, 0); 
 
     // Get information about the image
-    uint8_t *baseAddress = (uint8_t *)CVPixelBufferGetBaseAddress(imageBuffer);
+    uint8_t * baseAddress = (uint8_t *)CVPixelBufferGetBaseAddress(imageBuffer);
     size_t bytesPerRow = CVPixelBufferGetBytesPerRow(imageBuffer);
     size_t width = CVPixelBufferGetWidth(imageBuffer);
     size_t height = CVPixelBufferGetHeight(imageBuffer);
@@ -126,7 +126,7 @@
 	videoFrame.index++;
     
 	// We unlock the pixel buffer
-	CVPixelBufferUnlockBaseAddress(imageBuffer,0);
+	CVPixelBufferUnlockBaseAddress(imageBuffer, 0);
 
 	[pool drain];
 }
