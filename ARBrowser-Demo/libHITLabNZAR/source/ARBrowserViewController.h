@@ -15,4 +15,6 @@
 	NSArray * _worldPoints;
 }
 
+@property(nonatomic,retain) NSArray * worldPoints;
+
 @end

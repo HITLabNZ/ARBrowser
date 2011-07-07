@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "ARWorldLocation.h"
+#import <MapKit/MapKit.h>
 
 /// Simple bounding sphere data structure.
 typedef struct {
@@ -25,7 +26,7 @@ typedef struct {
 @end
 
 /// Provides a renderable model and associated metadata for a given ARWorldLocation.
-@interface ARWorldPoint : ARWorldLocation {
+@interface ARWorldPoint : ARWorldLocation <MKAnnotation> {
 	id<ARRenderable> model;
 	
 	NSMutableDictionary * metadata;
@@ -37,5 +38,11 @@ typedef struct {
 /// The associated metadata for the given location.
 /// This property is the primary method by which additional data should be managed for a specific point, e.g. street address, telephone number.
 @property(nonatomic,retain) NSMutableDictionary * metadata;
+
+/// Title for MKAnnotation (returns metadata.title)
+- (NSString *)title;
+
+/// Subtitle for MKAnnotation (returns metadata.subtitle)
+- (NSString *)subtitle;
 
 @end
