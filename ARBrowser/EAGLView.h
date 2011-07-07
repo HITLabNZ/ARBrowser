@@ -117,6 +117,9 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 
 @property(assign) id<EAGLViewDelegate> delegate;
 
+- (void) startRendering;
+- (void) stopRendering;
+
 - (void) setCurrentContext;
 - (BOOL) isCurrentContext;
 - (void) clearCurrentContext;

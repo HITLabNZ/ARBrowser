@@ -89,8 +89,7 @@ int __OPENGLES_VERSION = 1;
 	if([[UIScreen mainScreen] respondsToSelector:@selector(scale)]) {
 		CGFloat scale = [[UIScreen mainScreen] scale];
 
-		if (scale == 2.0)
-			[self setContentScaleFactor:2.0];
+		[self setContentScaleFactor:scale];
 	}
 	
 	if(![EAGLContext setCurrentContext:_context]) {
@@ -131,6 +130,8 @@ int __OPENGLES_VERSION = 1;
 		glRenderbufferStorageOES(GL_RENDERBUFFER_OES, _depthFormat, newSize.width, newSize.height);
 		glFramebufferRenderbufferOES(GL_FRAMEBUFFER_OES, GL_DEPTH_ATTACHMENT_OES, GL_RENDERBUFFER_OES, _depthBuffer);
 	}
+	
+	NSLog(@"EAGLView: Creating surface (framebuffer = %d; depth buffer = %d; render buffer = %d).", _framebuffer, _depthBuffer, _renderbuffer);
 
 	_size = newSize;
 	if(!_hasBeenCurrent) {
@@ -152,6 +153,8 @@ int __OPENGLES_VERSION = 1;
 
 - (void) _destroySurface
 {
+	NSLog(@"EAGLView: Destroying surface (framebuffer = %d; depth buffer = %d; render buffer = %d).", _framebuffer, _depthBuffer, _renderbuffer);
+	
 	EAGLContext *oldContext = [EAGLContext currentContext];
 	
 	if (oldContext != _context)
@@ -204,7 +207,7 @@ int __OPENGLES_VERSION = 1;
 			return nil;
 		}
 		
-		_frameTimer = [NSTimer scheduledTimerWithTimeInterval:(1.0 / 30.0) target:self selector:@selector(update) userInfo:nil repeats:YES];
+		_frameTimer = nil;
 	}
 
 	return self;
@@ -223,7 +226,22 @@ int __OPENGLES_VERSION = 1;
 	[super dealloc];
 }
 
+- (void) startRendering {
+	[self stopRendering];
+	
+	_frameTimer = [NSTimer scheduledTimerWithTimeInterval:(1.0 / 30.0) target:self selector:@selector(update) userInfo:nil repeats:YES];
+}
+
+- (void) stopRendering {
+	if (_frameTimer) {
+		[_frameTimer invalidate];
+		_frameTimer = nil;
+	}
+}
+
 - (void) update {
+	// if ([self isHidden]) return;
+	
 	if ([_delegate respondsToSelector:@selector(update:)])
 		[_delegate update:self];
 	
@@ -273,7 +291,10 @@ int __OPENGLES_VERSION = 1;
 	if(oldContext != _context)
 		[EAGLContext setCurrentContext:_context];
 	
-	// CHECK_GL_ERROR();
+	GLint error = glGetError();
+	if (error != GL_NO_ERROR) {
+		NSLog(@"OpenGL Error #%d", error);
+	}
 	
 	glGetIntegerv(GL_RENDERBUFFER_BINDING_OES, (GLint *) &oldRenderbuffer);
 	glBindRenderbufferOES(GL_RENDERBUFFER_OES, _renderbuffer);
@@ -287,14 +308,14 @@ int __OPENGLES_VERSION = 1;
 
 - (CGPoint) convertPointFromViewToSurface:(CGPoint)point
 {
-	CGRect				bounds = [self bounds];
+	CGRect bounds = [self bounds];
 	
 	return CGPointMake((point.x - bounds.origin.x) / bounds.size.width * _size.width, (point.y - bounds.origin.y) / bounds.size.height * _size.height);
 }
 
 - (CGRect) convertRectFromViewToSurface:(CGRect)rect
 {
-	CGRect				bounds = [self bounds];
+	CGRect bounds = [self bounds];
 	
 	return CGRectMake((rect.origin.x - bounds.origin.x) / bounds.size.width * _size.width, (rect.origin.y - bounds.origin.y) / bounds.size.height * _size.height, rect.size.width / bounds.size.width * _size.width, rect.size.height / bounds.size.height * _size.height);
 }
@@ -324,6 +345,5 @@ int __OPENGLES_VERSION = 1;
 	if ([_delegate respondsToSelector:@selector(touchesCancelled:withEvent:inView:)])
 		[_delegate touchesCancelled:touches withEvent:event inView:self];
 }
-
 
 @end
