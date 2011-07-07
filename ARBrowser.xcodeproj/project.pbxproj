@@ -92,9 +92,13 @@
 		7E7E2A731370EB0B00338606 /* Quaternion.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E23373D134B41F100BEFB33 /* Quaternion.h */; };
 		7E7E2A741370EB1500338606 /* Endian.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E23373A134B41F100BEFB33 /* Endian.h */; };
 		7E8D4CB1134FE04A00868D6B /* ARBrowserView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7E8D4CB0134FE04A00868D6B /* ARBrowserView.mm */; };
-		7EBB6E2413C52C690028A3E7 /* ARMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EBB6E2313C52C690028A3E7 /* ARMapViewController.xib */; };
 		7EBB6E2A13C5465A0028A3E7 /* ARMainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EBB6E2813C5465A0028A3E7 /* ARMainWindow.xib */; };
 		7EBB6E2F13C550650028A3E7 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EBB6E2E13C550650028A3E7 /* MapKit.framework */; };
+		7EBB6E4213C5C4EE0028A3E7 /* ARMapViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7EDA1D4E13C49A7D00796B34 /* ARMapViewController.h */; };
+		7EBB6E4413C5C4F20028A3E7 /* ARMapViewController.mm in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7EDA1D4F13C49A7D00796B34 /* ARMapViewController.mm */; };
+		7EBB6E4613C5C50D0028A3E7 /* ARMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EBB6E4913C5C50D0028A3E7 /* ARMapViewController.xib */; };
+		7EBB6E4713C5C50D0028A3E7 /* ARMapViewController.xib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7EBB6E4913C5C50D0028A3E7 /* ARMapViewController.xib */; };
+		7EBB6E4A13C5C5290028A3E7 /* ARMainWindow.xib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7EBB6E2813C5465A0028A3E7 /* ARMainWindow.xib */; };
 		7EBCD90913B85459007892CA /* ARObjectModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7EBCD90813B85457007892CA /* ARObjectModel.mm */; };
 		7EBCD90A13B87967007892CA /* ARObjectModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7EBCD90813B85457007892CA /* ARObjectModel.mm */; };
 		7EDA1D5013C49A7D00796B34 /* ARMapViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7EDA1D4F13C49A7D00796B34 /* ARMapViewController.mm */; };
@@ -117,6 +121,10 @@
 			dstPath = source;
 			dstSubfolderSpec = 16;
 			files = (
+				7EBB6E4A13C5C5290028A3E7 /* ARMainWindow.xib in CopyFiles */,
+				7EBB6E4713C5C50D0028A3E7 /* ARMapViewController.xib in CopyFiles */,
+				7EBB6E4213C5C4EE0028A3E7 /* ARMapViewController.h in CopyFiles */,
+				7EBB6E4413C5C4F20028A3E7 /* ARMapViewController.mm in CopyFiles */,
 				7E68E76013B9C85D00AF5C31 /* Doxyfile in CopyFiles */,
 				7E7E29811370E5EA00338606 /* ARBrowserAppDelegate.mm in CopyFiles */,
 				7E7E297C1370E59300338606 /* Matrix.h in CopyFiles */,
@@ -203,9 +211,9 @@
 		7E7E29571370D8C100338606 /* HITLabNZAR-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HITLabNZAR-Prefix.pch"; sourceTree = "<group>"; };
 		7E8D4CAF134FE04A00868D6B /* ARBrowserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARBrowserView.h; sourceTree = "<group>"; };
 		7E8D4CB0134FE04A00868D6B /* ARBrowserView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ARBrowserView.mm; sourceTree = "<group>"; };
-		7EBB6E2313C52C690028A3E7 /* ARMapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ARMapViewController.xib; sourceTree = "<group>"; };
 		7EBB6E2913C5465A0028A3E7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ARMainWindow.xib; sourceTree = "<group>"; };
 		7EBB6E2E13C550650028A3E7 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		7EBB6E4813C5C50D0028A3E7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ARMapViewController.xib; sourceTree = "<group>"; };
 		7EBCD90713B85456007892CA /* ARObjectModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARObjectModel.h; sourceTree = "<group>"; };
 		7EBCD90813B85457007892CA /* ARObjectModel.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ARObjectModel.mm; sourceTree = "<group>"; };
 		7EDA1D4E13C49A7D00796B34 /* ARMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARMapViewController.h; sourceTree = "<group>"; };
@@ -294,7 +302,7 @@
 				7E233724134AE94400BEFB33 /* Texture2D.m */,
 				7E233736134B40C200BEFB33 /* ARWorldLocation.h */,
 				7E233737134B40C200BEFB33 /* ARWorldLocation.mm */,
-				7EBB6E2313C52C690028A3E7 /* ARMapViewController.xib */,
+				7EBB6E4913C5C50D0028A3E7 /* ARMapViewController.xib */,
 				7EDA1D4E13C49A7D00796B34 /* ARMapViewController.h */,
 				7EDA1D4F13C49A7D00796B34 /* ARMapViewController.mm */,
 				7E61C97A1354B44B00857A4D /* ARWorldPoint.h */,
@@ -471,7 +479,7 @@
 				7E61C98B1354B69C00857A4D /* Models in Resources */,
 				7E68E75E13B9C81800AF5C31 /* Doxyfile in Resources */,
 				7E68E76813B9CF0B00AF5C31 /* Readme.rtf in Resources */,
-				7EBB6E2413C52C690028A3E7 /* ARMapViewController.xib in Resources */,
+				7EBB6E4613C5C50D0028A3E7 /* ARMapViewController.xib in Resources */,
 				7EBB6E2A13C5465A0028A3E7 /* ARMainWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -586,6 +594,14 @@
 				7EBB6E2913C5465A0028A3E7 /* en */,
 			);
 			name = ARMainWindow.xib;
+			sourceTree = "<group>";
+		};
+		7EBB6E4913C5C50D0028A3E7 /* ARMapViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7EBB6E4813C5C50D0028A3E7 /* en */,
+			);
+			name = ARMapViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
