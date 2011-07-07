@@ -28,6 +28,13 @@ namespace ARBrowser {
 
 	void renderVertices(const VerticesT & vertices, GLenum mode = GL_LINES);
 	
+	/// The size of the compass is fixed from -20 <-> 20.
+	const float RadarDiameter = 40.0;
+	
+	/// Render a radar using OpenGL at the origin.
+	/// Points are points within the compass, edgePoints are points on the edge of the compass.
+	void renderRadar (VerticesT & points, VerticesT & edgePoints, float pointScale = 1.0);
+	
 	/// Renders a square box of size s.
 	void renderMarker (float s);
 	

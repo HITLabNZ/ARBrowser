@@ -32,7 +32,7 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 
 @implementation ARBrowserView
 
-@synthesize delegate, distanceScale;
+@synthesize delegate, distanceScale, displayRadar;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -51,6 +51,7 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 		ARBrowser::generateGrid(state->grid);
 		
 		distanceScale = 1.0;
+		displayRadar = YES;
     }
 	
     return self;
@@ -91,6 +92,73 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 			[self.delegate browserView:self didSelect:selected];
 		}
 	}
+}
+
+- (void) drawRadar {
+	ARWorldLocation * origin = [[ARLocationController sharedInstance] worldLocation];
+	NSArray * worldPoints = [self.delegate worldPoints];
+	
+	ARBrowser::VerticesT radarPoints, radarEdgePoints;
+	
+	for (ARWorldPoint * point in worldPoints) {
+		Vec3 delta = [origin calculateRelativePositionOf:point];
+		
+		if (delta.length() == 0) {
+			radarPoints.push_back(delta);
+		} else {
+			// Normalize the distance of the point
+			const float LF = 10.0;
+			float length = log10f((delta.length() / LF) + 1) * LF;
+			
+			// Normalize the vector so we can scale its length appropriately.
+			delta.normalize();
+			
+			if (length < (ARBrowser::RadarDiameter / 2.0)) {
+				delta *= length;
+				radarPoints.push_back(delta);
+			} else {
+				delta *= (ARBrowser::RadarDiameter / 2.0);
+				radarEdgePoints.push_back(delta);
+			}
+		}
+	}
+		
+	glMatrixMode(GL_PROJECTION);
+	glPushMatrix();
+	glLoadIdentity();
+	
+	CGSize radarSize = CGSizeMake(40, 40);
+	CGSize viewSize = [self bounds].size;
+	
+	MATRIX orthoProjection;
+	MatrixOrthoRH(orthoProjection, viewSize.width, viewSize.height, -1, 1, false);
+	glMultMatrixf(orthoProjection.f);
+	
+	//float minDimension = std::min(viewSize.width, viewSize.height);
+	//float scale = minDimension / ARBrowser::RadarDiameter;
+	float minDimension = viewSize.width / 3.0;
+	float scale = minDimension / ARBrowser::RadarDiameter;
+	
+	glMatrixMode(GL_MODELVIEW);
+	glPushMatrix();
+	glLoadIdentity();
+	
+	// This isn't quite right due to scaling, but it is sufficient at this time.
+	glTranslatef(-minDimension, (viewSize.height / 2.0) - (radarSize.height / 2.0 * scale), 0.0);
+	
+	// Rotate based on the current heading.
+	glRotatef([origin rotation], 0, 0, 1);
+	
+	// Make it slightly smaller so the edges aren't touching the bounding box.
+	scale *= 0.9;
+	glScalef(scale, scale, 1);
+	
+	ARBrowser::renderRadar(radarPoints, radarEdgePoints, scale / 2.0);
+	
+	glPopMatrix();
+	
+	glMatrixMode(GL_PROJECTION);
+	glPopMatrix();
 }
 
 - (void) update {
@@ -184,6 +252,9 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 		glPopMatrix();
 	}
 	
+	if (displayRadar)
+		[self drawRadar];
+	
 	[super update];
 }
 
@@ -203,6 +274,8 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 
 - (void)dealloc
 {
+	[videoFrameController stop];
+	
 	[videoFrameController release];	
 	[videoBackground release];
 	

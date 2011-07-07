@@ -36,7 +36,76 @@
  */
 
 namespace ARBrowser {
+	
+	void renderRing (float r) {
+		const unsigned R_RES = 32;
+		
+		Vec3 k(r, 0, 0), t;
+		Mat44 rotation;
+		MatrixRotationZ(rotation, (2 * M_PI) / R_RES);
+		
+		VerticesT vertices;
+		for (unsigned i = 0; i < R_RES; i++) {
+			vertices.push_back(Vec3(k.x, k.y, k.z));
+			
+			MatrixVec3Multiply(t, k, rotation);
+			k = t;
+		}
+		
+		renderVertices(vertices, GL_LINE_LOOP);
+	}
+	
+	void renderRadar (VerticesT & points, VerticesT & edgePoints, float pointScale) {
+		glDisable(GL_DEPTH_TEST);
+		
+		VerticesT ring;
+		
+		glLineWidth(2);
+		glColor4f(0.5, 0.5, 1.0, 1.0);
+		renderRing(5);
+		renderRing(10);
+		renderRing(15);
+		renderRing(20);
+		
+		VerticesT vertices;
+		vertices.push_back(Vec3(-20, 0, 0));
+		vertices.push_back(Vec3( 20, 0, 0));
+		vertices.push_back(Vec3(0, -20, 0));
+		vertices.push_back(Vec3(0,  0, 0));
+		glColor4f(1.0, 1.0, 1.0, 0.8);
+		renderVertices(vertices, GL_LINES);
+		
+		vertices.clear();
 
+		vertices.push_back(Vec3(0,  0, 0));		
+		vertices.push_back(Vec3(0, 20, 0));
+		glColor4f(0.8, 0.8, 1.0, 0.8);
+		renderVertices(vertices, GL_LINES);
+		
+		glLineWidth(3);
+		
+		// Points within compass
+		glPointSize(8.0 * pointScale);
+		glColor4f(0.0, 0.0, 0.0, 1.0);
+		renderVertices(points, GL_POINTS);
+		
+		glPointSize(6.0 * pointScale);
+		glColor4f(1.0, 1.0, 1.0, 1.0);
+		renderVertices(points, GL_POINTS);
+
+		// Edge points
+		glPointSize(8.0 * pointScale);
+		glColor4f(0.0, 0.0, 0.0, 1.0);
+		renderVertices(edgePoints, GL_POINTS);
+		
+		glPointSize(6.0 * pointScale);
+		glColor4f(0.2, 0.2, 1.0, 1.0);
+		renderVertices(edgePoints, GL_POINTS);
+		
+		glEnable(GL_DEPTH_TEST);
+		glPointSize(1.0);
+	}
+	
 	void generateGrid (VerticesT & points) {		
 		const float LOWER = -20;
 		const float UPPER = 20;

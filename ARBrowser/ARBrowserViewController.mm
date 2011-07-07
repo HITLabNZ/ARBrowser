@@ -22,6 +22,7 @@
 #pragma mark - View lifecycle
 
 - (void)loadView {
+	// -20 for top status bar
 	CGRect frame = CGRectMake(0, 0, 320, 480);
 	
 	// Initialize the OpenGL view
@@ -42,22 +43,22 @@
 
 - (void)viewDidAppear:(BOOL)animated {
 	NSLog(@"ARBrowserViewController: Resuming Rendering.");
-	
+		
 	ARBrowserView * browserView = (ARBrowserView*)[self view];
 	
 	[browserView startRendering];
+	
+	[super viewDidAppear:animated];
 }
 
-- (void)viewDidDisappear:(BOOL)animated {
+- (void)viewWillDisappear:(BOOL)animated {
 	NSLog(@"ARBrowserViewController: Pausing Rendering.");
 	
 	ARBrowserView * browserView = (ARBrowserView*)[self view];
 	
 	[browserView stopRendering];
-}
-
-- worldPoints {
-	return _worldPoints;
+	
+	[super viewWillDisappear:animated];
 }
 
 - (void) update: (EAGLView*) view {
