@@ -39,4 +39,34 @@
 		return [super description];
 }
 
+- (CLLocationCoordinate2D) coordinate
+{
+	return location;
+}
+
+- (NSString*) title
+{
+	NSString * title = [metadata objectForKey:@"title"];
+	
+	if (title)
+		return title;
+	
+	NSString * name = [metadata objectForKey:@"name"];
+	
+	if (name)
+		return name;
+	
+	return @"ARWorldPoint";
+}
+
+- (NSString*) subtitle
+{
+	NSString * subtitle = [metadata objectForKey:@"subtitle"];
+	
+	if (subtitle)
+		return subtitle;
+	
+	return [self description];
+}
+
 @end

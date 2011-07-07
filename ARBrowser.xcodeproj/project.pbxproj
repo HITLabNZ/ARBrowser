@@ -27,8 +27,7 @@
 		7E2336BE134AD1FF00BEFB33 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E2336BD134AD1FF00BEFB33 /* CoreGraphics.framework */; };
 		7E2336C4134AD1FF00BEFB33 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7E2336C2134AD1FF00BEFB33 /* InfoPlist.strings */; };
 		7E2336C7134AD1FF00BEFB33 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E2336C6134AD1FF00BEFB33 /* main.m */; };
-		7E2336CA134AD1FF00BEFB33 /* ARBrowserAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E2336C9134AD1FF00BEFB33 /* ARBrowserAppDelegate.m */; };
-		7E2336CD134AD1FF00BEFB33 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E2336CB134AD1FF00BEFB33 /* MainWindow.xib */; };
+		7E2336CA134AD1FF00BEFB33 /* ARBrowserAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7E2336C9134AD1FF00BEFB33 /* ARBrowserAppDelegate.mm */; };
 		7E2336D0134AD1FF00BEFB33 /* ARBrowserViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7E2336CF134AD1FF00BEFB33 /* ARBrowserViewController.mm */; };
 		7E233715134AD2C500BEFB33 /* EAGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E233714134AD2C500BEFB33 /* EAGLView.m */; };
 		7E23371E134AD67700BEFB33 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E23371D134AD67700BEFB33 /* CoreFoundation.framework */; };
@@ -56,7 +55,6 @@
 		7E61C98B1354B69C00857A4D /* Models in Resources */ = {isa = PBXBuildFile; fileRef = 7E61C98A1354B69C00857A4D /* Models */; };
 		7E68E75E13B9C81800AF5C31 /* Doxyfile in Resources */ = {isa = PBXBuildFile; fileRef = 7E68E75D13B9C81800AF5C31 /* Doxyfile */; };
 		7E68E76013B9C85D00AF5C31 /* Doxyfile in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E68E75D13B9C81800AF5C31 /* Doxyfile */; };
-		7E68E76213B9CE5700AF5C31 /* MainWindow.xib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E2336CB134AD1FF00BEFB33 /* MainWindow.xib */; };
 		7E68E76813B9CF0B00AF5C31 /* Readme.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 7E68E76713B9CF0B00AF5C31 /* Readme.rtf */; };
 		7E7E29541370D8C100338606 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E2336BB134AD1FF00BEFB33 /* Foundation.framework */; };
 		7E7E295C1370D92E00338606 /* Matrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E23373B134B41F100BEFB33 /* Matrix.cpp */; };
@@ -82,7 +80,7 @@
 		7E7E297E1370E5D700338606 /* Vector.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E233743134B41F100BEFB33 /* Vector.h */; };
 		7E7E297F1370E5D900338606 /* Transform.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E233741134B41F100BEFB33 /* Transform.h */; };
 		7E7E29801370E5E200338606 /* ARBrowserAppDelegate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E2336C8134AD1FF00BEFB33 /* ARBrowserAppDelegate.h */; };
-		7E7E29811370E5EA00338606 /* ARBrowserAppDelegate.m in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E2336C9134AD1FF00BEFB33 /* ARBrowserAppDelegate.m */; };
+		7E7E29811370E5EA00338606 /* ARBrowserAppDelegate.mm in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E2336C9134AD1FF00BEFB33 /* ARBrowserAppDelegate.mm */; };
 		7E7E29831370E60A00338606 /* ARBrowserViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E2336CE134AD1FF00BEFB33 /* ARBrowserViewController.h */; };
 		7E7E29841370E60D00338606 /* ARBrowserViewController.mm in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E2336CF134AD1FF00BEFB33 /* ARBrowserViewController.mm */; };
 		7E7E29851370E61300338606 /* Texture2D.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E233723134AE94400BEFB33 /* Texture2D.h */; };
@@ -94,8 +92,12 @@
 		7E7E2A731370EB0B00338606 /* Quaternion.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E23373D134B41F100BEFB33 /* Quaternion.h */; };
 		7E7E2A741370EB1500338606 /* Endian.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E23373A134B41F100BEFB33 /* Endian.h */; };
 		7E8D4CB1134FE04A00868D6B /* ARBrowserView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7E8D4CB0134FE04A00868D6B /* ARBrowserView.mm */; };
+		7EBB6E2413C52C690028A3E7 /* ARMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EBB6E2313C52C690028A3E7 /* ARMapViewController.xib */; };
+		7EBB6E2A13C5465A0028A3E7 /* ARMainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EBB6E2813C5465A0028A3E7 /* ARMainWindow.xib */; };
+		7EBB6E2F13C550650028A3E7 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EBB6E2E13C550650028A3E7 /* MapKit.framework */; };
 		7EBCD90913B85459007892CA /* ARObjectModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7EBCD90813B85457007892CA /* ARObjectModel.mm */; };
 		7EBCD90A13B87967007892CA /* ARObjectModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7EBCD90813B85457007892CA /* ARObjectModel.mm */; };
+		7EDA1D5013C49A7D00796B34 /* ARMapViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7EDA1D4F13C49A7D00796B34 /* ARMapViewController.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,7 +118,7 @@
 			dstSubfolderSpec = 16;
 			files = (
 				7E68E76013B9C85D00AF5C31 /* Doxyfile in CopyFiles */,
-				7E7E29811370E5EA00338606 /* ARBrowserAppDelegate.m in CopyFiles */,
+				7E7E29811370E5EA00338606 /* ARBrowserAppDelegate.mm in CopyFiles */,
 				7E7E297C1370E59300338606 /* Matrix.h in CopyFiles */,
 				7E7E2A731370EB0B00338606 /* Quaternion.h in CopyFiles */,
 				7E7E297E1370E5D700338606 /* Vector.h in CopyFiles */,
@@ -134,7 +136,6 @@
 				7E7E29831370E60A00338606 /* ARBrowserViewController.h in CopyFiles */,
 				7E7E29841370E60D00338606 /* ARBrowserViewController.mm in CopyFiles */,
 				7E7E29851370E61300338606 /* Texture2D.h in CopyFiles */,
-				7E68E76213B9CE5700AF5C31 /* MainWindow.xib in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,8 +151,7 @@
 		7E2336C5134AD1FF00BEFB33 /* ARBrowser-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ARBrowser-Prefix.pch"; sourceTree = "<group>"; };
 		7E2336C6134AD1FF00BEFB33 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7E2336C8134AD1FF00BEFB33 /* ARBrowserAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ARBrowserAppDelegate.h; sourceTree = "<group>"; };
-		7E2336C9134AD1FF00BEFB33 /* ARBrowserAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ARBrowserAppDelegate.m; sourceTree = "<group>"; };
-		7E2336CC134AD1FF00BEFB33 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		7E2336C9134AD1FF00BEFB33 /* ARBrowserAppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ARBrowserAppDelegate.mm; sourceTree = "<group>"; };
 		7E2336CE134AD1FF00BEFB33 /* ARBrowserViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ARBrowserViewController.h; sourceTree = "<group>"; };
 		7E2336CF134AD1FF00BEFB33 /* ARBrowserViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ARBrowserViewController.mm; sourceTree = "<group>"; };
 		7E233713134AD2C500BEFB33 /* EAGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLView.h; sourceTree = "<group>"; };
@@ -203,8 +203,13 @@
 		7E7E29571370D8C100338606 /* HITLabNZAR-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HITLabNZAR-Prefix.pch"; sourceTree = "<group>"; };
 		7E8D4CAF134FE04A00868D6B /* ARBrowserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARBrowserView.h; sourceTree = "<group>"; };
 		7E8D4CB0134FE04A00868D6B /* ARBrowserView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ARBrowserView.mm; sourceTree = "<group>"; };
+		7EBB6E2313C52C690028A3E7 /* ARMapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ARMapViewController.xib; sourceTree = "<group>"; };
+		7EBB6E2913C5465A0028A3E7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ARMainWindow.xib; sourceTree = "<group>"; };
+		7EBB6E2E13C550650028A3E7 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		7EBCD90713B85456007892CA /* ARObjectModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARObjectModel.h; sourceTree = "<group>"; };
 		7EBCD90813B85457007892CA /* ARObjectModel.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ARObjectModel.mm; sourceTree = "<group>"; };
+		7EDA1D4E13C49A7D00796B34 /* ARMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARMapViewController.h; sourceTree = "<group>"; };
+		7EDA1D4F13C49A7D00796B34 /* ARMapViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ARMapViewController.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +217,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7EBB6E2F13C550650028A3E7 /* MapKit.framework in Frameworks */,
 				7E61C9791354ACE200857A4D /* CoreLocation.framework in Frameworks */,
 				7E61C9741354A51B00857A4D /* CoreMotion.framework in Frameworks */,
 				7E233731134B3E5B00BEFB33 /* CoreMedia.framework in Frameworks */,
@@ -259,6 +265,7 @@
 		7E2336B8134AD1FF00BEFB33 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7EBB6E2E13C550650028A3E7 /* MapKit.framework */,
 				7E61C9781354ACE200857A4D /* CoreLocation.framework */,
 				7E61C9731354A51B00857A4D /* CoreMotion.framework */,
 				7E233730134B3E5B00BEFB33 /* CoreMedia.framework */,
@@ -278,15 +285,18 @@
 			isa = PBXGroup;
 			children = (
 				7E233739134B41F100BEFB33 /* Math */,
+				7EBB6E2813C5465A0028A3E7 /* ARMainWindow.xib */,
 				7E2336C8134AD1FF00BEFB33 /* ARBrowserAppDelegate.h */,
-				7E2336C9134AD1FF00BEFB33 /* ARBrowserAppDelegate.m */,
-				7E2336CB134AD1FF00BEFB33 /* MainWindow.xib */,
+				7E2336C9134AD1FF00BEFB33 /* ARBrowserAppDelegate.mm */,
 				7E2336CE134AD1FF00BEFB33 /* ARBrowserViewController.h */,
 				7E2336CF134AD1FF00BEFB33 /* ARBrowserViewController.mm */,
 				7E233723134AE94400BEFB33 /* Texture2D.h */,
 				7E233724134AE94400BEFB33 /* Texture2D.m */,
 				7E233736134B40C200BEFB33 /* ARWorldLocation.h */,
 				7E233737134B40C200BEFB33 /* ARWorldLocation.mm */,
+				7EBB6E2313C52C690028A3E7 /* ARMapViewController.xib */,
+				7EDA1D4E13C49A7D00796B34 /* ARMapViewController.h */,
+				7EDA1D4F13C49A7D00796B34 /* ARMapViewController.mm */,
 				7E61C97A1354B44B00857A4D /* ARWorldPoint.h */,
 				7E61C97B1354B44B00857A4D /* ARWorldPoint.mm */,
 				7E61C97D1354B4E000857A4D /* ARModel.h */,
@@ -458,10 +468,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E2336C4134AD1FF00BEFB33 /* InfoPlist.strings in Resources */,
-				7E2336CD134AD1FF00BEFB33 /* MainWindow.xib in Resources */,
 				7E61C98B1354B69C00857A4D /* Models in Resources */,
 				7E68E75E13B9C81800AF5C31 /* Doxyfile in Resources */,
 				7E68E76813B9CF0B00AF5C31 /* Readme.rtf in Resources */,
+				7EBB6E2413C52C690028A3E7 /* ARMapViewController.xib in Resources */,
+				7EBB6E2A13C5465A0028A3E7 /* ARMainWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -503,7 +514,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E2336C7134AD1FF00BEFB33 /* main.m in Sources */,
-				7E2336CA134AD1FF00BEFB33 /* ARBrowserAppDelegate.m in Sources */,
+				7E2336CA134AD1FF00BEFB33 /* ARBrowserAppDelegate.mm in Sources */,
 				7E2336D0134AD1FF00BEFB33 /* ARBrowserViewController.mm in Sources */,
 				7E233715134AD2C500BEFB33 /* EAGLView.m in Sources */,
 				7E233725134AE94400BEFB33 /* Texture2D.m in Sources */,
@@ -522,6 +533,7 @@
 				7E61C97C1354B44B00857A4D /* ARWorldPoint.mm in Sources */,
 				7E61C97F1354B4E100857A4D /* ARModel.mm in Sources */,
 				7EBCD90913B85459007892CA /* ARObjectModel.mm in Sources */,
+				7EDA1D5013C49A7D00796B34 /* ARMapViewController.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -568,12 +580,12 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		7E2336CB134AD1FF00BEFB33 /* MainWindow.xib */ = {
+		7EBB6E2813C5465A0028A3E7 /* ARMainWindow.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				7E2336CC134AD1FF00BEFB33 /* en */,
+				7EBB6E2913C5465A0028A3E7 /* en */,
 			);
-			name = MainWindow.xib;
+			name = ARMainWindow.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -726,6 +738,7 @@
 				7E68E76C13B9CF8F00AF5C31 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7E7E295A1370D8C100338606 /* Build configuration list for PBXNativeTarget "HITLabNZAR" */ = {
 			isa = XCConfigurationList;
