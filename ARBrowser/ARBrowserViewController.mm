@@ -22,11 +22,17 @@
 #pragma mark - View lifecycle
 
 - (void)loadView {
-	// -20 for top status bar
+	// Standard view size for iOS UIWindow
 	CGRect frame = CGRectMake(0, 0, 320, 480);
 	
 	// Initialize the OpenGL view
 	ARBrowserView * browserView = [[ARBrowserView alloc] initWithFrame:frame];
+	
+	// Print out FPS information.
+	[browserView setDebug:YES];
+
+	// Turn off the grid.
+	[browserView setDisplayGrid:NO];
 	
 	[browserView setAutoresizingMask:UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth];
 	
