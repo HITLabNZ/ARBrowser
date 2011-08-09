@@ -17,4 +17,8 @@
 /// Because .obj models consist of more than one file, we need to know the files <tt>[name].obj</tt> and <tt>[name].mtl</tt> and the associated directory for loading texture data.
 + (id<ARRenderable>) objectModelWithName:(NSString*)name inDirectory:(NSString*)directory;
 
+/// Create a billboad mesh with the given view.
+/// Currently, for best results, the view must be a 2^n size.
++ (id<ARRenderable>) viewModelWithView: (UIView*)view;
+
 @end
