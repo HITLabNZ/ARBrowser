@@ -32,7 +32,7 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 
 @implementation ARBrowserView
 
-@synthesize delegate, distanceScale, displayRadar;
+@synthesize delegate, distanceScale, displayRadar, displayGrid;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -205,7 +205,7 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 			
 			//NSLog(@"d x f: %0.4f, %0.4f, %0.4f, Lenght: %0.4f", s.x, s.y, s.z, s.length());
 			
-			glRotatef(sz * (180.0 / M_PI), s.x, s.y, s.z);
+			glRotatef(sz * ARBrowser::R2D, s.x, s.y, s.z);
 		}
 		
 		// Move the origin down 1 meter.
@@ -227,9 +227,13 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 	glGetFloatv(GL_PROJECTION_MATRIX, state->projectionMatrix.f);
 	glGetFloatv(GL_MODELVIEW_MATRIX, state->viewMatrix.f);
 	
-	glColor4f(0.7, 0.7, 0.7, 1.0);
-	ARBrowser::renderVertices(state->grid);
-	ARBrowser::renderAxis();
+	glColor4f(0.7, 0.7, 0.7, 0.2);
+	glLineWidth(1.0);
+	
+	if (displayGrid) {
+		ARBrowser::renderVertices(state->grid);
+		ARBrowser::renderAxis();
+	}
 	
 	NSArray * worldPoints = [[self delegate] worldPoints];
 		
