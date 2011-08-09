@@ -16,12 +16,14 @@
 /// The main application delegate which initialises the window and manages the associated view controller.
 @interface ARBrowserAppDelegate : NSObject <UIApplicationDelegate> {
 	NSArray * _worldPoints;
+	UIView * _informationView;
 }
 
 @property(nonatomic, retain) IBOutlet UIWindow *window;
 @property(nonatomic, retain) IBOutlet UITabBarController * mainViewController;
 @property(nonatomic, retain) IBOutlet ARBrowserViewController * browserViewController;
 @property(nonatomic, retain) IBOutlet ARMapViewController * mapViewController;
+@property(nonatomic, retain) IBOutlet UIView * informationView;
 
 @property(nonatomic,retain) NSArray * worldPoints;
 
