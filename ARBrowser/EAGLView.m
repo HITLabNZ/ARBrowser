@@ -73,6 +73,8 @@ int __OPENGLES_VERSION = 1;
 
 @synthesize delegate=_delegate, autoresizesSurface=_autoresize, surfaceSize=_size, framebuffer = _framebuffer, pixelFormat = _format, depthFormat = _depthFormat, context = _context;
 
+@synthesize debug = _debug;
+
 + (Class) layerClass
 {
 	return [CAEAGLLayer class];
@@ -99,6 +101,8 @@ int __OPENGLES_VERSION = 1;
 	newSize = [eaglLayer bounds].size;
 	newSize.width = roundf(newSize.width);
 	newSize.height = roundf(newSize.height);
+	
+	NSLog(@"View size: %@", NSStringFromCGSize(newSize));
 	
 	glGetIntegerv(GL_RENDERBUFFER_BINDING_OES, (GLint *) &oldRenderbuffer);
 	glGetIntegerv(GL_FRAMEBUFFER_BINDING_OES, (GLint *) &oldFramebuffer);
@@ -145,7 +149,6 @@ int __OPENGLES_VERSION = 1;
 	glBindRenderbufferOES(GL_RENDERBUFFER_OES, oldRenderbuffer);
 	
 	// Error handling here
-	
 	[_delegate didResizeEAGLSurfaceForView:self];
 	
 	return YES;
@@ -188,6 +191,8 @@ int __OPENGLES_VERSION = 1;
 - (id) initWithFrame:(CGRect)frame pixelFormat:(GLuint)format depthFormat:(GLuint)depth preserveBackbuffer:(BOOL)retained
 {
 	if((self = [super initWithFrame:frame])) {
+		//_autoresize = YES;
+		
 		CAEAGLLayer * eaglLayer = (CAEAGLLayer*)[self layer];
 		
 		eaglLayer.drawableProperties = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -230,6 +235,10 @@ int __OPENGLES_VERSION = 1;
 	if (_frameTimer == nil) {
 		_frameTimer = [NSTimer scheduledTimerWithTimeInterval:(1.0 / 30.0) target:self selector:@selector(update) userInfo:nil repeats:YES];
 	}
+	
+	[_lastDate release];
+	_lastDate = [[NSDate date] retain];
+	_count = 0;
 }
 
 - (void) stopRendering {
@@ -246,9 +255,24 @@ int __OPENGLES_VERSION = 1;
 		[_delegate update:self];
 	
 	[self swapBuffers];
+	
+	
+	if (_debug) {
+		_count += 1;
+		
+		if (_count > 150) {
+			NSTimeInterval interval = -[_lastDate timeIntervalSinceNow];
+			
+			NSLog(@"FPS: %0.2f", (double)(_count) / interval);
+			
+			[_lastDate release];
+			_lastDate = [[NSDate date] retain];
+			_count = 0;
+		}
+	}
 }
 
-- (void) layoutSubviews
+- (void)layoutSubviews
 {
 	CGRect bounds = [self bounds];
 	
@@ -288,8 +312,9 @@ int __OPENGLES_VERSION = 1;
 	EAGLContext *oldContext = [EAGLContext currentContext];
 	GLuint oldRenderbuffer;
 	
-	if(oldContext != _context)
+	if(oldContext != _context) {
 		[EAGLContext setCurrentContext:_context];
+	}
 	
 	GLint error = glGetError();
 	if (error != GL_NO_ERROR) {

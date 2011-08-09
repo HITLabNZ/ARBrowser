@@ -100,6 +100,11 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 	id<EAGLViewDelegate>	_delegate;
 	
 	NSTimer * _frameTimer;
+	
+	BOOL _debug;
+	
+	NSDate * _lastDate;
+	unsigned _count;
 }
 
 - (id) initWithFrame:(CGRect)frame;
@@ -110,6 +115,9 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 @property(readonly) GLuint pixelFormat;
 @property(readonly) GLuint depthFormat;
 @property(readonly) EAGLContext *context;
+
+/// Print out FPS and other related debugging information.
+@property(nonatomic,assign) BOOL debug;
 
 /// Controls whether the EAGL surface automatically resizes when the view bounds change. Otherwise, the EAGL surface contents are scaled to fix when rendered. NO by default.
 @property BOOL autoresizesSurface;
