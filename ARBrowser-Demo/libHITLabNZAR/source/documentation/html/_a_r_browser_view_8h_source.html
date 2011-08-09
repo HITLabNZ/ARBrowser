@@ -91,7 +91,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00036"></a>00036         <span class="keyword">struct </span>ARBrowserViewState * state;
 <a name="l00037"></a>00037         
 <a name="l00038"></a><a class="code" href="interface_a_r_browser_view.html#a91aef66437e470e8f51b90f5f2ec613c">00038</a>         <span class="keywordtype">float</span> <a class="code" href="interface_a_r_browser_view.html#a91aef66437e470e8f51b90f5f2ec613c" title="Controls the scale of objects positions. This doesn&#39;t change the size of objects, just the relative p...">distanceScale</a>;
-<a name="l00039"></a><a class="code" href="interface_a_r_browser_view.html#a541177be5371872bc4153d8eb8805ff2">00039</a>         BOOL <a class="code" href="interface_a_r_browser_view.html#a541177be5371872bc4153d8eb8805ff2" title="Display a small on-screen compass.">displayRadar</a>;
+<a name="l00039"></a><a class="code" href="interface_a_r_browser_view.html#a541177be5371872bc4153d8eb8805ff2">00039</a>         BOOL <a class="code" href="interface_a_r_browser_view.html#a541177be5371872bc4153d8eb8805ff2" title="Display a small on-screen compass.">displayRadar</a>, <a class="code" href="interface_a_r_browser_view.html#a767b94294f4358686e88d043198b9881" title="Display a background horizon grid.">displayGrid</a>;
 <a name="l00040"></a>00040 }
 <a name="l00041"></a>00041 
 <a name="l00043"></a><a class="code" href="interface_a_r_browser_view.html#ac71040f5d7529f5d1585f774524e6e48">00043</a> <span class="keyword">@property</span>(assign) id&lt;ARBrowserViewDelegate&gt; delegate;
@@ -100,7 +100,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00047"></a>00047 
 <a name="l00049"></a>00049 <span class="keyword">@property</span>(assign) BOOL displayRadar;
 <a name="l00050"></a>00050 
-<a name="l00051"></a>00051 <span class="keyword">@end</span>
+<a name="l00052"></a>00052 <span class="keyword">@property</span>(assign) BOOL displayGrid;
+<a name="l00053"></a>00053 
+<a name="l00054"></a>00054 <span class="keyword">@end</span>
 </pre></div></div>
 </div>
 <!-- window showing the filter options -->
@@ -117,7 +119,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Thu Jul 7 2011 22:50:24 for HITLabNZ ARBrowser by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Aug 10 2011 10:23:53 for HITLabNZ ARBrowser by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

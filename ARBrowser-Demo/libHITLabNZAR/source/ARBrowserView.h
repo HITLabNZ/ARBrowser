@@ -36,7 +36,7 @@ struct ARBrowserViewState;
 	struct ARBrowserViewState * state;
 	
 	float distanceScale;
-	BOOL displayRadar;
+	BOOL displayRadar, displayGrid;
 }
 
 /// The delegate for the ARBrowserView must implement ARBrowserViewDelegate.
@@ -47,5 +47,8 @@ struct ARBrowserViewState;
 
 /// Display a small on-screen compass.
 @property(assign) BOOL displayRadar;
+
+/// Display a background horizon grid.
+@property(assign) BOOL displayGrid;
 
 @end

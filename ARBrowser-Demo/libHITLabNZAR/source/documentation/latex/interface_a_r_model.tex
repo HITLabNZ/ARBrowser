@@ -15,7 +15,9 @@ Provides a simple interface for loading \hyperlink{protocol_a_r_renderable-p}{AR
 \begin{DoxyCompactItemize}
 \item 
 (id$<$ \hyperlink{protocol_a_r_renderable-p}{ARRenderable} $>$) + \hyperlink{interface_a_r_model_af9d39a3ae81b5f821f6601566db9b7db}{objectModelWithName:inDirectory:}
-\begin{DoxyCompactList}\small\item\em Load a given .obj model. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Load a given .obj model. \end{DoxyCompactList}\item 
+(id$<$ \hyperlink{protocol_a_r_renderable-p}{ARRenderable} $>$) + \hyperlink{interface_a_r_model_aed5fa08872526eb8c83d7b7dd127ce27}{viewModelWithView:}
+\begin{DoxyCompactList}\small\item\em Create a billboad mesh with the given view. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -36,7 +38,20 @@ Provides a simple interface for loading \hyperlink{protocol_a_r_renderable-p}{AR
 
 Load a given .obj model. 
 
-Because .obj models consist of more than one file, we need to know the files {\ttfamily \mbox{[}name\mbox{]}.obj} and {\ttfamily \mbox{[}name\mbox{]}.mtl} and the associated directory for loading texture data. 
+Because .obj models consist of more than one file, we need to know the files {\ttfamily \mbox{[}name\mbox{]}.obj} and {\ttfamily \mbox{[}name\mbox{]}.mtl} and the associated directory for loading texture data. \hypertarget{interface_a_r_model_aed5fa08872526eb8c83d7b7dd127ce27}{
+\index{ARModel@{ARModel}!viewModelWithView:@{viewModelWithView:}}
+\index{viewModelWithView:@{viewModelWithView:}!ARModel@{ARModel}}
+\subsubsection[{viewModelWithView:}]{\setlength{\rightskip}{0pt plus 5cm}+ (id$<${\bf ARRenderable}$>$) viewModelWithView: 
+\begin{DoxyParamCaption}
+\item[{dummy(UIView $\ast$)}]{view}
+\end{DoxyParamCaption}
+}}
+\label{interface_a_r_model_aed5fa08872526eb8c83d7b7dd127ce27}
+
+
+Create a billboad mesh with the given view. 
+
+Currently, for best results, the view must be a 2$^\wedge$n size. 
 
 The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
 \item 

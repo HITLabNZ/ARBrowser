@@ -102,6 +102,8 @@
 		7EBCD90913B85459007892CA /* ARObjectModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7EBCD90813B85457007892CA /* ARObjectModel.mm */; };
 		7EBCD90A13B87967007892CA /* ARObjectModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7EBCD90813B85457007892CA /* ARObjectModel.mm */; };
 		7EDA1D5013C49A7D00796B34 /* ARMapViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7EDA1D4F13C49A7D00796B34 /* ARMapViewController.mm */; };
+		7EFDDECC13E8DB8C00155C2B /* ARViewModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7EFDDECB13E8DB8C00155C2B /* ARViewModel.mm */; };
+		7EFDDECD13E8DB8C00155C2B /* ARViewModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7EFDDECB13E8DB8C00155C2B /* ARViewModel.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -218,6 +220,8 @@
 		7EBCD90813B85457007892CA /* ARObjectModel.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ARObjectModel.mm; sourceTree = "<group>"; };
 		7EDA1D4E13C49A7D00796B34 /* ARMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARMapViewController.h; sourceTree = "<group>"; };
 		7EDA1D4F13C49A7D00796B34 /* ARMapViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ARMapViewController.mm; sourceTree = "<group>"; };
+		7EFDDECA13E8DB8C00155C2B /* ARViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARViewModel.h; sourceTree = "<group>"; };
+		7EFDDECB13E8DB8C00155C2B /* ARViewModel.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ARViewModel.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -311,6 +315,8 @@
 				7E61C97E1354B4E000857A4D /* ARModel.mm */,
 				7EBCD90713B85456007892CA /* ARObjectModel.h */,
 				7EBCD90813B85457007892CA /* ARObjectModel.mm */,
+				7EFDDECA13E8DB8C00155C2B /* ARViewModel.h */,
+				7EFDDECB13E8DB8C00155C2B /* ARViewModel.mm */,
 				7E233726134AE99D00BEFB33 /* ARVideoFrameController.h */,
 				7E233727134AE99D00BEFB33 /* ARVideoFrameController.m */,
 				7E233729134AEAC100BEFB33 /* ARVideoBackground.h */,
@@ -542,6 +548,7 @@
 				7E61C97F1354B4E100857A4D /* ARModel.mm in Sources */,
 				7EBCD90913B85459007892CA /* ARObjectModel.mm in Sources */,
 				7EDA1D5013C49A7D00796B34 /* ARMapViewController.mm in Sources */,
+				7EFDDECC13E8DB8C00155C2B /* ARViewModel.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -566,6 +573,7 @@
 				7E7E296A1370D97400338606 /* ARLocationController.mm in Sources */,
 				7E7E296B1370D97E00338606 /* Model.mm in Sources */,
 				7EBCD90A13B87967007892CA /* ARObjectModel.mm in Sources */,
+				7EFDDECD13E8DB8C00155C2B /* ARViewModel.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

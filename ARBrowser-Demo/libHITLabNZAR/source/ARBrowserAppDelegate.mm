@@ -15,7 +15,7 @@
 
 @implementation ARBrowserAppDelegate
 
-@synthesize window = _window, browserViewController = _browserViewController, mapViewController = _mapViewController, mainViewController = _mainViewController;
+@synthesize window = _window, browserViewController = _browserViewController, mapViewController = _mapViewController, mainViewController = _mainViewController, informationView = _informationView;
 @synthesize worldPoints = _worldPoints;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -27,13 +27,15 @@
 	// Coffee cup model
 	NSString * coffeePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Models/coffee"];
 	id<ARRenderable> coffeeCupModel = [ARModel objectModelWithName:@"model" inDirectory:coffeePath];
+	id<ARRenderable> billboardModel = [ARModel viewModelWithView:_informationView];
 	
 	// 2 Derenzy Pl
 	ARWorldPoint * derenzy = [ARWorldPoint new];
 	location.latitude = -43.516215;
 	location.longitude = 172.554560;
 	[derenzy setCoordinate:location altitude:EARTH_RADIUS];
-	[derenzy setModel:coffeeCupModel];
+	//[derenzy setModel:coffeeCupModel];
+	[derenzy setModel:billboardModel];
 	
 	// This name is used for debugging output.
 	[derenzy.metadata setObject:@"2 Derenzy Pl" forKey:@"name"];
@@ -48,7 +50,10 @@
 	location.latitude = -43.522190;
 	location.longitude = 172.583020;
 	[hitlab setCoordinate:location altitude:EARTH_RADIUS];
-	[hitlab setModel:coffeeCupModel];
+	
+	//[hitlab setModel:coffeeCupModel];
+	[hitlab setModel:billboardModel];
+	
 	[hitlab.metadata setObject:@"HITLabNZ" forKey:@"name"];
 	[hitlab.metadata setObject:@"University of Canterbury" forKey:@"address"];
 	[hitlab.metadata setObject:@"Mark Billinghurst" forKey:@"developer"];
