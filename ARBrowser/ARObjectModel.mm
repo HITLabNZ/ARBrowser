@@ -14,8 +14,10 @@
 - initWithName: (NSString*)name inDirectory: (NSString*)directory
 {
     self = [super init];
+	
     if (self) {
-        mesh = new ARBrowser::Model([name UTF8String], [directory UTF8String]);
+		_name = [name copy];
+		_directory = [directory copy];
     }
     
     return self;
@@ -23,20 +25,33 @@
 
 - (void)dealloc
 {
+	[_name release];
+	[_directory release];
+
 	if (mesh)
 		delete mesh;
 	
     [super dealloc];
 }
 
-- (void) draw
+- (void) loadMesh
 {
-	if (mesh)
-		mesh->render();
+	if (!mesh) {
+        mesh = new ARBrowser::Model([_name UTF8String], [_directory UTF8String]);
+	}
+}
+
+- (void) draw
+{	
+	[self loadMesh];
+	
+	mesh->render();
 }
 
 - (ARBoundingSphere) boundingSphere
 {
+	[self loadMesh];
+
 	if (mesh) {
 		ARBrowser::BoundingBox box = mesh->boundingBox();
 		

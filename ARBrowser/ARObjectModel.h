@@ -16,6 +16,9 @@
 /// Provides a wrapper for ARBrowser::Model which implements ARRenderable
 @interface ARObjectModel : NSObject<ARRenderable> {
 @private
+	NSString * _name;
+	NSString * _directory;
+	
 	ARBrowser::Model * mesh;
 }
 
