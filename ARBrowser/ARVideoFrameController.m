@@ -31,7 +31,7 @@
 		}
 		
 		// Setup the video output
-		AVCaptureVideoDataOutput * captureOutput = [[AVCaptureVideoDataOutput alloc] init];
+		AVCaptureVideoDataOutput * captureOutput = [[AVCaptureVideoDataOutput alloc] init];		
 		captureOutput.alwaysDiscardsLateVideoFrames = YES;
 		
 		// Setup the dispatch queue
@@ -52,6 +52,11 @@
 		videoFrame.dataType = GL_UNSIGNED_BYTE;
 		
 		captureSession = [[AVCaptureSession alloc] init];
+		
+		if ([captureSession canSetSessionPreset:AVCaptureSessionPreset640x480]) {
+			[captureSession setSessionPreset:AVCaptureSessionPreset640x480];
+		}
+		
 		[captureSession addInput:captureInput];
 		[captureSession addOutput:captureOutput];
 		
