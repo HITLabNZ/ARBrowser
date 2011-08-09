@@ -21,6 +21,9 @@
 
 /// The main namespace for the ARBrowser C++ implementation.
 namespace ARBrowser {
+	const double R2D = (180.0 / M_PI);
+	const double D2R = (M_PI / 180.0);
+	
 	typedef std::vector<Vec3> VerticesT;
 	
 	void generateGrid (VerticesT & points);
