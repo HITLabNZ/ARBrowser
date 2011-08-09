@@ -154,34 +154,34 @@ namespace ARBrowser {
 
 	void renderMarker (float s) {
 		float verts[] = {
-			s, s,-s,	
-			-s, s,-s,	
-			-s, s, s,	
-			s, s, s,	
+			s, s,-s,
+			-s, s,-s,
+			-s, s, s,
+			s, s, s,
 
-			s,-s, s,	
-			-s,-s, s,	
-			-s,-s,-s,	
-			s,-s,-s,	
-
-			s, s, s,	
-			-s, s, s,	
-			-s,-s, s,	
-			s,-s, s,	
-
-			s,-s,-s,	
-			-s,-s,-s,	
-			-s, s,-s,	
-			s, s,-s,	
-
-			s, s,-s,	
-			s, s, s,	
-			s,-s, s,	
+			s,-s, s,
+			-s,-s, s,
+			-s,-s,-s,
 			s,-s,-s,
 
-			-s, s, s,	
-			-s, s,-s,	
-			-s,-s,-s,	
+			s, s, s,
+			-s, s, s,
+			-s,-s, s,
+			s,-s, s,
+
+			s,-s,-s,
+			-s,-s,-s,
+			-s, s,-s,
+			s, s,-s,
+
+			s, s,-s,
+			s, s, s,
+			s,-s, s,
+			s,-s,-s,
+
+			-s, s, s,
+			-s, s,-s,
+			-s,-s,-s,
 			-s,-s, s
 		};
 
