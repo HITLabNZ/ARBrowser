@@ -8,7 +8,10 @@
 
 #import "ARWorldLocation.h"
 
-const double D2R = (M_PI / 180.0);
+#import "Model.h"
+
+// Convenience
+const double D2R = ARBrowser::D2R;
 
 @implementation ARWorldLocation
 
