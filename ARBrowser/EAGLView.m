@@ -71,7 +71,7 @@ int __OPENGLES_VERSION = 1;
 
 @implementation EAGLView
 
-@synthesize delegate=_delegate, autoresizesSurface=_autoresize, surfaceSize=_size, framebuffer = _framebuffer, pixelFormat = _format, depthFormat = _depthFormat, context = _context;
+@synthesize delegate=_delegate, autoresize=_autoresize, surfaceSize=_size, framebuffer = _framebuffer, pixelFormat = _format, depthFormat = _depthFormat, context = _context;
 
 @synthesize debug = _debug;
 
@@ -87,23 +87,17 @@ int __OPENGLES_VERSION = 1;
 	GLuint					oldRenderbuffer;
 	GLuint					oldFramebuffer;
 	
+	if(![EAGLContext setCurrentContext:_context]) {
+		return NO;
+	}
+	
 	// Check the resolution of the main screen to support high resolution devices.
 	if([[UIScreen mainScreen] respondsToSelector:@selector(scale)]) {
 		CGFloat scale = [[UIScreen mainScreen] scale];
 
 		[self setContentScaleFactor:scale];
 	}
-	
-	if(![EAGLContext setCurrentContext:_context]) {
-		return NO;
-	}
-	
-	newSize = [eaglLayer bounds].size;
-	newSize.width = roundf(newSize.width);
-	newSize.height = roundf(newSize.height);
-	
-	NSLog(@"View size: %@", NSStringFromCGSize(newSize));
-	
+		
 	glGetIntegerv(GL_RENDERBUFFER_BINDING_OES, (GLint *) &oldRenderbuffer);
 	glGetIntegerv(GL_FRAMEBUFFER_BINDING_OES, (GLint *) &oldFramebuffer);
 	
@@ -117,8 +111,7 @@ int __OPENGLES_VERSION = 1;
 	}
 	
 	// Get the renderbuffer size.
-	GLint width;
-	GLint height;
+	GLint width, height;
 	glGetRenderbufferParameterivOES(GL_RENDERBUFFER_OES, GL_RENDERBUFFER_WIDTH_OES, &width);
 	glGetRenderbufferParameterivOES(GL_RENDERBUFFER_OES, GL_RENDERBUFFER_HEIGHT_OES, &height);
 	
@@ -135,17 +128,14 @@ int __OPENGLES_VERSION = 1;
 		glFramebufferRenderbufferOES(GL_FRAMEBUFFER_OES, GL_DEPTH_ATTACHMENT_OES, GL_RENDERBUFFER_OES, _depthBuffer);
 	}
 	
-	NSLog(@"EAGLView: Creating surface (framebuffer = %d; depth buffer = %d; render buffer = %d).", _framebuffer, _depthBuffer, _renderbuffer);
+	NSLog(@"EAGLView: Creating surface (size = %@; framebuffer = %d; depth buffer = %d; render buffer = %d).", NSStringFromCGSize(newSize), _framebuffer, _depthBuffer, _renderbuffer);
 
 	_size = newSize;
-	if(!_hasBeenCurrent) {
-		glViewport(0, 0, newSize.width, newSize.height);
-		glScissor(0, 0, newSize.width, newSize.height);
-		_hasBeenCurrent = YES;
-	}
-	else {
-		glBindFramebufferOES(GL_FRAMEBUFFER_OES, oldFramebuffer);
-	}
+
+	glViewport(0, 0, newSize.width, newSize.height);
+	glScissor(0, 0, newSize.width, newSize.height);
+
+	glBindFramebufferOES(GL_FRAMEBUFFER_OES, oldFramebuffer);
 	glBindRenderbufferOES(GL_RENDERBUFFER_OES, oldRenderbuffer);
 	
 	// Error handling here
@@ -191,17 +181,20 @@ int __OPENGLES_VERSION = 1;
 - (id) initWithFrame:(CGRect)frame pixelFormat:(GLuint)format depthFormat:(GLuint)depth preserveBackbuffer:(BOOL)retained
 {
 	if((self = [super initWithFrame:frame])) {
-		//_autoresize = YES;
+		_autoresize = YES;
 		
 		CAEAGLLayer * eaglLayer = (CAEAGLLayer*)[self layer];
 		
 		eaglLayer.drawableProperties = [NSDictionary dictionaryWithObjectsAndKeys:
-										[NSNumber numberWithBool:retained], kEAGLDrawablePropertyRetainedBacking, (format == GL_RGB565_OES) ? kEAGLColorFormatRGB565 : kEAGLColorFormatRGBA8, kEAGLDrawablePropertyColorFormat, nil];
+			[NSNumber numberWithBool:retained], kEAGLDrawablePropertyRetainedBacking,
+			(format == GL_RGB565_OES) ? kEAGLColorFormatRGB565 : kEAGLColorFormatRGBA8, kEAGLDrawablePropertyColorFormat, 
+			nil];
 		
 		_format = format;
 		_depthFormat = depth;
 		
 		_context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES1];
+		
 		if(_context == nil) {
 			[self release];
 			return nil;
@@ -211,7 +204,10 @@ int __OPENGLES_VERSION = 1;
 			[self release];
 			return nil;
 		}
-		
+
+		// This line displays resized content at the correct aspect ratio,
+		// but it doesn't solve the underlying problem of setting _autoresize = YES.
+		//eaglLayer.contentsGravity = kCAGravityResizeAspectFill;
 		_frameTimer = nil;
 	}
 
@@ -251,11 +247,12 @@ int __OPENGLES_VERSION = 1;
 - (void) update {
 	// if ([self isHidden]) return;
 	
+	[self setCurrentContext];
+	
 	if ([_delegate respondsToSelector:@selector(update:)])
 		[_delegate update:self];
 	
 	[self swapBuffers];
-	
 	
 	if (_debug) {
 		_count += 1;
@@ -282,18 +279,22 @@ int __OPENGLES_VERSION = 1;
 	}
 }
 
-- (void) setAutoresizesEAGLSurface:(BOOL)autoresizesEAGLSurface;
+- (void) setAutoresize:(BOOL)autoresize
 {
-	_autoresize = autoresizesEAGLSurface;
+	_autoresize = autoresize;
+	
 	if(_autoresize)
-	[self layoutSubviews];
+		[self layoutSubviews];
 }
 
 - (void) setCurrentContext
 {
 	if(![EAGLContext setCurrentContext:_context]) {
-		printf("Failed to set current context %p in %s\n", _context, __FUNCTION__);
+		NSLog(@"Failed to set current context %@", _context);
 	}
+	
+	glBindFramebufferOES(GL_FRAMEBUFFER_OES, _framebuffer);
+	glBindRenderbufferOES(GL_RENDERBUFFER_OES, _renderbuffer);
 }
 
 - (BOOL) isCurrentContext
@@ -303,8 +304,9 @@ int __OPENGLES_VERSION = 1;
 
 - (void) clearCurrentContext
 {
-	if(![EAGLContext setCurrentContext:nil])
-		printf("Failed to clear current context in %s\n", __FUNCTION__);
+	if(![EAGLContext setCurrentContext:nil]) {
+		NSLog(@"Failed to clear current context");
+	}
 }
 
 - (void) swapBuffers

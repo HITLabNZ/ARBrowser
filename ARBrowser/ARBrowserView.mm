@@ -215,8 +215,10 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 	// Load the camera projection matrix
 	glMatrixMode(GL_PROJECTION);
 	
+	CGSize viewSize = [self bounds].size;
+	
 	MATRIX perspectiveProjection;
-	MatrixPerspectiveFovRH(perspectiveProjection, f2vt(70), f2vt(((float) 320 / (float) 480)), f2vt(0.1f), f2vt(1000.0f), 0);
+	MatrixPerspectiveFovRH(perspectiveProjection, f2vt(70), f2vt(viewSize.width / viewSize.height), f2vt(0.1f), f2vt(1000.0f), 0);
 	glMultMatrixf(perspectiveProjection.f);
 	
 	glMatrixMode(GL_MODELVIEW);
