@@ -266,8 +266,7 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 		}
 								
 		glPushMatrix();
-		glTranslatef(delta.x, delta.y, delta.z);
-		
+				
 		// Scale the object down if it is closer than the minimum distance.
 		if (distance <= minimumDistance) {
 			glScalef(distance/minimumDistance, distance/minimumDistance, distance/minimumDistance);
