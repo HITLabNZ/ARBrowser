@@ -10,7 +10,7 @@
 #import "ARWorldLocation.h"
 
 #define kAccelerometerFrequency     30.0 // Hz
-#define kFilteringFactor 0.5
+#define kFilteringFactor 0.33
 
 NSString * const ARLocationChanged = @"ARLocationChanged";
 NSString * const ARHeadingChanged = @"ARHeadingChanged";
