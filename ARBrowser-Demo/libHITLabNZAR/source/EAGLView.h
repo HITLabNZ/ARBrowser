@@ -111,19 +111,19 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 - (id) initWithFrame:(CGRect)frame pixelFormat:(GLuint)format;
 - (id) initWithFrame:(CGRect)frame pixelFormat:(GLuint)format depthFormat:(GLuint)depth preserveBackbuffer:(BOOL)retained;
 
-@property(readonly) GLuint framebuffer;
-@property(readonly) GLuint pixelFormat;
-@property(readonly) GLuint depthFormat;
-@property(readonly) EAGLContext *context;
+@property(nonatomic,readonly) GLuint framebuffer;
+@property(nonatomic,readonly) GLuint pixelFormat;
+@property(nonatomic,readonly) GLuint depthFormat;
+@property(nonatomic,readonly) EAGLContext *context;
 
 /// Print out FPS and other related debugging information.
 @property(nonatomic,assign) BOOL debug;
 
 /// Controls whether the EAGL surface automatically resizes when the view bounds change. Otherwise, the EAGL surface contents are scaled to fix when rendered. NO by default.
-@property BOOL autoresizesSurface;
-@property(readonly, nonatomic) CGSize surfaceSize;
+@property(nonatomic) BOOL autoresize;
+@property(nonatomic,readonly) CGSize surfaceSize;
 
-@property(assign) id<EAGLViewDelegate> delegate;
+@property(nonatomic,assign) id<EAGLViewDelegate> delegate;
 
 - (void) startRendering;
 - (void) stopRendering;

@@ -87,9 +87,14 @@ Properties</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac71040f5d7529f5d1585f774524e6e48"></a><!-- doxytag: member="ARBrowserView::delegate" ref="ac71040f5d7529f5d1585f774524e6e48" args="" -->
 id&lt; <a class="el" href="protocol_a_r_browser_view_delegate-p.html">ARBrowserViewDelegate</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_a_r_browser_view.html#ac71040f5d7529f5d1585f774524e6e48">delegate</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The delegate for the <a class="el" href="interface_a_r_browser_view.html" title="The main augmented reality view, which combines the ARVideoBackground with the ARLocationController.">ARBrowserView</a> must implement <a class="el" href="protocol_a_r_browser_view_delegate-p.html" title="The main data source/delegate for ARBrowserView.">ARBrowserViewDelegate</a>. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a91aef66437e470e8f51b90f5f2ec613c"></a><!-- doxytag: member="ARBrowserView::distanceScale" ref="a91aef66437e470e8f51b90f5f2ec613c" args="" -->
-float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_a_r_browser_view.html#a91aef66437e470e8f51b90f5f2ec613c">distanceScale</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Controls the scale of objects positions. This doesn't change the size of objects, just the relative position to the origin. As an example, a scale of 2.0 means that objects are twice as far away, and a scale of 1.0/2.0 means objects are twice as close. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_a_r_browser_view.html#a91aef66437e470e8f51b90f5f2ec613c">distanceScale</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Controls the scale of objects positions.  <a href="#a91aef66437e470e8f51b90f5f2ec613c"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4831f23b6b057d032491050a2dd826be"></a><!-- doxytag: member="ARBrowserView::minimumDistance" ref="a4831f23b6b057d032491050a2dd826be" args="" -->
+float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_a_r_browser_view.html#a4831f23b6b057d032491050a2dd826be">minimumDistance</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Controls the scale of objects size. Objects closer than this distance appear the same size. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3828caf0a7d28ba8e9417088ce4e736c"></a><!-- doxytag: member="ARBrowserView::maximumDistance" ref="a3828caf0a7d28ba8e9417088ce4e736c" args="" -->
+float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_a_r_browser_view.html#a3828caf0a7d28ba8e9417088ce4e736c">maximumDistance</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Controls culling of distance objects. Objects further away than this are not rendered. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a541177be5371872bc4153d8eb8805ff2"></a><!-- doxytag: member="ARBrowserView::displayRadar" ref="a541177be5371872bc4153d8eb8805ff2" args="" -->
 BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_a_r_browser_view.html#a541177be5371872bc4153d8eb8805ff2">displayRadar</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Display a small on-screen compass. <br/></td></tr>
@@ -99,7 +104,24 @@ BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="inte
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>The main augmented reality view, which combines the <a class="el" href="interface_a_r_video_background.html" title="Provides an OpenGL based video background which can display ARVideoFrame data.">ARVideoBackground</a> with the <a class="el" href="interface_a_r_location_controller.html" title="Provides access to location information via a shared instance.">ARLocationController</a>. </p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+</div><hr/><h2>Property Documentation</h2>
+<a class="anchor" id="a91aef66437e470e8f51b90f5f2ec613c"></a><!-- doxytag: member="ARBrowserView::distanceScale" ref="a91aef66437e470e8f51b90f5f2ec613c" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">- (float) distanceScale<code> [read, write, assign]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Controls the scale of objects positions. </p>
+<p>This doesn't change the size of objects, just the relative position to the origin. As an example, a scale of 2.0 means that objects are twice as far away, and a scale of 1.0/2.0 means objects are twice as close. This property does NOT change the calculations of minimum and maximum distance properties. </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li><a class="el" href="_a_r_browser_view_8h_source.html">ARBrowserView.h</a></li>
 </ul>
 </div>
@@ -117,7 +139,7 @@ BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="inte
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Wed Aug 10 2011 10:24:08 for HITLabNZ ARBrowser by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Aug 31 2011 03:40:50 for HITLabNZ ARBrowser by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>
