@@ -38,6 +38,13 @@
 	
 	[browserView setDelegate:self];
 	
+	// Make things ten times closer than they actually are
+	[browserView setDistanceScale:0.1];
+	
+	// Change the minimum and maximum distance of objects.
+	[browserView setMinimumDistance:20.0];
+	[browserView setMaximumDistance:100.0];
+	
 	[self setView:browserView];	
 }
 

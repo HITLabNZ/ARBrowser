@@ -32,7 +32,7 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 
 @implementation ARBrowserView
 
-@synthesize delegate, distanceScale, displayRadar, displayGrid;
+@synthesize delegate, distanceScale, minimumDistance, maximumDistance, displayRadar, displayGrid;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -51,6 +51,8 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 		ARBrowser::generateGrid(state->grid);
 		
 		distanceScale = 1.0;
+		minimumDistance = 5.0;
+		maximumDistance = 500.0;
 		displayRadar = YES;
     }
 	
@@ -76,6 +78,20 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 			
 			// We need to calculate collision detection in the same coordinate system as drawn on screen.
 			Vec3 offset = [origin calculateRelativePositionOf:worldPoint] * distanceScale;
+			
+			// Calculate actual (non-scaled) distance.
+			float distance = offset.length() * (1.0/distanceScale);
+		
+			if (distance > maximumDistance) {
+				continue;
+			}
+			
+			// Scale the object down if it is closer than the minimum distance.
+			if (distance <= minimumDistance) {
+				float scale = distance/minimumDistance;
+				sphere.radius *= scale;
+			}
+			
 			sphere.center += offset;
 			
 			spheres.push_back(sphere);
@@ -242,7 +258,21 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 	for (ARWorldPoint * point in worldPoints) {
 		Vec3 delta = [origin calculateRelativePositionOf:point] * distanceScale;
 		
+		// Calculate actual (non-scaled) distance.
+		float distance = delta.length() * (1.0/distanceScale);
+		
+		if (distance > maximumDistance) {
+			continue;
+		}
+								
 		glPushMatrix();
+		glTranslatef(delta.x, delta.y, delta.z);
+		
+		// Scale the object down if it is closer than the minimum distance.
+		if (distance <= minimumDistance) {
+			glScalef(distance/minimumDistance, distance/minimumDistance, distance/minimumDistance);
+		}
+		
 		glTranslatef(delta.x, delta.y, delta.z);
 		
 		[[point model] draw];
