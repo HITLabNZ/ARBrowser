@@ -455,6 +455,7 @@
 		7E2336AC134AD1FF00BEFB33 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastUpgradeCheck = 0420;
 				ORGANIZATIONNAME = "Orion Transfer Ltd";
 			};
 			buildConfigurationList = 7E2336AF134AD1FF00BEFB33 /* Build configuration list for PBXProject "ARBrowser" */;
@@ -659,6 +660,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ARBrowser/ARBrowser-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "ARBrowser/ARBrowser-Info.plist";
 				INSTALL_PATH = "$(LOCAL_APPS_DIR)";
 				OTHER_CFLAGS = "-marm";
@@ -679,6 +681,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ARBrowser/ARBrowser-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "ARBrowser/ARBrowser-Info.plist";
 				INSTALL_PATH = "$(LOCAL_APPS_DIR)";
 				OTHER_CFLAGS = (
@@ -694,6 +697,7 @@
 		7E68E76B13B9CF8F00AF5C31 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -701,6 +705,7 @@
 		7E68E76C13B9CF8F00AF5C31 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -714,6 +719,7 @@
 				GCC_PREFIX_HEADER = "HITLabNZAR/HITLabNZAR-Prefix.pch";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_THUMB_SUPPORT = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -728,6 +734,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HITLabNZAR/HITLabNZAR-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
