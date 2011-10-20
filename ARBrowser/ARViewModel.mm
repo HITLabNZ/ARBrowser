@@ -112,7 +112,7 @@
 	Mat44 m;
 	glGetFloatv(GL_MODELVIEW_MATRIX, m.f);
 
-	CMAcceleration gravity = [[ARLocationController sharedInstance] currentAcceleration];		
+	CMAcceleration gravity = [[ARLocationController sharedInstance] currentGravity];		
 	Vec3 f(gravity.x, gravity.y, gravity.z);
 	f.normalize();
 	

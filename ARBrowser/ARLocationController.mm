@@ -7,88 +7,42 @@
 //
 
 #import "ARLocationController.h"
-#import "ARWorldLocation.h"
-
-#define kAccelerometerFrequency     30.0 // Hz
-#define kFilteringFactor 0.33
+#import "ARLocationController3.h"
+#import "ARLocationController4.h"
 
 NSString * const ARLocationChanged = @"ARLocationChanged";
 NSString * const ARHeadingChanged = @"ARHeadingChanged";
-NSString * const ARAccelerationChanged = @"ARAccelerationChanged";
 
+// Ignore the warning about incomplete implementation, this class is a facade.
 @implementation ARLocationController
 
-- (id)init {
-    self = [super init];
-    if (self) {
-		locationManager = [[CLLocationManager alloc] init];
-		[locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
-		[locationManager setDelegate:self];
-		
-		[locationManager startUpdatingLocation];
-		[locationManager startUpdatingHeading];
-		
-		[[UIAccelerometer sharedAccelerometer] setDelegate:self];
-		[[UIAccelerometer sharedAccelerometer] setUpdateInterval:(1.0 / kAccelerometerFrequency)];
-    }
-    return self;
-}
-
-- (void)dealloc {
-    [locationManager setDelegate:nil];
-	[locationManager release];
-	
-	[[UIAccelerometer sharedAccelerometer] setDelegate:nil];
-	
-    [super dealloc];
-}
-
-@synthesize currentLocation, currentHeading;
-
-- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
-	//NSLog(@"Location Updated!");
-	
-	[currentLocation release];
-	currentLocation = [newLocation retain];
-}
-
-- (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading {
-	//NSLog(@"Heading Updated!");
-	
-	[currentHeading release];
-	currentHeading = [newHeading retain];
-}
-
-@synthesize currentAcceleration;
-
-- (void)accelerometer:(UIAccelerometer*)accelerometer didAccelerate:(UIAcceleration*)acceleration
-{	
-    //Use a basic low-pass filter to only keep the gravity in the accelerometer values
-    currentAcceleration.x = acceleration.x * kFilteringFactor + currentAcceleration.x * (1.0 - kFilteringFactor);
-    currentAcceleration.y = acceleration.y * kFilteringFactor + currentAcceleration.y * (1.0 - kFilteringFactor);
-    currentAcceleration.z = acceleration.z * kFilteringFactor + currentAcceleration.z * (1.0 - kFilteringFactor);
-}
-
-- (ARWorldLocation*) worldLocation
-{	
-	if ([self currentLocation] && [self currentHeading]) {
-		ARWorldLocation * result = [[ARWorldLocation new] autorelease];
-		
-		[result setLocation:[self currentLocation] globalRadius:EARTH_RADIUS];
-		[result setHeading:[self currentHeading]];
-		
-		return result;
-	}
-	
-	return nil;
+// Cannot initialise this class.
+- (id)init
+{
+    [self release];
+    return nil;
 }
 
 + sharedInstance
 {
-	static ARLocationController * _sharedInstance = nil;
+	static ARLocationControllerBase * _sharedInstance = nil;
 	
 	if (_sharedInstance == nil) {
-		_sharedInstance = [[ARLocationController alloc] init];
+        NSUInteger version = 3;
+        
+        CMMotionManager * motionManager = [[CMMotionManager alloc] init];
+        
+        if (motionManager && motionManager.gyroAvailable) {
+            version = 4;
+        }
+        
+        NSLog(@"Using location controller version %u", version);
+        
+        if (version == 3) {
+            _sharedInstance = [[ARLocationController3 alloc] init];
+        } else {
+            _sharedInstance = [[ARLocationController4 alloc] init];
+        }
 	}
 	
 	return _sharedInstance;

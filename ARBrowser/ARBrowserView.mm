@@ -112,6 +112,8 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 
 - (void) drawRadar {
 	ARWorldLocation * origin = [[ARLocationController sharedInstance] worldLocation];
+    //NSLog(@"Bearing: %0.3f", origin.rotation);
+    
 	NSArray * worldPoints = [self.delegate worldPoints];
 	
 	ARBrowser::VerticesT radarPoints, radarEdgePoints;
@@ -189,8 +191,9 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 	glEnable(GL_DEPTH_TEST);
 	glClear(GL_DEPTH_BUFFER_BIT);
 	
-	CMAcceleration gravity = [[ARLocationController sharedInstance] currentAcceleration];
-		
+    ARLocationController * locationController = [ARLocationController sharedInstance];
+    CMAcceleration gravity = [locationController currentGravity];
+    		
 	// Calculate the camera paremeters
 	{
 		glMatrixMode(GL_PROJECTION);
@@ -238,7 +241,7 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 	glMultMatrixf(perspectiveProjection.f);
 	
 	glMatrixMode(GL_MODELVIEW);
-	ARWorldLocation * origin = [[ARLocationController sharedInstance] worldLocation];
+	ARWorldLocation * origin = [locationController worldLocation];
 	
 	glRotatef([origin rotation], 0, 0, 1);
 	
@@ -257,6 +260,7 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 		
 	for (ARWorldPoint * point in worldPoints) {
 		Vec3 delta = [origin calculateRelativePositionOf:point] * distanceScale;
+        //NSLog(@"Delta: %0.3f, %0.3f, %0.3f", delta.x, delta.y, delta.z);
 		
 		// Calculate actual (non-scaled) distance.
 		float distance = delta.length() * (1.0/distanceScale);

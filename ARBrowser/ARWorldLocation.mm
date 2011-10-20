@@ -13,6 +13,45 @@
 // Convenience
 const double D2R = ARBrowser::D2R;
 
+#pragma mark -
+#pragma mark Geodetic utilities definition
+
+// WGS 84 semi-major axis constant in meters
+const double WGS84_A = 6378137.0;
+// WGS 84 eccentricity
+const double WGS84_E = 8.1819190842622e-2;
+
+// Converts latitude, longitude to ECEF coordinate system
+void convertLocationToECEF(double lat, double lon, double alt, double *x, double *y, double *z)
+{       
+	double clat = cos(lat * D2R);
+	double slat = sin(lat * D2R);
+	double clon = cos(lon * D2R);
+	double slon = sin(lon * D2R);
+	
+	double N = WGS84_A / sqrt(1.0 - WGS84_E * WGS84_E * slat * slat);
+	
+	*x = (N + alt) * clat * clon;
+	*y = (N + alt) * clat * slon;
+	*z = (N * (1.0 - WGS84_E * WGS84_E) + alt) * slat;
+}
+
+// Coverts ECEF to ENU coordinates centered at given lat, lon
+void convertECEFtoENU(double lat, double lon, double x, double y, double z, double xr, double yr, double zr, double *e, double *n, double *u)
+{
+	double clat = cos(lat * D2R);
+	double slat = sin(lat * D2R);
+	double clon = cos(lon * D2R);
+	double slon = sin(lon * D2R);
+	double dx = x - xr;
+	double dy = y - yr;
+	double dz = z - zr;
+	
+	*e = -slon*dx  + clon*dy;
+	*n = -slat*clon*dx - slat*slon*dy + clat*dz;
+	*u = clat*clon*dx + clat*slon*dy + slat*dz;
+}
+
 @implementation ARWorldLocation
 
 @synthesize location, altitude, position, rotation;
@@ -22,18 +61,11 @@ const double D2R = ARBrowser::D2R;
 	// Retain original coordinates
 	location = _location;
 	altitude = _altitude;
+    
+    double x, y, z;
+    convertLocationToECEF(location.latitude, location.longitude, altitude, &x, &y, &z);
 
-	// longitude (-180 -> 180)
-	float phi = (180 - location.longitude) * D2R;
-
-	// latitude (-90 -> 90)
-	float theta = (90 - location.latitude) * D2R;
-
-	// Calculate coordinates spherical -> rectangular
-	// Y axis points north
-	position.x = altitude * sin(theta) * sin(phi);
-	position.y = altitude * sin(theta) * cos(phi);
-	position.z = altitude * cos(theta);
+    position = Vec3(x, y, z);
 }
 
 // Calculates the distance between two Vec2(latitude,longitude) points, on a sphere of the given radius.
@@ -79,9 +111,9 @@ double distanceBetween(const CLLocationCoordinate2D & a, const CLLocationCoordin
 	[self setCoordinate:[_location coordinate] altitude:radius + [_location altitude]];
 }
 
-- (void) setHeading: (CLHeading*)heading
+- (void) setBearing: (float)bearing
 {
-	rotation = [heading trueHeading];
+	rotation = bearing;
 }
 
 - (NSString*) description
