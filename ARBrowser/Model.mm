@@ -107,8 +107,8 @@ namespace ARBrowser {
 	}
 	
 	void generateGrid (VerticesT & points) {		
-		const float LOWER = -20;
-		const float UPPER = 20;
+		const float LOWER = -10;
+		const float UPPER = 10;
 		const float STEP = 0.5;
 		
 		for (float x = LOWER; x <= UPPER; x += STEP) {		
