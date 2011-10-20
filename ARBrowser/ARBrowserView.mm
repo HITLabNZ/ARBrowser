@@ -180,13 +180,17 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 }
 
 - (void) update {
-	ARVideoFrame * videoFrame = [videoFrameController videoFrame];
-	
-	if (videoFrame && videoFrame->data) {
-		[videoBackground update:videoFrame];
-	}
-	
-	[videoBackground draw];
+    if (videoFrameController) {
+        ARVideoFrame * videoFrame = [videoFrameController videoFrame];
+        
+        if (videoFrame && videoFrame->data) {
+            [videoBackground update:videoFrame];
+        }
+        
+        [videoBackground draw];
+    } else {
+        glClear(GL_COLOR_BUFFER_BIT);
+    }
 
 	glEnable(GL_DEPTH_TEST);
 	glClear(GL_DEPTH_BUFFER_BIT);
