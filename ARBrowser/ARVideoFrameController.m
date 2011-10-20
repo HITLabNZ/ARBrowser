@@ -11,6 +11,41 @@
 // Some implementation was based on the implementation from
 // http://www.benjaminloulier.com/posts/2-ios4-and-direct-access-to-the-camera
 
+/*
+ 
+ AVCaptureDevice* camera = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+ if (camera == nil) {
+ return;
+ }
+ 
+ captureSession = [[AVCaptureSession alloc] init];
+ AVCaptureDeviceInput *newVideoInput = [[[AVCaptureDeviceInput alloc] initWithDevice:camera error:nil] autorelease];
+ [captureSession addInput:newVideoInput];
+ 
+ captureLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:captureSession];
+ captureLayer.frame = captureView.bounds;
+ [captureLayer setOrientation:AVCaptureVideoOrientationPortrait];
+ [captureLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
+ [captureView.layer addSublayer:captureLayer];
+ 
+ // Start the session. This is done asychronously since -startRunning doesn't return until the session is running.
+ dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+ [captureSession startRunning];
+ });
+ }
+ 
+ - (void)stopCameraPreview
+ {	
+ [captureSession stopRunning];
+ [captureLayer removeFromSuperlayer];
+ [captureSession release];
+ [captureLayer release];
+ captureSession = nil;
+ captureLayer = nil;
+
+ 
+ */
+
 @implementation ARVideoFrameController
 
 - init
@@ -20,11 +55,19 @@
 		videoFrame.index = 0;
 
 		AVCaptureDevice * captureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-		NSError * error = NULL;
+        
+        if (captureDevice == nil) {
+            NSLog(@"Couldn't acquire AVCaptureDevice!");
+            
+            [self release];
+            return nil;
+        }
+            
+		NSError * error = nil;
 		AVCaptureDeviceInput *captureInput = [AVCaptureDeviceInput deviceInputWithDevice:captureDevice error:&error];
 		
 		if (error) {
-			NSLog(@"Error: %@", error);
+			NSLog(@"Couldn't create AVCaptureDeviceInput: %@", error);
 			
 			[self release];
 			return nil;
@@ -38,7 +81,22 @@
 		[captureOutput setSampleBufferDelegate:self queue:dispatch_get_main_queue()];
 		
 		// Set the frame rate of the camera capture
-		[captureOutput setMinFrameDuration:CMTimeMake(1, 30)];
+        NSUInteger framesPerSecond = 30;
+        CMTime secondsPerFrame = CMTimeMake(1, framesPerSecond);
+        
+        if ([[[UIDevice currentDevice] systemVersion] floatValue] < 5.0) {
+            // iOS4 
+            captureOutput.minFrameDuration = secondsPerFrame;
+        } else {
+            // iOS5 changes
+            AVCaptureConnection *captureConnection = [captureOutput connectionWithMediaType:AVMediaTypeVideo];
+            
+            if ([captureConnection isVideoMinFrameDurationSupported])
+                captureConnection.videoMinFrameDuration = secondsPerFrame;
+            
+            if ([captureConnection isVideoMaxFrameDurationSupported])
+                captureConnection.videoMaxFrameDuration = secondsPerFrame;
+        }
 		
 		// Set the video capture mode
 		[captureOutput setVideoSettings:[NSDictionary dictionaryWithObjectsAndKeys:
@@ -69,30 +127,25 @@
 - (void) dealloc {
 	NSLog(@"Capture Session Deallocated");
 	
+    [self stop];
+    
+    for (id input in captureSession.inputs) {
+        [captureSession removeInput:input];
+    }
+    
+    for (id output in captureSession.outputs) {
+        [output setSampleBufferDelegate:nil queue:nil];
+        [captureSession removeOutput:output];
+    }    
+    
 	[captureSession release];
 	
 	[super dealloc];
 }
 
-- (void) release {
-	if ([self retainCount] == 1) {
-		[captureSession stopRunning];
-		
-		// Hack as recommended by Apple.
-		dispatch_after(
-			dispatch_time(0, 500000000),
-			dispatch_get_main_queue(),
-			^{
-				[super release];
-			}
-		);
-	} else {
-		[super release];
-	}
-}
-
 - (void) start {
 	[captureSession startRunning];
+    first = YES;
 }
 
 - (void) stop {
@@ -119,6 +172,12 @@
 	
 	size_t count = bytesPerRow * height;
 	
+    if (first) {
+        first = NO;
+        
+        NSLog(@"Image data dimensions = (%ld, %ld)", width, height);
+    }
+    
 	if (videoFrame.data == NULL) {
 		videoFrame.data = (unsigned char*)malloc(count);
 		

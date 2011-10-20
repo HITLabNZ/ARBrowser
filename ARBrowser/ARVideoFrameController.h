@@ -38,6 +38,8 @@ typedef struct {
 @interface ARVideoFrameController : NSObject<AVCaptureVideoDataOutputSampleBufferDelegate> {
 	AVCaptureSession * captureSession;
 	ARVideoFrame videoFrame;
+    
+    BOOL first;
 }
 
 - init;
