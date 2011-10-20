@@ -92,12 +92,12 @@ int __OPENGLES_VERSION = 1;
 	}
 	
 	// Check the resolution of the main screen to support high resolution devices.
-	if([[UIScreen mainScreen] respondsToSelector:@selector(scale)]) {
+    if([[UIScreen mainScreen] respondsToSelector:@selector(scale)]) {
 		CGFloat scale = [[UIScreen mainScreen] scale];
 
 		[self setContentScaleFactor:scale];
 	}
-		
+     
 	glGetIntegerv(GL_RENDERBUFFER_BINDING_OES, (GLint *) &oldRenderbuffer);
 	glGetIntegerv(GL_FRAMEBUFFER_BINDING_OES, (GLint *) &oldFramebuffer);
 	
@@ -208,7 +208,7 @@ int __OPENGLES_VERSION = 1;
 		// This line displays resized content at the correct aspect ratio,
 		// but it doesn't solve the underlying problem of setting _autoresize = YES.
 		//eaglLayer.contentsGravity = kCAGravityResizeAspectFill;
-		_frameTimer = nil;
+		//_frameTimer = nil;
 	}
 
 	return self;
@@ -216,8 +216,10 @@ int __OPENGLES_VERSION = 1;
 
 - (void) dealloc
 {
-	[_frameTimer invalidate];
-	_frameTimer = nil;
+    [self stopRendering];
+    
+	//[_frameTimer invalidate];
+	//_frameTimer = nil;
 	
 	[self _destroySurface];
 	
@@ -227,10 +229,14 @@ int __OPENGLES_VERSION = 1;
 	[super dealloc];
 }
 
+- (void) renderFrame:(CADisplayLink *)sender
+{
+    [self update];
+}
+
 - (void) startRendering {
-	if (_frameTimer == nil) {
-		_frameTimer = [NSTimer scheduledTimerWithTimeInterval:(1.0 / 30.0) target:self selector:@selector(update) userInfo:nil repeats:YES];
-	}
+    _displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(renderFrame:)];
+    [_displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
 	
 	[_lastDate release];
 	_lastDate = [[NSDate date] retain];
@@ -238,13 +244,14 @@ int __OPENGLES_VERSION = 1;
 }
 
 - (void) stopRendering {
-	if (_frameTimer) {
-		[_frameTimer invalidate];
-		_frameTimer = nil;
-	}
+    if (_displayLink) {
+        [_displayLink invalidate];
+        _displayLink = nil;
+    }
 }
 
-- (void) update {
+- (void) update
+{
 	// if ([self isHidden]) return;
 	
 	[self setCurrentContext];
@@ -314,7 +321,7 @@ int __OPENGLES_VERSION = 1;
 	EAGLContext *oldContext = [EAGLContext currentContext];
 	GLuint oldRenderbuffer;
 	
-	if(oldContext != _context) {
+	if (oldContext != _context) {
 		[EAGLContext setCurrentContext:_context];
 	}
 	
@@ -326,10 +333,10 @@ int __OPENGLES_VERSION = 1;
 	glGetIntegerv(GL_RENDERBUFFER_BINDING_OES, (GLint *) &oldRenderbuffer);
 	glBindRenderbufferOES(GL_RENDERBUFFER_OES, _renderbuffer);
 	
-	if(![_context presentRenderbuffer:GL_RENDERBUFFER_OES])
-		printf("Failed to swap renderbuffer in %s\n", __FUNCTION__);
+	if (![_context presentRenderbuffer:GL_RENDERBUFFER_OES])
+        NSLog(@"Failed to swap renderbuffer!");
 
-	if(oldContext != _context)
+	if (oldContext != _context)
 		[EAGLContext setCurrentContext:oldContext];
 }
 
