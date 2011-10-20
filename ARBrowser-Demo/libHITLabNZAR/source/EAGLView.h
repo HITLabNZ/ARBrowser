@@ -99,7 +99,8 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 	BOOL					_hasBeenCurrent;
 	id<EAGLViewDelegate>	_delegate;
 	
-	NSTimer * _frameTimer;
+	//NSTimer * _frameTimer;
+    CADisplayLink * _displayLink;
 	
 	BOOL _debug;
 	

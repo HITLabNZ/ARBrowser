@@ -26,6 +26,7 @@
 		7EBB6E5213C5C61E0028A3E7 /* ARMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EBB6E5013C5C61E0028A3E7 /* ARMapViewController.xib */; };
 		7EBB6E5513C5C6290028A3E7 /* ARMapViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7EBB6E5413C5C6290028A3E7 /* ARMapViewController.mm */; };
 		7EBB6E5713C5C6760028A3E7 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EBB6E5613C5C6760028A3E7 /* MapKit.framework */; };
+		7EEAE9D114503D1300286695 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EEAE9D014503D1300286695 /* CoreMotion.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,7 @@
 		7EBB6E5313C5C6290028A3E7 /* ARMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARMapViewController.h; sourceTree = "<group>"; };
 		7EBB6E5413C5C6290028A3E7 /* ARMapViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ARMapViewController.mm; sourceTree = "<group>"; };
 		7EBB6E5613C5C6760028A3E7 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		7EEAE9D014503D1300286695 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7EEAE9D114503D1300286695 /* CoreMotion.framework in Frameworks */,
 				7EBB6E5713C5C6760028A3E7 /* MapKit.framework in Frameworks */,
 				7E7E2A831370EC8000338606 /* QuartzCore.framework in Frameworks */,
 				7E7E2A811370EC4A00338606 /* CoreGraphics.framework in Frameworks */,
@@ -127,6 +130,7 @@
 				7E7E2A331370EA3100338606 /* UIKit.framework */,
 				7E7E2A351370EA3100338606 /* Foundation.framework */,
 				7E7E2A371370EA3100338606 /* CoreGraphics.framework */,
+				7EEAE9D014503D1300286695 /* CoreMotion.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

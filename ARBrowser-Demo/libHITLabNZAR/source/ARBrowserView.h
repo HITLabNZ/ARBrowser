@@ -15,7 +15,7 @@
 @class ARBrowserView, ARWorldPoint;
 
 /// The main data source/delegate for ARBrowserView
-@protocol ARBrowserViewDelegate <NSObject>
+@protocol ARBrowserViewDelegate <EAGLViewDelegate>
 
 /// Return a list of world points, e.g. instances of ARWorldPoint objects.
 - (NSArray*)worldPoints;

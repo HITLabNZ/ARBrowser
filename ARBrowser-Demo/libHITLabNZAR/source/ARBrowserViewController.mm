@@ -32,17 +32,18 @@
 	[browserView setDebug:YES];
 
 	// Turn off the grid.
-	[browserView setDisplayGrid:NO];
+	//[browserView setDisplayGrid:NO];
+    [browserView setDisplayGrid:YES];
 	
 	[browserView setAutoresizingMask:UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth];
 	
 	[browserView setDelegate:self];
 	
-	// Make things ten times closer than they actually are
-	[browserView setDistanceScale:0.1];
+	// Make things 2 times closer than they actually are
+	[browserView setDistanceScale:0.5];
 	
 	// Change the minimum and maximum distance of objects.
-	[browserView setMinimumDistance:20.0];
+	[browserView setMinimumDistance:0.0];
 	[browserView setMaximumDistance:100.0];
 	
 	[self setView:browserView];	

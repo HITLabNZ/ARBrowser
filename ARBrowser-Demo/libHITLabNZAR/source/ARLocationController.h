@@ -19,24 +19,16 @@ extern NSString * const ARAccelerationChanged;
 @class ARWorldLocation;
 
 /// Provides access to location information via a shared instance.
-@interface ARLocationController : NSObject<CLLocationManagerDelegate,UIAccelerometerDelegate> {
-	CLLocationManager * locationManager;
+@interface ARLocationController : NSObject
 
-	CLLocation * currentLocation;
-	CLHeading * currentHeading;
-	
-	CMAcceleration currentAcceleration;
-}
+@property(retain,readonly,nonatomic) CLLocation * currentLocation;
+@property(retain,readonly,nonatomic) CLHeading * currentHeading;
 
-/// @internal
-- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation;
+/// The device's current gravity downwards vector.
+- (CMAcceleration) currentGravity;
 
-/// @internal
-- (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading;
-
-@property(readonly, nonatomic) CLLocation * currentLocation;
-@property(readonly, nonatomic) CLHeading * currentHeading;
-@property(readonly, nonatomic) CMAcceleration currentAcceleration;
+/// The devices current rotation from north, e.g. around the downwards vector.
+- (CLLocationDirection) currentBearing;
 
 /// Get the origin of the current device.
 - (ARWorldLocation*) worldLocation;

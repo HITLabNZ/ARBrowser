@@ -34,7 +34,6 @@
 	location.latitude = -43.516215;
 	location.longitude = 172.554560;
 	[derenzy setCoordinate:location altitude:EARTH_RADIUS];
-	//[derenzy setModel:coffeeCupModel];
 	[derenzy setModel:billboardModel];
 	
 	// This name is used for debugging output.
@@ -43,16 +42,15 @@
 	// This information is printed out below.
 	[derenzy.metadata setObject:@"2 Derenzy Pl" forKey:@"address"];
 	[derenzy.metadata setObject:@"Samuel Williams" forKey:@"developer"];
-	[worldPoints addObject:derenzy];
-		
+	//[worldPoints addObject:derenzy];
+    
 	// HitLab NZ
 	ARWorldPoint * hitlab = [ARWorldPoint new];
 	location.latitude = -43.522190;
 	location.longitude = 172.583020;
 	[hitlab setCoordinate:location altitude:EARTH_RADIUS];
 	
-	//[hitlab setModel:coffeeCupModel];
-	[hitlab setModel:billboardModel];
+	[hitlab setModel:coffeeCupModel];
 	
 	[hitlab.metadata setObject:@"HITLabNZ" forKey:@"name"];
 	[hitlab.metadata setObject:@"University of Canterbury" forKey:@"address"];
@@ -68,7 +66,7 @@
 	[cuteCenter.metadata setObject:@"Cute Center" forKey:@"name"];
 	[cuteCenter.metadata setObject:@"Singapore" forKey:@"address"];
 	[cuteCenter.metadata setObject:@"Wang Yuan" forKey:@"developer"];
-	[worldPoints addObject:cuteCenter];
+	//[worldPoints addObject:cuteCenter];
 	
 	[self setWorldPoints:worldPoints];
 
@@ -90,6 +88,11 @@
 	[_browserViewController setWorldPoints:_worldPoints];
 	
 	[self didChangeValueForKey:@"worldPoints"];
+}
+
+- (void)applicationDidReceiveMemoryWarning:(UIApplication *)application
+{
+    NSLog(@"Memory warning received");
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

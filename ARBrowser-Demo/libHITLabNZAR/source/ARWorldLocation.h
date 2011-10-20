@@ -53,6 +53,6 @@ const double EARTH_RADIUS = 6378.1 * 1000.0;
 
 /// Helper function to set heading from a given CLHeading.
 /// @internal
-- (void) setHeading: (CLHeading*)heading;
+- (void) setBearing: (float)bearing;
 
 @end
