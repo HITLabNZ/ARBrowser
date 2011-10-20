@@ -39,6 +39,7 @@
 // http://stackoverflow.com/questions/4118778/render-contents-of-uiview-as-an-opengl-texture
 - (void) updateTextureWithView:(UIView *)view 
 {
+    NSLog(@"Updating view texture...");
 	//GLuint saveName = 0;
 	//glGetIntegerv(GL_TEXTURE_BINDING_2D, &saveName);
 	
@@ -86,9 +87,7 @@
 {
 	// We can only update if there was a view given.
 	if (_dirty && _overlay) {
-		[self updateTextureWithView:_overlay];
-		
-		_dirty = NO;
+		[self updateNow];
 	}
 	
 	// ARBrowser::renderMarker(1.0);
