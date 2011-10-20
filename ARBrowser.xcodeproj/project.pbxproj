@@ -102,6 +102,12 @@
 		7EBCD90913B85459007892CA /* ARObjectModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7EBCD90813B85457007892CA /* ARObjectModel.mm */; };
 		7EBCD90A13B87967007892CA /* ARObjectModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7EBCD90813B85457007892CA /* ARObjectModel.mm */; };
 		7EDA1D5013C49A7D00796B34 /* ARMapViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7EDA1D4F13C49A7D00796B34 /* ARMapViewController.mm */; };
+		7EEAE9B5144F903800286695 /* ARLocationController3.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7EEAE9B4144F903800286695 /* ARLocationController3.mm */; };
+		7EEAE9B8144F923B00286695 /* ARLocationController4.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7EEAE9B7144F923B00286695 /* ARLocationController4.mm */; };
+		7EEAE9B9144F923B00286695 /* ARLocationController4.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7EEAE9B7144F923B00286695 /* ARLocationController4.mm */; };
+		7EEAE9BA144F924300286695 /* ARLocationController3.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7EEAE9B4144F903800286695 /* ARLocationController3.mm */; };
+		7EEAE9BD144F92B300286695 /* ARLocationControllerBase.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7EEAE9BC144F92B300286695 /* ARLocationControllerBase.mm */; };
+		7EEAE9BE144F92B300286695 /* ARLocationControllerBase.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7EEAE9BC144F92B300286695 /* ARLocationControllerBase.mm */; };
 		7EFDDECC13E8DB8C00155C2B /* ARViewModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7EFDDECB13E8DB8C00155C2B /* ARViewModel.mm */; };
 		7EFDDECD13E8DB8C00155C2B /* ARViewModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7EFDDECB13E8DB8C00155C2B /* ARViewModel.mm */; };
 /* End PBXBuildFile section */
@@ -220,6 +226,12 @@
 		7EBCD90813B85457007892CA /* ARObjectModel.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ARObjectModel.mm; sourceTree = "<group>"; };
 		7EDA1D4E13C49A7D00796B34 /* ARMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARMapViewController.h; sourceTree = "<group>"; };
 		7EDA1D4F13C49A7D00796B34 /* ARMapViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ARMapViewController.mm; sourceTree = "<group>"; };
+		7EEAE9B3144F903800286695 /* ARLocationController3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARLocationController3.h; sourceTree = "<group>"; };
+		7EEAE9B4144F903800286695 /* ARLocationController3.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ARLocationController3.mm; sourceTree = "<group>"; };
+		7EEAE9B6144F923B00286695 /* ARLocationController4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARLocationController4.h; sourceTree = "<group>"; };
+		7EEAE9B7144F923B00286695 /* ARLocationController4.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ARLocationController4.mm; sourceTree = "<group>"; };
+		7EEAE9BB144F92B300286695 /* ARLocationControllerBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARLocationControllerBase.h; sourceTree = "<group>"; };
+		7EEAE9BC144F92B300286695 /* ARLocationControllerBase.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ARLocationControllerBase.mm; sourceTree = "<group>"; };
 		7EFDDECA13E8DB8C00155C2B /* ARViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARViewModel.h; sourceTree = "<group>"; };
 		7EFDDECB13E8DB8C00155C2B /* ARViewModel.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ARViewModel.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -350,6 +362,12 @@
 			children = (
 				7E233733134B3FBF00BEFB33 /* Model.h */,
 				7E233734134B3FBF00BEFB33 /* Model.mm */,
+				7EEAE9BB144F92B300286695 /* ARLocationControllerBase.h */,
+				7EEAE9BC144F92B300286695 /* ARLocationControllerBase.mm */,
+				7EEAE9B3144F903800286695 /* ARLocationController3.h */,
+				7EEAE9B4144F903800286695 /* ARLocationController3.mm */,
+				7EEAE9B6144F923B00286695 /* ARLocationController4.h */,
+				7EEAE9B7144F923B00286695 /* ARLocationController4.mm */,
 			);
 			name = Private;
 			sourceTree = "<group>";
@@ -550,6 +568,9 @@
 				7EBCD90913B85459007892CA /* ARObjectModel.mm in Sources */,
 				7EDA1D5013C49A7D00796B34 /* ARMapViewController.mm in Sources */,
 				7EFDDECC13E8DB8C00155C2B /* ARViewModel.mm in Sources */,
+				7EEAE9B5144F903800286695 /* ARLocationController3.mm in Sources */,
+				7EEAE9B8144F923B00286695 /* ARLocationController4.mm in Sources */,
+				7EEAE9BD144F92B300286695 /* ARLocationControllerBase.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -575,6 +596,9 @@
 				7E7E296B1370D97E00338606 /* Model.mm in Sources */,
 				7EBCD90A13B87967007892CA /* ARObjectModel.mm in Sources */,
 				7EFDDECD13E8DB8C00155C2B /* ARViewModel.mm in Sources */,
+				7EEAE9B9144F923B00286695 /* ARLocationController4.mm in Sources */,
+				7EEAE9BA144F924300286695 /* ARLocationController3.mm in Sources */,
+				7EEAE9BE144F92B300286695 /* ARLocationControllerBase.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -718,9 +742,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HITLabNZAR/HITLabNZAR-Prefix.pch";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-mno-thumb";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -733,9 +757,12 @@
 				DSTROOT = /tmp/HITLabNZAR.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HITLabNZAR/HITLabNZAR-Prefix.pch";
-				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = (
+					"-mno-thumb",
+					"-DNS_BLOCK_ASSERTIONS=1",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
