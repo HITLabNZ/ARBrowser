@@ -115,7 +115,7 @@ double interpolateAnglesDegrees(double a, double b, double blend) {
 
 - (CMAcceleration) currentGravity
 {    
-    CMAcceleration gravity = {0};
+    CMAcceleration gravity = {0, 0, -1};
     
     if (!motionManager.deviceMotion) {
         return gravity;
