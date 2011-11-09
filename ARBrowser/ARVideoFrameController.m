@@ -77,8 +77,14 @@
 		AVCaptureVideoDataOutput * captureOutput = [[AVCaptureVideoDataOutput alloc] init];		
 		captureOutput.alwaysDiscardsLateVideoFrames = YES;
 		
-		// Setup the dispatch queue
-		[captureOutput setSampleBufferDelegate:self queue:dispatch_get_main_queue()];
+		// (1) Setup the dispatch queue
+		// [captureOutput setSampleBufferDelegate:self queue:dispatch_get_main_queue()];
+		
+		// (2) Create a serial queue to handle the processing of our frames in the background
+		dispatch_queue_t cameraQueue;
+		cameraQueue = dispatch_queue_create("cameraQueue", NULL);
+		[captureOutput setSampleBufferDelegate:self queue:cameraQueue];
+		dispatch_release(cameraQueue);
 		
 		// Set the frame rate of the camera capture
 		NSUInteger framesPerSecond = 60;
@@ -98,7 +104,7 @@
 				captureConnection.videoMaxFrameDuration = secondsPerFrame;
 		}
 		
-		// Set the video capture mode
+		// Set the video capture mode, 32BGRA is the only universally supported output format from camera.
 		[captureOutput setVideoSettings:[NSDictionary dictionaryWithObjectsAndKeys:
 			[NSNumber numberWithUnsignedInt:kCVPixelFormatType_32BGRA],
 			kCVPixelBufferPixelFormatTypeKey,
