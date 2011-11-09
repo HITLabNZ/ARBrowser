@@ -32,7 +32,7 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 
 @implementation ARBrowserView
 
-@synthesize delegate, distanceScale, minimumDistance, maximumDistance, displayRadar, displayGrid;
+@synthesize delegate, distanceScale, minimumDistance, scaleDistance, maximumDistance, displayRadar, displayGrid;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -51,7 +51,8 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 		ARBrowser::generateGrid(state->grid);
 		
 		distanceScale = 1.0;
-		minimumDistance = 5.0;
+		minimumDistance = 2.0;
+		scaleDistance = 10.0;
 		maximumDistance = 500.0;
 		displayRadar = YES;
     }
@@ -81,14 +82,14 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 			
 			// Calculate actual (non-scaled) distance.
 			float distance = offset.length() * (1.0/distanceScale);
-		
-			if (distance > maximumDistance) {
+			
+			if (distance < minimumDistance || distance > maximumDistance) {
 				continue;
 			}
 			
 			// Scale the object down if it is closer than the minimum distance.
-			if (distance <= minimumDistance) {
-				float scale = distance/minimumDistance;
+			if (distance <= scaleDistance) {
+				float scale = distance/scaleDistance;
 				sphere.radius *= scale;
 			}
 			
@@ -269,15 +270,16 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 		// Calculate actual (non-scaled) distance.
 		float distance = delta.length() * (1.0/distanceScale);
 		
-		if (distance > maximumDistance) {
+		if (distance < minimumDistance || distance > maximumDistance) {
 			continue;
 		}
 								
 		glPushMatrix();
+		
 				
 		// Scale the object down if it is closer than the minimum distance.
-		if (distance <= minimumDistance) {
-			glScalef(distance/minimumDistance, distance/minimumDistance, distance/minimumDistance);
+		if (distance <= scaleDistance) {
+			glScalef(distance/scaleDistance, distance/scaleDistance, distance/scaleDistance);
 		}
 		
 		glTranslatef(delta.x, delta.y, delta.z);
