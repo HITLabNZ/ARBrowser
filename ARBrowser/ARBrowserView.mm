@@ -55,9 +55,9 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 		scaleDistance = 10.0;
 		maximumDistance = 500.0;
 		displayRadar = YES;
-    }
+	}
 	
-    return self;
+	return self;
 }
 
 - (void)touchesBegan: (NSSet *)touches withEvent: (UIEvent *)event
@@ -73,7 +73,7 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 		for (ARWorldPoint * worldPoint in worldPoints) {
 			ARBoundingSphere boundingSphere = [[worldPoint model] boundingSphere];
 			ARBrowser::BoundingSphere sphere(boundingSphere.center, boundingSphere.radius);
-
+			
 			// We don't support this yet, but it was supported in the old API.
 			// sphere.transform([worldPoint transformation]);
 			
@@ -103,7 +103,7 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 		// viewport: (X, Y, Width, Height)
 		CGRect bounds = [self bounds];
 		float viewport[4] = {bounds.origin.x, bounds.origin.y, bounds.size.width, bounds.size.height};
-
+		
 		if (ARBrowser::findIntersection(state->projectionMatrix, state->viewMatrix, viewport, worldOrigin, now, spheres, result)) {
 			ARWorldPoint * selected = [worldPoints objectAtIndex:result.index];
 			[self.delegate browserView:self didSelect:selected];
@@ -141,7 +141,7 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 			}
 		}
 	}
-		
+	
 	glMatrixMode(GL_PROJECTION);
 	glPushMatrix();
 	glLoadIdentity();
@@ -181,24 +181,24 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 }
 
 - (void) update {
-    if (videoFrameController) {
-        ARVideoFrame * videoFrame = [videoFrameController videoFrame];
-        
-        if (videoFrame && videoFrame->data) {
-            [videoBackground update:videoFrame];
-        }
-        
-        [videoBackground draw];
-    } else {
-        glClear(GL_COLOR_BUFFER_BIT);
-    }
-
+	if (videoFrameController) {
+		ARVideoFrame * videoFrame = [videoFrameController videoFrame];
+		
+		if (videoFrame && videoFrame->data) {
+			[videoBackground update:videoFrame];
+		}
+		
+		[videoBackground draw];
+	} else {
+		glClear(GL_COLOR_BUFFER_BIT);
+	}
+	
 	glEnable(GL_DEPTH_TEST);
 	glClear(GL_DEPTH_BUFFER_BIT);
 	
-    ARLocationController * locationController = [ARLocationController sharedInstance];
-    CMAcceleration gravity = [locationController currentGravity];
-    		
+	ARLocationController * locationController = [ARLocationController sharedInstance];
+	CMAcceleration gravity = [locationController currentGravity];
+	
 	// Calculate the camera paremeters
 	{
 		glMatrixMode(GL_PROJECTION);
@@ -211,7 +211,9 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 		//glTranslatef(0.0, 0.0, -2.0);
 		
 		// F defines the negative normal for the plain
-		// x -> latitude, y -> longitude, z -> altitude
+		// x -> latitude (horizontal, red marker points east)
+		// y -> longitude (vertical, green marker points north)
+		// z -> altitude (altitude, blue marker points up)
 		Vec3 _f(gravity.x, gravity.y, gravity.z);
 		_f.normalize();
 		
@@ -262,10 +264,10 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 	}
 	
 	NSArray * worldPoints = [[self delegate] worldPoints];
-		
+	
 	for (ARWorldPoint * point in worldPoints) {
 		Vec3 delta = [origin calculateRelativePositionOf:point] * distanceScale;
-        //NSLog(@"Delta: %0.3f, %0.3f, %0.3f", delta.x, delta.y, delta.z);
+		//NSLog(@"Delta: %0.3f, %0.3f, %0.3f", delta.x, delta.y, delta.z);
 		
 		// Calculate actual (non-scaled) distance.
 		float distance = delta.length() * (1.0/distanceScale);
@@ -273,10 +275,9 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 		if (distance < minimumDistance || distance > maximumDistance) {
 			continue;
 		}
-								
+		
 		glPushMatrix();
 		
-				
 		// Scale the object down if it is closer than the minimum distance.
 		if (distance <= scaleDistance) {
 			glScalef(distance/scaleDistance, distance/scaleDistance, distance/scaleDistance);
@@ -325,8 +326,8 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 	[videoBackground release];
 	
 	delete state;
-
-    [super dealloc];
+	
+	[super dealloc];
 }
 
 @end
