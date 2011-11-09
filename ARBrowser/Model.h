@@ -37,6 +37,8 @@ namespace ARBrowser {
 	/// Render a radar using OpenGL at the origin.
 	/// Points are points within the compass, edgePoints are points on the edge of the compass.
 	void renderRadar (VerticesT & points, VerticesT & edgePoints, float pointScale = 1.0);
+    
+	void renderRadarFieldOfView();
 	
 	/// Renders a square box of size s.
 	void renderMarker (float s);

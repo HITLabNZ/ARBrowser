@@ -54,6 +54,22 @@ namespace ARBrowser {
 		
 		renderVertices(vertices, GL_LINE_LOOP);
 	}
+    
+	void renderRadarFieldOfView()
+	{
+		VerticesT vertices;
+		vertices.push_back(Vec3(0, 0, 0));
+		vertices.push_back(Vec3(-8, 20, 0));
+		vertices.push_back(Vec3(8, 20, 0));
+
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_DST_ALPHA);
+
+		glColor4f(0.8, 0.8, 0.8, 0.5);
+		renderVertices(vertices, GL_TRIANGLES);
+
+		glDisable(GL_BLEND);
+	}
 	
 	void renderRadar (VerticesT & points, VerticesT & edgePoints, float pointScale) {
 		glDisable(GL_DEPTH_TEST);
