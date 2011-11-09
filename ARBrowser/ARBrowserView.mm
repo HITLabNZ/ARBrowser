@@ -38,10 +38,9 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 {
 	self = [super initWithFrame:frame pixelFormat:GL_RGB565_OES depthFormat:GL_DEPTH_COMPONENT16_OES preserveBackbuffer:YES];
 	
-    if (self) {
-        videoFrameController = [[ARVideoFrameController alloc] init];
+	if (self) {
+		videoFrameController = [[ARVideoFrameController alloc] init];
 		videoBackground = [[ARVideoBackground alloc] init];
-		
 		[videoFrameController start];
 		
 		// Initialise the location controller
