@@ -58,7 +58,8 @@ double interpolateAnglesDegrees(double a, double b, double blend) {
         
         _currentBearing = -360.0;
         
-        [motionManager startDeviceMotionUpdatesToQueue:[NSOperationQueue currentQueue] withHandler:^(CMDeviceMotion *motion, NSError *error) {
+		// Run the motion manager on a separate operations queue.
+        [motionManager startDeviceMotionUpdatesToQueue:[NSOperationQueue new] withHandler:^(CMDeviceMotion *motion, NSError *error) {
             if (!currentHeading)
                 return;
             
@@ -71,31 +72,14 @@ double interpolateAnglesDegrees(double a, double b, double blend) {
             }
             
             if (currentHeading && oldMotion) {
-                
-#ifndef HYBRID_SENSORS
-                _currentBearing = [currentHeading trueHeading];
-#else
                 CLLocationDirection bearingChange = calculateBearingChange(_currentMotion, motion);
-                
-                //NSLog(@"bearingChange: %0.3f", bearingChange);
-                
-                CLLocationDirection updatedBearing = interpolateAnglesDegrees(_currentBearing + bearingChange, [currentHeading trueHeading], 0.05);
-                
-                _currentBearing = updatedBearing;
-                //NSLog(@"Current: %0.3f, True: %0.3f, Change: %0.3f, Rotation: %0.3f", _currentBearing, [currentHeading trueHeading], bearingChange, _currentBearing + bearingChange);
-                
-                /*
-                _smoothedBearing =
-                    (0.5 * _smoothedBearing) +
-                    (0.5 * _currentBearing);
-                 */
-#endif
+                _currentBearing = interpolateAnglesDegrees(_currentBearing + bearingChange, [currentHeading trueHeading], 0.05);
             }
             
             [self setCurrentMotion:motion];
-        }];        
-        
+        }];
     }
+    
     return self;
 }
 
