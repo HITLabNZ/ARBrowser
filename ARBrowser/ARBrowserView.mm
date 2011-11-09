@@ -111,9 +111,11 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 }
 
 - (void) drawRadar {
-	ARWorldLocation * origin = [[ARLocationController sharedInstance] worldLocation];
-    //NSLog(@"Bearing: %0.3f", origin.rotation);
-    
+	ARLocationController * locationController = [ARLocationController sharedInstance];
+	ARWorldLocation * origin = [locationController worldLocation];
+	CMAcceleration gravity = [locationController currentGravity];
+	//NSLog(@"Bearing: %0.3f", origin.rotation);
+	
 	NSArray * worldPoints = [self.delegate worldPoints];
 	
 	ARBrowser::VerticesT radarPoints, radarEdgePoints;
@@ -162,16 +164,119 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 	glLoadIdentity();
 	
 	// This isn't quite right due to scaling, but it is sufficient at this time.
-	glTranslatef(-minDimension, (viewSize.height / 2.0) - (radarSize.height / 2.0 * scale), 0.0);
-	
-	// Rotate based on the current heading.
-	glRotatef([origin rotation], 0, 0, 1);
+	glTranslatef(-minDimension, (viewSize.height / 2.0) - (radarSize.height / 2.0 * scale), 0);
 	
 	// Make it slightly smaller so the edges aren't touching the bounding box.
 	scale *= 0.9;
 	glScalef(scale, scale, 1);
 	
+	// Draw a line that always points north no matter device orientation.
+	/*
+	 if (_debug) {
+	 //MATRIX m;
+	 //[locationController calculateGlobalOrientation:m.f];
+	 
+	 ARBrowser::VerticesT northLine;
+	 northLine.push_back(Vec3(0, 0, 0));
+	 
+	 //Vec3 northPoint;
+	 //MatrixVec3Multiply(northPoint, Vec3(0, 40, 0), m);
+	 NSLog(@"Magnetic Field Vector: %0.3f, %0.3f, %0.3f", locationController.currentHeading.x, locationController.currentHeading.y, locationController.currentHeading.z);
+	 Vec3 magnetometer(locationController.currentHeading.x, locationController.currentHeading.y, locationController.currentHeading.z);
+	 //magnetometer.z = 0;
+	 magnetometer.normalize();
+	 
+	 northLine.push_back(magnetometer * 40);
+	 
+	 glColor4f(1.0, 0.0, 0.0, 1.0);
+	 ARBrowser::renderVertices(northLine);
+	 }
+	 */
+	
+	// Calculate the forward angle:
+	float forwardAngle = 0.0;
+	Vec3 rotationAxis;
+	{
+		Vec3 up(0, 0, +1);
+		Vec3 g(-gravity.x, -gravity.y, -gravity.z);
+		g.normalize();
+		
+		float sz = acos(up.dot(g));
+		
+		// We only do this if there is sufficient rotation of the device around the vertical axis.
+		if (sz > 0.1) {
+			// Simplified version of the line/plane intersection test, since the plane and line are from the origin.
+			Vec3 at = g + (up * -(up.dot(g)));
+			at.normalize();
+			
+			ARBrowser::VerticesT rotation;
+			rotation.push_back(Vec3(0, 0, 0));
+			rotation.push_back(Vec3(at.x * 40, at.y * 40, 0));
+			ARBrowser::renderVertices(rotation);
+			
+			Vec3 north(0, 1, 0);
+			
+			rotationAxis = at.cross(north);
+			forwardAngle = acos(at.dot(north));
+		}
+	}
+	
+	if (forwardAngle != 0.0) {
+		glRotatef(-forwardAngle * ARBrowser::R2D, rotationAxis.x, rotationAxis.y, rotationAxis.z);		
+	} else {
+		// We do this to avoid strange behaviour around the vertical axis:
+		glRotatef([origin rotation], 0, 0, 1);
+	}
+	
 	ARBrowser::renderRadar(radarPoints, radarEdgePoints, scale / 2.0);
+	
+	//if (_debug) {
+	//	NSLog(@"Rotation: %0.3f", [origin rotation]);
+	//}
+	
+	if (forwardAngle != 0.0) {
+		/*
+		 // Calculate the rotation around gravity and project that back onto the plane:
+		 Vec3 _f(gravity.x, gravity.y, gravity.z);
+		 _f.normalize();
+		 
+		 Vec3 f(_f.x, _f.y, _f.z);
+		 Vec3 down(0, 0, -1);
+		 float sz = acos(down.dot(f));
+		 //
+		 Vec3 s = down.cross(f);
+		 
+		 MATRIX gravityRotation, headingRotation, orientationTransform;
+		 MatrixRotationAxis(gravityRotation, sz, s.x, s.y, s.z);
+		 
+		 MatrixRotationAxis(headingRotation, [origin rotation] * ARBrowser::D2R, 0, 0, 1);
+		 MatrixMultiply(orientationTransform, headingRotation, gravityRotation);
+		 */
+		
+		Mat44 inverseViewMatrix;
+		MatrixInverse(inverseViewMatrix, state->viewMatrix);
+		
+		// This matrix now contains the transform where +Y maps to North
+		// The North axis of the phone is mapped to global North axis.
+		Vec3 north(0, 1, 0); //, deviceNorth;
+		//MatrixVec3Multiply(deviceNorth, north, state->viewMatrix);
+		//NSLog(@"  Device north: %0.3f, %0.3f, %0.3f", deviceNorth.x, deviceNorth.y, deviceNorth.z);
+		
+		Vec3 forward(0, 0, -1), deviceForward;
+		// We calculate the forward vector in global space where (0, 1, 0) is north, (0, 0, -1) is down, (1, 0, 0) is approximately east.
+		MatrixVec3Multiply(deviceForward, forward, inverseViewMatrix);
+		//NSLog(@"Device forward: %0.3f, %0.3f, %0.3f", deviceForward.x, deviceForward.y, deviceForward.z);
+		
+		deviceForward.z = 0;
+		deviceForward.normalize();
+		
+		float bearing = acos(deviceForward.dot(north));
+		Vec3 r = deviceForward.cross(north).normalize();
+		
+		//NSLog(@"Bearing: %0.3f", bearing);
+		glRotatef(-bearing * ARBrowser::R2D, r.x, r.y, r.z);
+		ARBrowser::renderRadarFieldOfView();
+	}
 	
 	glPopMatrix();
 	
