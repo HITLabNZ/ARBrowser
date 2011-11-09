@@ -8,6 +8,8 @@
 
 #import "ARLocationControllerBase.h"
 #import "ARWorldLocation.h"
+#import "Model.h"
+
 
 @interface ARLocationControllerBase ()
 @property(retain,readwrite,nonatomic) CLLocation * currentLocation;
@@ -24,6 +26,11 @@
 		locationManager = [[CLLocationManager alloc] init];
 		[locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
 		[locationManager setDelegate:self];
+        
+		//NSLog(@"Heading Orientation: %d", [locationManager headingOrientation]);
+		// This is the same as the default, but setting it explicitly.
+		[locationManager setHeadingOrientation:CLDeviceOrientationPortrait];
+		northAxis = (CMAcceleration){0, 1, 0};
 		
 		[locationManager startUpdatingLocation];
 		[locationManager startUpdatingHeading];

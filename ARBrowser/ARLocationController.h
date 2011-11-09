@@ -30,6 +30,9 @@ extern NSString * const ARAccelerationChanged;
 /// The devices current rotation from north, e.g. around the downwards vector.
 - (CLLocationDirection) currentBearing;
 
+// The local device axis that represents north.
+- (CMAcceleration) northAxis;
+
 /// Get the origin of the current device.
 - (ARWorldLocation*) worldLocation;
 

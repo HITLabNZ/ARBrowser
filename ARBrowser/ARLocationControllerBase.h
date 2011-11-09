@@ -17,6 +17,8 @@ const double kSensorSampleFrequency = 60.0; //Hz
 	CLLocationManager * locationManager;
 	CLLocation * currentLocation;
 	CLHeading * currentHeading;
+    
+    CMAcceleration northAxis;
 }
 
 /// @internal
@@ -25,12 +27,16 @@ const double kSensorSampleFrequency = 60.0; //Hz
 /// @internal
 - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading;
 
-@property(retain,readonly,nonatomic) CLLocation * currentLocation;
-@property(retain,readonly,nonatomic) CLHeading * currentHeading;
+@property(retain,readonly) CLLocation * currentLocation;
+@property(retain,readonly) CLHeading * currentHeading;
+@property(assign,readonly) CMAcceleration northAxis;
 
 // These attributes will be improved in dervied classes depending on available sensors.
 - (CMAcceleration) currentGravity;
+
+// The rotation around the axis defined by gravity, and +Y pointing North.
 - (CLLocationDirection) currentBearing;
+- (CMAcceleration) northAxis;
 
 - (ARWorldLocation*) worldLocation;
 
