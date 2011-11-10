@@ -127,14 +127,15 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 			radarPoints.push_back(delta);
 		} else {
 			// Normalize the distance of the point
-			const float LF = 10.0;
-			float length = log10f((delta.length() / LF) + 1) * LF;
+			//const float LF = 10.0;
+			//float length = log10f((delta.length() / LF) + 1) * LF;
+			float length = sqrt(delta.length() / maximumDistance);
 			
 			// Normalize the vector so we can scale its length appropriately.
 			delta.normalize();
 			
-			if (length < (ARBrowser::RadarDiameter / 2.0)) {
-				delta *= length;
+			if (length <= 1.0) {
+				delta *= (length * (ARBrowser::RadarDiameter / 2.0));
 				radarPoints.push_back(delta);
 			} else {
 				delta *= (ARBrowser::RadarDiameter / 2.0);
