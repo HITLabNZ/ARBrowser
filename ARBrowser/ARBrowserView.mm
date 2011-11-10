@@ -196,6 +196,8 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 	
 	// Calculate the forward angle:
 	float forwardAngle = 0.0;
+	BOOL flat = NO;
+	
 	Vec3 rotationAxis;
 	{
 		Vec3 up(0, 0, +1);
@@ -219,10 +221,12 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 			
 			rotationAxis = at.cross(north);
 			forwardAngle = acos(at.dot(north));
+		} else {
+			flat = YES;
 		}
 	}
 	
-	if (forwardAngle != 0.0) {
+	if (!flat) {
 		glRotatef(-forwardAngle * ARBrowser::R2D, rotationAxis.x, rotationAxis.y, rotationAxis.z);		
 	} else {
 		// We do this to avoid strange behaviour around the vertical axis:
@@ -253,7 +257,8 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 		 MatrixRotationAxis(headingRotation, [origin rotation] * ARBrowser::D2R, 0, 0, 1);
 		 MatrixMultiply(orientationTransform, headingRotation, gravityRotation);
 		 */
-		
+
+	if (!flat) {		
 		Mat44 inverseViewMatrix;
 		MatrixInverse(inverseViewMatrix, state->viewMatrix);
 		
