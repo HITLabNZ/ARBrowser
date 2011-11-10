@@ -32,6 +32,8 @@
 		[locationManager setHeadingOrientation:CLDeviceOrientationPortrait];
 		northAxis = (CMAcceleration){0, 1, 0};
 		
+		updateTimer = [NSTimer scheduledTimerWithTimeInterval:(1.0/30.0) target:self selector:@selector(update) userInfo:nil repeats:YES];
+		
 		[locationManager startUpdatingLocation];
 		[locationManager startUpdatingHeading];
     }
@@ -39,6 +41,9 @@
 }
 
 - (void)dealloc {
+	[updateTimer invalidate];
+	updateTimer = nil;
+	
     [self setCurrentHeading:nil];
     [self setCurrentLocation:nil];
     
@@ -52,7 +57,24 @@
     [super dealloc];
 }
 
+- (void)update
+{
+	// This should really use spherical interpolation, but for small distances it doesn't really make any difference..
+	const double kFilteringFactor = 0.995;
+	
+	if (currentLocation) {
+		//Use a basic low-pass filter to smooth out changes in GPS data.
+		smoothedLocation.latitude = smoothedLocation.latitude * kFilteringFactor + currentLocation.coordinate.latitude * (1.0 - kFilteringFactor);
+		smoothedLocation.longitude = smoothedLocation.longitude * kFilteringFactor + currentLocation.coordinate.longitude * (1.0 - kFilteringFactor);
+	}
+}
+
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
+	if (currentLocation == nil) {
+		// First update:
+		smoothedLocation = [newLocation coordinate];
+	}
+		
 	[self setCurrentLocation:newLocation];
 }
 
@@ -72,7 +94,8 @@
 		
 		[result setCoordinate:derenzy altitude:EARTH_RADIUS];
 #else
-		[result setLocation:[self currentLocation] globalRadius:EARTH_RADIUS];
+		[result setCoordinate:smoothedLocation altitude:EARTH_RADIUS + currentLocation.altitude];
+		//[result setLocation:[self currentLocation] globalRadius:EARTH_RADIUS];
 #endif
         //CMAttitude * currentAttitude = motionManager.deviceMotion.attitude;
         //[result setBearing:-[currentAttitude yaw] * ARBrowser::R2D];

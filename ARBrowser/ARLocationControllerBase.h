@@ -19,6 +19,10 @@ const double kSensorSampleFrequency = 60.0; //Hz
 	CLHeading * currentHeading;
     
     CMAcceleration northAxis;
+	
+	CLLocationCoordinate2D smoothedLocation;
+	
+	NSTimer * updateTimer;
 }
 
 /// @internal
