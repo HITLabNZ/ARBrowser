@@ -171,29 +171,6 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 	scale *= 0.9;
 	glScalef(scale, scale, 1);
 	
-	// Draw a line that always points north no matter device orientation.
-	/*
-	 if (_debug) {
-	 //MATRIX m;
-	 //[locationController calculateGlobalOrientation:m.f];
-	 
-	 ARBrowser::VerticesT northLine;
-	 northLine.push_back(Vec3(0, 0, 0));
-	 
-	 //Vec3 northPoint;
-	 //MatrixVec3Multiply(northPoint, Vec3(0, 40, 0), m);
-	 NSLog(@"Magnetic Field Vector: %0.3f, %0.3f, %0.3f", locationController.currentHeading.x, locationController.currentHeading.y, locationController.currentHeading.z);
-	 Vec3 magnetometer(locationController.currentHeading.x, locationController.currentHeading.y, locationController.currentHeading.z);
-	 //magnetometer.z = 0;
-	 magnetometer.normalize();
-	 
-	 northLine.push_back(magnetometer * 40);
-	 
-	 glColor4f(1.0, 0.0, 0.0, 1.0);
-	 ARBrowser::renderVertices(northLine);
-	 }
-	 */
-	
 	// Calculate the forward angle:
 	float forwardAngle = 0.0;
 	BOOL flat = NO;
@@ -211,12 +188,7 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 			// Simplified version of the line/plane intersection test, since the plane and line are from the origin.
 			Vec3 at = g + (up * -(up.dot(g)));
 			at.normalize();
-			
-			ARBrowser::VerticesT rotation;
-			rotation.push_back(Vec3(0, 0, 0));
-			rotation.push_back(Vec3(at.x * 40, at.y * 40, 0));
-			ARBrowser::renderVertices(rotation);
-			
+
 			Vec3 north(0, 1, 0);
 			
 			rotationAxis = at.cross(north);
@@ -234,29 +206,6 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 	}
 	
 	ARBrowser::renderRadar(radarPoints, radarEdgePoints, scale / 2.0);
-	
-	//if (_debug) {
-	//	NSLog(@"Rotation: %0.3f", [origin rotation]);
-	//}
-	
-	if (forwardAngle != 0.0) {
-		/*
-		 // Calculate the rotation around gravity and project that back onto the plane:
-		 Vec3 _f(gravity.x, gravity.y, gravity.z);
-		 _f.normalize();
-		 
-		 Vec3 f(_f.x, _f.y, _f.z);
-		 Vec3 down(0, 0, -1);
-		 float sz = acos(down.dot(f));
-		 //
-		 Vec3 s = down.cross(f);
-		 
-		 MATRIX gravityRotation, headingRotation, orientationTransform;
-		 MatrixRotationAxis(gravityRotation, sz, s.x, s.y, s.z);
-		 
-		 MatrixRotationAxis(headingRotation, [origin rotation] * ARBrowser::D2R, 0, 0, 1);
-		 MatrixMultiply(orientationTransform, headingRotation, gravityRotation);
-		 */
 
 	if (!flat) {		
 		Mat44 inverseViewMatrix;
@@ -265,7 +214,6 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 		// This matrix now contains the transform where +Y maps to North
 		// The North axis of the phone is mapped to global North axis.
 		Vec3 north(0, 1, 0); //, deviceNorth;
-		//MatrixVec3Multiply(deviceNorth, north, state->viewMatrix);
 		//NSLog(@"  Device north: %0.3f, %0.3f, %0.3f", deviceNorth.x, deviceNorth.y, deviceNorth.z);
 		
 		Vec3 forward(0, 0, -1), deviceForward;
@@ -392,6 +340,8 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 		if (distance <= scaleDistance) {
 			glScalef(distance/scaleDistance, distance/scaleDistance, distance/scaleDistance);
 		}
+		
+		//NSLog(@"delta: %0.6f, %0.6f, %0.6f", delta.x, delta.y, delta.z);
 		
 		glTranslatef(delta.x, delta.y, delta.z);
 		
