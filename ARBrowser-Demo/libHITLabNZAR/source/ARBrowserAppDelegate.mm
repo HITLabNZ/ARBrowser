@@ -50,7 +50,8 @@
 	location.longitude = 172.583020;
 	[hitlab setCoordinate:location altitude:EARTH_RADIUS];
 	
-	[hitlab setModel:coffeeCupModel];
+	[hitlab setModel:billboardModel];
+	//[hitlab setModel:coffeeCupModel];
 	
 	[hitlab.metadata setObject:@"HITLabNZ" forKey:@"name"];
 	[hitlab.metadata setObject:@"University of Canterbury" forKey:@"address"];

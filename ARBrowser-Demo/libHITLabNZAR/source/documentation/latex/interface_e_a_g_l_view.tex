@@ -1,52 +1,52 @@
 \hypertarget{interface_e_a_g_l_view}{
-\section{EAGLView Class Reference}
-\label{interface_e_a_g_l_view}\index{EAGLView@{EAGLView}}
+\section{\-E\-A\-G\-L\-View \-Class \-Reference}
+\label{interface_e_a_g_l_view}\index{\-E\-A\-G\-L\-View@{\-E\-A\-G\-L\-View}}
 }
 
 
-Wraps the CAEAGLLayer from CoreAnimation into a convenient UIView subclass.  
+\-Wraps the \-C\-A\-E\-A\-G\-L\-Layer from \-Core\-Animation into a convenient \-U\-I\-View subclass.  
 
 
 
 
-{\ttfamily \#import $<$EAGLView.h$>$}
+{\ttfamily \#import $<$\-E\-A\-G\-L\-View.\-h$>$}
 
-Inheritance diagram for EAGLView:\begin{figure}[H]
+\-Inheritance diagram for \-E\-A\-G\-L\-View\-:\begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[height=2.000000cm]{interface_e_a_g_l_view}
 \end{center}
 \end{figure}
-\subsection*{Public Member Functions}
+\subsection*{\-Public \-Member \-Functions}
 \begin{DoxyCompactItemize}
 \item 
-(void) -\/ \hyperlink{interface_e_a_g_l_view_a9e6bb4e8a5bb54ecffb384abcc154504}{swapBuffers}
-\begin{DoxyCompactList}\small\item\em Swap the back and front buffers so that the buffer than has been drawn is now visible. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Properties}
+(void) -\/ \hyperlink{interface_e_a_g_l_view_a9e6bb4e8a5bb54ecffb384abcc154504}{swap\-Buffers}
+\begin{DoxyCompactList}\small\item\em \-Swap the back and front buffers so that the buffer than has been drawn is now visible. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Properties}
 \begin{DoxyCompactItemize}
 \item 
 \hypertarget{interface_e_a_g_l_view_adf03e9ef888498612a18a3b42646c296}{
-BOOL \hyperlink{interface_e_a_g_l_view_adf03e9ef888498612a18a3b42646c296}{debug}}
+\-B\-O\-O\-L \hyperlink{interface_e_a_g_l_view_adf03e9ef888498612a18a3b42646c296}{debug}}
 \label{interface_e_a_g_l_view_adf03e9ef888498612a18a3b42646c296}
 
-\begin{DoxyCompactList}\small\item\em Print out FPS and other related debugging information. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em \-Print out \-F\-P\-S and other related debugging information. \end{DoxyCompactList}\item 
 \hypertarget{interface_e_a_g_l_view_a63487eccfd7d2b851f63c3ae0d7f00e7}{
-BOOL \hyperlink{interface_e_a_g_l_view_a63487eccfd7d2b851f63c3ae0d7f00e7}{autoresize}}
+\-B\-O\-O\-L \hyperlink{interface_e_a_g_l_view_a63487eccfd7d2b851f63c3ae0d7f00e7}{autoresize}}
 \label{interface_e_a_g_l_view_a63487eccfd7d2b851f63c3ae0d7f00e7}
 
-\begin{DoxyCompactList}\small\item\em Controls whether the EAGL surface automatically resizes when the view bounds change. Otherwise, the EAGL surface contents are scaled to fix when rendered. NO by default. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em \-Controls whether the \-E\-A\-G\-L surface automatically resizes when the view bounds change. \-Otherwise, the \-E\-A\-G\-L surface contents are scaled to fix when rendered. \-N\-O by default. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\subsection{Detailed Description}
-Wraps the CAEAGLLayer from CoreAnimation into a convenient UIView subclass. 
+\subsection{\-Detailed \-Description}
+\-Wraps the \-C\-A\-E\-A\-G\-L\-Layer from \-Core\-Animation into a convenient \-U\-I\-View subclass. 
 
-The view content is basically an EAGL surface you render your OpenGL scene into. Note that setting the view non-\/opaque will only work if the EAGL surface has an alpha channel. 
+\-The view content is basically an \-E\-A\-G\-L surface you render your \-Open\-G\-L scene into. \-Note that setting the view non-\/opaque will only work if the \-E\-A\-G\-L surface has an alpha channel. 
 
-\subsection{Member Function Documentation}
+\subsection{\-Member \-Function \-Documentation}
 \hypertarget{interface_e_a_g_l_view_a9e6bb4e8a5bb54ecffb384abcc154504}{
-\index{EAGLView@{EAGLView}!swapBuffers@{swapBuffers}}
-\index{swapBuffers@{swapBuffers}!EAGLView@{EAGLView}}
-\subsubsection[{swapBuffers}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (void) swapBuffers 
+\index{\-E\-A\-G\-L\-View@{\-E\-A\-G\-L\-View}!swap\-Buffers@{swap\-Buffers}}
+\index{swap\-Buffers@{swap\-Buffers}!EAGLView@{\-E\-A\-G\-L\-View}}
+\subsubsection[{swap\-Buffers}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (void) swap\-Buffers 
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
@@ -54,10 +54,10 @@ The view content is basically an EAGL surface you render your OpenGL scene into.
 \label{interface_e_a_g_l_view_a9e6bb4e8a5bb54ecffb384abcc154504}
 
 
-Swap the back and front buffers so that the buffer than has been drawn is now visible. 
+\-Swap the back and front buffers so that the buffer than has been drawn is now visible. 
 
-This also checks the current OpenGL error and logs an error if needed. 
+\-This also checks the current \-Open\-G\-L error and logs an error if needed. 
 
-The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
+\-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-EAGLView.h\end{DoxyCompactItemize}
+\-E\-A\-G\-L\-View.\-h\end{DoxyCompactItemize}

@@ -35,7 +35,7 @@ struct ARBrowserViewState;
 	/// @internal
 	struct ARBrowserViewState * state;
 	
-	float distanceScale, minimumDistance, maximumDistance;
+	float distanceScale, minimumDistance, scaleDistance, maximumDistance;
 	BOOL displayRadar, displayGrid;
 }
 
@@ -46,8 +46,11 @@ struct ARBrowserViewState;
 /// This property does NOT change the calculations of minimum and maximum distance properties.
 @property(nonatomic,assign) float distanceScale;
 
-/// Controls the scale of objects size. Objects closer than this distance appear the same size.
+/// Controls culling of near objects. Objects closer than this distance are not rendered.
 @property(nonatomic,assign) float minimumDistance;
+
+/// Controls the scale of objects size. Objects closer than this distance appear the same size as they do at this distance.
+@property(nonatomic,assign) float scaleDistance;
 
 /// Controls culling of distance objects. Objects further away than this are not rendered.
 @property(nonatomic,assign) float maximumDistance;

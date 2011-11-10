@@ -1,69 +1,74 @@
 \hypertarget{interface_a_r_browser_view}{
-\section{ARBrowserView Class Reference}
-\label{interface_a_r_browser_view}\index{ARBrowserView@{ARBrowserView}}
+\section{\-A\-R\-Browser\-View \-Class \-Reference}
+\label{interface_a_r_browser_view}\index{\-A\-R\-Browser\-View@{\-A\-R\-Browser\-View}}
 }
 
 
-The main augmented reality view, which combines the \hyperlink{interface_a_r_video_background}{ARVideoBackground} with the \hyperlink{interface_a_r_location_controller}{ARLocationController}.  
+\-The main augmented reality view, which combines the \hyperlink{interface_a_r_video_background}{\-A\-R\-Video\-Background} with the \hyperlink{interface_a_r_location_controller}{\-A\-R\-Location\-Controller}.  
 
 
 
 
-{\ttfamily \#import $<$ARBrowserView.h$>$}
+{\ttfamily \#import $<$\-A\-R\-Browser\-View.\-h$>$}
 
-Inheritance diagram for ARBrowserView:\begin{figure}[H]
+\-Inheritance diagram for \-A\-R\-Browser\-View\-:\begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[height=2.000000cm]{interface_a_r_browser_view}
 \end{center}
 \end{figure}
-\subsection*{Properties}
+\subsection*{\-Properties}
 \begin{DoxyCompactItemize}
 \item 
 \hypertarget{interface_a_r_browser_view_ac71040f5d7529f5d1585f774524e6e48}{
-id$<$ \hyperlink{protocol_a_r_browser_view_delegate-p}{ARBrowserViewDelegate} $>$ \hyperlink{interface_a_r_browser_view_ac71040f5d7529f5d1585f774524e6e48}{delegate}}
+id$<$ \hyperlink{protocol_a_r_browser_view_delegate-p}{\-A\-R\-Browser\-View\-Delegate} $>$ \hyperlink{interface_a_r_browser_view_ac71040f5d7529f5d1585f774524e6e48}{delegate}}
 \label{interface_a_r_browser_view_ac71040f5d7529f5d1585f774524e6e48}
 
-\begin{DoxyCompactList}\small\item\em The delegate for the \hyperlink{interface_a_r_browser_view}{ARBrowserView} must implement \hyperlink{protocol_a_r_browser_view_delegate-p}{ARBrowserViewDelegate}. \end{DoxyCompactList}\item 
-float \hyperlink{interface_a_r_browser_view_a91aef66437e470e8f51b90f5f2ec613c}{distanceScale}
-\begin{DoxyCompactList}\small\item\em Controls the scale of objects positions. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em \-The delegate for the \hyperlink{interface_a_r_browser_view}{\-A\-R\-Browser\-View} must implement \hyperlink{protocol_a_r_browser_view_delegate-p}{\-A\-R\-Browser\-View\-Delegate}. \end{DoxyCompactList}\item 
+float \hyperlink{interface_a_r_browser_view_a91aef66437e470e8f51b90f5f2ec613c}{distance\-Scale}
+\begin{DoxyCompactList}\small\item\em \-Controls the scale of objects positions. \end{DoxyCompactList}\item 
 \hypertarget{interface_a_r_browser_view_a4831f23b6b057d032491050a2dd826be}{
-float \hyperlink{interface_a_r_browser_view_a4831f23b6b057d032491050a2dd826be}{minimumDistance}}
+float \hyperlink{interface_a_r_browser_view_a4831f23b6b057d032491050a2dd826be}{minimum\-Distance}}
 \label{interface_a_r_browser_view_a4831f23b6b057d032491050a2dd826be}
 
-\begin{DoxyCompactList}\small\item\em Controls the scale of objects size. Objects closer than this distance appear the same size. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em \-Controls culling of near objects. \-Objects closer than this distance are not rendered. \end{DoxyCompactList}\item 
+\hypertarget{interface_a_r_browser_view_a868f431ba30b0442d8dd7deab2569205}{
+float \hyperlink{interface_a_r_browser_view_a868f431ba30b0442d8dd7deab2569205}{scale\-Distance}}
+\label{interface_a_r_browser_view_a868f431ba30b0442d8dd7deab2569205}
+
+\begin{DoxyCompactList}\small\item\em \-Controls the scale of objects size. \-Objects closer than this distance appear the same size as they do at this distance. \end{DoxyCompactList}\item 
 \hypertarget{interface_a_r_browser_view_a3828caf0a7d28ba8e9417088ce4e736c}{
-float \hyperlink{interface_a_r_browser_view_a3828caf0a7d28ba8e9417088ce4e736c}{maximumDistance}}
+float \hyperlink{interface_a_r_browser_view_a3828caf0a7d28ba8e9417088ce4e736c}{maximum\-Distance}}
 \label{interface_a_r_browser_view_a3828caf0a7d28ba8e9417088ce4e736c}
 
-\begin{DoxyCompactList}\small\item\em Controls culling of distance objects. Objects further away than this are not rendered. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em \-Controls culling of distance objects. \-Objects further away than this are not rendered. \end{DoxyCompactList}\item 
 \hypertarget{interface_a_r_browser_view_a541177be5371872bc4153d8eb8805ff2}{
-BOOL \hyperlink{interface_a_r_browser_view_a541177be5371872bc4153d8eb8805ff2}{displayRadar}}
+\-B\-O\-O\-L \hyperlink{interface_a_r_browser_view_a541177be5371872bc4153d8eb8805ff2}{display\-Radar}}
 \label{interface_a_r_browser_view_a541177be5371872bc4153d8eb8805ff2}
 
-\begin{DoxyCompactList}\small\item\em Display a small on-\/screen compass. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em \-Display a small on-\/screen compass. \end{DoxyCompactList}\item 
 \hypertarget{interface_a_r_browser_view_a767b94294f4358686e88d043198b9881}{
-BOOL \hyperlink{interface_a_r_browser_view_a767b94294f4358686e88d043198b9881}{displayGrid}}
+\-B\-O\-O\-L \hyperlink{interface_a_r_browser_view_a767b94294f4358686e88d043198b9881}{display\-Grid}}
 \label{interface_a_r_browser_view_a767b94294f4358686e88d043198b9881}
 
-\begin{DoxyCompactList}\small\item\em Display a background horizon grid. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em \-Display a background horizon grid. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\subsection{Detailed Description}
-The main augmented reality view, which combines the \hyperlink{interface_a_r_video_background}{ARVideoBackground} with the \hyperlink{interface_a_r_location_controller}{ARLocationController}. 
+\subsection{\-Detailed \-Description}
+\-The main augmented reality view, which combines the \hyperlink{interface_a_r_video_background}{\-A\-R\-Video\-Background} with the \hyperlink{interface_a_r_location_controller}{\-A\-R\-Location\-Controller}. 
 
-\subsection{Property Documentation}
+\subsection{\-Property \-Documentation}
 \hypertarget{interface_a_r_browser_view_a91aef66437e470e8f51b90f5f2ec613c}{
-\index{ARBrowserView@{ARBrowserView}!distanceScale@{distanceScale}}
-\index{distanceScale@{distanceScale}!ARBrowserView@{ARBrowserView}}
-\subsubsection[{distanceScale}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (float) distanceScale\hspace{0.3cm}{\ttfamily  \mbox{[}read, write, assign\mbox{]}}}}
+\index{\-A\-R\-Browser\-View@{\-A\-R\-Browser\-View}!distance\-Scale@{distance\-Scale}}
+\index{distance\-Scale@{distance\-Scale}!ARBrowserView@{\-A\-R\-Browser\-View}}
+\subsubsection[{distance\-Scale}]{\setlength{\rightskip}{0pt plus 5cm}-\/ (float) distance\-Scale\hspace{0.3cm}{\ttfamily  \mbox{[}read, write, assign\mbox{]}}}}
 \label{interface_a_r_browser_view_a91aef66437e470e8f51b90f5f2ec613c}
 
 
-Controls the scale of objects positions. 
+\-Controls the scale of objects positions. 
 
-This doesn't change the size of objects, just the relative position to the origin. As an example, a scale of 2.0 means that objects are twice as far away, and a scale of 1.0/2.0 means objects are twice as close. This property does NOT change the calculations of minimum and maximum distance properties. 
+\-This doesn't change the size of objects, just the relative position to the origin. \-As an example, a scale of 2.\-0 means that objects are twice as far away, and a scale of 1.\-0/2.0 means objects are twice as close. \-This property does \-N\-O\-T change the calculations of minimum and maximum distance properties. 
 
-The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
+\-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-ARBrowserView.h\end{DoxyCompactItemize}
+\-A\-R\-Browser\-View.\-h\end{DoxyCompactItemize}

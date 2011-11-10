@@ -24,28 +24,29 @@
 - (void)loadView {
 	// Standard view size for iOS UIWindow
 	CGRect frame = CGRectMake(0, 0, 320, 480);
-	
+
 	// Initialize the OpenGL view
 	ARBrowserView * browserView = [[ARBrowserView alloc] initWithFrame:frame];
-	
+
 	// Print out FPS information.
 	[browserView setDebug:YES];
 
 	// Turn off the grid.
 	//[browserView setDisplayGrid:NO];
-    [browserView setDisplayGrid:YES];
-	
+	[browserView setDisplayGrid:YES];
+
 	[browserView setAutoresizingMask:UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth];
-	
+
 	[browserView setDelegate:self];
-	
+
 	// Make things 2 times closer than they actually are
 	[browserView setDistanceScale:0.5];
-	
+
 	// Change the minimum and maximum distance of objects.
-	[browserView setMinimumDistance:0.0];
-	[browserView setMaximumDistance:100.0];
-	
+	[browserView setMinimumDistance:2.0];
+	[browserView setScaleDistance:8.0];
+	[browserView setMaximumDistance:500.0];
+
 	[self setView:browserView];	
 }
 

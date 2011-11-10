@@ -16,6 +16,11 @@
 #import <OpenGLES/ES1/gl.h>
 #import <OpenGLES/ES1/glext.h>
 
+// The number of buffers to allocate
+enum {
+	ARVideoFrameBuffers = 2
+};
+
 /// The image data from the video camera.
 typedef struct {
 	/// The frame number
@@ -37,9 +42,9 @@ typedef struct {
 /// Provides simplea access to iPhone video camera in the form of ARVideoFrame data. This can then be provided to ARVideoBackground for rendering.
 @interface ARVideoFrameController : NSObject<AVCaptureVideoDataOutputSampleBufferDelegate> {
 	AVCaptureSession * captureSession;
-	ARVideoFrame videoFrame;
+	ARVideoFrame videoFrames[ARVideoFrameBuffers];
     
-    BOOL first;
+	NSUInteger index;
 }
 
 - init;
