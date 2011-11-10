@@ -78,7 +78,9 @@ double distanceBetween(const CLLocationCoordinate2D & a, const CLLocationCoordin
 	double t = sx*sx + cos(a.latitude*D2R) * cos(b.latitude*D2R) * sy*sy;
 	double c = 2.0 * atan2(sqrt(t), sqrt(1.0-t));
 	
-	return abs(radius * c);
+	double distance = fabs(radius * c);
+	
+	return distance;
 }
 
 - (Vec3) calculateRelativePositionOf: (ARWorldLocation*)other
@@ -95,11 +97,11 @@ double distanceBetween(const CLLocationCoordinate2D & a, const CLLocationCoordin
 	
 	// If longitude is less than origin, inverse x coordinate.
 	if (other->location.longitude < location.longitude)
-		r.x *= -1;
+		r.x *= -1.0;
 	
 	// If latitude is less than origin, inverse y coordinate
 	if (other->location.latitude < location.latitude)
-		r.y *= -1;
+		r.y *= -1.0;
 	
 	r.z = 0;
 	
