@@ -51,8 +51,10 @@
 - init
 {
 	if ((self = [super init])) {
-		videoFrame.data = NULL;
-		videoFrame.index = 0;
+		for (NSUInteger i = 0; i < ARVideoFrameBuffers; ++i) {
+			videoFrames[i].data = NULL;
+			videoFrames[i].index = 0;
+		}
 
 		AVCaptureDevice * captureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
 		
@@ -111,14 +113,18 @@
 			nil
 		]];
 		
-		videoFrame.internalFormat = GL_RGBA;
-		videoFrame.pixelFormat = GL_BGRA;
-		videoFrame.dataType = GL_UNSIGNED_BYTE;
+		for (NSUInteger i = 0; i < ARVideoFrameBuffers; ++i) {
+			videoFrames[i].internalFormat = GL_RGBA;
+			videoFrames[i].pixelFormat = GL_BGRA;
+			videoFrames[i].dataType = GL_UNSIGNED_BYTE;
+		}
 		
-		captureSession = [[AVCaptureSession alloc] init];
+		captureSession = [AVCaptureSession new];
 		
-		if ([captureSession canSetSessionPreset:AVCaptureSessionPreset640x480]) {
-			[captureSession setSessionPreset:AVCaptureSessionPreset640x480];
+		if ([captureSession canSetSessionPreset:AVCaptureSessionPresetMedium]) {
+			[captureSession setSessionPreset:AVCaptureSessionPresetMedium];
+		} else if ([captureSession canSetSessionPreset:AVCaptureSessionPresetLow]) {
+			[captureSession setSessionPreset:AVCaptureSessionPresetLow];
 		}
 		
 		[captureSession addInput:captureInput];
@@ -146,12 +152,16 @@
 	
 	[captureSession release];
 	
+	for (NSUInteger i = 0; i < ARVideoFrameBuffers; ++i) {
+		free(videoFrames[i].data);
+		videoFrames[i].data = NULL;
+	}
+	
 	[super dealloc];
 }
 
 - (void) start {
 	[captureSession startRunning];
-	first = YES;
 }
 
 - (void) stop {
@@ -159,12 +169,15 @@
 }
 
 - (ARVideoFrame*) videoFrame {
-	return &videoFrame;
+	return videoFrames + (index % 2);
 }
 
 - (void) captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection 
 {
 	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
+
+	NSUInteger nextIndex = index + 1;
+	ARVideoFrame * videoFrame = videoFrames + (nextIndex % 2);
 	
 	// Acquire the image buffer data
 	CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
@@ -178,26 +191,25 @@
 	
 	size_t count = bytesPerRow * height;
 	
-	if (first) {
-		first = NO;
-		
+	if (index == 0) {
 		NSLog(@"Image data dimensions = (%ld, %ld)", width, height);
 	}
 	
-	if (videoFrame.data == NULL) {
-		videoFrame.data = (unsigned char*)malloc(count);
+	if (videoFrame->data == NULL) {
+		videoFrame->data = (unsigned char*)malloc(count);
 		
-		videoFrame.size.width = width;
-		videoFrame.size.height = height;
-		videoFrame.bytesPerRow = bytesPerRow;
+		videoFrame->size.width = width;
+		videoFrame->size.height = height;
+		videoFrame->bytesPerRow = bytesPerRow;
 	}
 	
-	memcpy(videoFrame.data, baseAddress, bytesPerRow * height);
-	videoFrame.index++;
+	memcpy(videoFrame->data, baseAddress, bytesPerRow * height);
+	videoFrame->index = nextIndex;
 	
 	// We unlock the pixel buffer
 	CVPixelBufferUnlockBaseAddress(imageBuffer, 0);
 
+	index = nextIndex;
 	[pool drain];
 }
 

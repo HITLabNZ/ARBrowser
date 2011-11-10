@@ -43,8 +43,10 @@ uint32_t nextHighestPowerOf2 (uint32_t n)
 	assert(frame != NULL && frame->data != NULL);
 		
 	// Don't update the data if the frame index has not changed.
-	if (frame->index == lastIndex) return;
-		
+	if (frame->index == lastIndex) {
+		return;
+	}
+	
 	glBindTexture(GL_TEXTURE_2D, texture);
 		
 	// Resize the texture if necessary.
