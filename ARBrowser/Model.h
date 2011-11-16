@@ -34,6 +34,9 @@ namespace ARBrowser {
 	/// The size of the compass is fixed from -20 <-> 20.
 	const float RadarDiameter = 40.0;
 	
+	/// Render a ring with radius r around the Z axis.
+	void renderRing (float r);
+	
 	/// Render a radar using OpenGL at the origin.
 	/// Points are points within the compass, edgePoints are points on the edge of the compass.
 	void renderRadar (VerticesT & points, VerticesT & edgePoints, float pointScale = 1.0);
