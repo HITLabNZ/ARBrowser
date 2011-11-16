@@ -39,13 +39,16 @@
 
 	[browserView setDelegate:self];
 
-	// Make things 2 times closer than they actually are
-	[browserView setDistanceScale:0.5];
-
 	// Change the minimum and maximum distance of objects.
-	[browserView setMinimumDistance:2.0];
-	[browserView setScaleDistance:8.0];
-	[browserView setMaximumDistance:100.0];
+	[browserView setMinimumDistance:1.0];
+	
+	// Icons will never get bigger past this point until the minimumDistance where they are culled.
+	[browserView setNearDistance:3.0];
+	
+	// Icons will never get smaller past this point until the maximumDistance where they are culled.
+	[browserView setFarDistance:25.0];
+	
+	[browserView setMaximumDistance:500.0];
 
 	[self setView:browserView];	
 }

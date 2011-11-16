@@ -35,25 +35,29 @@ struct ARBrowserViewState;
 	/// @internal
 	struct ARBrowserViewState * state;
 	
-	float distanceScale, minimumDistance, scaleDistance, maximumDistance;
+	float minimumDistance, maximumDistance;
+	
+	/// Objects closer than near distance will be scaled down in size,
+	/// and vise versa for far distance.
+	float nearDistance, farDistance;
+	
 	BOOL displayRadar, displayGrid;
 }
 
 /// The delegate for the ARBrowserView must implement ARBrowserViewDelegate.
 @property(nonatomic,assign) id<ARBrowserViewDelegate> delegate;
 
-/// Controls the scale of objects positions. This doesn't change the size of objects, just the relative position to the origin. As an example, a scale of 2.0 means that objects are twice as far away, and a scale of 1.0/2.0 means objects are twice as close.
-/// This property does NOT change the calculations of minimum and maximum distance properties.
-@property(nonatomic,assign) float distanceScale;
-
 /// Controls culling of near objects. Objects closer than this distance are not rendered.
 @property(nonatomic,assign) float minimumDistance;
 
-/// Controls the scale of objects size. Objects closer than this distance appear the same size as they do at this distance.
-@property(nonatomic,assign) float scaleDistance;
-
 /// Controls culling of distance objects. Objects further away than this are not rendered.
 @property(nonatomic,assign) float maximumDistance;
+
+/// Objects closer than this appear the same size.
+@property(nonatomic,assign) float nearDistance;
+
+/// Objects further away than this size appear the same size.
+@property(nonatomic,assign) float farDistance;
 
 /// Display a small on-screen compass.
 @property(assign) BOOL displayRadar;

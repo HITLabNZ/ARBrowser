@@ -13,6 +13,16 @@
 #import "ARWorldPoint.h"
 #import "ARModel.h"
 
+struct ARBrowserVisibleWorldPoint {
+	float distance;
+	Vec3 delta;
+	ARWorldPoint * point;
+	
+	bool operator< (const ARBrowserVisibleWorldPoint & other) const {
+		return this->distance > other.distance;
+	}
+};
+
 /// @internal
 struct ARBrowserViewState {
 	Mat44 projectionMatrix, viewMatrix;
@@ -32,7 +42,8 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 
 @implementation ARBrowserView
 
-@synthesize delegate, distanceScale, minimumDistance, scaleDistance, maximumDistance, displayRadar, displayGrid;
+@synthesize delegate, minimumDistance, maximumDistance, displayRadar, displayGrid;
+@synthesize nearDistance, farDistance;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -49,10 +60,12 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 		state = new ARBrowserViewState;
 		ARBrowser::generateGrid(state->grid);
 		
-		distanceScale = 1.0;
 		minimumDistance = 2.0;
-		scaleDistance = 10.0;
+		nearDistance = minimumDistance * 2.0;
+		
 		maximumDistance = 500.0;
+		farDistance = maximumDistance / 2.0;
+		
 		displayRadar = YES;
 	}
 	
@@ -77,18 +90,24 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 			// sphere.transform([worldPoint transformation]);
 			
 			// We need to calculate collision detection in the same coordinate system as drawn on screen.
-			Vec3 offset = [origin calculateRelativePositionOf:worldPoint] * distanceScale;
+			Vec3 offset = [origin calculateRelativePositionOf:worldPoint];
 			
 			// Calculate actual (non-scaled) distance.
-			float distance = offset.length() * (1.0/distanceScale);
+			float distance = offset.length();
 			
+			// Cull the object if it is outside the view bounds.
 			if (distance < minimumDistance || distance > maximumDistance) {
 				continue;
 			}
 			
-			// Scale the object down if it is closer than the minimum distance.
-			if (distance <= scaleDistance) {
-				float scale = distance/scaleDistance;
+			// Scale the object size based on near and far distances.
+			if (distance < nearDistance) {
+				float scale = distance / nearDistance;
+				sphere.radius *= scale;
+			}
+			
+			else if (distance > farDistance) {
+				float scale = distance / farDistance;
 				sphere.radius *= scale;
 			}
 			
@@ -321,31 +340,60 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 		ARBrowser::renderAxis();
 	}
 	
+	if (_debug) {
+		glColor4f(1.0, 0.0, 0.0, 1.0);
+		ARBrowser::renderRing(maximumDistance);		
+		ARBrowser::renderRing(minimumDistance);
+		
+		glColor4f(0.0, 0.0, 1.0, 1.0);
+		ARBrowser::renderRing(nearDistance);
+		
+		glColor4f(0.0, 1.0, 0.0, 1.0);
+		ARBrowser::renderRing(farDistance);
+		
+		glColor4f(1.0, 1.0, 1.0, 1.0);
+	}
+	
 	NSArray * worldPoints = [[self delegate] worldPoints];
 	
+	std::vector<ARBrowserVisibleWorldPoint> visibleWorldPoints;
+	
 	for (ARWorldPoint * point in worldPoints) {
-		Vec3 delta = [origin calculateRelativePositionOf:point] * distanceScale;
+		Vec3 delta = [origin calculateRelativePositionOf:point];
 		//NSLog(@"Delta: %0.3f, %0.3f, %0.3f", delta.x, delta.y, delta.z);
 		
 		// Calculate actual (non-scaled) distance.
-		float distance = delta.length() * (1.0/distanceScale);
+		float distance = delta.length();
 		
 		if (distance < minimumDistance || distance > maximumDistance) {
 			continue;
 		}
 		
+		visibleWorldPoints.push_back((ARBrowserVisibleWorldPoint){distance, delta, point});
+	}
+	
+	// Depth sort the visible objects.
+	std::sort(visibleWorldPoints.begin(), visibleWorldPoints.end());
+	
+	for (std::size_t i = 0; i < visibleWorldPoints.size(); i += 1) {
+		const ARBrowserVisibleWorldPoint & p = visibleWorldPoints[i];
 		glPushMatrix();
 		
-		// Scale the object down if it is closer than the minimum distance.
-		if (distance <= scaleDistance) {
-			glScalef(distance/scaleDistance, distance/scaleDistance, distance/scaleDistance);
+		glTranslatef(p.delta.x, p.delta.y, p.delta.z);
+		
+		if (p.distance < nearDistance) {
+			float scale = p.distance / nearDistance;
+			glScalef(scale, scale, scale);
+		}
+		
+		else if (p.distance > farDistance) {
+			float scale = p.distance / farDistance;
+			glScalef(scale, scale, scale);
 		}
 		
 		//NSLog(@"delta: %0.6f, %0.6f, %0.6f", delta.x, delta.y, delta.z);
 		
-		glTranslatef(delta.x, delta.y, delta.z);
-		
-		[[point model] draw];
+		[p.point.model draw];
 		
 		// Render the bounding sphere for debugging.
 		//ARBrowser::VerticesT points;

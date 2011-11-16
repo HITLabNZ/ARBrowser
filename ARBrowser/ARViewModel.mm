@@ -130,6 +130,12 @@
 	// Calculate the angle between what we want and regular x-axis
 	float angle = acos(x.dot(r));
 	
+	Vec3 scale(
+		Vec3(m.f[0], m.f[4], m.f[8]).length(),
+		Vec3(m.f[1], m.f[5], m.f[9]).length(),
+		Vec3(m.f[2], m.f[6], m.f[10]).length()
+	);
+	
 	// Discard all transform except translation.
 	m.f[ 0] = 1; m.f[ 4] = 0; m.f[ 8] = 0;
 	m.f[ 1] = 0; m.f[ 5] = 1; m.f[ 9] = 0;
@@ -139,8 +145,9 @@
 	glPushMatrix();
 	glLoadIdentity();
 	
-	// Load the original translation:
+	// Load the original translation and scale:
 	glMultMatrixf(m.f);
+	glScalef(scale.x, scale.y, scale.z);
 	
 	//NSLog(@"Angle: %0.3f degrees", angle * ARBrowser::R2D);
 	
