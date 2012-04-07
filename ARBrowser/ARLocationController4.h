@@ -19,5 +19,7 @@
     CMDeviceMotion * _currentMotion;
 }
 
+@property(retain) CMDeviceMotion * currentMotion;
+
 @end
 

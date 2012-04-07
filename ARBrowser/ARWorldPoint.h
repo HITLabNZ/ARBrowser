@@ -39,6 +39,9 @@ typedef struct {
 /// This property is the primary method by which additional data should be managed for a specific point, e.g. street address, telephone number.
 @property(nonatomic,retain) NSMutableDictionary * metadata;
 
+/// Return true of the point will render using earth-centered earth-fixed coordinates:
+@property(nonatomic,assign) BOOL fixed;
+
 /// Title for MKAnnotation (returns metadata.title)
 - (NSString *)title;
 

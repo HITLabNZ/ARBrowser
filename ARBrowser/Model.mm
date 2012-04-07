@@ -273,7 +273,13 @@ namespace ARBrowser {
 	const char * TOKEN_FACE = "f";
 	const char * TOKEN_USE_MATERIAL = "usemtl";
 
-	struct _ObjMeshFaceIndex{
+	struct _ObjMeshFaceIndex {
+		_ObjMeshFaceIndex() {
+			pos_index[0] = pos_index[1] = pos_index[2] = 0;
+			tex_index[0] = tex_index[1] = tex_index[2] = -1;
+			nor_index[0] = nor_index[1] = nor_index[2] = -1;
+		}
+		
 		std::string material;
 		int pos_index[3];
 		int tex_index[3];
@@ -303,6 +309,10 @@ namespace ARBrowser {
 		std::ifstream filestream;
 		filestream.open(filename.c_str());
 		
+		if (!filestream) {
+			std::cerr << "Couldn't load file: " << filename << std::endl;
+		}
+		
 		// No longer depending on char arrays thanks to: Dale Weiler
 		std::string line_stream;
 		while(std::getline(filestream, line_stream)) {
@@ -325,11 +335,17 @@ namespace ARBrowser {
 				_ObjMeshFaceIndex face_index;
 				face_index.material = currentMaterial;
 				
-				char interupt;
+				char interrupt;
 				for(int i = 0; i < 3; ++i) {
-					str_stream >> face_index.pos_index[i] >> interupt
-					>> face_index.tex_index[i]  >> interupt
-					>> face_index.nor_index[i];
+					std::string vertex;
+					str_stream >> vertex;
+					
+					std::stringstream vertex_stream;
+					vertex_stream.str(vertex);
+					
+					vertex_stream >> face_index.pos_index[i] >> interrupt
+						>> face_index.tex_index[i] >> interrupt
+						>> face_index.nor_index[i];
 				}
 				faces.push_back(face_index);
 			} else if (type_str == TOKEN_USE_MATERIAL) {
@@ -361,8 +377,12 @@ namespace ARBrowser {
 			
 			for(size_t j = 0; j < 3; ++j) {
 				face.vertices[j].pos        = positions[faces[i].pos_index[j] - 1];
-				face.vertices[j].texcoord   = texcoords[faces[i].tex_index[j] - 1];
-				face.vertices[j].normal     = normals[faces[i].nor_index[j] - 1];
+				
+				if (faces[i].tex_index[j] != -1)
+					face.vertices[j].texcoord   = texcoords[faces[i].tex_index[j] - 1];
+				
+				if (faces[i].nor_index[j] != -1)
+					face.vertices[j].normal     = normals[faces[i].nor_index[j] - 1];
 			}
 			
 			currentMesh->faces.push_back(face);
@@ -376,7 +396,7 @@ namespace ARBrowser {
 		ObjMaterial * material = NULL;
 		
 		std::string line_stream;
-		while(std::getline(filestream, line_stream)) {
+		while (std::getline(filestream, line_stream)) {
 			std::stringstream str_stream(line_stream);
 			std::string type_str;
 			str_stream >> type_str;

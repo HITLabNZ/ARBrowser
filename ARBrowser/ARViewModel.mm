@@ -84,7 +84,7 @@
 }
 
 - (void) draw
-{
+{	
 	// We can only update if there was a view given.
 	if (_dirty && _overlay) {
 		[self updateNow];

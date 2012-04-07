@@ -236,8 +236,9 @@ int __OPENGLES_VERSION = 1;
 
 - (void) startRendering {
     _displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(renderFrame:)];
+    //_displayLink.frameInterval = 4.0;
     [_displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
-	
+    
 	[_lastDate release];
 	_lastDate = [[NSDate date] retain];
 	_count = 0;
@@ -254,12 +255,14 @@ int __OPENGLES_VERSION = 1;
 {
 	// if ([self isHidden]) return;
 	
+    //CFTimeInterval refreshTime = [_displayLink timestamp] + [_displayLink duration];
+    
 	[self setCurrentContext];
 	
 	if ([_delegate respondsToSelector:@selector(update:)])
 		[_delegate update:self];
 	
-	[self swapBuffers];
+    [self swapBuffers];
 	
 	if (_debug) {
 		_count += 1;

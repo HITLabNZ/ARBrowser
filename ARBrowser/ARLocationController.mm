@@ -36,6 +36,9 @@ NSString * const ARHeadingChanged = @"ARHeadingChanged";
             version = 4;
         }
         
+		// Force version 3
+		//version = 3;
+		
         NSLog(@"Using location controller version %u", version);
         
         if (version == 3) {

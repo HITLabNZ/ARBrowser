@@ -10,15 +10,51 @@
 #import "ARWorldLocation.h"
 #import "Model.h"
 
+// X is defined as the vector product <b>Y.Z</b> (It is tangential to the ground at the device's current location and roughly points East).
+// Y is tangential to the ground at the device's current location and points towards the magnetic North Pole.
+// Z points towards the sky and is perpendicular to the ground.
+int calculateRotationMatrixFromMagnetometer(CMAcceleration gravity, CMMagneticField magnetometer, float * R) {
+    float Ax = gravity.x, Ay = gravity.y, Az = gravity.z;
+    float Ex = magnetometer.x, Ey = magnetometer.y, Ez = magnetometer.z;
+    
+    float Hx = Ey*Az - Ez*Ay, Hy = Ez*Ax - Ex*Az, Hz = Ex*Ay - Ey*Ax;
+    
+    float normH = sqrt(Hx*Hx + Hy*Hy + Hz*Hz);
+    
+    if (normH < 0.1) {
+        // device is close to free fall (or in space?), or close to
+        // magnetic north pole. Typical values are  > 100.
+        return 0;
+    }
+    
+    float invH = 1.0f / normH;
+    Hx *= invH;
+    Hy *= invH;
+    Hz *= invH;
+    
+    float invA = 1.0f / sqrt(Ax*Ax + Ay*Ay + Az*Az);
+    Ax *= invA;
+    Ay *= invA;
+    Az *= invA;
+    
+    float Mx = Ay*Hz - Az*Hy, My = Az*Hx - Ax*Hz, Mz = Ax*Hy - Ay*Hx;
+    
+    R[0]  = Hx;    R[1]  = Hy;    R[2]  = Hz;   R[3]  = 0;
+    R[4]  = Mx;    R[5]  = My;    R[6]  = Mz;   R[7]  = 0;
+    R[8]  = Ax;    R[9]  = Ay;    R[10] = Az;   R[11] = 0;
+    R[12] = 0;     R[13] = 0;     R[14] = 0;    R[15] = 1;
+    
+    return 1;
+}
 
 @interface ARLocationControllerBase ()
-@property(retain,readwrite,nonatomic) CLLocation * currentLocation;
-@property(retain,readwrite,nonatomic) CLHeading * currentHeading;
+@property(retain,readwrite) CLLocation * currentLocation;
+@property(retain,readwrite) CLHeading * currentHeading;
 @end
 
 @implementation ARLocationControllerBase
 
-@synthesize currentHeading, currentLocation;
+@synthesize currentHeading, currentLocation, northAxis;
 
 - (id)init {
     self = [super init];
@@ -82,8 +118,10 @@
     [self setCurrentHeading:newHeading];
 }
 
+//#define DEBUG_DERENZY
+
 - (ARWorldLocation*) worldLocation
-{	
+{
 	if (currentLocation && currentHeading) {
 		ARWorldLocation * result = [[ARWorldLocation new] autorelease];
         
@@ -117,6 +155,19 @@
 - (CLLocationDirection) currentBearing
 {
     return [currentHeading trueHeading];
+}
+
+- (BOOL) calculateGlobalOrientation: (float[16])matrix
+{
+    CMMagneticField magneticField = {
+        self.currentHeading.x * ARBrowser::D2R,
+        self.currentHeading.y * ARBrowser::D2R,
+        self.currentHeading.z * ARBrowser::D2R
+    };
+    
+    //NSLog(@"Magnetic Field Vector: %0.3f, %0.3f, %0.3f", self.currentHeading.x, self.currentHeading.y, self.currentHeading.z);
+    
+    return calculateRotationMatrixFromMagnetometer([self currentGravity], magneticField, matrix);
 }
 
 @end

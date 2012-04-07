@@ -44,4 +44,6 @@ const double kSensorSampleFrequency = 60.0; //Hz
 
 - (ARWorldLocation*) worldLocation;
 
+- (BOOL) calculateGlobalOrientation: (float[16])matrix;
+
 @end

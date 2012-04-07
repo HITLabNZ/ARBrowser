@@ -42,7 +42,7 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 
 @implementation ARBrowserView
 
-@synthesize delegate, minimumDistance, maximumDistance, displayRadar, displayGrid;
+@synthesize delegate, minimumDistance, maximumDistance, displayRadar, displayGrid, radarCenter;
 @synthesize nearDistance, farDistance;
 
 - (id)initWithFrame:(CGRect)frame
@@ -67,9 +67,24 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 		farDistance = maximumDistance / 2.0;
 		
 		displayRadar = YES;
+		
+		radarCenter.x = -1;
+		radarCenter.y = -1;
 	}
 	
 	return self;
+}
+
+- (float) scaleFactorFor:(ARWorldPoint*)point atDistance:(float)distance {
+	return 1.0;
+	
+	if (distance < nearDistance) {
+		return (distance / nearDistance) * [self.delegate browserView:self scaleFactorFor:point atDistance:nearDistance];
+	} else if (distance > farDistance) {
+		return (distance / farDistance) * [self.delegate browserView:self scaleFactorFor:point atDistance:farDistance];
+	} else {
+		return [self.delegate browserView:self scaleFactorFor:point atDistance:distance];
+	}
 }
 
 - (void)touchesBegan: (NSSet *)touches withEvent: (UIEvent *)event
@@ -100,17 +115,7 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 				continue;
 			}
 			
-			// Scale the object size based on near and far distances.
-			if (distance < nearDistance) {
-				float scale = distance / nearDistance;
-				sphere.radius *= scale;
-			}
-			
-			else if (distance > farDistance) {
-				float scale = distance / farDistance;
-				sphere.radius *= scale;
-			}
-			
+			sphere.radius *= [self scaleFactorFor:worldPoint atDistance:distance];
 			sphere.center += offset;
 			
 			spheres.push_back(sphere);
@@ -141,6 +146,9 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 	
 	for (ARWorldPoint * point in worldPoints) {
 		Vec3 delta = [origin calculateRelativePositionOf:point];
+
+		// Ignore altitude in distance calculations:
+		delta.z = 0;
 		
 		if (delta.length() == 0) {
 			radarPoints.push_back(delta);
@@ -184,7 +192,8 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 	glLoadIdentity();
 	
 	// This isn't quite right due to scaling, but it is sufficient at this time.
-	glTranslatef(-minDimension, (viewSize.height / 2.0) - (radarSize.height / 2.0 * scale), 0);
+	//glTranslatef(minDimension * radarCenter.x, (viewSize.height / 2.0) - ((radarSize.height / 2.0 * scale) * radarCenter.y), 0);
+	glTranslatef(minDimension, (viewSize.height / 2.0) - (radarSize.height / 2.0 * scale), 0);	
 	
 	// Make it slightly smaller so the edges aren't touching the bounding box.
 	scale *= 0.9;
@@ -321,7 +330,7 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 	CGSize viewSize = [self bounds].size;
 	
 	MATRIX perspectiveProjection;
-	MatrixPerspectiveFovRH(perspectiveProjection, f2vt(70), f2vt(viewSize.width / viewSize.height), f2vt(0.1f), f2vt(1000.0f), 0);
+	MatrixPerspectiveFovRH(perspectiveProjection, 40.0 * ARBrowser::D2R, viewSize.width / viewSize.height, 0.1f, 1000.0f, 0);
 	glMultMatrixf(perspectiveProjection.f);
 	
 	glMatrixMode(GL_MODELVIEW);
@@ -333,7 +342,7 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 	glGetFloatv(GL_MODELVIEW_MATRIX, state->viewMatrix.f);
 	
 	glColor4f(0.7, 0.7, 0.7, 0.2);
-	glLineWidth(1.0);
+	glLineWidth(2.0);
 	
 	if (displayGrid) {
 		ARBrowser::renderVertices(state->grid);
@@ -354,16 +363,32 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 		glColor4f(1.0, 1.0, 1.0, 1.0);
 	}
 	
-	NSArray * worldPoints = [[self delegate] worldPoints];
+	NSArray * worldPoints = nil;
+	if ([self.delegate respondsToSelector:@selector(worldPointsFromLocation:)]) {
+		worldPoints = [self.delegate worldPointsFromLocation:origin];
+	} else {
+		worldPoints = [self.delegate worldPoints];
+	}
+	
+	if (worldPoints == nil) {
+		return;
+	}
 	
 	std::vector<ARBrowserVisibleWorldPoint> visibleWorldPoints;
 	
 	for (ARWorldPoint * point in worldPoints) {
 		Vec3 delta = [origin calculateRelativePositionOf:point];
+		
+		delta.z = -2;
+		
 		//NSLog(@"Delta: %0.3f, %0.3f, %0.3f", delta.x, delta.y, delta.z);
 		
+		// Distance as a bird flies (e.g. ignoring altitude)
+		Vec3 birdFlys = delta;
+		birdFlys.z = 0;
+		
 		// Calculate actual (non-scaled) distance.
-		float distance = delta.length();
+		float distance = birdFlys.length();
 		
 		if (distance < minimumDistance || distance > maximumDistance) {
 			continue;
@@ -381,17 +406,10 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 		
 		glTranslatef(p.delta.x, p.delta.y, p.delta.z);
 		
-		if (p.distance < nearDistance) {
-			float scale = p.distance / nearDistance;
-			glScalef(scale, scale, scale);
-		}
+		//float scale = [self scaleFactorFor:p.point atDistance:p.distance];
+		//glScalef(scale, scale, scale);
 		
-		else if (p.distance > farDistance) {
-			float scale = p.distance / farDistance;
-			glScalef(scale, scale, scale);
-		}
-		
-		//NSLog(@"delta: %0.6f, %0.6f, %0.6f", delta.x, delta.y, delta.z);
+		glRotatef(p.point.rotation, 0.0, 0.0, 1.0);
 		
 		[p.point.model draw];
 		

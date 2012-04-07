@@ -84,7 +84,6 @@ namespace ARBrowser {
 		void enable ();
 		void disable ();
 		
-		
 		Color4f ambient;
 		
 		/// Path to the diffuse map texture (e.g. basic surface colour).

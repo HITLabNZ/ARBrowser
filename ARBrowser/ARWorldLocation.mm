@@ -11,7 +11,7 @@
 #import "Model.h"
 
 // Convenience
-const double D2R = ARBrowser::D2R;
+const double D2R = (M_PI / 180.0);
 
 #pragma mark -
 #pragma mark Geodetic utilities definition
@@ -22,8 +22,7 @@ const double WGS84_A = 6378137.0;
 const double WGS84_E = 8.1819190842622e-2;
 
 // Converts latitude, longitude to ECEF coordinate system
-void convertLocationToECEF(double lat, double lon, double alt, double *x, double *y, double *z)
-{       
+void convertLocationToECEF(double lat, double lon, double alt, double *x, double *y, double *z) {
 	double clat = cos(lat * D2R);
 	double slat = sin(lat * D2R);
 	double clon = cos(lon * D2R);
@@ -34,6 +33,14 @@ void convertLocationToECEF(double lat, double lon, double alt, double *x, double
 	*x = (N + alt) * clat * clon;
 	*y = (N + alt) * clat * slon;
 	*z = (N * (1.0 - WGS84_E * WGS84_E) + alt) * slat;
+}
+
+Vec3d convertToECEF(CLLocationCoordinate2D coordinate, ARLocationAltitude altitude) {
+	double x, y, z;
+	
+	convertLocationToECEF(coordinate.latitude, coordinate.longitude, altitude, &x, &y, &z);
+	
+	return (Vec3d){x, y, z};
 }
 
 // Coverts ECEF to ENU coordinates centered at given lat, lon
@@ -52,58 +59,97 @@ void convertECEFtoENU(double lat, double lon, double x, double y, double z, doub
 	*u = clat*clon*dx + clat*slon*dy + slat*dz;
 }
 
-@implementation ARWorldLocation
-
-@synthesize location, altitude, position, rotation;
-
-- (void) setCoordinate: (CLLocationCoordinate2D)_location altitude: (double)_altitude
-{
-	// Retain original coordinates
-	location = _location;
-	altitude = _altitude;
-    
-    double x, y, z;
-    convertLocationToECEF(location.latitude, location.longitude, altitude, &x, &y, &z);
-
-    position = Vec3(x, y, z);
+CLLocationDirection calculateBearingBetween(ARLocationCoordinate from, ARLocationCoordinate to) {
+	// We need to calculate the angle between <_location -> north pole>, and <_location -> marker>
+	// http://www.movable-type.co.uk/scripts/latlong.html
+	// Δlat = lat2− lat1
+	// Δlong = long2− long1
+	
+	// θ =	atan2(	sin(Δlong).cos(lat2),
+	//				cos(lat1).sin(lat2) − sin(lat1).cos(lat2).cos(Δlong) )
+	
+	CLLocationDirection bearing = atan2(sin(to.longitude - from.longitude) * cos(to.latitude), 
+										cos(from.latitude) * sin(to.latitude) -
+										sin(from.latitude) * cos(to.latitude) * cos(to.longitude - from.longitude));
+	
+	return bearing * ARBrowser::R2D;
 }
 
-// Calculates the distance between two Vec2(latitude,longitude) points, on a sphere of the given radius.
-double distanceBetween(const CLLocationCoordinate2D & a, const CLLocationCoordinate2D & b, double radius) {
-	CLLocationCoordinate2D d;
-	d.latitude = (b.latitude - a.latitude) * D2R;
-	d.longitude = (b.longitude - a.longitude) * D2R;
+CLLocationDistance calculateDistanceBetween(ARLocationCoordinate a, ARLocationCoordinate b, ARLocationAltitude altitude) {
+	//Haversine formula:
+	// a = sin²(Δlat/2) + cos(lat1).cos(lat2).sin²(Δlong/2)
+	// c = 2.atan2(√a, √(1−a))
+	// d = R.c
+ 	// where R is earth’s radius (mean radius = 6,371km);
 	
-	double sx = sin(d.latitude/2.0), sy = sin(d.longitude/2.0);
-	double t = sx*sx + cos(a.latitude*D2R) * cos(b.latitude*D2R) * sy*sy;
+	ARLocationCoordinate delta;
+	delta.latitude = b.latitude - a.latitude;
+	delta.longitude = b.longitude - a.longitude;
+	
+	double sx = sin(delta.latitude/2.0), sy = sin(delta.longitude/2.0);
+	double t = sx*sx + cos(a.latitude) * cos(b.latitude) * sy*sy;
 	double c = 2.0 * atan2(sqrt(t), sqrt(1.0-t));
 	
-	double distance = fabs(radius * c);
+	double distance = fabs(altitude * c);
 	
 	return distance;
 }
 
-- (Vec3) calculateRelativePositionOf: (ARWorldLocation*)other
-{	
-	CLLocationCoordinate2D horizontal = {location.latitude, other->location.longitude};
-	CLLocationCoordinate2D vertical = {other->location.latitude, location.longitude};
+ARLocationCoordinate convertFromDegrees(CLLocationCoordinate2D location) {
+	ARLocationCoordinate result;
+	
+	result.latitude = location.latitude * D2R;
+	result.longitude = location.longitude * D2R;
+	
+	return result;
+}
+
+@implementation ARWorldLocation
+
+@synthesize coordinate = _coordinate, altitude = _altitude, position = _position, rotation = _rotation;
+
++ (ARWorldLocation *) fromLocation: (CLLocation *)location {
+	ARWorldLocation * worldLocation = [[ARWorldLocation new] autorelease];
+	
+	[worldLocation setCoordinate:location.coordinate altitude:location.altitude];
+	
+	return worldLocation;
+}
+
+- (void) setCoordinate:(CLLocationCoordinate2D)coordinate altitude:(ARLocationAltitude)altitude {
+	// Retain original coordinates
+	_coordinate = coordinate;
+	_altitude = altitude;
+	
+	double x, y, z;
+	convertLocationToECEF(_coordinate.latitude, _coordinate.longitude, altitude, &x, &y, &z);
+	
+	_position = Vec3(x, y, z);
+}
+
+- (Vec3) calculateRelativePositionOf:(ARWorldLocation*)other
+{
+	ARLocationCoordinate from = convertFromDegrees(_coordinate), to = convertFromDegrees(other->_coordinate);
+	
+	ARLocationCoordinate horizontal = {from.latitude, to.longitude};
+	ARLocationCoordinate vertical = {to.latitude, from.longitude};
 		
 	Vec3 r;
 	// We calculate x by varying longitude (east <-> west)
-	r.x = distanceBetween(location, horizontal, altitude);
+	r.x = calculateDistanceBetween(from, horizontal, _altitude);
 	
 	// We calculate y by varying latitude (north <-> south)
-	r.y = distanceBetween(location, vertical, altitude);
+	r.y = calculateDistanceBetween(from, vertical, _altitude);
 	
 	// If longitude is less than origin, inverse x coordinate.
-	if (other->location.longitude < location.longitude)
+	if (to.longitude < from.longitude)
 		r.x *= -1.0;
 	
 	// If latitude is less than origin, inverse y coordinate
-	if (other->location.latitude < location.latitude)
+	if (to.latitude < from.latitude)
 		r.y *= -1.0;
 	
-	r.z = 0;
+	r.z = other.altitude - _altitude;
 	
 	return r;
 }
@@ -115,12 +161,18 @@ double distanceBetween(const CLLocationCoordinate2D & a, const CLLocationCoordin
 
 - (void) setBearing: (float)bearing
 {
-	rotation = bearing;
+	_rotation = bearing;
 }
 
 - (NSString*) description
 {
-	return [NSString stringWithFormat:@"<ARWorldPoint: %0.5f %0.5f>", location.latitude, location.longitude];
+	return [NSString stringWithFormat:@"<ARWorldPoint: %0.8f %0.8f>", _coordinate.latitude, _coordinate.longitude];
+}
+
+- (CLLocationDistance) sphericalDistanceTo:(ARWorldLocation *)destination {
+	ARLocationCoordinate from = convertFromDegrees(_coordinate), to = convertFromDegrees(destination->_coordinate);
+	
+	return calculateDistanceBetween(from, to, (_altitude + destination->_altitude) / 2.0);
 }
 
 @end

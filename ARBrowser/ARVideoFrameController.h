@@ -39,15 +39,28 @@ typedef struct {
 	unsigned char * data;
 } ARVideoFrame;
 
+@class ARVideoFrameController;
+
+@protocol ARVideoFrameControllerDelegate <NSObject>
+- (void) videoFrameController:(ARVideoFrameController*)controller didCaptureFrame:(CGImageRef)buffer atTime:(CMTime)time;
+@end
+
 /// Provides simplea access to iPhone video camera in the form of ARVideoFrame data. This can then be provided to ARVideoBackground for rendering.
 @interface ARVideoFrameController : NSObject<AVCaptureVideoDataOutputSampleBufferDelegate> {
 	AVCaptureSession * captureSession;
 	ARVideoFrame videoFrames[ARVideoFrameBuffers];
     
 	NSUInteger index;
+	
+	id<ARVideoFrameControllerDelegate> delegate;
 }
 
+@property(nonatomic,assign) id<ARVideoFrameControllerDelegate> delegate;
+
 - init;
+
+/// Rate is in frames per second
+- initWithRate:(NSUInteger)rate;
 
 /// Start capturing video frames.
 - (void) start;

@@ -11,7 +11,7 @@
 
 @implementation ARWorldPoint
 
-@synthesize model, metadata;
+@synthesize model, metadata, fixed = _fixed;
 
 - (id)init
 {
@@ -34,14 +34,9 @@
 	id name = [metadata objectForKey:@"name"];
 	
 	if (name)
-		return [NSString stringWithFormat:@"<ARWorldPoint: %0.5f %0.5f '%@'>", location.latitude, location.longitude, name];
+		return [NSString stringWithFormat:@"<ARWorldPoint: %0.8f %0.8f '%@'>", _coordinate.latitude, _coordinate.longitude, name];
 	else
 		return [super description];
-}
-
-- (CLLocationCoordinate2D) coordinate
-{
-	return location;
 }
 
 - (NSString*) title

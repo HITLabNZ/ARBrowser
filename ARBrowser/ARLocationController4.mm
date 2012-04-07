@@ -13,10 +13,6 @@
 #include "Model.h"
 #include <math.h>
 
-@interface ARLocationController4 ()
-@property(retain,readwrite,nonatomic) CMDeviceMotion * currentMotion;
-@end
-
 #define HYBRID_SENSORS
 
 @implementation ARLocationController4
@@ -63,20 +59,18 @@ double interpolateAnglesDegrees(double a, double b, double blend) {
             if (!currentHeading)
                 return;
             
-            CMDeviceMotion * oldMotion = _currentMotion;
-            
             // Initialize the bearing
             if (_currentBearing == -360.0 && currentHeading) {
                 _currentBearing = [currentHeading trueHeading];
                 _smoothedBearing = _currentBearing;
             }
             
-            if (currentHeading && oldMotion) {
-                CLLocationDirection bearingChange = calculateBearingChange(_currentMotion, motion);
+            if (currentHeading && self.currentMotion) {
+                CLLocationDirection bearingChange = calculateBearingChange(self.currentMotion, motion);
                 _currentBearing = interpolateAnglesDegrees(_currentBearing + bearingChange, [currentHeading trueHeading], 0.05);
             }
             
-            [self setCurrentMotion:motion];
+			self.currentMotion = motion;
         }];
     }
     
@@ -95,6 +89,7 @@ double interpolateAnglesDegrees(double a, double b, double blend) {
 - (CLLocationDirection) currentBearing
 {
     return _currentBearing;
+	//return [currentHeading trueHeading];
 }
 
 - (CMAcceleration) currentGravity

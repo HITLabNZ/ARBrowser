@@ -12,7 +12,7 @@
 #import "ARVideoFrameController.h"
 #import "ARVideoBackground.h"
 
-@class ARBrowserView, ARWorldPoint;
+@class ARBrowserView, ARWorldLocation, ARWorldPoint;
 
 /// The main data source/delegate for ARBrowserView
 @protocol ARBrowserViewDelegate <EAGLViewDelegate>
@@ -20,8 +20,14 @@
 /// Return a list of world points, e.g. instances of ARWorldPoint objects.
 - (NSArray*)worldPoints;
 
+/// Returns a list of world points that will be rendered from a given point
+- (NSArray*)worldPointsFromLocation:(ARWorldLocation *)origin;
+
 /// Called when an object is selected on screen by the user.
 - (void) browserView: (ARBrowserView*)view didSelect:(ARWorldPoint*)point;
+
+- (float) browserView: (ARBrowserView*)view scaleFactorFor:(ARWorldPoint*)point atDistance:(float)distance;
+
 @end
 
 /// @internal
@@ -42,6 +48,9 @@ struct ARBrowserViewState;
 	float nearDistance, farDistance;
 	
 	BOOL displayRadar, displayGrid;
+
+	/// The center of the radar on the screen.
+	CGPoint radarCenter;
 }
 
 /// The delegate for the ARBrowserView must implement ARBrowserViewDelegate.
@@ -61,6 +70,10 @@ struct ARBrowserViewState;
 
 /// Display a small on-screen compass.
 @property(assign) BOOL displayRadar;
+
+/// The center of the radar on the screen, expressed in relative coordinates.
+/// (-1, -1) is the top left, (1, 1) is the bottom right. 
+@property(assign) CGPoint radarCenter;
 
 /// Display a background horizon grid.
 @property(assign) BOOL displayGrid;

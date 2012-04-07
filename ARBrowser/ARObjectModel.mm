@@ -45,6 +45,8 @@
 {	
 	[self loadMesh];
 	
+	glColor4f(1.0, 1.0, 1.0, 1.0);
+	
 	mesh->render();
 }
 
