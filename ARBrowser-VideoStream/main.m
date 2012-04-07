@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-#import "ARAppDelegate.h"
+#import "ARVSAppDelegate.h"
 
 int main(int argc, char *argv[])
 {
 	@autoreleasepool {
-	    return UIApplicationMain(argc, argv, nil, NSStringFromClass([ARAppDelegate class]));
+	    return UIApplicationMain(argc, argv, nil, NSStringFromClass([ARVSAppDelegate class]));
 	}
 }

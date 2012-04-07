@@ -8,6 +8,20 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ARVSCaptureView : NSObject
+#import "EAGLView.h"
+#import "ARVSCaptureViewController.h"
+
+@class ARVideoFrameController, ARVideoBackground, ARVSLocationController;
+
+@interface ARVSCaptureView : EAGLView {
+	ARVideoFrameController * videoFrameController;
+	ARVideoBackground * videoBackground;
+	
+	UITextView * velocityTextView;
+	
+	ARVSLocationController * locationController;
+}
+
+@property(nonatomic,retain) ARVideoFrameController * videoFrameController;
 
 @end

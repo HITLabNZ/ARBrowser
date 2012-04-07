@@ -6,9 +6,10 @@
 //  Copyright (c) 2011 Orion Transfer Ltd. All rights reserved.
 //
 
-#import "ARAppDelegate.h"
+#import "ARVSAppDelegate.h"
+#import "ARVSCaptureViewController.h"
 
-@implementation ARAppDelegate
+@implementation ARVSAppDelegate
 
 @synthesize window = _window;
 
@@ -21,6 +22,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+	[self.window setRootViewController:[[ARVSCaptureViewController alloc] init]];
+	
     return YES;
 }
 							
