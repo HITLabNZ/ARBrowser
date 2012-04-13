@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 
+#import "ARWorldLocation.h"
+
 @interface ARAPath : NSObject
 
 @property(nonatomic,retain) NSArray * points;
@@ -17,7 +19,5 @@
 @property(nonatomic,retain) NSArray * segments;
 
 - initWithPoints:(NSArray *)points;
-
-+ (ARAPath *) testRouteAtLocation:(CLLocation *)location;
 
 @end

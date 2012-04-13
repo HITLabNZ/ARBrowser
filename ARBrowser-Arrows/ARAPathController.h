@@ -11,6 +11,8 @@
 #import "ARAPath.h"
 #import "ARModel.h"
 
+@class UNRoute;
+
 @interface ARAPathController : NSObject
 
 @property(nonatomic,retain) id<ARRenderable> markerModel;

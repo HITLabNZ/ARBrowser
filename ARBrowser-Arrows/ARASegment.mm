@@ -31,7 +31,7 @@
 		Vec3d coordinate = begin + (step * offset);
 		NSLog(@"Coordinate: %0.6f = %0.8f, %0.8f", offset, coordinate.x, coordinate.y);
 				
-		ARWorldLocation * intermediateLocation = [[ARWorldPoint alloc] init];
+		ARWorldLocation * intermediateLocation = [[ARWorldPoint new] autorelease];
 		[intermediateLocation setCoordinate:(CLLocationCoordinate2D){coordinate.x, coordinate.y} altitude:coordinate.z];
 		[intermediateLocation setBearing:bearing];
 		

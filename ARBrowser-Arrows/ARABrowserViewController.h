@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 
-#import "ARCompassView.h"
 #import "ARBrowserView.h"
 #import "ARAPathController.h"
 

@@ -28,7 +28,7 @@
 }
 
 - (NSArray *)visiblePoints {
-	NSMutableArray * allSteps = [self.path.points mutableCopy];
+	NSMutableArray * allSteps = [[self.path.points mutableCopy] autorelease];
 	
 	for (ARASegment * segment in self.path.segments) {
 		[allSteps addObjectsFromArray:segment.steps];
@@ -64,7 +64,6 @@
 	
 	[_path autorelease];
 	_path = [path retain];
-	
 	
 	for (ARWorldPoint * point in self.path.points) {
 		point.model = self.markerModel;
