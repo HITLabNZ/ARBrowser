@@ -39,15 +39,60 @@
 
 	[browserView setDelegate:self];
 
-	// Make things 2 times closer than they actually are
-	[browserView setDistanceScale:0.5];
-
 	// Change the minimum and maximum distance of objects.
-	[browserView setMinimumDistance:2.0];
-	[browserView setScaleDistance:8.0];
-	[browserView setMaximumDistance:500.0];
+	[browserView setMinimumDistance:1.0];
+	
+	// Icons will never get bigger past this point until the minimumDistance where they are culled.
+	[browserView setNearDistance:3.0];
+	
+	// Icons will never get smaller past this point until the maximumDistance where they are culled.
+	[browserView setFarDistance:25.0];
+	
+	[browserView setMaximumDistance:400.0];
+	
+	scaleMarkers[0].distance = browserView.minimumDistance;
+	scaleMarkers[0].scale = 1.0;
+	
+	scaleMarkers[1].distance = browserView.maximumDistance;
+	scaleMarkers[1].scale = 4.0;
+	
+	UIPinchGestureRecognizer * pinchGesture = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinchGesture:)];
+	[browserView addGestureRecognizer:pinchGesture];
+	
+	[self setView:browserView];
+}
 
-	[self setView:browserView];	
+- (void)handlePinchGesture:(UIPinchGestureRecognizer*)sender {
+	switch ([sender state]) {
+		case UIGestureRecognizerStateBegan:
+			initialObjectScale = scaleMarkers[1].scale;
+			break;
+		case UIGestureRecognizerStateChanged:
+			scaleMarkers[1].scale = initialObjectScale * [sender scale];
+			break;
+		default:
+			break;
+	}
+}
+
+static float interpolate(float t, float a, float b) {
+	//NSLog(@"interpolate: %0.3f, %0.3f, %0.3f", t, a, b);
+	return ((1.0 - t) * a) + (t * b);
+}
+
+- (float) browserView: (ARBrowserView*)view scaleFactorFor:(ARWorldPoint*)point atDistance:(float)distance
+{	
+	if (distance < scaleMarkers[0].distance) {
+		return scaleMarkers[0].scale;
+	}
+	
+	if (distance > scaleMarkers[1].distance) {
+		return scaleMarkers[1].scale;
+	}
+	
+	float t = (distance - scaleMarkers[0].distance) / (scaleMarkers[1].distance / scaleMarkers[0].distance);
+	
+	return interpolate(t, scaleMarkers[0].scale, scaleMarkers[1].scale);
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

@@ -817,7 +817,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export ARBROWSER_DEMO=$PROJECT_DIR/ARBrowser-Demo\n\n# Make the appropriate destination directory.\nmkdir -p $ARBROWSER_DEMO/libHITLabNZAR/\n\n# Copy in the source and compiled library.\ncp -R $BUILT_PRODUCTS_DIR/libHITLabNZAR.a $ARBROWSER_DEMO/libHITLabNZAR/\ncp -R $BUILT_PRODUCTS_DIR/source $ARBROWSER_DEMO/libHITLabNZAR/\n";
+			shellScript = "export ARBROWSER_DEMO=\"$PROJECT_DIR/ARBrowser-Demo\"\n\n# Make the appropriate destination directory.\nmkdir -p \"$ARBROWSER_DEMO/libHITLabNZAR/\"\n\n# Copy in the source and compiled library.\ncp -R \"$BUILT_PRODUCTS_DIR/libHITLabNZAR.a\" \"$ARBROWSER_DEMO/libHITLabNZAR/\"\ncp -R \"$BUILT_PRODUCTS_DIR/source\" \"$ARBROWSER_DEMO/libHITLabNZAR/\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

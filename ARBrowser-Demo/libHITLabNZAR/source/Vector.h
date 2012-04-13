@@ -42,7 +42,6 @@ subject to the following restrictions:
 #define XDIV(a,b)	( (int)( (((INT64BIT)(a))<<16)/(b) ) )
 #define _ABS(a)		((a) <= 0 ? -(a) : (a) )
 
-
 // Define a 64-bit type for various platforms
 #if defined(__int64) || defined(WIN32)
 #define INT64BIT __int64
@@ -1028,6 +1027,39 @@ friend Vec4 operator*(const VERTTYPE lhs, const Vec4&  rhs)
 	VERTTYPE *ptr() { return (VERTTYPE*)this; }
 };
 
-
+/// High precision vector for dealing with GPS data and earth coordinates.
+struct Vec3d {
+	double x, y, z;
+	
+	Vec3d operator-(const Vec3d & rhs) {
+		return (Vec3d){x - rhs.x, y - rhs.y, z - rhs.z};
+	}
+	
+	Vec3d operator+(const Vec3d & rhs) {
+		return (Vec3d){x + rhs.x, y + rhs.y, z + rhs.z};		
+	}
+	
+	Vec3d operator*(const double rhs) {
+		return (Vec3d){x * rhs, y * rhs, z * rhs};
+	}
+	
+	Vec3d operator/(const double rhs) {
+		return (Vec3d){x / rhs, y / rhs, z / rhs};
+	}
+	
+	double length() {
+		return sqrt(x*x + y*y + z*z);
+	}
+	
+	Vec3d normalized() {
+		double f = length();
+		
+		return (Vec3d){x/f, y/f, z/f};
+	}
+	
+	Vec3 toFloat() {
+		return Vec3(x, y, z);
+	}
+};
 
 #endif // VECTOR_H_

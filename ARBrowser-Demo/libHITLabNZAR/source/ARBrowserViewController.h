@@ -10,9 +10,17 @@
 
 #import "ARBrowserView.h"
 
+typedef struct {
+	CGFloat distance;
+	CGFloat scale;
+} ARScaleMarker;
+
 /// Simple example of an ARBrowserViewDelegate.
 @interface ARBrowserViewController : UIViewController <EAGLViewDelegate, ARBrowserViewDelegate> {
 	NSArray * _worldPoints;
+
+	CGFloat initialObjectScale;
+	ARScaleMarker scaleMarkers[2];
 }
 
 @property(nonatomic,retain) NSArray * worldPoints;

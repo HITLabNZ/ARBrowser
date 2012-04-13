@@ -23,7 +23,7 @@
 	// Set up a dummy list of points
 	NSMutableArray * worldPoints = [[NSMutableArray new] retain];
 	CLLocationCoordinate2D location;
-
+	
 	// Coffee cup model
 	NSString * coffeePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Models/coffee"];
 	id<ARRenderable> coffeeCupModel = [ARModel objectModelWithName:@"model" inDirectory:coffeePath];
@@ -31,8 +31,7 @@
 	
 	// 2 Derenzy Pl
 	ARWorldPoint * derenzy = [ARWorldPoint new];
-	location.latitude = -43.516215;
-	location.longitude = 172.554560;
+	location = (CLLocationCoordinate2D){-43.516215, 172.554560};
 	[derenzy setCoordinate:location altitude:EARTH_RADIUS];
 	[derenzy setModel:billboardModel];
 	
@@ -42,7 +41,7 @@
 	// This information is printed out below.
 	[derenzy.metadata setObject:@"2 Derenzy Pl" forKey:@"address"];
 	[derenzy.metadata setObject:@"Samuel Williams" forKey:@"developer"];
-	//[worldPoints addObject:derenzy];
+	[worldPoints addObject:derenzy];
     
 	// HitLab NZ
 	ARWorldPoint * hitlab = [ARWorldPoint new];
@@ -68,6 +67,18 @@
 	[cuteCenter.metadata setObject:@"Singapore" forKey:@"address"];
 	[cuteCenter.metadata setObject:@"Wang Yuan" forKey:@"developer"];
 	//[worldPoints addObject:cuteCenter];
+	
+	for (NSInteger i = -30; i < 30; i += 2) {
+		ARWorldPoint * testMarker = [ARWorldPoint new];
+		
+		location.latitude = -43.516215 + ((double)i / 20000.0);
+		location.longitude = 172.554560;
+		
+		[testMarker setCoordinate:location altitude:EARTH_RADIUS];
+		[testMarker setModel:billboardModel];
+		
+		[worldPoints addObject:testMarker];
+	}
 	
 	[self setWorldPoints:worldPoints];
 
