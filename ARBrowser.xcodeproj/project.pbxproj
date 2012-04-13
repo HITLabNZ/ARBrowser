@@ -734,8 +734,9 @@
 		7E2336AC134AD1FF00BEFB33 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = AR;
 				LastUpgradeCheck = 0420;
-				ORGANIZATIONNAME = "Orion Transfer Ltd";
+				ORGANIZATIONNAME = "";
 			};
 			buildConfigurationList = 7E2336AF134AD1FF00BEFB33 /* Build configuration list for PBXProject "ARBrowser" */;
 			compatibilityVersion = "Xcode 3.2";

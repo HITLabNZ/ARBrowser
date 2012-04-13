@@ -3,7 +3,7 @@
 //  ARBrowser
 //
 //  Created by Samuel Williams on 20/10/11.
-//  Copyright (c) 2011 Orion Transfer Ltd. All rights reserved.
+//  Copyright (c) 2011 Samuel Williams. All rights reserved.
 //
 
 #import <CoreLocation/CoreLocation.h>
