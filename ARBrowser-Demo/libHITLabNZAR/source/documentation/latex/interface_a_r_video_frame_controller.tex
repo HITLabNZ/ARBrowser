@@ -1,57 +1,48 @@
-\hypertarget{interface_a_r_video_frame_controller}{
-\section{\-A\-R\-Video\-Frame\-Controller \-Class \-Reference}
-\label{interface_a_r_video_frame_controller}\index{\-A\-R\-Video\-Frame\-Controller@{\-A\-R\-Video\-Frame\-Controller}}
+\hypertarget{interface_a_r_video_frame_controller}{\section{A\-R\-Video\-Frame\-Controller Class Reference}
+\label{interface_a_r_video_frame_controller}\index{A\-R\-Video\-Frame\-Controller@{A\-R\-Video\-Frame\-Controller}}
 }
 
 
-\-Provides simplea access to i\-Phone video camera in the form of \hyperlink{struct_a_r_video_frame}{\-A\-R\-Video\-Frame} data. \-This can then be provided to \hyperlink{interface_a_r_video_background}{\-A\-R\-Video\-Background} for rendering.  
+Provides simplea access to i\-Phone video camera in the form of \hyperlink{struct_a_r_video_frame}{A\-R\-Video\-Frame} data. This can then be provided to \hyperlink{interface_a_r_video_background}{A\-R\-Video\-Background} for rendering.  
 
 
 
 
-{\ttfamily \#import $<$\-A\-R\-Video\-Frame\-Controller.\-h$>$}
+{\ttfamily \#import $<$A\-R\-Video\-Frame\-Controller.\-h$>$}
 
-\subsection*{\-Public \-Member \-Functions}
+\subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{interface_a_r_video_frame_controller_a94f7769c58f9202da3eeab9b452df4ad}{
-(id) -\/ \hyperlink{interface_a_r_video_frame_controller_a94f7769c58f9202da3eeab9b452df4ad}{init\-With\-Rate\-:}}
-\label{interface_a_r_video_frame_controller_a94f7769c58f9202da3eeab9b452df4ad}
+\hypertarget{interface_a_r_video_frame_controller_a94f7769c58f9202da3eeab9b452df4ad}{(id) -\/ \hyperlink{interface_a_r_video_frame_controller_a94f7769c58f9202da3eeab9b452df4ad}{init\-With\-Rate\-:}}\label{interface_a_r_video_frame_controller_a94f7769c58f9202da3eeab9b452df4ad}
 
-\begin{DoxyCompactList}\small\item\em \-Rate is in frames per second. \end{DoxyCompactList}\item 
-\hypertarget{interface_a_r_video_frame_controller_a6ee104be0e287fea2f8beed4f4e97cf6}{
-(void) -\/ \hyperlink{interface_a_r_video_frame_controller_a6ee104be0e287fea2f8beed4f4e97cf6}{start}}
-\label{interface_a_r_video_frame_controller_a6ee104be0e287fea2f8beed4f4e97cf6}
+\begin{DoxyCompactList}\small\item\em Rate is in frames per second. \end{DoxyCompactList}\item 
+\hypertarget{interface_a_r_video_frame_controller_a6ee104be0e287fea2f8beed4f4e97cf6}{(void) -\/ \hyperlink{interface_a_r_video_frame_controller_a6ee104be0e287fea2f8beed4f4e97cf6}{start}}\label{interface_a_r_video_frame_controller_a6ee104be0e287fea2f8beed4f4e97cf6}
 
-\begin{DoxyCompactList}\small\item\em \-Start capturing video frames. \end{DoxyCompactList}\item 
-\hypertarget{interface_a_r_video_frame_controller_a509702d9d3e1fa9932bb304ea3f509fb}{
-(void) -\/ \hyperlink{interface_a_r_video_frame_controller_a509702d9d3e1fa9932bb304ea3f509fb}{stop}}
-\label{interface_a_r_video_frame_controller_a509702d9d3e1fa9932bb304ea3f509fb}
+\begin{DoxyCompactList}\small\item\em Start capturing video frames. \end{DoxyCompactList}\item 
+\hypertarget{interface_a_r_video_frame_controller_a509702d9d3e1fa9932bb304ea3f509fb}{(void) -\/ \hyperlink{interface_a_r_video_frame_controller_a509702d9d3e1fa9932bb304ea3f509fb}{stop}}\label{interface_a_r_video_frame_controller_a509702d9d3e1fa9932bb304ea3f509fb}
 
-\begin{DoxyCompactList}\small\item\em \-Stop capturing video frames. \end{DoxyCompactList}\item 
-(\hyperlink{struct_a_r_video_frame}{\-A\-R\-Video\-Frame} $\ast$) -\/ \hyperlink{interface_a_r_video_frame_controller_acc064912b45b3e81fcbc8b21d2953e29}{video\-Frame}
-\begin{DoxyCompactList}\small\item\em \-Grab the latest video frame from the camera. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Stop capturing video frames. \end{DoxyCompactList}\item 
+(\hyperlink{struct_a_r_video_frame}{A\-R\-Video\-Frame} $\ast$) -\/ \hyperlink{interface_a_r_video_frame_controller_acc064912b45b3e81fcbc8b21d2953e29}{video\-Frame}
+\begin{DoxyCompactList}\small\item\em Grab the latest video frame from the camera. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\subsection{\-Detailed \-Description}
-\-Provides simplea access to i\-Phone video camera in the form of \hyperlink{struct_a_r_video_frame}{\-A\-R\-Video\-Frame} data. \-This can then be provided to \hyperlink{interface_a_r_video_background}{\-A\-R\-Video\-Background} for rendering. 
+\subsection{Detailed Description}
+Provides simplea access to i\-Phone video camera in the form of \hyperlink{struct_a_r_video_frame}{A\-R\-Video\-Frame} data. This can then be provided to \hyperlink{interface_a_r_video_background}{A\-R\-Video\-Background} for rendering. 
 
-\subsection{\-Member \-Function \-Documentation}
-\hypertarget{interface_a_r_video_frame_controller_acc064912b45b3e81fcbc8b21d2953e29}{
-\index{\-A\-R\-Video\-Frame\-Controller@{\-A\-R\-Video\-Frame\-Controller}!video\-Frame@{video\-Frame}}
-\index{video\-Frame@{video\-Frame}!ARVideoFrameController@{\-A\-R\-Video\-Frame\-Controller}}
-\subsubsection[{video\-Frame}]{\setlength{\rightskip}{0pt plus 5cm}-\/ ({\bf \-A\-R\-Video\-Frame}$\ast$) video\-Frame 
+\subsection{Member Function Documentation}
+\hypertarget{interface_a_r_video_frame_controller_acc064912b45b3e81fcbc8b21d2953e29}{\index{A\-R\-Video\-Frame\-Controller@{A\-R\-Video\-Frame\-Controller}!video\-Frame@{video\-Frame}}
+\index{video\-Frame@{video\-Frame}!ARVideoFrameController@{A\-R\-Video\-Frame\-Controller}}
+\subsubsection[{video\-Frame}]{\setlength{\rightskip}{0pt plus 5cm}-\/ ({\bf A\-R\-Video\-Frame}$\ast$) {\bf video\-Frame} 
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-}}
-\label{interface_a_r_video_frame_controller_acc064912b45b3e81fcbc8b21d2953e29}
+}}\label{interface_a_r_video_frame_controller_acc064912b45b3e81fcbc8b21d2953e29}
 
 
-\-Grab the latest video frame from the camera. 
+Grab the latest video frame from the camera. 
 
-\-This video frame is buffered internally, so, the same pointer is returned every time. \-The \hyperlink{struct_a_r_video_frame_a1a8450f8da6fef4c2118e85bfe472dab}{\-A\-R\-Video\-Frame\-::index} frame counter will be incremented when the frame has changed. 
+This video frame is buffered internally, so, the same pointer is returned every time. The \hyperlink{struct_a_r_video_frame_a1a8450f8da6fef4c2118e85bfe472dab}{A\-R\-Video\-Frame\-::index} frame counter will be incremented when the frame has changed. 
 
-\-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-\-A\-R\-Video\-Frame\-Controller.\-h\end{DoxyCompactItemize}
+A\-R\-Video\-Frame\-Controller.\-h\end{DoxyCompactItemize}
