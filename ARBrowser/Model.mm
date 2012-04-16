@@ -61,13 +61,13 @@ namespace ARBrowser {
 		vertices.push_back(Vec3(0, 0, 0));
 		vertices.push_back(Vec3(-8, 20, 0));
 		vertices.push_back(Vec3(8, 20, 0));
-
+		
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_DST_ALPHA);
-
+		
 		glColor4f(0.8, 0.8, 0.8, 0.5);
 		renderVertices(vertices, GL_TRIANGLES);
-
+		
 		glDisable(GL_BLEND);
 	}
 	
@@ -92,7 +92,7 @@ namespace ARBrowser {
 		renderVertices(vertices, GL_LINES);
 		
 		vertices.clear();
-
+		
 		vertices.push_back(Vec3(0,  0, 0));		
 		vertices.push_back(Vec3(0, 20, 0));
 		glColor4f(0.8, 0.8, 1.0, 0.8);
@@ -108,7 +108,7 @@ namespace ARBrowser {
 		glPointSize(6.0 * pointScale);
 		glColor4f(1.0, 1.0, 1.0, 1.0);
 		renderVertices(points, GL_POINTS);
-
+		
 		// Edge points
 		glPointSize(8.0 * pointScale);
 		glColor4f(0.0, 0.0, 0.0, 1.0);
@@ -154,7 +154,7 @@ namespace ARBrowser {
 			
 			MatrixVec3Multiply(t, k, hr);
 			k = t;
-
+			
 			points.push_back(Vec3(k.x, k.y, k.z));
 		}
 	}
@@ -167,67 +167,67 @@ namespace ARBrowser {
 		
 		glDisableClientState(GL_VERTEX_ARRAY);
 	}
-
+	
 	void renderMarker (float s) {
 		float verts[] = {
 			s, s,-s,
 			-s, s,-s,
 			-s, s, s,
 			s, s, s,
-
+			
 			s,-s, s,
 			-s,-s, s,
 			-s,-s,-s,
 			s,-s,-s,
-
+			
 			s, s, s,
 			-s, s, s,
 			-s,-s, s,
 			s,-s, s,
-
+			
 			s,-s,-s,
 			-s,-s,-s,
 			-s, s,-s,
 			s, s,-s,
-
+			
 			s, s,-s,
 			s, s, s,
 			s,-s, s,
 			s,-s,-s,
-
+			
 			-s, s, s,
 			-s, s,-s,
 			-s,-s,-s,
 			-s,-s, s
 		};
-
+		
 		glEnableClientState(GL_VERTEX_ARRAY);
-
+		
 		glColor4f(0, 1, 0, 1);
 		glVertexPointer(3, GL_FLOAT, 0, verts);
 		glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
-
+		
 		glColor4f(1, 0, 1, 1);
 		glVertexPointer(3, GL_FLOAT, 0, verts + 12);
 		glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
-
+		
 		glColor4f(0, 0, 1, 1);
 		glVertexPointer(3, GL_FLOAT, 0, verts + 24);
 		glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
-
+		
 		glColor4f(1, 1, 0, 1);
 		glVertexPointer(3, GL_FLOAT, 0, verts + 36);
 		glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
-
+		
 		glColor4f(1, 0, 0, 1);
 		glVertexPointer(3, GL_FLOAT, 0, verts + 48);
 		glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
-
+		
 		glColor4f(0, 1, 1, 1);
 		glVertexPointer(3, GL_FLOAT, 0, verts + 60);
 		glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 	}
-
+	
 	void renderAxis ()
 	{
 		std::vector<Vec3> vertices;
@@ -235,7 +235,7 @@ namespace ARBrowser {
 		
 		vertices.push_back(Vec3(0, 0, 0));
 		colors.push_back(Vec4(1.0, 0.0, 0.0, 1.0));
-		 
+		
 		vertices.push_back(Vec3(10.0, 0.0, 0.0));
 		colors.push_back(Vec4(1.0, 0.0, 0.0, 1.0));
 		
@@ -244,7 +244,7 @@ namespace ARBrowser {
 		
 		vertices.push_back(Vec3(0.0, 10.0, 0.0));
 		colors.push_back(Vec4(0.0, 1.0, 0.0, 1.0));
-
+		
 		vertices.push_back(Vec3(0, 0, 0));
 		colors.push_back(Vec4(0.0, 0.0, 1.0, 1.0));
 		
@@ -266,13 +266,13 @@ namespace ARBrowser {
 		
 		glLineWidth(1.0);
 	}
-
+	
 	const char * TOKEN_VERTEX_POS = "v";
 	const char * TOKEN_VERTEX_NOR = "vn";
 	const char * TOKEN_VERTEX_TEX = "vt";
 	const char * TOKEN_FACE = "f";
 	const char * TOKEN_USE_MATERIAL = "usemtl";
-
+	
 	struct _ObjMeshFaceIndex {
 		_ObjMeshFaceIndex() {
 			pos_index[0] = pos_index[1] = pos_index[2] = 0;
@@ -285,7 +285,7 @@ namespace ARBrowser {
 		int tex_index[3];
 		int nor_index[3];
 	};
-
+	
 	/// Call this function to load a model, only loads triangulated meshes.
 	void loadMesh(std::string filename, std::vector<ObjMesh> & mesh) {
 		std::vector<Vec3> positions;
@@ -344,8 +344,8 @@ namespace ARBrowser {
 					vertex_stream.str(vertex);
 					
 					vertex_stream >> face_index.pos_index[i] >> interrupt
-						>> face_index.tex_index[i] >> interrupt
-						>> face_index.nor_index[i];
+					>> face_index.tex_index[i] >> interrupt
+					>> face_index.nor_index[i];
 				}
 				faces.push_back(face_index);
 			} else if (type_str == TOKEN_USE_MATERIAL) {
@@ -371,7 +371,7 @@ namespace ARBrowser {
 				mesh.resize(mesh.size() + 1);
 				currentMesh = &mesh.back();
 				currentMesh->material = faces[i].material;
-
+				
 				currentMaterial = faces[i].material;				
 			}
 			
@@ -429,7 +429,7 @@ namespace ARBrowser {
 	}
 	
 	ObjMaterial::ObjMaterial () : diffuseMapTexture(NULL) {
-	
+		
 	}
 	
 	ObjMaterial::~ObjMaterial () {
@@ -448,7 +448,7 @@ namespace ARBrowser {
 		
 		return *this;
 	}
-		
+	
 	void ObjMaterial::enable () {
 		if (diffuseMapTexture) {
 			glBindTexture(GL_TEXTURE_2D, [diffuseMapTexture name]);
@@ -487,25 +487,31 @@ namespace ARBrowser {
 			}
 		}
 	}
-			
+	
 	void Model::render () {		
-		if (m_mesh.size() > 0) {
-			glEnable(GL_TEXTURE_2D);
-			
+		if (m_mesh.size() > 0) {			
 			for (std::size_t i = 0; i < m_mesh.size(); i++) {
 				MaterialMapT::iterator m = m_materials.find(m_mesh[i].material);
+				std::vector<ObjMeshFace> & faces = m_mesh[i].faces;
+				
+				// Keep track of whether textures have been enabled:
+				bool texturingEnabled = false;
 				
 				if (m != m_materials.end()) {
 					m->second.enable();
+					
+					if (m->second.diffuseMapTexture) {
+						glEnable(GL_TEXTURE_2D);
+						
+						glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+						glTexCoordPointer(2, GL_FLOAT, sizeof(ObjMeshVertex), (void*)&(faces[0].vertices[0].texcoord));
+						
+						texturingEnabled = true;
+					}
 				}
-				
-				std::vector<ObjMeshFace> & faces = m_mesh[i].faces;
 				
 				glEnableClientState(GL_VERTEX_ARRAY);
 				glVertexPointer(3, GL_FLOAT, sizeof(ObjMeshVertex), (void*)&(faces[0].vertices[0].pos));
-				
-				glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-				glTexCoordPointer(2, GL_FLOAT, sizeof(ObjMeshVertex), (void*)&(faces[0].vertices[0].texcoord));
 				
 				glEnableClientState(GL_NORMAL_ARRAY);
 				glNormalPointer(GL_FLOAT, sizeof(ObjMeshVertex), (void*)&(faces[0].vertices[0].normal));
@@ -514,14 +520,17 @@ namespace ARBrowser {
 				
 				if (m != m_materials.end()) {
 					m->second.disable();
+					
+					if (texturingEnabled) {
+						glDisable(GL_TEXTURE_2D);
+						
+						glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+					}
 				}
 			}
 			
 			glDisableClientState(GL_VERTEX_ARRAY);
-			glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 			glDisableClientState(GL_NORMAL_ARRAY);
-			
-			glDisable(GL_TEXTURE_2D);
 			
 			// Bounding Box Debug
 			VerticesT vertices;
