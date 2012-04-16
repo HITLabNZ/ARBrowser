@@ -76,6 +76,7 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 }
 
 - (float) scaleFactorFor:(ARWorldPoint*)point atDistance:(float)distance {
+	// Bypass relative scaling... temporary hack for Urban Navigation project.
 	return 1.0;
 	
 	if (distance < nearDistance) {
@@ -140,13 +141,16 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 	CMAcceleration gravity = [locationController currentGravity];
 	//NSLog(@"Bearing: %0.3f", origin.rotation);
 	
-	NSArray * worldPoints = [self.delegate worldPoints];
+	NSArray * worldPoints = [self.delegate worldPointsFromLocation:origin withinDistance:self.maximumDistance * 2.0];
 	
 	ARBrowser::VerticesT radarPoints, radarEdgePoints;
 	
 	for (ARWorldPoint * point in worldPoints) {
+		// Try to speed up:
+		//Vec3 delta = point.position - origin.position;
+		
+		// This method is pretty slow:
 		Vec3 delta = [origin calculateRelativePositionOf:point];
-
 		// Ignore altitude in distance calculations:
 		delta.z = 0;
 		
@@ -216,7 +220,7 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 			// Simplified version of the line/plane intersection test, since the plane and line are from the origin.
 			Vec3 at = g + (up * -(up.dot(g)));
 			at.normalize();
-
+			
 			Vec3 north(0, 1, 0);
 			
 			rotationAxis = at.cross(north);
@@ -234,7 +238,7 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 	}
 	
 	ARBrowser::renderRadar(radarPoints, radarEdgePoints, scale / 2.0);
-
+	
 	if (!flat) {		
 		Mat44 inverseViewMatrix;
 		MatrixInverse(inverseViewMatrix, state->viewMatrix);
@@ -364,8 +368,8 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 	}
 	
 	NSArray * worldPoints = nil;
-	if ([self.delegate respondsToSelector:@selector(worldPointsFromLocation:)]) {
-		worldPoints = [self.delegate worldPointsFromLocation:origin];
+	if ([self.delegate respondsToSelector:@selector(worldPointsFromLocation:withinDistance:)]) {
+		worldPoints = [self.delegate worldPointsFromLocation:origin withinDistance:self.farDistance];
 	} else {
 		worldPoints = [self.delegate worldPoints];
 	}

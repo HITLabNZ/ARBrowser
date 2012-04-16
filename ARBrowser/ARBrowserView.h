@@ -21,7 +21,7 @@
 - (NSArray*)worldPoints;
 
 /// Returns a list of world points that will be rendered from a given point
-- (NSArray*)worldPointsFromLocation:(ARWorldLocation *)origin;
+- (NSArray*)worldPointsFromLocation:(ARWorldLocation *)origin withinDistance:(float)distance;
 
 /// Called when an object is selected on screen by the user.
 - (void) browserView: (ARBrowserView*)view didSelect:(ARWorldPoint*)point;
@@ -48,7 +48,7 @@ struct ARBrowserViewState;
 	float nearDistance, farDistance;
 	
 	BOOL displayRadar, displayGrid;
-
+	
 	/// The center of the radar on the screen.
 	CGPoint radarCenter;
 }

@@ -37,16 +37,23 @@
 	return allSteps;
 }
 
-- (NSArray*)visiblePointsFromLocation:(ARWorldLocation *)origin {	
+- (NSArray*)visiblePointsFromLocation:(ARWorldLocation *)origin withinDistance:(float)distance {	
 	NSMutableArray * points = [[NSMutableArray new] autorelease];
 	
 	//NSLog(@"visiblePoints:\n%@\n\n%@", self.path.points, self.path.segments);
 	
 	for (NSUInteger i = 0; i < self.path.segments.count; i += 1) {
+		// The point is the actual marker which separates the segments:
 		ARWorldPoint * point = [self.path.points objectAtIndex:i+1];
+		
+		// The segment contains all intermediate points:
 		ARASegment * segment = [self.path.segments objectAtIndex:i];
 		
-		if ([segment isVisibleFrom:origin]) {
+		// Get the distance from the origin to this segment:
+		float offsetDistance = [segment distanceFrom:origin];
+		
+		if (offsetDistance < distance) {
+			// For the first segment (i == 0), we should add the first marker too. For other segments, just the last marker is added.
 			if (i == 0) {
 				[points addObject:[self.path.points objectAtIndex:0]];
 			}

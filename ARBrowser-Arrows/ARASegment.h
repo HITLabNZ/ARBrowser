@@ -14,10 +14,13 @@
 
 @interface ARASegment : NSObject
 
+@property(nonatomic,retain) ARWorldLocation * from;
+@property(nonatomic,retain) ARWorldLocation * to;
+
 @property(nonatomic,retain) NSArray * steps;
 
 + (ARASegment *)segmentFrom:(ARWorldLocation *)from to:(ARWorldLocation *)to;
 
-- (BOOL) isVisibleFrom:(ARWorldLocation *)location;
+- (float)distanceFrom:(ARWorldLocation *)location;
 
 @end

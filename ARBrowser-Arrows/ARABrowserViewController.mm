@@ -42,7 +42,7 @@
 	[browserView setNearDistance:3.0];
 	
 	// Icons will never get smaller past this point until the maximumDistance where they are culled.
-	[browserView setFarDistance:25.0];
+	[browserView setFarDistance:80.0];
 	
 	[browserView setMaximumDistance:400.0];
 	
@@ -126,9 +126,9 @@
 	}
 }
 
-- (NSArray*)worldPointsFromLocation:(ARWorldLocation *)origin {
+- (NSArray*)worldPointsFromLocation:(ARWorldLocation *)origin withinDistance:(float)distance {
 	if (self.pathController) {
-		return [self.pathController visiblePointsFromLocation:origin];
+		return [self.pathController visiblePointsFromLocation:origin withinDistance:distance];
 	} else {
 		return [NSArray array];
 	}

@@ -21,6 +21,6 @@
 @property(nonatomic,retain) ARAPath * path;
 
 - (NSArray*)visiblePoints;
-- (NSArray*)visiblePointsFromLocation:(ARWorldLocation *)origin;
+- (NSArray*)visiblePointsFromLocation:(ARWorldLocation *)origin withinDistance:(float)distance;
 
 @end
