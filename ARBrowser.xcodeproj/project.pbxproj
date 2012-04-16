@@ -47,6 +47,7 @@
 		7E233752134B41F100BEFB33 /* neon_matrix_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E233745134B41F100BEFB33 /* neon_matrix_impl.cpp */; };
 		7E233753134B41F100BEFB33 /* matrix_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E233749134B41F100BEFB33 /* matrix_impl.cpp */; };
 		7E233754134B41F100BEFB33 /* utility_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E23374B134B41F100BEFB33 /* utility_impl.cpp */; };
+		7E3B4A8A153C6892009B4835 /* ARALocalArrow.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7E3B4A89153C6892009B4835 /* ARALocalArrow.mm */; };
 		7E430DD415221F9C00DE320A /* libHITLabNZAR.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E7E29531370D8C100338606 /* libHITLabNZAR.a */; };
 		7E430DD615221FCC00DE320A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E23371F134AD67C00BEFB33 /* OpenGLES.framework */; };
 		7E430DD715221FD300DE320A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E23372C134B2D2000BEFB33 /* AVFoundation.framework */; };
@@ -266,6 +267,8 @@
 		7E23374B134B41F100BEFB33 /* utility_impl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = utility_impl.cpp; sourceTree = "<group>"; };
 		7E23374C134B41F100BEFB33 /* utility_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utility_impl.h; sourceTree = "<group>"; };
 		7E23374D134B41F100BEFB33 /* vfp_clobbers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vfp_clobbers.h; sourceTree = "<group>"; };
+		7E3B4A88153C6892009B4835 /* ARALocalArrow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARALocalArrow.h; sourceTree = "<group>"; };
+		7E3B4A89153C6892009B4835 /* ARALocalArrow.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ARALocalArrow.mm; sourceTree = "<group>"; };
 		7E4F57A314A2CE8E00A6DB0C /* ARBrowser-VideoStream.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ARBrowser-VideoStream.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E4F57AA14A2CE8E00A6DB0C /* ARBrowser-VideoStream-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ARBrowser-VideoStream-Info.plist"; sourceTree = "<group>"; };
 		7E4F57AC14A2CE8E00A6DB0C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -637,6 +640,8 @@
 				7EC0D45E151ED895006F1D9F /* ARABrowserViewController.mm */,
 				7E741972152989BC00388013 /* ARAPathEditorController.h */,
 				7E741973152989BC00388013 /* ARAPathEditorController.mm */,
+				7E3B4A88153C6892009B4835 /* ARALocalArrow.h */,
+				7E3B4A89153C6892009B4835 /* ARALocalArrow.mm */,
 				7EE00C491522240C0091206A /* Models */,
 				7EC0D452151ED895006F1D9F /* Supporting Files */,
 			);
@@ -908,6 +913,7 @@
 				7E741974152989BC00388013 /* ARAPathEditorController.mm in Sources */,
 				7E7419791529B0D700388013 /* ARAPathController.mm in Sources */,
 				7E9F5242152ADACA000855E8 /* ARASegment.mm in Sources */,
+				7E3B4A8A153C6892009B4835 /* ARALocalArrow.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
