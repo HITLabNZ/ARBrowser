@@ -77,4 +77,36 @@ inline AnyT hermite_polynomial (const InterpolateT & t, const AnyT & p0, const A
 	self.segments = segments;
 }
 
+- (ARAPathBearing)calculateBearingForSegment:(NSUInteger)index withinDistance:(float)distance fromLocation:(ARWorldLocation *)location {
+	ARAPathBearing result;
+	
+	// Given the current segment, the next segment and the previous segment and a circle of size
+	ARASegment * segment = [self.segments objectAtIndex:index];
+	
+	result.incomingBearing = calculateBearingBetween(convertFromDegrees(location.coordinate), convertFromDegrees(segment.to.coordinate));
+	
+	result.outgoingBearing = result.incomingBearing;
+	
+	return result;
+}
+
+- (NSUInteger) calculateNearestSegmentForLocation:(ARWorldLocation *)location {
+	float distance = FLT_MAX;
+	NSUInteger index = NSNotFound;
+	
+	NSUInteger i = 0;
+	for (ARASegment * segment in self.segments) {
+		float segmentDistance = [segment distanceFrom:location];
+		
+		if (segmentDistance < distance) {
+			distance = segmentDistance;
+			index = i;
+		}
+		
+		i += 1;
+	}
+	
+	return index;
+}
+
 @end

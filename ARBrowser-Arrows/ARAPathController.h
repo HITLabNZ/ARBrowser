@@ -19,6 +19,7 @@
 @property(nonatomic,retain) id<ARRenderable> stepModel;
 
 @property(nonatomic,retain) ARAPath * path;
+@property(nonatomic,assign) NSUInteger currentSegmentIndex;
 
 - (NSArray*)visiblePoints;
 - (NSArray*)visiblePointsFromLocation:(ARWorldLocation *)origin withinDistance:(float)distance;

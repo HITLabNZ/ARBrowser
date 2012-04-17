@@ -49,9 +49,9 @@
 		{1.292050, 103.775906}
 	};
 	
-	//for (unsigned i = 0; i < 10; i += 1) {
-	//	[pathEditorController addPoint:coordinates[i]];
-	//}
+	for (unsigned i = 0; i < 2; i += 1) {
+		[pathEditorController addPoint:coordinates[i]];
+	}
 	
 	ARABrowserViewController * browserViewController = [[ARABrowserViewController new] autorelease];
 	browserViewController.pathController = pathController;

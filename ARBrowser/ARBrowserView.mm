@@ -367,6 +367,10 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 		glColor4f(1.0, 1.0, 1.0, 1.0);
 	}
 	
+	if ([self.delegate respondsToSelector:@selector(renderInLocalCoordinatesForBrowserView:)]) {
+		[self.delegate renderInLocalCoordinatesForBrowserView:self];
+	}
+	
 	NSArray * worldPoints = nil;
 	if ([self.delegate respondsToSelector:@selector(worldPointsFromLocation:withinDistance:)]) {
 		worldPoints = [self.delegate worldPointsFromLocation:origin withinDistance:self.farDistance];

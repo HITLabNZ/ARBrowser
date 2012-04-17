@@ -28,6 +28,9 @@
 
 - (float) browserView: (ARBrowserView*)view scaleFactorFor:(ARWorldPoint*)point atDistance:(float)distance;
 
+/// Render things like grids, markers, etc:
+- (void) renderInLocalCoordinatesForBrowserView:(ARBrowserView *)view;
+
 @end
 
 /// @internal

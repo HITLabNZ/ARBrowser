@@ -11,6 +11,10 @@
 
 #import "ARWorldLocation.h"
 
+typedef struct {
+	CLLocationDegrees incomingBearing, outgoingBearing;
+} ARAPathBearing;
+
 @interface ARAPath : NSObject
 
 @property(nonatomic,retain) NSArray * points;
@@ -19,5 +23,9 @@
 @property(nonatomic,retain) NSArray * segments;
 
 - initWithPoints:(NSArray *)points;
+
+- (ARAPathBearing) calculateBearingForSegment:(NSUInteger)index withinDistance:(float)distance fromLocation:(ARWorldLocation*)location;
+
+- (NSUInteger) calculateNearestSegmentForLocation:(ARWorldLocation *)location;
 
 @end

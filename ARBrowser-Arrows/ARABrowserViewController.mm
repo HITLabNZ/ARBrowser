@@ -15,7 +15,7 @@
 
 @implementation ARABrowserViewController
 
-@synthesize pathController;
+@synthesize pathController = _pathController, localArrow = _localArrow;
 @dynamic worldPoints;
 
 - (void)loadView {
@@ -61,10 +61,23 @@
 		[_locationManager startUpdatingLocation];
 		[_locationManager startUpdatingHeading];
 	}
+	
+	if (!self.localArrow) {
+		self.localArrow = [[ARALocalArrow alloc] init];
+		self.localArrow.radius = 10.0;
+		self.localArrow.angleScale = 0.75;
+	}
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
 	//_compassView.location = newLocation;
+	ARWorldLocation * worldLocation = [[ARWorldLocation new] autorelease];
+	[worldLocation setCoordinate:newLocation.coordinate altitude:EARTH_RADIUS];
+	
+	self.pathController.currentSegmentIndex = [self.pathController.path calculateNearestSegmentForLocation:worldLocation];
+	
+	ARAPathBearing pathBearing = [self.pathController.path calculateBearingForSegment:self.pathController.currentSegmentIndex withinDistance:50.0 fromLocation:worldLocation];
+	self.localArrow.currentBearing = pathBearing.incomingBearing;
 }
 
 - (void) locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading {
@@ -99,6 +112,10 @@
 
 - (void) update: (EAGLView*) view {
 	// Additional OpenGL Rendering here.
+}
+
+- (void)renderInLocalCoordinatesForBrowserView:(ARBrowserView *)view {
+	[self.localArrow draw];
 }
 
 - (void) browserView: (ARBrowserView*)view didSelect:(ARWorldPoint*)point {

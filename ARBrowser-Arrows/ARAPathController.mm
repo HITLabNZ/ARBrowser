@@ -12,7 +12,7 @@
 @implementation ARAPathController
 
 @synthesize stepModel = _stepModel, markerModel = _markerModel;
-@synthesize path = _path;
+@synthesize path = _path, currentSegmentIndex = _currentSegmentIndex;
 
 - init {
 	self = [super init];

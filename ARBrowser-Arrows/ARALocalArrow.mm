@@ -34,20 +34,20 @@ static Vec3 point_on_circle(CLLocationDegrees degrees, Vec3 origin, float radius
 }
 
 - (void)draw {
+	glPushMatrix();
+	glRotatef(-_currentBearing, 0, 0, 1);
+	
 	std::vector<Vec3> vertices;
 	
-	Vec3 origin(_radius * _angleScale, 0.0, 0.0);
-	Vec3 offset(_radius, 0.0, 0.0);
-	
-	float scale = scale_factor(_currentBearing, _destinationBearing);
-	
-	Vec3 point = point_on_circle((_destinationBearing - _currentBearing) * scale, origin, _radius);
-	
+	vertices.push_back(Vec3(0, -_radius, 0));
 	vertices.push_back(Vec3(0, 0, 0));
-	vertices.push_back(origin);
-	vertices.push_back(point);
+	vertices.push_back(Vec3(0, _radius, 0));
 	
-	ARBrowser::renderVertices(vertices);
+	glColor4f(0.8, 0.75, 0.4, 1.0);
+	
+	ARBrowser::renderVertices(vertices, GL_LINE_STRIP);
+	
+	glPopMatrix();
 }
 
 @end
