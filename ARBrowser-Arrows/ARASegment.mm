@@ -47,7 +47,7 @@
 	return segment;
 }
 
-static float minimum_distance(Vec3 v, Vec3 w, Vec3 p) {
+static float minimumDistance(Vec3 v, Vec3 w, Vec3 p) {
 	// Return minimum distance between line segment vw and point p
 	
 	// i.e. |w-v|^2 -  avoid a sqrt
@@ -68,7 +68,34 @@ static float minimum_distance(Vec3 v, Vec3 w, Vec3 p) {
 }
 
 - (float) distanceFrom:(ARWorldLocation *)location {
-	return minimum_distance(self.from.position, self.to.position, location.position);	
+	return minimumDistance(self.from.position, self.to.position, location.position);	
+}
+
+- (ARASegmentDisposition)dispositionRelativeTo:(ARWorldLocation *)location {
+	Vec3 delta = self.to.position - self.from.position;
+	Vec3 direction = delta.normalized();
+	
+	Vec3 startOffset = (location.position - self.from.position).normalized();
+	
+	if (direction.dot(startOffset) < 0) {
+		return ARASegmentAhead;
+	}
+	
+	Vec3 endOffset = (location.position - self.to.position).normalized();
+	
+	if (direction.dot(endOffset)) {
+		return ARASegmentBehind;
+	}
+	
+	// If we are not infront or behind, we must be inbetween =)
+	// We just check if it is closer to the start or end:
+	if (startOffset.length() < endOffset.length()) {
+		// The length from the start to the point is less than the length from the end to the point:
+		return ARASegmentEntering;
+	} else {
+		// Otherwise, we are in the second half of the segment:
+		return ARASegmentExiting;
+	}
 }
 
 @end

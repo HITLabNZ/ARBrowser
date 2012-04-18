@@ -8,6 +8,7 @@
 
 #import "ARABrowserViewController.h"
 #import "ARASegment.h"
+#import "ARLocationController.h"
 
 @interface ARABrowserViewController ()
 
@@ -16,6 +17,7 @@
 @implementation ARABrowserViewController
 
 @synthesize pathController = _pathController, localArrow = _localArrow;
+@synthesize segmentIndexLabel = _segmentIndexLabel;
 @dynamic worldPoints;
 
 - (void)loadView {
@@ -46,6 +48,11 @@
 	
 	[browserView setMaximumDistance:400.0];
 	
+	self.segmentIndexLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 15, 100, 30)];
+	self.segmentIndexLabel.backgroundColor = [UIColor whiteColor];
+	
+	[browserView addSubview:self.segmentIndexLabel];
+	
 	[self setView:browserView];
 }
 
@@ -54,40 +61,11 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 	
-	if (!_locationManager) {
-		_locationManager = [CLLocationManager new];
-		_locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
-		_locationManager.delegate = self;
-		
-		[_locationManager startUpdatingLocation];
-		[_locationManager startUpdatingHeading];
-	}
-	
 	if (!self.localArrow) {
 		self.localArrow = [[ARALocalArrow alloc] init];
 		self.localArrow.radius = 6.0;
 		self.localArrow.angleScale = 0.75;
 	}
-}
-
-- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
-	//_compassView.location = newLocation;
-	ARWorldLocation * worldLocation = [[ARWorldLocation new] autorelease];
-	[worldLocation setCoordinate:newLocation.coordinate altitude:EARTH_RADIUS];
-	
-	self.pathController.currentSegmentIndex = [self.pathController.path calculateNearestSegmentForLocation:worldLocation];
-	
-	if (self.pathController.currentSegmentIndex != NSNotFound) {
-		NSLog(@"Current segment index: %d", self.pathController.currentSegmentIndex);
-		
-		ARAPathBearing pathBearing = [self.pathController.path calculateBearingForSegment:self.pathController.currentSegmentIndex withinDistance:25.0 fromLocation:worldLocation];
-		self.localArrow.currentBearing = pathBearing.incomingBearing;
-		self.localArrow.destinationBearing = pathBearing.outgoingBearing;
-	}
-}
-
-- (void) locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading {
-	//_compassView.heading = newHeading;
 }
 
 - (void)viewDidUnload
@@ -121,6 +99,21 @@
 }
 
 - (void)renderInLocalCoordinatesForBrowserView:(ARBrowserView *)view {
+	ARLocationController * sharedLocationController = [ARLocationController sharedInstance];
+	
+	ARWorldLocation * worldLocation = sharedLocationController.worldLocation;
+	if ([self.pathController updateSegmentIndexFromLocation:worldLocation]) {
+		self.segmentIndexLabel.text = [NSString stringWithFormat:@"Segment %d", self.pathController.currentSegmentIndex];
+	}
+	
+	if (self.pathController.currentSegmentIndex != NSNotFound) {
+		//NSLog(@"Current segment index: %d", self.pathController.currentSegmentIndex);
+		
+		ARAPathBearing pathBearing = [self.pathController.path calculateBearingForSegment:self.pathController.currentSegmentIndex withinDistance:25.0 fromLocation:worldLocation];
+		self.localArrow.currentBearing = pathBearing.incomingBearing;
+		self.localArrow.destinationBearing = pathBearing.outgoingBearing;
+	}
+	
 	[self.localArrow draw];
 }
 

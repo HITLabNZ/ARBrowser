@@ -22,6 +22,8 @@
 		
 		self.stepModel = [ARModel objectModelWithName:@"arrow0" inDirectory:modelPath];
 		self.markerModel = [ARModel objectModelWithName:@"marker" inDirectory:modelPath];
+		
+		self.currentSegmentIndex = NSNotFound;
 	}
 	
 	return self;
@@ -83,6 +85,40 @@
 	}
 	
 	[self didChangeValueForKey:@"path"];
+}
+
+- (BOOL)updateSegmentIndexFromLocation:(ARWorldLocation *)location {
+	// As an aside - perhaps taking the device orientation into account could be used here to more accurately select segments which are equally likely.
+	
+	// If we don't have a fix on any particular segment, find the closest one:
+	if (self.currentSegmentIndex == NSNotFound) {
+		self.currentSegmentIndex = [self.path calculateNearestSegmentForLocation:location];
+		
+		return YES;
+	}
+	
+	// Lets consider the current segment, and check if the user has exited yet:
+	ARASegment * currentSegment = [self.path.segments objectAtIndex:self.currentSegmentIndex];
+	ARASegmentDisposition disposition = [currentSegment dispositionRelativeTo:location];
+	
+	// The segment is behind, we need to check how far behind
+	if (disposition == ARASegmentBehind) {
+		// We may be in the next segment, if it exists:
+		
+		if (self.currentSegmentIndex + 1 < self.path.segments.count) {
+			ARASegment * nextSegment = [self.path.segments objectAtIndex:self.currentSegmentIndex + 1];
+			
+			ARASegmentDisposition nextSegmentDisposition = [nextSegment dispositionRelativeTo:location];
+			
+			// This might seem counter intuitive, but it basically means we are past half way:
+			if (nextSegmentDisposition == ARASegmentExiting) {
+				self.currentSegmentIndex = self.currentSegmentIndex + 1;
+				return YES;
+			}
+		}
+	}
+	
+	return NO;
 }
 
 @end

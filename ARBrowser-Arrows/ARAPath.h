@@ -10,6 +10,7 @@
 #import <CoreLocation/CoreLocation.h>
 
 #import "ARWorldLocation.h"
+#import "ARASegment.h"
 
 typedef struct {
 	CLLocationDegrees incomingBearing, outgoingBearing;

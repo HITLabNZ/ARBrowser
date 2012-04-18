@@ -13,12 +13,11 @@
 #import "ARAPathController.h"
 #import "ARALocalArrow.h"
 
-@interface ARABrowserViewController : UIViewController <EAGLViewDelegate, ARBrowserViewDelegate, CLLocationManagerDelegate> {	
-	CLLocationManager * _locationManager;
-}
+@interface ARABrowserViewController : UIViewController <EAGLViewDelegate, ARBrowserViewDelegate, CLLocationManagerDelegate>
 
 @property(nonatomic,retain) ARALocalArrow * localArrow;
 @property(nonatomic,retain) ARAPathController * pathController;
 @property(nonatomic,retain,readonly) NSArray * worldPoints;
+@property(nonatomic,retain) UILabel * segmentIndexLabel;
 
 @end

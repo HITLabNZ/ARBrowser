@@ -24,4 +24,6 @@
 - (NSArray*)visiblePoints;
 - (NSArray*)visiblePointsFromLocation:(ARWorldLocation *)origin withinDistance:(float)distance;
 
+- (BOOL)updateSegmentIndexFromLocation:(ARWorldLocation *)location;
+
 @end

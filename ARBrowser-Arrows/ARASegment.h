@@ -12,6 +12,14 @@
 
 #include <vector>
 
+typedef enum {
+	ARASegmentAhead = 1,
+	ARASegmentEntering = 2,
+	ARASegmentExiting = 4,
+	ARASegmentBehind = 8,
+	ARASegmentDispositionAny = (1|2|4|8)
+} ARASegmentDisposition;
+
 @interface ARASegment : NSObject
 
 @property(nonatomic,retain) ARWorldLocation * from;
@@ -22,5 +30,7 @@
 + (ARASegment *)segmentFrom:(ARWorldLocation *)from to:(ARWorldLocation *)to;
 
 - (float)distanceFrom:(ARWorldLocation *)location;
+
+- (ARASegmentDisposition)dispositionRelativeTo:(ARWorldLocation *)location;
 
 @end
