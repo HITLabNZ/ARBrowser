@@ -36,6 +36,7 @@
 	[tabBarController addChildViewController:pathEditorController];
 	
 	// This is just testing data, and even with that, this is a pretty crappy way to load it.. but it is fine for now.
+#ifdef PREDEFINED_ROUTE_ICUBE_BUILDING
 	CLLocationCoordinate2D coordinates[] = {
 		{1.291992, 103.775976},
 		{1.292271, 103.775470},
@@ -49,9 +50,10 @@
 		{1.292050, 103.775906}
 	};
 	
-	for (unsigned i = 0; i < 2; i += 1) {
+	for (unsigned i = 0; i < 10; i += 1) {
 		[pathEditorController addPoint:coordinates[i]];
 	}
+#endif
 	
 	ARABrowserViewController * browserViewController = [[ARABrowserViewController new] autorelease];
 	browserViewController.pathController = pathController;

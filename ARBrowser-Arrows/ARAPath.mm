@@ -87,6 +87,24 @@ inline AnyT hermite_polynomial (const InterpolateT & t, const AnyT & p0, const A
 	
 	result.outgoingBearing = result.incomingBearing;
 	
+	// Are we at the end?
+	if (index + 1 < self.segments.count) {
+		ARASegment * nextSegment = [self.segments objectAtIndex:index+1];
+		
+		float cornerDistance = [nextSegment distanceFrom:location];
+		
+		if (cornerDistance < distance) {
+			// Linear interpolation between current bearing and next bearing, based on distance:
+			
+			CLLocationDegrees outgoingBearing = calculateBearingBetween(convertFromDegrees(location.coordinate), convertFromDegrees(nextSegment.to.coordinate));
+			
+			float factor = cornerDistance / distance;
+			result.outgoingBearing = outgoingBearing * (1.0 - factor) + result.incomingBearing * factor;
+		}
+	}
+	
+	NSLog(@"Calculate bearing for segment %d: %0.2f => %0.2f", index, result.incomingBearing, result.outgoingBearing);
+	
 	return result;
 }
 

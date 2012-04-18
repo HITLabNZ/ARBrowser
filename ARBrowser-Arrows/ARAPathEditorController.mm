@@ -9,6 +9,8 @@
 #import "ARAPathEditorController.h"
 #import "ARWorldPoint.h"
 
+#import <AudioToolbox/AudioToolbox.h>
+
 @implementation ARAPathEditorController
 
 @synthesize pathController;
@@ -41,6 +43,8 @@
 	[(MKMapView*)self.view addAnnotation:point];
 	
 	self.pathController.path = [[[ARAPath alloc] initWithPoints:self.points] autorelease];
+	
+	AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
 }
 		 
 - (void)handleDropPinGesture:(UIGestureRecognizer *)gestureRecognizer {
@@ -59,7 +63,7 @@
 	[mapView setShowsUserLocation:YES];
 	
 	UILongPressGestureRecognizer * dropPinGesture = [[[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleDropPinGesture:)] autorelease];
-	dropPinGesture.minimumPressDuration = 2.0; //user needs to press for 2 seconds
+	dropPinGesture.minimumPressDuration = 1.0; //user needs to press for 2 seconds
 	[mapView addGestureRecognizer:dropPinGesture];
 		
 	self.view = mapView;

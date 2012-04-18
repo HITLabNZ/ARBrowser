@@ -29,7 +29,7 @@
 	[browserView setDebug:YES];
 	
 	// Turn on the grid.
-	[browserView setDisplayGrid:YES];
+	[browserView setDisplayGrid:NO];
 	
 	[browserView setAutoresizingMask:UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth];
 	
@@ -56,6 +56,7 @@
 	
 	if (!_locationManager) {
 		_locationManager = [CLLocationManager new];
+		_locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
 		_locationManager.delegate = self;
 		
 		[_locationManager startUpdatingLocation];
@@ -64,7 +65,7 @@
 	
 	if (!self.localArrow) {
 		self.localArrow = [[ARALocalArrow alloc] init];
-		self.localArrow.radius = 10.0;
+		self.localArrow.radius = 6.0;
 		self.localArrow.angleScale = 0.75;
 	}
 }
@@ -76,8 +77,13 @@
 	
 	self.pathController.currentSegmentIndex = [self.pathController.path calculateNearestSegmentForLocation:worldLocation];
 	
-	ARAPathBearing pathBearing = [self.pathController.path calculateBearingForSegment:self.pathController.currentSegmentIndex withinDistance:50.0 fromLocation:worldLocation];
-	self.localArrow.currentBearing = pathBearing.incomingBearing;
+	if (self.pathController.currentSegmentIndex != NSNotFound) {
+		NSLog(@"Current segment index: %d", self.pathController.currentSegmentIndex);
+		
+		ARAPathBearing pathBearing = [self.pathController.path calculateBearingForSegment:self.pathController.currentSegmentIndex withinDistance:25.0 fromLocation:worldLocation];
+		self.localArrow.currentBearing = pathBearing.incomingBearing;
+		self.localArrow.destinationBearing = pathBearing.outgoingBearing;
+	}
 }
 
 - (void) locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading {

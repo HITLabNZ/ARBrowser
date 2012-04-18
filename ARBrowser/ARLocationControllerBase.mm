@@ -60,7 +60,7 @@ int calculateRotationMatrixFromMagnetometer(CMAcceleration gravity, CMMagneticFi
     self = [super init];
     if (self) {
 		locationManager = [[CLLocationManager alloc] init];
-		[locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
+		[locationManager setDesiredAccuracy:kCLLocationAccuracyBestForNavigation];
 		[locationManager setDelegate:self];
         
 		//NSLog(@"Heading Orientation: %d", [locationManager headingOrientation]);

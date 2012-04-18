@@ -48,6 +48,7 @@
 		7E233753134B41F100BEFB33 /* matrix_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E233749134B41F100BEFB33 /* matrix_impl.cpp */; };
 		7E233754134B41F100BEFB33 /* utility_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E23374B134B41F100BEFB33 /* utility_impl.cpp */; };
 		7E3B4A8A153C6892009B4835 /* ARALocalArrow.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7E3B4A89153C6892009B4835 /* ARALocalArrow.mm */; };
+		7E3CF615153EAD4300027867 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E3CF614153EAD4300027867 /* AudioToolbox.framework */; };
 		7E430DD415221F9C00DE320A /* libHITLabNZAR.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E7E29531370D8C100338606 /* libHITLabNZAR.a */; };
 		7E430DD615221FCC00DE320A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E23371F134AD67C00BEFB33 /* OpenGLES.framework */; };
 		7E430DD715221FD300DE320A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E23372C134B2D2000BEFB33 /* AVFoundation.framework */; };
@@ -269,6 +270,7 @@
 		7E23374D134B41F100BEFB33 /* vfp_clobbers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vfp_clobbers.h; sourceTree = "<group>"; };
 		7E3B4A88153C6892009B4835 /* ARALocalArrow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARALocalArrow.h; sourceTree = "<group>"; };
 		7E3B4A89153C6892009B4835 /* ARALocalArrow.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ARALocalArrow.mm; sourceTree = "<group>"; };
+		7E3CF614153EAD4300027867 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		7E4F57A314A2CE8E00A6DB0C /* ARBrowser-VideoStream.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ARBrowser-VideoStream.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E4F57AA14A2CE8E00A6DB0C /* ARBrowser-VideoStream-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ARBrowser-VideoStream-Info.plist"; sourceTree = "<group>"; };
 		7E4F57AC14A2CE8E00A6DB0C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -394,6 +396,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E3CF615153EAD4300027867 /* AudioToolbox.framework in Frameworks */,
 				7E74197615298A3300388013 /* MapKit.framework in Frameworks */,
 				7E430DDE1522203300DE320A /* CoreLocation.framework in Frameworks */,
 				7E430DDD1522202700DE320A /* CoreFoundation.framework in Frameworks */,
@@ -440,6 +443,7 @@
 		7E2336B8134AD1FF00BEFB33 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7E3CF614153EAD4300027867 /* AudioToolbox.framework */,
 				7EBE522A14D60FC80054B478 /* ImageIO.framework */,
 				7EBB6E2E13C550650028A3E7 /* MapKit.framework */,
 				7E61C9781354ACE200857A4D /* CoreLocation.framework */,
