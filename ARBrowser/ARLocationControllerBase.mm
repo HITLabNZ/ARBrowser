@@ -72,7 +72,7 @@ int calculateRotationMatrixFromMagnetometer(CMAcceleration gravity, CMMagneticFi
 		[self.locationManager setHeadingOrientation:CLDeviceOrientationPortrait];
 		self.northAxis = (CMAcceleration){0, 1, 0};
 		
-		updateTimer = [NSTimer scheduledTimerWithTimeInterval:(1.0/30.0) target:self selector:@selector(update) userInfo:nil repeats:YES];
+		updateTimer = [NSTimer scheduledTimerWithTimeInterval:(1.0/60.0) target:self selector:@selector(update) userInfo:nil repeats:YES];
 		
 		[self.locationManager startUpdatingLocation];
 		[self.locationManager startUpdatingHeading];
@@ -96,10 +96,9 @@ int calculateRotationMatrixFromMagnetometer(CMAcceleration gravity, CMMagneticFi
     [super dealloc];
 }
 
-- (void)update
-{
+- (void)update {
 	// This should really use spherical interpolation, but for small distances it doesn't really make any difference..
-	const double kFilteringFactor = 0.995;
+	const double kFilteringFactor = 0.80;
 	
 	if (self.currentLocation) {
 		//Use a basic low-pass filter to smooth out changes in GPS data.
@@ -129,8 +128,6 @@ int calculateRotationMatrixFromMagnetometer(CMAcceleration gravity, CMMagneticFi
 
 - (ARWorldLocation*) worldLocation
 {
-	
-	
 	if (self.currentLocation && self.currentHeading) {
 		ARWorldLocation * result = [[ARWorldLocation new] autorelease];
         

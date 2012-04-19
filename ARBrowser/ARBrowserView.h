@@ -12,7 +12,7 @@
 #import "ARVideoFrameController.h"
 #import "ARVideoBackground.h"
 
-@class ARBrowserView, ARWorldLocation, ARWorldPoint;
+@class ARBrowserView, ARWorldLocation, ARWorldPoint, ARLocationController;
 
 /// The main data source/delegate for ARBrowserView
 @protocol ARBrowserViewDelegate <EAGLViewDelegate>
@@ -80,5 +80,8 @@ struct ARBrowserViewState;
 
 /// Display a background horizon grid.
 @property(assign) BOOL displayGrid;
+
+/// The location controller to use for position information.
+@property(nonatomic,retain) ARLocationController * locationController;
 
 @end

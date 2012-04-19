@@ -44,6 +44,7 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 
 @synthesize delegate, minimumDistance, maximumDistance, displayRadar, displayGrid, radarCenter;
 @synthesize nearDistance, farDistance;
+@synthesize locationController = _locationController;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -55,7 +56,7 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 		[videoFrameController start];
 		
 		// Initialise the location controller
-		[ARLocationController sharedInstance];
+		self.locationController = [ARLocationController sharedInstance];
 		
 		state = new ARBrowserViewState;
 		ARBrowser::generateGrid(state->grid);
@@ -94,7 +95,7 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 		Vec2 now = positionInView(self, touch);
 		ARBrowser::IntersectionResult result;
 		
-		ARWorldLocation * origin = [[ARLocationController sharedInstance] worldLocation];
+		ARWorldLocation * origin = [self.locationController worldLocation];
 		NSArray * worldPoints = [[self delegate] worldPoints];
 		std::vector<ARBrowser::BoundingSphere> spheres;
 		
@@ -136,9 +137,8 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 }
 
 - (void) drawRadar {
-	ARLocationController * locationController = [ARLocationController sharedInstance];
-	ARWorldLocation * origin = [locationController worldLocation];
-	CMAcceleration gravity = [locationController currentGravity];
+	ARWorldLocation * origin = [self.locationController worldLocation];
+	CMAcceleration gravity = [self.locationController currentGravity];
 	//NSLog(@"Bearing: %0.3f", origin.rotation);
 	
 	NSArray * worldPoints = [self.delegate worldPointsFromLocation:origin withinDistance:self.maximumDistance * 2.0];
@@ -286,8 +286,7 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 	glEnable(GL_DEPTH_TEST);
 	glClear(GL_DEPTH_BUFFER_BIT);
 	
-	ARLocationController * locationController = [ARLocationController sharedInstance];
-	CMAcceleration gravity = [locationController currentGravity];
+	CMAcceleration gravity = [self.locationController currentGravity];
 	
 	// Calculate the camera paremeters
 	{
@@ -338,7 +337,7 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 	glMultMatrixf(perspectiveProjection.f);
 	
 	glMatrixMode(GL_MODELVIEW);
-	ARWorldLocation * origin = [locationController worldLocation];
+	ARWorldLocation * origin = [self.locationController worldLocation];
 	
 	glRotatef([origin rotation], 0, 0, 1);
 	

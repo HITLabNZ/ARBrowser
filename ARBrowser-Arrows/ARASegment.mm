@@ -13,7 +13,20 @@
 
 @synthesize steps = _steps, from = _from, to = _to;
 
-+ (ARASegment *)segmentFrom:(ARWorldLocation *)from to:(ARWorldLocation *)to {
+- initFrom:(ARWorldLocation *)from to:(ARWorldLocation *)to {
+	self = [super init];
+	
+	if (self) {
+		self.from = from;
+		self.to = to;
+		
+		self.steps = [NSArray array];
+	}
+	
+	return self;
+}
+
++ (NSArray *)intermediateStepsFrom:(ARWorldLocation *)from to:(ARWorldLocation *)to {
 	// Probably best to use spherical interpolation, but we'll just use linear interpolation for now:
 	NSMutableArray * steps = [NSMutableArray array];
 	
@@ -38,13 +51,7 @@
 		[steps addObject:intermediateLocation];
 	}
 	
-	ARASegment * segment = [[ARASegment new] autorelease];
-	
-	segment.from = from;
-	segment.to = to;
-	segment.steps = steps;
-	
-	return segment;
+	return steps;
 }
 
 static float minimumDistance(Vec3 v, Vec3 w, Vec3 p) {

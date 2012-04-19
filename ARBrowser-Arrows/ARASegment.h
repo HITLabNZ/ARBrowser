@@ -27,7 +27,10 @@ typedef enum {
 
 @property(nonatomic,retain) NSArray * steps;
 
-+ (ARASegment *)segmentFrom:(ARWorldLocation *)from to:(ARWorldLocation *)to;
+- initFrom:(ARWorldLocation *)from to:(ARWorldLocation *)to;
+
+/// Compute a set of intermediate steps between two points:
++ (NSArray *)intermediateStepsFrom:(ARWorldLocation *)from to:(ARWorldLocation *)to;
 
 - (float)distanceFrom:(ARWorldLocation *)location;
 

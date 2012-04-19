@@ -107,9 +107,9 @@ const float ARACornerRadius = 50.0;
 }
 
 - (void)renderInLocalCoordinatesForBrowserView:(ARBrowserView *)view {
-	ARLocationController * sharedLocationController = [ARLocationController sharedInstance];
+	ARLocationController * locationController = view.locationController;
 	
-	ARWorldLocation * worldLocation = sharedLocationController.worldLocation;
+	ARWorldLocation * worldLocation = locationController.worldLocation;
 	[self.pathController updateSegmentIndexFromLocation:worldLocation];
 	
 	ARASegmentDisposition disposition = [self.pathController.currentSegment dispositionRelativeTo:worldLocation];
@@ -121,7 +121,13 @@ const float ARACornerRadius = 50.0;
 		self.localArrow.currentBearing = pathBearing.incomingBearing;
 		self.localArrow.destinationBearing = pathBearing.outgoingBearing;
 		
-		self.bearingLabel.text = [NSString stringWithFormat:@"%0.2f => %0.2f; (%0.1f, %0.2f%%)", pathBearing.incomingBearing, pathBearing.outgoingBearing, pathBearing.distanceFromMidpoint, pathBearing.distanceFromMidpoint / ARACornerRadius];
+		NSString * percentageThroughCorner = @"-";
+		
+		if (pathBearing.distanceFromMidpoint < ARACornerRadius) {
+			percentageThroughCorner = [NSString stringWithFormat:@"%0.1f%%", (pathBearing.distanceFromMidpoint / ARACornerRadius) * 100.0];
+		}
+		
+		self.bearingLabel.text = [NSString stringWithFormat:@"%0.2f => %0.2f; (%0.1f, %@)", pathBearing.incomingBearing, pathBearing.outgoingBearing, pathBearing.distanceFromMidpoint, percentageThroughCorner];
 	}
 	
 	[self.localArrow draw];

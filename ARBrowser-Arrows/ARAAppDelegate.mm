@@ -23,34 +23,6 @@
     [super dealloc];
 }
 
-- (void) testSegment {
-	ARWorldLocation * from = [ARWorldLocation new], * to = [ARWorldLocation new];
-	
-	[from setCoordinate:(CLLocationCoordinate2D){0, 0} altitude:EARTH_RADIUS];
-	[to setCoordinate:(CLLocationCoordinate2D){0, 1} altitude:EARTH_RADIUS];
-	
-	ARASegment * segment = [ARASegment segmentFrom:from to:to];
-	
-	ARWorldLocation * location = [ARWorldLocation new];
-	ARASegmentDisposition disposition;
-	
-	[location setCoordinate:(CLLocationCoordinate2D){0, -1} altitude:EARTH_RADIUS];
-	disposition = [segment dispositionRelativeTo:location];	
-	NSLog(@"Disposition = %d, should be %d", disposition, ARASegmentAhead);
-	
-	[location setCoordinate:(CLLocationCoordinate2D){0, 0.1} altitude:EARTH_RADIUS];
-	disposition = [segment dispositionRelativeTo:location];	
-	NSLog(@"Disposition = %d, should be %d", disposition, ARASegmentEntering);
-	
-	[location setCoordinate:(CLLocationCoordinate2D){0, 0.9} altitude:EARTH_RADIUS];
-	disposition = [segment dispositionRelativeTo:location];	
-	NSLog(@"Disposition = %d, should be %d", disposition, ARASegmentExiting);
-	
-	[location setCoordinate:(CLLocationCoordinate2D){0, 2} altitude:EARTH_RADIUS];
-	disposition = [segment dispositionRelativeTo:location];	
-	NSLog(@"Disposition = %d, should be %d", disposition, ARASegmentBehind);
-}
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {	
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];

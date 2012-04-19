@@ -65,14 +65,14 @@ inline AnyT hermite_polynomial (const InterpolateT & t, const AnyT & p0, const A
 	for (NSInteger i = 2; i < self.points.count; i += 1) {
 		ARWorldPoint * next = [self.points objectAtIndex:i];
 		
-		[segments addObject:[ARASegment segmentFrom:from to:to]];
+		[segments addObject:[[ARASegment alloc] initFrom:from to:to]];
 				
 		// Move along one step
 		from = to;
 		to = next;
 	}
 	
-	[segments addObject:[ARASegment segmentFrom:from to:to]];
+	[segments addObject:[[ARASegment alloc] initFrom:from to:to]];
 	
 	self.segments = segments;
 }
