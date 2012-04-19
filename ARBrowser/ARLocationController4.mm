@@ -67,7 +67,7 @@ double interpolateAnglesDegrees(double a, double b, double blend) {
                 _smoothedBearing = _currentBearing;
             }
             
-			CLDeviceMotion * currentMotion = [[self.currentMotion retain] autorelease];
+			CMDeviceMotion * currentMotion = [[self.currentMotion retain] autorelease];
 			
             if (currentHeading && currentMotion) {
                 CLLocationDirection bearingChange = calculateBearingChange(currentMotion, motion);
