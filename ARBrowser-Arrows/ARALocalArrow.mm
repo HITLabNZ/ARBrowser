@@ -59,7 +59,9 @@ static void generateArrow(Vec3 bottom, Vec3 top, Vec3 up, float angle, std::vect
 	};
 	
 	for (std::size_t i = 0; i < 9; i += 1) {
-		float factor = (points[i] - bottom).length() / length;
+		float factor = (points[i] - bottom).length() / (length / 1.8);
+		
+		if (factor > 1.0) factor = 1.0;
 		
 		Vec3 rotated;
 		MatrixVec3Multiply(rotated, points[i], rotation);
@@ -106,7 +108,7 @@ static void generateArrow(Vec3 bottom, Vec3 top, Vec3 up, float angle, std::vect
 	
 	std::vector<Vec3> vertices;
 	
-	generateArrow(Vec3(0, 0, 0), Vec3(0, _radius, 0), Vec3(0, 0, 1), offsetBearing, vertices);
+	generateArrow(Vec3(0, -_radius, 0), Vec3(0, _radius, 0), Vec3(0, 0, 1), offsetBearing, vertices);
 	
 	glColor4f(27.0/255.0, 198.0/255.0, 224.0/255.0, 1.0);
 	
