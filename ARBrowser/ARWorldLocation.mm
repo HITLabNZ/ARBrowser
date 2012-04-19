@@ -8,7 +8,7 @@
 
 #import "ARWorldLocation.h"
 
-#import "Model.h"
+#import "ARRendering.h"
 
 // Convenience
 const double D2R = (M_PI / 180.0);

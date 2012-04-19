@@ -8,7 +8,7 @@
 
 #import "ARLocationControllerBase.h"
 #import "ARWorldLocation.h"
-#import "Model.h"
+#import "ARRendering.h"
 
 // X is defined as the vector product <b>Y.Z</b> (It is tangential to the ground at the device's current location and roughly points East).
 // Y is tangential to the ground at the device's current location and points towards the magnetic North Pole.

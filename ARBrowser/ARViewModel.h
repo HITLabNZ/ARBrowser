@@ -8,7 +8,7 @@
 
 #import "ARModel.h"
 
-#import "Model.h"
+#import "ARRendering.h"
 #import "Texture2D.h"
 
 @interface ARViewModel : NSObject<ARRenderable> {

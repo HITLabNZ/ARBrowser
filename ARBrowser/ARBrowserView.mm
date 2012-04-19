@@ -9,7 +9,7 @@
 #import "ARBrowserView.h"
 #import "ARLocationController.h"
 
-#import "Model.h"
+#import "ARRendering.h"
 #import "ARWorldPoint.h"
 #import "ARModel.h"
 

@@ -39,7 +39,7 @@
 		7E23372D134B2D2000BEFB33 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E23372C134B2D2000BEFB33 /* AVFoundation.framework */; };
 		7E23372F134B3E1500BEFB33 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E23372E134B3E1500BEFB33 /* CoreVideo.framework */; };
 		7E233731134B3E5B00BEFB33 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E233730134B3E5B00BEFB33 /* CoreMedia.framework */; };
-		7E233735134B3FBF00BEFB33 /* Model.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7E233734134B3FBF00BEFB33 /* Model.mm */; };
+		7E233735134B3FBF00BEFB33 /* ARRendering.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7E233734134B3FBF00BEFB33 /* ARRendering.mm */; };
 		7E233738134B40C200BEFB33 /* ARWorldLocation.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7E233737134B40C200BEFB33 /* ARWorldLocation.mm */; };
 		7E23374E134B41F100BEFB33 /* Matrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E23373B134B41F100BEFB33 /* Matrix.cpp */; };
 		7E233750134B41F100BEFB33 /* Transform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E233740134B41F100BEFB33 /* Transform.cpp */; };
@@ -96,7 +96,7 @@
 		7E7E29681370D96C00338606 /* EAGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E233714134AD2C500BEFB33 /* EAGLView.m */; };
 		7E7E29691370D97100338606 /* ARBrowserView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7E8D4CB0134FE04A00868D6B /* ARBrowserView.mm */; };
 		7E7E296A1370D97400338606 /* ARLocationController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7E61C9761354AA2700857A4D /* ARLocationController.mm */; };
-		7E7E296B1370D97E00338606 /* Model.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7E233734134B3FBF00BEFB33 /* Model.mm */; };
+		7E7E296B1370D97E00338606 /* ARRendering.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7E233734134B3FBF00BEFB33 /* ARRendering.mm */; };
 		7E7E29781370E50900338606 /* ARLocationController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E61C9751354AA2700857A4D /* ARLocationController.h */; };
 		7E7E29791370E50E00338606 /* ARBrowserView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E8D4CAF134FE04A00868D6B /* ARBrowserView.h */; };
 		7E7E297A1370E51100338606 /* EAGLView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E233713134AD2C500BEFB33 /* EAGLView.h */; };
@@ -157,6 +157,7 @@
 		7EEAE9BE144F92B300286695 /* ARLocationControllerBase.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7EEAE9BC144F92B300286695 /* ARLocationControllerBase.mm */; };
 		7EFDDECC13E8DB8C00155C2B /* ARViewModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7EFDDECB13E8DB8C00155C2B /* ARViewModel.mm */; };
 		7EFDDECD13E8DB8C00155C2B /* ARViewModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7EFDDECB13E8DB8C00155C2B /* ARViewModel.mm */; };
+		904CE31C153FE45800C94FBB /* ARRendering.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E233733134B3FBF00BEFB33 /* ARRendering.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -215,6 +216,7 @@
 				7E7E29801370E5E200338606 /* ARBrowserAppDelegate.h in CopyFiles */,
 				7E7E29831370E60A00338606 /* ARBrowserViewController.h in CopyFiles */,
 				7E7E29841370E60D00338606 /* ARBrowserViewController.mm in CopyFiles */,
+				904CE31C153FE45800C94FBB /* ARRendering.h in CopyFiles */,
 				7E7E29851370E61300338606 /* Texture2D.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -248,8 +250,8 @@
 		7E23372C134B2D2000BEFB33 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		7E23372E134B3E1500BEFB33 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		7E233730134B3E5B00BEFB33 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
-		7E233733134B3FBF00BEFB33 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
-		7E233734134B3FBF00BEFB33 /* Model.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Model.mm; sourceTree = "<group>"; };
+		7E233733134B3FBF00BEFB33 /* ARRendering.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARRendering.h; sourceTree = "<group>"; };
+		7E233734134B3FBF00BEFB33 /* ARRendering.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ARRendering.mm; sourceTree = "<group>"; };
 		7E233736134B40C200BEFB33 /* ARWorldLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARWorldLocation.h; sourceTree = "<group>"; };
 		7E233737134B40C200BEFB33 /* ARWorldLocation.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ARWorldLocation.mm; sourceTree = "<group>"; };
 		7E23373A134B41F100BEFB33 /* Endian.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Endian.h; sourceTree = "<group>"; };
@@ -520,8 +522,8 @@
 		7E233732134B3F6500BEFB33 /* Private */ = {
 			isa = PBXGroup;
 			children = (
-				7E233733134B3FBF00BEFB33 /* Model.h */,
-				7E233734134B3FBF00BEFB33 /* Model.mm */,
+				7E233733134B3FBF00BEFB33 /* ARRendering.h */,
+				7E233734134B3FBF00BEFB33 /* ARRendering.mm */,
 				7EEAE9BB144F92B300286695 /* ARLocationControllerBase.h */,
 				7EEAE9BC144F92B300286695 /* ARLocationControllerBase.mm */,
 				7EEAE9B3144F903800286695 /* ARLocationController3.h */,
@@ -843,7 +845,7 @@
 				7E233725134AE94400BEFB33 /* Texture2D.m in Sources */,
 				7E233728134AE99D00BEFB33 /* ARVideoFrameController.m in Sources */,
 				7E23372B134AEAC100BEFB33 /* ARVideoBackground.m in Sources */,
-				7E233735134B3FBF00BEFB33 /* Model.mm in Sources */,
+				7E233735134B3FBF00BEFB33 /* ARRendering.mm in Sources */,
 				7E233738134B40C200BEFB33 /* ARWorldLocation.mm in Sources */,
 				7E23374E134B41F100BEFB33 /* Matrix.cpp in Sources */,
 				7E233750134B41F100BEFB33 /* Transform.cpp in Sources */,
@@ -896,7 +898,7 @@
 				7E7E29681370D96C00338606 /* EAGLView.m in Sources */,
 				7E7E29691370D97100338606 /* ARBrowserView.mm in Sources */,
 				7E7E296A1370D97400338606 /* ARLocationController.mm in Sources */,
-				7E7E296B1370D97E00338606 /* Model.mm in Sources */,
+				7E7E296B1370D97E00338606 /* ARRendering.mm in Sources */,
 				7EBCD90A13B87967007892CA /* ARObjectModel.mm in Sources */,
 				7EFDDECD13E8DB8C00155C2B /* ARViewModel.mm in Sources */,
 				7EEAE9B9144F923B00286695 /* ARLocationController4.mm in Sources */,

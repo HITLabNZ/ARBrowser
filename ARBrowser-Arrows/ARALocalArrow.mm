@@ -9,7 +9,7 @@
 #import <CoreLocation/CoreLocation.h>
 
 #include <vector>
-#include "Model.h"
+#include "ARRendering.h"
 
 @implementation ARALocalArrow
 

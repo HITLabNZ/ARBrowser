@@ -11,7 +11,7 @@
 #import <Foundation/Foundation.h>
 
 #include "ARModel.h"
-#include "Model.h"
+#include "ARRendering.h"
 
 /// Provides a wrapper for ARBrowser::Model which implements ARRenderable
 @interface ARObjectModel : NSObject<ARRenderable> {

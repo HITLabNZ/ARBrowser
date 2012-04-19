@@ -10,7 +10,7 @@
 
 #import "ARLocationController.h"
 #import "ARWorldLocation.h"
-#include "Model.h"
+#include "ARRendering.h"
 #include <math.h>
 
 #define HYBRID_SENSORS
