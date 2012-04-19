@@ -25,16 +25,16 @@ extern NSString * const ARAccelerationChanged;
 @property(retain,readonly,nonatomic) CLHeading * currentHeading;
 
 /// The device's current gravity downwards vector.
-- (CMAcceleration) currentGravity;
+@property(assign,readonly,nonatomic) CMAcceleration currentGravity;
 
 /// The devices current rotation from north, e.g. around the downwards vector.
-- (CLLocationDirection) currentBearing;
+@property(assign,readonly,nonatomic) CLLocationDirection currentBearing;
 
 // The local device axis that represents north.
-- (CMAcceleration) northAxis;
+@property(assign,readonly,nonatomic) CMAcceleration northAxis;
 
 /// Get the origin of the current device.
-- (ARWorldLocation*) worldLocation;
+@property(retain,readonly,nonatomic) ARWorldLocation * worldLocation;
 
 /// Get the shared location controller.
 + sharedInstance;

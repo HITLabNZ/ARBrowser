@@ -47,6 +47,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -78,7 +79,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Properties</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Properties</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -117,14 +118,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00024"></a>00024 @property(retain,readonly,nonatomic) CLLocation * currentLocation;
 <a name="l00025"></a>00025 @property(retain,readonly,nonatomic) CLHeading * currentHeading;
 <a name="l00026"></a>00026 
-<a name="l00028"></a>00028 - (CMAcceleration) <a class="code" href="interface_a_r_location_controller.html#aece737bf9997135b189c20d21e987afc" title="The device&#39;s current gravity downwards vector.">currentGravity</a>;
+<a name="l00028"></a><a class="code" href="interface_a_r_location_controller.html#a05c7a142faa94d533ba5681913500bea">00028</a> @property(assign,readonly,nonatomic) CMAcceleration <a class="code" href="interface_a_r_location_controller.html#a05c7a142faa94d533ba5681913500bea" title="The device&#39;s current gravity downwards vector.">currentGravity</a>;
 <a name="l00029"></a>00029 
-<a name="l00031"></a>00031 - (CLLocationDirection) <a class="code" href="interface_a_r_location_controller.html#af59323af0761354ffe3b3f7a8f2a04c7" title="The devices current rotation from north, e.g. around the downwards vector.">currentBearing</a>;
+<a name="l00031"></a><a class="code" href="interface_a_r_location_controller.html#a0e5ff46d892f7a29417af2a64fa4e8ac">00031</a> @property(assign,readonly,nonatomic) CLLocationDirection <a class="code" href="interface_a_r_location_controller.html#a0e5ff46d892f7a29417af2a64fa4e8ac" title="The devices current rotation from north, e.g. around the downwards vector.">currentBearing</a>;
 <a name="l00032"></a>00032 
 <a name="l00033"></a>00033 <span class="comment">// The local device axis that represents north.</span>
-<a name="l00034"></a>00034 - (CMAcceleration) northAxis;
+<a name="l00034"></a>00034 @property(assign,readonly,nonatomic) CMAcceleration northAxis;
 <a name="l00035"></a>00035 
-<a name="l00037"></a>00037 - (<a class="code" href="interface_a_r_world_location.html" title="A intrinsic location on the surface of a sphere.">ARWorldLocation</a>*) <a class="code" href="interface_a_r_location_controller.html#add343901133f310b9a56d66f89cf5a6a" title="Get the origin of the current device.">worldLocation</a>;
+<a name="l00037"></a><a class="code" href="interface_a_r_location_controller.html#ad2fd7779a7eaf0b747074db1d111c362">00037</a> @property(retain,readonly,nonatomic) <a class="code" href="interface_a_r_world_location.html" title="A intrinsic location on the surface of a sphere.">ARWorldLocation</a> * <a class="code" href="interface_a_r_location_controller.html#ad2fd7779a7eaf0b747074db1d111c362" title="Get the origin of the current device.">worldLocation</a>;
 <a name="l00038"></a>00038 
 <a name="l00040"></a>00040 + <a class="code" href="interface_a_r_location_controller.html#a7667cf3d4be0d3aa33942ace003f54ae" title="Get the shared location controller.">sharedInstance</a>;
 <a name="l00041"></a>00041 
@@ -134,7 +135,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 13 2012 21:42:25 for HITLabNZ ARBrowser by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Apr 19 2012 15:03:52 for HITLabNZ ARBrowser by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.0
 </small></address>

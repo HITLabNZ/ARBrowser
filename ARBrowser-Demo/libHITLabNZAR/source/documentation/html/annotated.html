@@ -47,6 +47,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -81,7 +82,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Properties</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Properties</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -109,14 +110,23 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <tr><td class="indexkey"><a class="el" href="interface_a_r_video_frame_controller.html">ARVideoFrameController</a></td><td class="indexvalue">Provides simplea access to iPhone video camera in the form of <a class="el" href="struct_a_r_video_frame.html" title="The image data from the video camera.">ARVideoFrame</a> data. This can then be provided to <a class="el" href="interface_a_r_video_background.html" title="Provides an OpenGL based video background which can display ARVideoFrame data.">ARVideoBackground</a> for rendering </td></tr>
   <tr><td class="indexkey"><a class="el" href="interface_a_r_world_location.html">ARWorldLocation</a></td><td class="indexvalue">A intrinsic location on the surface of a sphere </td></tr>
   <tr><td class="indexkey"><a class="el" href="interface_a_r_world_point.html">ARWorldPoint</a></td><td class="indexvalue">Provides a renderable model and associated metadata for a given <a class="el" href="interface_a_r_world_location.html" title="A intrinsic location on the surface of a sphere.">ARWorldLocation</a> </td></tr>
+  <tr><td class="indexkey"><a class="el" href="struct_a_r_browser_1_1_bounding_box.html">ARBrowser::BoundingBox</a></td><td class="indexvalue">An aligned bounding box class which provides basic intersection tests </td></tr>
+  <tr><td class="indexkey"><a class="el" href="struct_a_r_browser_1_1_bounding_sphere.html">ARBrowser::BoundingSphere</a></td><td class="indexvalue">A basic sphere that can be transformed and provides basic intersection tests </td></tr>
+  <tr><td class="indexkey"><a class="el" href="struct_a_r_browser_1_1_color4f.html">ARBrowser::Color4f</a></td><td class="indexvalue">Simple representation of 4-component colour </td></tr>
   <tr><td class="indexkey"><a class="el" href="interface_e_a_g_l_view.html">EAGLView</a></td><td class="indexvalue">Wraps the CAEAGLLayer from CoreAnimation into a convenient UIView subclass </td></tr>
   <tr><td class="indexkey"><a class="el" href="protocol_e_a_g_l_view_delegate-p.html">&lt;EAGLViewDelegate&gt;</a></td><td class="indexvalue">The main EAGL delegate callbacks </td></tr>
+  <tr><td class="indexkey"><a class="el" href="struct_a_r_browser_1_1_intersection_result.html">ARBrowser::IntersectionResult</a></td><td class="indexvalue">Result of intersection tests using <a class="el" href="namespace_a_r_browser.html#a7b3b959b4b5897b81d6343406302b102" title="Find intersections using a given point on the screen, and a set of bounding spheres.">findIntersection()</a> </td></tr>
+  <tr><td class="indexkey"><a class="el" href="class_a_r_browser_1_1_model.html">ARBrowser::Model</a></td><td class="indexvalue">Main .obj format model loader </td></tr>
+  <tr><td class="indexkey"><a class="el" href="struct_a_r_browser_1_1_obj_material.html">ARBrowser::ObjMaterial</a></td><td class="indexvalue">A material references any required textures for rendering </td></tr>
+  <tr><td class="indexkey"><a class="el" href="struct_a_r_browser_1_1_obj_mesh.html">ARBrowser::ObjMesh</a></td><td class="indexvalue">A mesh consists of a list of triangle faces and an associated material </td></tr>
+  <tr><td class="indexkey"><a class="el" href="struct_a_r_browser_1_1_obj_mesh_face.html">ARBrowser::ObjMeshFace</a></td><td class="indexvalue">A triangle that can be rendered as part of an object model </td></tr>
+  <tr><td class="indexkey"><a class="el" href="struct_a_r_browser_1_1_obj_mesh_vertex.html">ARBrowser::ObjMeshVertex</a></td><td class="indexvalue">The position, texture coordinate and normal of a vertex </td></tr>
 </table>
 </div><!-- contents -->
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 13 2012 21:42:25 for HITLabNZ ARBrowser by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Apr 19 2012 15:03:52 for HITLabNZ ARBrowser by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.0
 </small></address>

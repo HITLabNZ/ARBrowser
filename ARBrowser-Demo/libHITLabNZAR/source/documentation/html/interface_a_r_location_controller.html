@@ -47,6 +47,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -80,7 +81,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Properties</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Properties</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -92,8 +93,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="header">
   <div class="summary">
-<a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-static-methods">Static Public Member Functions</a>  </div>
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#properties">Properties</a>  </div>
   <div class="headertitle">
 <div class="title">ARLocationController Class Reference</div>  </div>
 </div><!--header-->
@@ -106,22 +107,22 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p><a href="class_a_r_location_controller-members.html">List of all members.</a></p>
 <table class="memberdecls">
-<tr><td colspan="2"><h2><a name="pub-methods"></a>
-Public Member Functions</h2></td></tr>
-<tr class="memitem:aece737bf9997135b189c20d21e987afc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aece737bf9997135b189c20d21e987afc"></a>
-(CMAcceleration)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_a_r_location_controller.html#aece737bf9997135b189c20d21e987afc">currentGravity</a></td></tr>
-<tr class="memdesc:aece737bf9997135b189c20d21e987afc"><td class="mdescLeft">&#160;</td><td class="mdescRight">The device's current gravity downwards vector. <br/></td></tr>
-<tr class="memitem:af59323af0761354ffe3b3f7a8f2a04c7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af59323af0761354ffe3b3f7a8f2a04c7"></a>
-(CLLocationDirection)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_a_r_location_controller.html#af59323af0761354ffe3b3f7a8f2a04c7">currentBearing</a></td></tr>
-<tr class="memdesc:af59323af0761354ffe3b3f7a8f2a04c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">The devices current rotation from north, e.g. around the downwards vector. <br/></td></tr>
-<tr class="memitem:add343901133f310b9a56d66f89cf5a6a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="add343901133f310b9a56d66f89cf5a6a"></a>
-(<a class="el" href="interface_a_r_world_location.html">ARWorldLocation</a> *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="interface_a_r_location_controller.html#add343901133f310b9a56d66f89cf5a6a">worldLocation</a></td></tr>
-<tr class="memdesc:add343901133f310b9a56d66f89cf5a6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the origin of the current device. <br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a7667cf3d4be0d3aa33942ace003f54ae"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7667cf3d4be0d3aa33942ace003f54ae"></a>
 (id)&#160;</td><td class="memItemRight" valign="bottom">+ <a class="el" href="interface_a_r_location_controller.html#a7667cf3d4be0d3aa33942ace003f54ae">sharedInstance</a></td></tr>
 <tr class="memdesc:a7667cf3d4be0d3aa33942ace003f54ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the shared location controller. <br/></td></tr>
+<tr><td colspan="2"><h2><a name="properties"></a>
+Properties</h2></td></tr>
+<tr class="memitem:a05c7a142faa94d533ba5681913500bea"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a05c7a142faa94d533ba5681913500bea"></a>
+CMAcceleration&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_a_r_location_controller.html#a05c7a142faa94d533ba5681913500bea">currentGravity</a></td></tr>
+<tr class="memdesc:a05c7a142faa94d533ba5681913500bea"><td class="mdescLeft">&#160;</td><td class="mdescRight">The device's current gravity downwards vector. <br/></td></tr>
+<tr class="memitem:a0e5ff46d892f7a29417af2a64fa4e8ac"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0e5ff46d892f7a29417af2a64fa4e8ac"></a>
+CLLocationDirection&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_a_r_location_controller.html#a0e5ff46d892f7a29417af2a64fa4e8ac">currentBearing</a></td></tr>
+<tr class="memdesc:a0e5ff46d892f7a29417af2a64fa4e8ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">The devices current rotation from north, e.g. around the downwards vector. <br/></td></tr>
+<tr class="memitem:ad2fd7779a7eaf0b747074db1d111c362"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad2fd7779a7eaf0b747074db1d111c362"></a>
+<a class="el" href="interface_a_r_world_location.html">ARWorldLocation</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_a_r_location_controller.html#ad2fd7779a7eaf0b747074db1d111c362">worldLocation</a></td></tr>
+<tr class="memdesc:ad2fd7779a7eaf0b747074db1d111c362"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the origin of the current device. <br/></td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>Provides access to location information via a shared instance. </p>
@@ -132,7 +133,7 @@ Static Public Member Functions</h2></td></tr>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 13 2012 21:42:25 for HITLabNZ ARBrowser by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Apr 19 2012 15:03:52 for HITLabNZ ARBrowser by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.0
 </small></address>

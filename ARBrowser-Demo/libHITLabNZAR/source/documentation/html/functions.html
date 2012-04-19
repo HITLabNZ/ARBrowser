@@ -47,6 +47,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -109,7 +110,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Properties</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Properties</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -122,6 +123,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="textblock">Here is a list of all documented class members with links to the class documentation for each member:</div>
 
 <h3><a class="anchor" id="index_a"></a>- a -</h3><ul>
+<li>add()
+: <a class="el" href="struct_a_r_browser_1_1_bounding_box.html#a70c648f860e62446044fb07ada4c72e1">ARBrowser::BoundingBox</a>
+</li>
 <li>altitude
 : <a class="el" href="interface_a_r_world_location.html#a6198b09685a4bd2b0b76d349322a0774">ARWorldLocation</a>
 </li>
@@ -148,14 +152,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>calculateRelativePositionOf:
 : <a class="el" href="interface_a_r_world_location.html#a3e62f3cc4265c32e4044aa0ac161679a">ARWorldLocation</a>
 </li>
+<li>center()
+: <a class="el" href="struct_a_r_browser_1_1_bounding_box.html#accf2b1854f76261d8b973d92d661f2a8">ARBrowser::BoundingBox</a>
+</li>
 <li>coordinate
 : <a class="el" href="interface_a_r_world_location.html#a6d1e3dc13b380e19d858252644fbb748">ARWorldLocation</a>
 </li>
+<li>count
+: <a class="el" href="struct_a_r_browser_1_1_bounding_box.html#aa0b4801ea11ab8245e130aae35f495ce">ARBrowser::BoundingBox</a>
+</li>
 <li>currentBearing
-: <a class="el" href="interface_a_r_location_controller.html#af59323af0761354ffe3b3f7a8f2a04c7">ARLocationController</a>
+: <a class="el" href="interface_a_r_location_controller.html#a0e5ff46d892f7a29417af2a64fa4e8ac">ARLocationController</a>
 </li>
 <li>currentGravity
-: <a class="el" href="interface_a_r_location_controller.html#aece737bf9997135b189c20d21e987afc">ARLocationController</a>
+: <a class="el" href="interface_a_r_location_controller.html#a05c7a142faa94d533ba5681913500bea">ARLocationController</a>
 </li>
 </ul>
 
@@ -173,6 +183,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>didResizeEAGLSurfaceForView:
 : <a class="el" href="protocol_e_a_g_l_view_delegate-p.html#a763247fb631c4cb6b7e420f99e007883">&lt;EAGLViewDelegate&gt;</a>
 </li>
+<li>diffuseMapPath
+: <a class="el" href="struct_a_r_browser_1_1_obj_material.html#a9c08c8665c304afa3120cc694baba571">ARBrowser::ObjMaterial</a>
+</li>
+<li>diffuseMapTexture
+: <a class="el" href="struct_a_r_browser_1_1_obj_material.html#a8977dc8f530ea5c1998da507b54c94a5">ARBrowser::ObjMaterial</a>
+</li>
 <li>displayGrid
 : <a class="el" href="interface_a_r_browser_view.html#a767b94294f4358686e88d043198b9881">ARBrowserView</a>
 </li>
@@ -180,8 +196,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="interface_a_r_browser_view.html#a541177be5371872bc4153d8eb8805ff2">ARBrowserView</a>
 </li>
 <li>draw
-: <a class="el" href="protocol_a_r_renderable-p.html#aa0be32dad54afd6739be5f3a4e6748c1">&lt;ARRenderable&gt;</a>
-, <a class="el" href="interface_a_r_video_background.html#a792429cb57d31b0dc84de1fac63e486c">ARVideoBackground</a>
+: <a class="el" href="interface_a_r_video_background.html#a792429cb57d31b0dc84de1fac63e486c">ARVideoBackground</a>
+, <a class="el" href="protocol_a_r_renderable-p.html#aa0be32dad54afd6739be5f3a4e6748c1">&lt;ARRenderable&gt;</a>
 </li>
 </ul>
 
@@ -203,15 +219,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>initWithRate:
 : <a class="el" href="interface_a_r_video_frame_controller.html#a94f7769c58f9202da3eeab9b452df4ad">ARVideoFrameController</a>
 </li>
+<li>intersectsWith()
+: <a class="el" href="struct_a_r_browser_1_1_bounding_box.html#a71576fa5e26d43460d0eec254ed62db4">ARBrowser::BoundingBox</a>
+</li>
 </ul>
 
 
 <h3><a class="anchor" id="index_m"></a>- m -</h3><ul>
+<li>max
+: <a class="el" href="struct_a_r_browser_1_1_bounding_box.html#a78ea075aa44d1967d62f8d0a361491d8">ARBrowser::BoundingBox</a>
+</li>
 <li>maximumDistance
 : <a class="el" href="interface_a_r_browser_view.html#a3828caf0a7d28ba8e9417088ce4e736c">ARBrowserView</a>
 </li>
 <li>metadata
 : <a class="el" href="interface_a_r_world_point.html#a25146859c4e3ab1a0bf9ba74e3fdb763">ARWorldPoint</a>
+</li>
+<li>min
+: <a class="el" href="struct_a_r_browser_1_1_bounding_box.html#a25a393da91c84ecd9d33b01148c96a50">ARBrowser::BoundingBox</a>
 </li>
 <li>minimumDistance
 : <a class="el" href="interface_a_r_browser_view.html#a4831f23b6b057d032491050a2dd826be">ARBrowserView</a>
@@ -249,6 +274,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h3><a class="anchor" id="index_r"></a>- r -</h3><ul>
 <li>radarCenter
 : <a class="el" href="interface_a_r_browser_view.html#ab390eeb9f2a9ce554dbbea33227cb389">ARBrowserView</a>
+</li>
+<li>radius()
+: <a class="el" href="struct_a_r_browser_1_1_bounding_box.html#a8ed919fd883760dc8e557f47d8fa052e">ARBrowser::BoundingBox</a>
+</li>
+<li>renderInLocalCoordinatesForBrowserView:
+: <a class="el" href="protocol_a_r_browser_view_delegate-p.html#a677c7799bc26a79feda8079e683a955e">&lt;ARBrowserViewDelegate&gt;</a>
 </li>
 <li>rotation
 : <a class="el" href="interface_a_r_world_location.html#a5dfb74c41931243ea3a618029d4a4760">ARWorldLocation</a>
@@ -314,20 +345,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <h3><a class="anchor" id="index_w"></a>- w -</h3><ul>
 <li>worldLocation
-: <a class="el" href="interface_a_r_location_controller.html#add343901133f310b9a56d66f89cf5a6a">ARLocationController</a>
+: <a class="el" href="interface_a_r_location_controller.html#ad2fd7779a7eaf0b747074db1d111c362">ARLocationController</a>
 </li>
 <li>worldPoints
 : <a class="el" href="protocol_a_r_browser_view_delegate-p.html#a52ee75fc0a19b24f804419fc3ab6df43">&lt;ARBrowserViewDelegate&gt;</a>
 </li>
-<li>worldPointsFromLocation:
-: <a class="el" href="protocol_a_r_browser_view_delegate-p.html#ac0d859e925ae6768eb28fb1d946becc0">&lt;ARBrowserViewDelegate&gt;</a>
+<li>worldPointsFromLocation:withinDistance:
+: <a class="el" href="protocol_a_r_browser_view_delegate-p.html#a134bd3e5eca7b6724165715bc2a2cab2">&lt;ARBrowserViewDelegate&gt;</a>
 </li>
 </ul>
 </div><!-- contents -->
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 13 2012 21:42:25 for HITLabNZ ARBrowser by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Apr 19 2012 15:03:52 for HITLabNZ ARBrowser by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.0
 </small></address>

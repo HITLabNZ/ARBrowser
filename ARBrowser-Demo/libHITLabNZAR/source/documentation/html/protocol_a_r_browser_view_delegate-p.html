@@ -47,6 +47,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -80,7 +81,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Properties</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Properties</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -120,12 +121,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a52ee75fc0a19b24f804419fc3ab6df43"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a52ee75fc0a19b24f804419fc3ab6df43"></a>
 (NSArray *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_a_r_browser_view_delegate-p.html#a52ee75fc0a19b24f804419fc3ab6df43">worldPoints</a></td></tr>
 <tr class="memdesc:a52ee75fc0a19b24f804419fc3ab6df43"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a list of world points, e.g. instances of <a class="el" href="interface_a_r_world_point.html" title="Provides a renderable model and associated metadata for a given ARWorldLocation.">ARWorldPoint</a> objects. <br/></td></tr>
-<tr class="memitem:ac0d859e925ae6768eb28fb1d946becc0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac0d859e925ae6768eb28fb1d946becc0"></a>
-(NSArray *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_a_r_browser_view_delegate-p.html#ac0d859e925ae6768eb28fb1d946becc0">worldPointsFromLocation:</a></td></tr>
-<tr class="memdesc:ac0d859e925ae6768eb28fb1d946becc0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a list of world points that will be rendered from a given point. <br/></td></tr>
+<tr class="memitem:a134bd3e5eca7b6724165715bc2a2cab2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a134bd3e5eca7b6724165715bc2a2cab2"></a>
+(NSArray *)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_a_r_browser_view_delegate-p.html#a134bd3e5eca7b6724165715bc2a2cab2">worldPointsFromLocation:withinDistance:</a></td></tr>
+<tr class="memdesc:a134bd3e5eca7b6724165715bc2a2cab2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a list of world points that will be rendered from a given point. <br/></td></tr>
 <tr class="memitem:a1cde6bfffaa5d319ce04954867fe909f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1cde6bfffaa5d319ce04954867fe909f"></a>
 (void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_a_r_browser_view_delegate-p.html#a1cde6bfffaa5d319ce04954867fe909f">browserView:didSelect:</a></td></tr>
 <tr class="memdesc:a1cde6bfffaa5d319ce04954867fe909f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called when an object is selected on screen by the user. <br/></td></tr>
+<tr class="memitem:a677c7799bc26a79feda8079e683a955e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a677c7799bc26a79feda8079e683a955e"></a>
+(void)&#160;</td><td class="memItemRight" valign="bottom">- <a class="el" href="protocol_a_r_browser_view_delegate-p.html#a677c7799bc26a79feda8079e683a955e">renderInLocalCoordinatesForBrowserView:</a></td></tr>
+<tr class="memdesc:a677c7799bc26a79feda8079e683a955e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Render things like grids, markers, etc: <br/></td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>The main data source/delegate for <a class="el" href="interface_a_r_browser_view.html" title="The main augmented reality view, which combines the ARVideoBackground with the ARLocationController.">ARBrowserView</a>. </p>
@@ -136,7 +140,7 @@ Public Member Functions</h2></td></tr>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Apr 13 2012 21:42:25 for HITLabNZ ARBrowser by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Apr 19 2012 15:03:52 for HITLabNZ ARBrowser by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.0
 </small></address>
