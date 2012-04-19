@@ -56,8 +56,10 @@ double interpolateAnglesDegrees(double a, double b, double blend) {
         
 		// Run the motion manager on a separate operations queue.
         [motionManager startDeviceMotionUpdatesToQueue:[NSOperationQueue new] withHandler:^(CMDeviceMotion *motion, NSError *error) {
-            if (!currentHeading)
-                return;
+			CLHeading * currentHeading = [[self.currentHeading retain] autorelease];
+			
+			if (!currentHeading)
+				return;
             
             // Initialize the bearing
             if (_currentBearing == -360.0 && currentHeading) {
@@ -65,8 +67,10 @@ double interpolateAnglesDegrees(double a, double b, double blend) {
                 _smoothedBearing = _currentBearing;
             }
             
-            if (currentHeading && self.currentMotion) {
-                CLLocationDirection bearingChange = calculateBearingChange(self.currentMotion, motion);
+			CLDeviceMotion * currentMotion = [[self.currentMotion retain] autorelease];
+			
+            if (currentHeading && currentMotion) {
+                CLLocationDirection bearingChange = calculateBearingChange(currentMotion, motion);
                 _currentBearing = interpolateAnglesDegrees(_currentBearing + bearingChange, [currentHeading trueHeading], 0.05);
             }
             

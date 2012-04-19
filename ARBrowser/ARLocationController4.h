@@ -13,7 +13,6 @@
     CMMotionManager * motionManager;
     
     CLLocationDirection _currentBearing;
-    
     CLLocationDirection _smoothedBearing;
     
     CMDeviceMotion * _currentMotion;

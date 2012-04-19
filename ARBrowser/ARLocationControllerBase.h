@@ -14,13 +14,13 @@
 const double kSensorSampleFrequency = 60.0; //Hz
 
 @interface ARLocationControllerBase : NSObject<CLLocationManagerDelegate> {
-	CLLocationManager * locationManager;
-	CLLocation * currentLocation;
-	CLHeading * currentHeading;
+	CLLocationManager * _locationManager;
+	CLLocation * _currentLocation;
+	CLHeading * _currentHeading;
     
-    CMAcceleration northAxis;
+    CMAcceleration _northAxis;
 	
-	CLLocationCoordinate2D smoothedLocation;
+	CLLocationCoordinate2D _smoothedLocation;
 	
 	NSTimer * updateTimer;
 }
@@ -31,6 +31,7 @@ const double kSensorSampleFrequency = 60.0; //Hz
 /// @internal
 - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading;
 
+@property(retain,readonly) CLLocationManager * locationManager;
 @property(retain,readonly) CLLocation * currentLocation;
 @property(retain,readonly) CLHeading * currentHeading;
 @property(assign,readonly) CMAcceleration northAxis;

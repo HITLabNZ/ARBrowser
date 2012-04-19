@@ -48,30 +48,34 @@ int calculateRotationMatrixFromMagnetometer(CMAcceleration gravity, CMMagneticFi
 }
 
 @interface ARLocationControllerBase ()
+@property(retain,readwrite) CLLocationManager * locationManager;
 @property(retain,readwrite) CLLocation * currentLocation;
 @property(retain,readwrite) CLHeading * currentHeading;
+@property(assign,readwrite) CMAcceleration northAxis;
+
+@property(assign,readwrite) CLLocationCoordinate2D smoothedLocation;
 @end
 
 @implementation ARLocationControllerBase
 
-@synthesize currentHeading, currentLocation, northAxis;
+@synthesize currentHeading = _currentHeading, currentLocation = _currentLocation, smoothedLocation = _smoothedLocation, northAxis = _northAxis, locationManager = _locationManager;
 
 - (id)init {
     self = [super init];
     if (self) {
-		locationManager = [[CLLocationManager alloc] init];
-		[locationManager setDesiredAccuracy:kCLLocationAccuracyBestForNavigation];
-		[locationManager setDelegate:self];
+		self.locationManager = [[CLLocationManager alloc] init];
+		[self.locationManager setDesiredAccuracy:kCLLocationAccuracyBestForNavigation];
+		[self.locationManager setDelegate:self];
         
 		//NSLog(@"Heading Orientation: %d", [locationManager headingOrientation]);
 		// This is the same as the default, but setting it explicitly.
-		[locationManager setHeadingOrientation:CLDeviceOrientationPortrait];
-		northAxis = (CMAcceleration){0, 1, 0};
+		[self.locationManager setHeadingOrientation:CLDeviceOrientationPortrait];
+		self.northAxis = (CMAcceleration){0, 1, 0};
 		
 		updateTimer = [NSTimer scheduledTimerWithTimeInterval:(1.0/30.0) target:self selector:@selector(update) userInfo:nil repeats:YES];
 		
-		[locationManager startUpdatingLocation];
-		[locationManager startUpdatingHeading];
+		[self.locationManager startUpdatingLocation];
+		[self.locationManager startUpdatingHeading];
     }
     return self;
 }
@@ -83,12 +87,11 @@ int calculateRotationMatrixFromMagnetometer(CMAcceleration gravity, CMMagneticFi
     [self setCurrentHeading:nil];
     [self setCurrentLocation:nil];
     
-    [locationManager stopUpdatingLocation];
-    [locationManager stopUpdatingHeading];
+    [self.locationManager stopUpdatingLocation];
+    [self.locationManager stopUpdatingHeading];
     
-    [locationManager setDelegate:nil];
-	[locationManager release];
-    locationManager = nil;
+    [self.locationManager setDelegate:nil];
+	self.locationManager = nil;
 		
     [super dealloc];
 }
@@ -98,17 +101,21 @@ int calculateRotationMatrixFromMagnetometer(CMAcceleration gravity, CMMagneticFi
 	// This should really use spherical interpolation, but for small distances it doesn't really make any difference..
 	const double kFilteringFactor = 0.995;
 	
-	if (currentLocation) {
+	if (self.currentLocation) {
 		//Use a basic low-pass filter to smooth out changes in GPS data.
-		smoothedLocation.latitude = smoothedLocation.latitude * kFilteringFactor + currentLocation.coordinate.latitude * (1.0 - kFilteringFactor);
-		smoothedLocation.longitude = smoothedLocation.longitude * kFilteringFactor + currentLocation.coordinate.longitude * (1.0 - kFilteringFactor);
+		CLLocationCoordinate2D nextSmoothedLocation = {
+			self.smoothedLocation.latitude * kFilteringFactor + self.currentLocation.coordinate.latitude * (1.0 - kFilteringFactor),
+			self.smoothedLocation.longitude * kFilteringFactor + self.currentLocation.coordinate.longitude * (1.0 - kFilteringFactor)
+		};
+		
+		self.smoothedLocation = nextSmoothedLocation;
 	}
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
-	if (currentLocation == nil) {
+	if (self.currentLocation == nil) {
 		// First update:
-		smoothedLocation = [newLocation coordinate];
+		self.smoothedLocation = [newLocation coordinate];
 	}
 		
 	[self setCurrentLocation:newLocation];
@@ -122,7 +129,9 @@ int calculateRotationMatrixFromMagnetometer(CMAcceleration gravity, CMMagneticFi
 
 - (ARWorldLocation*) worldLocation
 {
-	if (currentLocation && currentHeading) {
+	
+	
+	if (self.currentLocation && self.currentHeading) {
 		ARWorldLocation * result = [[ARWorldLocation new] autorelease];
         
 #ifdef DEBUG_DERENZY
@@ -132,7 +141,7 @@ int calculateRotationMatrixFromMagnetometer(CMAcceleration gravity, CMMagneticFi
 		
 		[result setCoordinate:derenzy altitude:EARTH_RADIUS];
 #else
-		[result setCoordinate:smoothedLocation altitude:EARTH_RADIUS + currentLocation.altitude];
+		[result setCoordinate:self.smoothedLocation altitude:EARTH_RADIUS + self.currentLocation.altitude];
 		//[result setLocation:[self currentLocation] globalRadius:EARTH_RADIUS];
 #endif
         //CMAttitude * currentAttitude = motionManager.deviceMotion.attitude;
@@ -154,7 +163,7 @@ int calculateRotationMatrixFromMagnetometer(CMAcceleration gravity, CMMagneticFi
 
 - (CLLocationDirection) currentBearing
 {
-    return [currentHeading trueHeading];
+    return [self.currentHeading trueHeading];
 }
 
 - (BOOL) calculateGlobalOrientation: (float[16])matrix
