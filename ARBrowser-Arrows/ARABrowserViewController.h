@@ -19,5 +19,6 @@
 @property(nonatomic,retain) ARAPathController * pathController;
 @property(nonatomic,retain,readonly) NSArray * worldPoints;
 @property(nonatomic,retain) UILabel * segmentIndexLabel;
+@property(nonatomic,retain) UILabel * bearingLabel;
 
 @end

@@ -17,7 +17,7 @@
 @implementation ARABrowserViewController
 
 @synthesize pathController = _pathController, localArrow = _localArrow;
-@synthesize segmentIndexLabel = _segmentIndexLabel;
+@synthesize segmentIndexLabel = _segmentIndexLabel, bearingLabel = _bearingLabel;
 @dynamic worldPoints;
 
 - (void)loadView {
@@ -48,10 +48,15 @@
 	
 	[browserView setMaximumDistance:400.0];
 	
-	self.segmentIndexLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 15, 100, 30)];
+	self.segmentIndexLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 15, 180, 20)];
 	self.segmentIndexLabel.backgroundColor = [UIColor whiteColor];
-	
+	self.segmentIndexLabel.font = [UIFont systemFontOfSize:9.0];
 	[browserView addSubview:self.segmentIndexLabel];
+	
+	self.bearingLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 45, 180, 20)];
+	self.bearingLabel.backgroundColor = [UIColor whiteColor];
+	self.bearingLabel.font = [UIFont systemFontOfSize:9.0];
+	[browserView addSubview:self.bearingLabel];
 	
 	[self setView:browserView];
 }
@@ -102,16 +107,18 @@
 	ARLocationController * sharedLocationController = [ARLocationController sharedInstance];
 	
 	ARWorldLocation * worldLocation = sharedLocationController.worldLocation;
-	if ([self.pathController updateSegmentIndexFromLocation:worldLocation]) {
-		self.segmentIndexLabel.text = [NSString stringWithFormat:@"Segment %d", self.pathController.currentSegmentIndex];
-	}
+	[self.pathController updateSegmentIndexFromLocation:worldLocation];
+	
+	ARASegmentDisposition disposition = [self.pathController.currentSegment dispositionRelativeTo:worldLocation];
+	self.segmentIndexLabel.text = [NSString stringWithFormat:@"Segment %d:%d", self.pathController.currentSegmentIndex, disposition];
 	
 	if (self.pathController.currentSegmentIndex != NSNotFound) {
-		//NSLog(@"Current segment index: %d", self.pathController.currentSegmentIndex);
-		
 		ARAPathBearing pathBearing = [self.pathController.path calculateBearingForSegment:self.pathController.currentSegmentIndex withinDistance:25.0 fromLocation:worldLocation];
+		
 		self.localArrow.currentBearing = pathBearing.incomingBearing;
 		self.localArrow.destinationBearing = pathBearing.outgoingBearing;
+		
+		self.bearingLabel.text = [NSString stringWithFormat:@"%0.2f => %0.2f; (%0.1f, %0.2f%%)", pathBearing.incomingBearing, pathBearing.outgoingBearing, pathBearing.distanceFromMidpoint, pathBearing.distanceFromMidpoint / 25.0];
 	}
 	
 	[self.localArrow draw];

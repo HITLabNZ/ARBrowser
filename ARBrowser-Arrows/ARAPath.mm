@@ -87,6 +87,9 @@ inline AnyT hermite_polynomial (const InterpolateT & t, const AnyT & p0, const A
 	result.incomingBearing = calculateBearingBetween(convertFromDegrees(location.coordinate), convertFromDegrees(segment.to.coordinate));
 	result.outgoingBearing = result.incomingBearing;
 	
+	// This is an absolute distance, if the segment is to small, this may lead to unpredictable behaviour. A potential improvement is to use not only a fixed distance (as a maximum) but also a percentage distance (as a minimum).
+	result.distanceFromMidpoint = (location.position - segment.to.position).length();
+	
 	// Are we (not) at the end?
 	if (index + 1 < self.segments.count) {
 		ARASegment * nextSegment = [self.segments objectAtIndex:index+1];
@@ -94,14 +97,10 @@ inline AnyT hermite_polynomial (const InterpolateT & t, const AnyT & p0, const A
 		// This is the bearing from the position to the next segment exit:
 		CLLocationDegrees outgoingBearing = calculateBearingBetween(convertFromDegrees(location.coordinate), convertFromDegrees(nextSegment.to.coordinate));
 		
-		// This is an absolute distance, if the segment is to small, this may lead to unpredictable behaviour. A potential improvement is to use not only a fixed distance (as a maximum) but also a percentage distance (as a minimum).
-		float cornerDistance = (location.position - nextSegment.from.position).length();
-		
-		if (cornerDistance < distance) {
+		if (result.distanceFromMidpoint < distance) {
 			// Linear interpolation between current bearing and next bearing, based on distance:
 			
-			
-			float factor = cornerDistance / distance;
+			float factor = result.distanceFromMidpoint / distance;
 			result.outgoingBearing = outgoingBearing * (1.0 - factor) + result.incomingBearing * factor;
 		} else {
 			// We are not in the corner radius, so we just need to draw the appropriate arrow, either pointing towards the corner or away from it, we can figure this out by checking which segment is closer:			

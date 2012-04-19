@@ -14,6 +14,7 @@
 
 typedef struct {
 	CLLocationDegrees incomingBearing, outgoingBearing;
+	CLLocationDistance distanceFromMidpoint;
 } ARAPathBearing;
 
 @interface ARAPath : NSObject

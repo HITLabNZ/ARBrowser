@@ -29,7 +29,7 @@
 	
 	for (double offset = INCREMENT; offset < (length - INCREMENT); offset += INCREMENT) {
 		Vec3d coordinate = begin + (step * offset);
-		NSLog(@"Coordinate: %0.6f = %0.8f, %0.8f", offset, coordinate.x, coordinate.y);
+		//NSLog(@"Coordinate: %0.6f = %0.8f, %0.8f", offset, coordinate.x, coordinate.y);
 		
 		ARWorldLocation * intermediateLocation = [[ARWorldPoint new] autorelease];
 		[intermediateLocation setCoordinate:(CLLocationCoordinate2D){coordinate.x, coordinate.y} altitude:coordinate.z];
@@ -71,25 +71,34 @@ static float minimumDistance(Vec3 v, Vec3 w, Vec3 p) {
 	return minimumDistance(self.from.position, self.to.position, location.position);	
 }
 
+#define STRAIGHT_LINE_DISPOSITION
+
+#ifdef STRAIGHT_LINE_DISPOSITION
+
+// This function uses straight lines to calculate the disposition relative to the direction of the line segment:
 - (ARASegmentDisposition)dispositionRelativeTo:(ARWorldLocation *)location {
+	// Do we need to handle the case where location == from or location == to explicitly?
+	
 	Vec3 delta = self.to.position - self.from.position;
 	Vec3 direction = delta.normalized();
 	
-	Vec3 startOffset = (location.position - self.from.position).normalized();
+	Vec3 startToLocation = (location.position - self.from.position);
+	Vec3 startToLocationDirection = startToLocation.normalized();
 	
-	if (direction.dot(startOffset) < 0) {
+	if (direction.dot(startToLocationDirection) < 0) {
 		return ARASegmentAhead;
 	}
 	
-	Vec3 endOffset = (location.position - self.to.position).normalized();
+	Vec3 endToLocation = (location.position - self.to.position);
+	Vec3 endToLocationDirection = endToLocation.normalized();
 	
-	if (direction.dot(endOffset)) {
+	if (direction.dot(endToLocationDirection) > 0) {
 		return ARASegmentBehind;
 	}
 	
 	// If we are not infront or behind, we must be inbetween =)
 	// We just check if it is closer to the start or end:
-	if (startOffset.length() < endOffset.length()) {
+	if (startToLocation.length() < endToLocation.length()) {
 		// The length from the start to the point is less than the length from the end to the point:
 		return ARASegmentEntering;
 	} else {
@@ -97,5 +106,39 @@ static float minimumDistance(Vec3 v, Vec3 w, Vec3 p) {
 		return ARASegmentExiting;
 	}
 }
+
+#else
+
+// This disposition function uses circles to calculate inclusion:
+- (ARASegmentDisposition)dispositionRelativeTo:(ARWorldLocation *)location {
+	Vec3 delta = self.to.position - self.from.position;
+	float length = delta.length();
+	
+	Vec3 startToLocation = (location.position - self.from.position);
+	Vec3 endToLocation = (location.position - self.to.position);
+	
+	BOOL withinStartCircle = startToLocation.length() < length;
+	BOOL withinEndCircle = endToLocation.length() < length;
+	
+	if (withinStartCircle && !withinEndCircle) {
+		return ARASegmentAhead;
+	}
+	
+	if (!withinStartCircle && withinEndCircle) {
+		return ARASegmentBehind;
+	}
+	
+	// If we are not infront or behind, we must be inbetween =)
+	// We just check if it is closer to the start or end:
+	if (startToLocation.length() < endToLocation.length()) {
+		// The length from the start to the point is less than the length from the end to the point:
+		return ARASegmentEntering;
+	} else {
+		// Otherwise, we are in the second half of the segment:
+		return ARASegmentExiting;
+	}
+}
+
+#endif
 
 @end

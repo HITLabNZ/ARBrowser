@@ -20,6 +20,7 @@
 
 @property(nonatomic,retain) ARAPath * path;
 @property(nonatomic,assign) NSUInteger currentSegmentIndex;
+@property(nonatomic,readonly,retain) ARASegment * currentSegment;
 
 - (NSArray*)visiblePoints;
 - (NSArray*)visiblePointsFromLocation:(ARWorldLocation *)origin withinDistance:(float)distance;

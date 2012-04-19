@@ -29,6 +29,14 @@
 	return self;
 }
 
+- (ARASegment *)currentSegment {
+	if (self.currentSegmentIndex != NSNotFound) {
+		return [self.path.segments objectAtIndex:self.currentSegmentIndex];
+	} else {
+		return nil;
+	}
+}
+
 - (NSArray *)visiblePoints {
 	NSMutableArray * allSteps = [[self.path.points mutableCopy] autorelease];
 	
@@ -94,6 +102,8 @@
 	if (self.currentSegmentIndex == NSNotFound) {
 		self.currentSegmentIndex = [self.path calculateNearestSegmentForLocation:location];
 		
+		NSLog(@"Initial segment initialized to %d", self.currentSegmentIndex);
+		
 		return YES;
 	}
 	
@@ -113,6 +123,9 @@
 			// This might seem counter intuitive, but it basically means we are past half way:
 			if (nextSegmentDisposition == ARASegmentExiting) {
 				self.currentSegmentIndex = self.currentSegmentIndex + 1;
+				
+				NSLog(@"Updating segment to %d", self.currentSegmentIndex);
+				
 				return YES;
 			}
 		}
