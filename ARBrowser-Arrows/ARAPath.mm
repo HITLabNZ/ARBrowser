@@ -82,7 +82,7 @@ inline AnyT hermite_polynomial (const InterpolateT & t, const AnyT & p0, const A
 	
 	// Given the current segment, the next segment and the previous segment and a circle of size
 	ARASegment * segment = [self.segments objectAtIndex:index];
-		
+	
 	// This is the bearing from the position to the current segment exit:
 	result.incomingBearing = calculateBearingBetween(convertFromDegrees(location.coordinate), convertFromDegrees(segment.to.coordinate));
 	result.outgoingBearing = result.incomingBearing;
@@ -90,7 +90,7 @@ inline AnyT hermite_polynomial (const InterpolateT & t, const AnyT & p0, const A
 	// This is an absolute distance, if the segment is to small, this may lead to unpredictable behaviour. A potential improvement is to use not only a fixed distance (as a maximum) but also a percentage distance (as a minimum).
 	result.distanceFromMidpoint = (location.position - segment.to.position).length();
 	
-	// Are we (not) at the end?
+	// Are we (not) at the end? – e.g. is there a corner?
 	if (index + 1 < self.segments.count) {
 		ARASegment * nextSegment = [self.segments objectAtIndex:index+1];
 		

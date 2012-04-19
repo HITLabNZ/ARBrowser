@@ -10,6 +10,9 @@
 #import "ARASegment.h"
 #import "ARLocationController.h"
 
+// The minimum distance from the corner at which point the turning arrow will be shown:
+const float ARACornerRadius = 50.0;
+
 @interface ARABrowserViewController ()
 
 @end
@@ -113,12 +116,12 @@
 	self.segmentIndexLabel.text = [NSString stringWithFormat:@"Segment %d:%d", self.pathController.currentSegmentIndex, disposition];
 	
 	if (self.pathController.currentSegmentIndex != NSNotFound) {
-		ARAPathBearing pathBearing = [self.pathController.path calculateBearingForSegment:self.pathController.currentSegmentIndex withinDistance:25.0 fromLocation:worldLocation];
+		ARAPathBearing pathBearing = [self.pathController.path calculateBearingForSegment:self.pathController.currentSegmentIndex withinDistance:ARACornerRadius fromLocation:worldLocation];
 		
 		self.localArrow.currentBearing = pathBearing.incomingBearing;
 		self.localArrow.destinationBearing = pathBearing.outgoingBearing;
 		
-		self.bearingLabel.text = [NSString stringWithFormat:@"%0.2f => %0.2f; (%0.1f, %0.2f%%)", pathBearing.incomingBearing, pathBearing.outgoingBearing, pathBearing.distanceFromMidpoint, pathBearing.distanceFromMidpoint / 25.0];
+		self.bearingLabel.text = [NSString stringWithFormat:@"%0.2f => %0.2f; (%0.1f, %0.2f%%)", pathBearing.incomingBearing, pathBearing.outgoingBearing, pathBearing.distanceFromMidpoint, pathBearing.distanceFromMidpoint / ARACornerRadius];
 	}
 	
 	[self.localArrow draw];
