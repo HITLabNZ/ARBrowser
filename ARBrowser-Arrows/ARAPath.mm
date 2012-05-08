@@ -103,7 +103,7 @@ inline AnyT hermite_polynomial (const InterpolateT & t, const AnyT & p0, const A
 			float factor = result.distanceFromMidpoint / distance;
 			result.outgoingBearing = outgoingBearing * (1.0 - factor) + result.incomingBearing * factor;
 		} else {
-			// We are not in the corner radius, so we just need to draw the appropriate arrow, either pointing towards the corner or away from it, we can figure this out by checking which segment is closer:			
+			// We are not in the corner radius, so we just need to draw the appropriate arrow, either pointing towards the corner or towards the next segment, we can figure this out by checking which segment is closer:			
 			float distanceToSegment = [segment distanceFrom:location];
 			float distanceToNextSegment = [nextSegment distanceFrom:location];
 			

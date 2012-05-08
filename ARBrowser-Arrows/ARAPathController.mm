@@ -9,6 +9,8 @@
 #import "ARAPathController.h"
 #import "ARASegment.h"
 
+const float ARA_RECALIBRATION_DISTANCE = 50.0;
+
 @implementation ARAPathController
 
 @synthesize stepModel = _stepModel, markerModel = _markerModel;
@@ -109,6 +111,18 @@
 	
 	// Lets consider the current segment, and check if the user has exited yet:
 	ARASegment * currentSegment = [self.path.segments objectAtIndex:self.currentSegmentIndex];
+	
+	float distanceFromCurrentSegment = [currentSegment distanceFrom:location];
+	
+	// Check if we need to recalibrate (50m is arbitrary):
+	if (distanceFromCurrentSegment > ARA_RECALIBRATION_DISTANCE) {
+		self.currentSegmentIndex = [self.path calculateNearestSegmentForLocation:location];
+		
+		NSLog(@"Recalibrating segment to %d", self.currentSegmentIndex);
+		
+		return YES;
+	}
+	
 	ARASegmentDisposition disposition = [currentSegment dispositionRelativeTo:location];
 	
 	// The segment is behind, we need to check how far behind
@@ -120,8 +134,7 @@
 			
 			ARASegmentDisposition nextSegmentDisposition = [nextSegment dispositionRelativeTo:location];
 			
-			// This might seem counter intuitive, but it basically means we are past half way:
-			if (nextSegmentDisposition == ARASegmentExiting) {
+			if (nextSegmentDisposition == ARASegmentEntering) {
 				self.currentSegmentIndex = self.currentSegmentIndex + 1;
 				
 				NSLog(@"Updating segment to %d", self.currentSegmentIndex);
