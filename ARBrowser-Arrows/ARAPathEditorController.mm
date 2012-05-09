@@ -61,6 +61,7 @@
 	MKMapView * mapView = [[MKMapView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
 
 	[mapView setShowsUserLocation:YES];
+	[mapView setMapType:MKMapTypeHybrid];
 	
 	UILongPressGestureRecognizer * dropPinGesture = [[[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleDropPinGesture:)] autorelease];
 	dropPinGesture.minimumPressDuration = 1.0; //user needs to press for 2 seconds

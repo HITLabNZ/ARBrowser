@@ -83,39 +83,28 @@ inline AnyT hermite_polynomial (const InterpolateT & t, const AnyT & p0, const A
 	// Given the current segment, the next segment and the previous segment and a circle of size
 	ARASegment * segment = [self.segments objectAtIndex:index];
 	
-	// This is the bearing from the position to the current segment exit:
-	result.incomingBearing = calculateBearingBetween(convertFromDegrees(location.coordinate), convertFromDegrees(segment.to.coordinate));
-	result.outgoingBearing = result.incomingBearing;
-	
 	// This is an absolute distance, if the segment is to small, this may lead to unpredictable behaviour. A potential improvement is to use not only a fixed distance (as a maximum) but also a percentage distance (as a minimum).
 	result.distanceFromMidpoint = (location.position - segment.to.position).length();
 	
-	// Are we (not) at the end? – e.g. is there a corner?
-	if (index + 1 < self.segments.count) {
-		ARASegment * nextSegment = [self.segments objectAtIndex:index+1];
+	if (result.distanceFromMidpoint < distance) {
+		// We are either at the destination, or we are at a corner:
 		
-		// This is the bearing from the position to the next segment exit:
-		CLLocationDegrees outgoingBearing = calculateBearingBetween(convertFromDegrees(location.coordinate), convertFromDegrees(nextSegment.to.coordinate));
-		
-		if (result.distanceFromMidpoint < distance) {
-			// Linear interpolation between current bearing and next bearing, based on distance:
-			
-			float factor = result.distanceFromMidpoint / distance;
-			result.outgoingBearing = outgoingBearing * (1.0 - factor) + result.incomingBearing * factor;
+		// Are we (not) at the end? – e.g. is there a corner?
+		if (index + 1 < self.segments.count) {
+			ARASegment * nextSegment = [self.segments objectAtIndex:index+1];
+				
+			result.incomingBearing = calculateBearingBetween(convertFromDegrees(segment.from.coordinate), convertFromDegrees(location.coordinate));
+			result.outgoingBearing = calculateBearingBetween(convertFromDegrees(location.coordinate), convertFromDegrees(nextSegment.to.coordinate));
 		} else {
-			// We are not in the corner radius, so we just need to draw the appropriate arrow, either pointing towards the corner or towards the next segment, we can figure this out by checking which segment is closer:			
-			float distanceToSegment = [segment distanceFrom:location];
-			float distanceToNextSegment = [nextSegment distanceFrom:location];
-			
-			// We point the arrow to the next segment exit since that is now the target:
-			if (distanceToSegment > distanceToNextSegment) {
-				result.incomingBearing = result.outgoingBearing = outgoingBearing;
-			}
+			result.incomingBearing = calculateBearingBetween(convertFromDegrees(segment.from.coordinate), convertFromDegrees(segment.to.coordinate));
+			result.outgoingBearing = result.incomingBearing;
 		}
+	} else {
+		// This is the bearing from the position to the current segment exit:
+		result.incomingBearing = calculateBearingBetween(convertFromDegrees(location.coordinate), convertFromDegrees(segment.to.coordinate));
+		result.outgoingBearing = result.incomingBearing;
 	}
-	
-	//NSLog(@"Calculate bearing for segment %d: %0.2f => %0.2f", index, result.incomingBearing, result.outgoingBearing);
-	
+		
 	return result;
 }
 

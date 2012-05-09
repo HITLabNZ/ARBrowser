@@ -19,12 +19,15 @@
 @property(nonatomic,retain) id<ARRenderable> stepModel;
 
 @property(nonatomic,retain) ARAPath * path;
+
 @property(nonatomic,assign) NSUInteger currentSegmentIndex;
+@property(nonatomic,assign) BOOL turning;
+
 @property(nonatomic,readonly,retain) ARASegment * currentSegment;
 
 - (NSArray*)visiblePoints;
 - (NSArray*)visiblePointsFromLocation:(ARWorldLocation *)origin withinDistance:(float)distance;
 
-- (BOOL)updateSegmentIndexFromLocation:(ARWorldLocation *)location;
+- (BOOL)updateSegmentIndexFromLocation:(ARWorldLocation *)location withCornerRadius:(float)distance;
 
 @end

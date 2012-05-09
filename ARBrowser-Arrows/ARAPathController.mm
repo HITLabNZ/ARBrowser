@@ -15,6 +15,7 @@ const float ARA_RECALIBRATION_DISTANCE = 50.0;
 
 @synthesize stepModel = _stepModel, markerModel = _markerModel;
 @synthesize path = _path, currentSegmentIndex = _currentSegmentIndex;
+@synthesize turning = _turning;
 
 - init {
 	self = [super init];
@@ -26,6 +27,7 @@ const float ARA_RECALIBRATION_DISTANCE = 50.0;
 		self.markerModel = [ARModel objectModelWithName:@"marker" inDirectory:modelPath];
 		
 		self.currentSegmentIndex = NSNotFound;
+		self.turning = NO;
 	}
 	
 	return self;
@@ -97,12 +99,13 @@ const float ARA_RECALIBRATION_DISTANCE = 50.0;
 	[self didChangeValueForKey:@"path"];
 }
 
-- (BOOL)updateSegmentIndexFromLocation:(ARWorldLocation *)location {
+- (BOOL)updateSegmentIndexFromLocation:(ARWorldLocation *)location withCornerRadius:(float)distance {
 	// As an aside - perhaps taking the device orientation into account could be used here to more accurately select segments which are equally likely.
 	
 	// If we don't have a fix on any particular segment, find the closest one:
 	if (self.currentSegmentIndex == NSNotFound) {
 		self.currentSegmentIndex = [self.path calculateNearestSegmentForLocation:location];
+		self.turning = NO;
 		
 		NSLog(@"Initial segment initialized to %d", self.currentSegmentIndex);
 		
@@ -114,28 +117,33 @@ const float ARA_RECALIBRATION_DISTANCE = 50.0;
 	
 	float distanceFromCurrentSegment = [currentSegment distanceFrom:location];
 	
-	// Check if we need to recalibrate (50m is arbitrary):
+	// Check if we need to recalibrate (20m is arbitrary):
 	if (distanceFromCurrentSegment > ARA_RECALIBRATION_DISTANCE) {
 		self.currentSegmentIndex = [self.path calculateNearestSegmentForLocation:location];
+		self.turning = NO;
 		
 		NSLog(@"Recalibrating segment to %d", self.currentSegmentIndex);
 		
 		return YES;
 	}
 	
-	ARASegmentDisposition disposition = [currentSegment dispositionRelativeTo:location];
+	//ARASegmentDisposition disposition = [currentSegment dispositionRelativeTo:location];
 	
-	// The segment is behind, we need to check how far behind
-	if (disposition == ARASegmentBehind) {
-		// We may be in the next segment, if it exists:
+	// We may be in the next segment, if it exists:
+	if (self.currentSegmentIndex + 1 < self.path.segments.count) {
+		float distanceFromCorner = [currentSegment distanceFrom:location];
 		
-		if (self.currentSegmentIndex + 1 < self.path.segments.count) {
+		if (distanceFromCorner < distance) {
+			// If we are within the set radius from the corner, we are now turning.
+			self.turning = YES;
+		} else {
 			ARASegment * nextSegment = [self.path.segments objectAtIndex:self.currentSegmentIndex + 1];
-			
 			ARASegmentDisposition nextSegmentDisposition = [nextSegment dispositionRelativeTo:location];
 			
-			if (nextSegmentDisposition == ARASegmentEntering) {
+			if (self.turning && nextSegmentDisposition > ARASegmentAhead) {
+				// We have completed the turn, move to next segment:
 				self.currentSegmentIndex = self.currentSegmentIndex + 1;
+				self.turning = NO;
 				
 				NSLog(@"Updating segment to %d", self.currentSegmentIndex);
 				

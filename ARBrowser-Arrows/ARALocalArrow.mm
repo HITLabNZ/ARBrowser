@@ -43,23 +43,31 @@ static void generateArrow(Vec3 bottom, Vec3 top, Vec3 up, float angle, std::vect
 	float arrowLength = length / 5.0;
 	Vec3 side = direction.cross(up);
 	
-	const float widthScale = 0.12;
+	const float widthScale = 0.12 * 0.8;
 	
 	Vec3 arrowHeadBase = top + (direction * -arrowLength);
 	Vec3 points[] = {
-		top, 
+		top,
 		arrowHeadBase + (side * -3.0 * widthScale),
 		arrowHeadBase + (side * -1.0 * widthScale),
 		arrowHeadBase + (side *  1.0 * widthScale),
 		arrowHeadBase + (side *  3.0 * widthScale),
-		bottom + (delta / 2.0) + side * -1.0 * widthScale,
-		bottom + (delta / 2.0) + side *  1.0 * widthScale,
+		bottom + (delta * 1.0) + side * -1.0 * widthScale,
+		bottom + (delta * 1.0) + side *  1.0 * widthScale,
+		bottom + (delta * 0.8) + side * -1.0 * widthScale,
+		bottom + (delta * 0.8) + side *  1.0 * widthScale,
+		bottom + (delta * 0.6) + side * -1.0 * widthScale,
+		bottom + (delta * 0.6) + side *  1.0 * widthScale,
+		bottom + (delta * 0.4) + side * -1.0 * widthScale,
+		bottom + (delta * 0.4) + side *  1.0 * widthScale,
+		bottom + (delta * 0.2) + side * -1.0 * widthScale,
+		bottom + (delta * 0.2) + side *  1.0 * widthScale,
 		bottom + (side * -1.0 * widthScale),
 		bottom + (side *  1.0 * widthScale)
 	};
 	
-	for (std::size_t i = 0; i < 9; i += 1) {
-		float factor = (points[i] - bottom).length() / (length / 1.8);
+	for (std::size_t i = 0; i < 17; i += 1) {
+		float factor = (points[i] - bottom).length() / (length / 1.2);
 		
 		if (factor > 1.0) factor = 1.0;
 		
@@ -83,32 +91,26 @@ static void generateArrow(Vec3 bottom, Vec3 top, Vec3 up, float angle, std::vect
 	vertices.push_back(points[0]);
 	
 	// Arrow body - could be improved.
-	vertices.push_back(points[5]);
-	vertices.push_back(points[3]);
-	vertices.push_back(points[2]);
-	
-	vertices.push_back(points[5]);
-	vertices.push_back(points[6]);
-	vertices.push_back(points[3]);
-	
-	vertices.push_back(points[7]);
-	vertices.push_back(points[6]);
-	vertices.push_back(points[5]);
-	
-	vertices.push_back(points[7]);
-	vertices.push_back(points[8]);
-	vertices.push_back(points[6]);
+	for (std::size_t i = 9; i < 17; i += 2) {
+		vertices.push_back(points[i]);
+		vertices.push_back(points[i - 1]);
+		vertices.push_back(points[i - 2]);
+		
+		vertices.push_back(points[i + 1]);
+		vertices.push_back(points[i]);
+		vertices.push_back(points[i - 1]);
+	}		
 }
 
 - (void)draw {
 	float offsetBearing = _destinationBearing - _currentBearing;
 	
 	glPushMatrix();
-	glRotatef(-_currentBearing - offsetBearing, 0, 0, 1);
+	glRotatef(_currentBearing, 0, 0, -1);
 	
 	std::vector<Vec3> vertices;
 	
-	generateArrow(Vec3(0, -_radius, 0), Vec3(0, _radius, 0), Vec3(0, 0, 1), offsetBearing, vertices);
+	generateArrow(Vec3(0, 0, 0.5), Vec3(0, _radius, 1.0), Vec3(0, 0, 1), offsetBearing, vertices);
 	
 	glColor4f(27.0/255.0, 198.0/255.0, 224.0/255.0, 1.0);
 	
