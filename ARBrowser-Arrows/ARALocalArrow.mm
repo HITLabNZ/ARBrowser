@@ -43,7 +43,7 @@ static void generateArrow(Vec3 bottom, Vec3 top, Vec3 up, float angle, std::vect
 	float arrowLength = length / 5.0;
 	Vec3 side = direction.cross(up);
 	
-	const float widthScale = 0.12 * 0.8;
+	const float widthScale = 0.12 * 0.6;
 	
 	Vec3 arrowHeadBase = top + (direction * -arrowLength);
 	Vec3 points[] = {
