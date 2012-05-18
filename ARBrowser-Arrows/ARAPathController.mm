@@ -139,7 +139,7 @@ const float ARA_RECALIBRATION_DISTANCE = 50.0;
 	// We may be in the next segment, if it exists:
 	if (self.currentSegmentIndex + 1 < self.path.segments.count) {
 		ARASegment * nextSegment = [self.path.segments objectAtIndex:self.currentSegmentIndex + 1];
-		float distanceFromCorner = [currentSegment distanceFrom:location];
+		float distanceFromCorner = [location distanceFrom:currentSegment.to];
 		
 		if (distanceFromCorner < _turningRadius) {
 			// If we are within the set radius from the corner, we are now turning.
@@ -172,8 +172,21 @@ const float ARA_RECALIBRATION_DISTANCE = 50.0;
 	return NO;
 }
 
+static CLLocationDegrees interpolateBearing(CLLocationDegrees a, CLLocationDegrees b, double ratio) {
+	return a * (1.0 - ratio) + b * ratio;
+}
+
 - (ARAPathBearing) currentBearing {
 	ARAPathBearing bearing = [self.path calculateBearingForSegment:self.currentSegmentIndex withinDistance:_turningRadius fromLocation:self.currentLocation];
+	
+	if (self.turning) {
+		// From -1 to 0, we adjust bearing.out
+		
+		if (self.turningRatio < 0.0)
+			bearing.outgoingBearing = interpolateBearing(bearing.incomingBearing, bearing.outgoingBearing, self.turningRatio + 1.0);
+		else
+			bearing.incomingBearing = interpolateBearing(bearing.incomingBearing, bearing.outgoingBearing, self.turningRatio);
+	}
 	
 	return bearing;
 }
