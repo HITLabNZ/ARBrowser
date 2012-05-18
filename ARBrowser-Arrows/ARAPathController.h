@@ -19,12 +19,17 @@
 @property(nonatomic,retain) id<ARRenderable> stepModel;
 
 @property(nonatomic,retain) ARAPath * path;
+
+/// The current location relative to the path:
 @property(nonatomic,readonly,retain) ARWorldLocation * currentLocation;
 
-// The radius from the turning point that we consider the user is making a turn from:
+/// The radius from the turning point that we consider the user is making a turn from:
 @property(nonatomic,assign) float turningRadius;
 
+/// The current path segment that we are checking for turning, sequencing from one segment to the next in order:
 @property(nonatomic,readonly,assign) NSUInteger currentSegmentIndex;
+
+/// True if the user is within a turn, e.g. distance from the turning point < turningRadius:
 @property(nonatomic,readonly,assign) BOOL turning;
 
 // We formulate a number from -1 to +1.
@@ -35,6 +40,7 @@
 // This value is only valid if the property turning is YES.
 @property(nonatomic,assign) float turningRatio;
 
+/// Convenient helper for the current segment as given by currentSegmentIndex and path:
 @property(nonatomic,readonly,retain) ARASegment * currentSegment;
 
 - (NSArray*)visiblePoints;
