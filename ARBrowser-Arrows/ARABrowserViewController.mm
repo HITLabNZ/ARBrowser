@@ -113,7 +113,7 @@ const float ARACornerRadius = 40.0;
 	[self.pathController updateLocation:worldLocation];
 	
 	ARASegmentDisposition disposition = [self.pathController.currentSegment dispositionRelativeTo:worldLocation];
-	self.segmentIndexLabel.text = [NSString stringWithFormat:@"Segment %d:%d (turning = %d)", self.pathController.currentSegmentIndex, disposition, self.pathController.turning];
+	self.segmentIndexLabel.text = [NSString stringWithFormat:@"Segment %d:%d (turning = %d, ratio = %0.3f)", self.pathController.currentSegmentIndex, disposition, self.pathController.turning, self.pathController.turningRatio];
 	
 	if (self.pathController.currentSegmentIndex != NSNotFound) {
 		ARAPathBearing pathBearing = [self.pathController currentBearing];
