@@ -10,6 +10,9 @@
 #import "ARWorldLocation.h"
 #import "ARRendering.h"
 
+#import <QuartzCore/QuartzCore.h>
+#import <math.h>
+
 // X is defined as the vector product <b>Y.Z</b> (It is tangential to the ground at the device's current location and roughly points East).
 // Y is tangential to the ground at the device's current location and points towards the magnetic North Pole.
 // Z points towards the sky and is perpendicular to the ground.
@@ -124,26 +127,38 @@ int calculateRotationMatrixFromMagnetometer(CMAcceleration gravity, CMMagneticFi
     [self setCurrentHeading:newHeading];
 }
 
-//#define DEBUG_DERENZY
+//#define AR_DEBUG_LOCATION
 
 - (ARWorldLocation*) worldLocation
 {
 	if (self.currentLocation && self.currentHeading) {
 		ARWorldLocation * result = [[ARWorldLocation new] autorelease];
         
-#ifdef DEBUG_DERENZY
-		CLLocationCoordinate2D derenzy;
-		derenzy.latitude = -43.516215;
-		derenzy.longitude = 172.5555;
+#ifdef AR_DEBUG_LOCATION
+		// Interpolation
+		CLLocationCoordinate2D path[] = {
+			{-43.515621, 172.554712},
+			{-43.516344, 172.554283},
+			{-43.516027, 172.553262}
+		};
+		
+		double currentTime = fmod(CACurrentMediaTime() / 16.0, 2.0);
+		std::size_t index = (std::size_t)currentTime;
+		double offset = currentTime - index;
+		
+		CLLocationCoordinate2D derenzy = {
+			path[index].latitude * (1.0 - offset) + path[index+1].latitude * offset,
+			path[index].longitude * (1.0 - offset) + path[index+1].longitude * offset
+		};
+		
+		//CLLocationCoordinate2D derenzy = {-43.516344, 172.554283};
+		//CLLocationCoordinate2D street = {(-43.516344 + -43.516027) / 2.0, (172.554283 + 172.553262) / 2.0};
 		
 		[result setCoordinate:derenzy altitude:EARTH_RADIUS];
 #else
 		[result setCoordinate:self.smoothedLocation altitude:EARTH_RADIUS + self.currentLocation.altitude];
-		//[result setLocation:[self currentLocation] globalRadius:EARTH_RADIUS];
 #endif
-        //CMAttitude * currentAttitude = motionManager.deviceMotion.attitude;
-        //[result setBearing:-[currentAttitude yaw] * ARBrowser::R2D];
-        [result setBearing:[self currentBearing]];
+        [result setBearing:self.currentBearing];
 		
 		return result;
 	}

@@ -58,6 +58,44 @@
 	}
 #endif
 	
+//#define PREDEFINED_ROUTE_DERENZY_PL
+	
+#ifdef PREDEFINED_ROUTE_DERENZY_PL
+	CLLocationCoordinate2D coordinates[] = {
+		//{-43.515728, 172.555305},
+		{-43.515621, 172.554712},
+		{-43.516344, 172.554283},
+		{-43.516027, 172.553262}
+		//{-43.513813, 172.554516}
+	};
+	
+	for (unsigned i = 0; i < 3; i += 1) {
+		[pathEditorController addPoint:coordinates[i]];
+	}
+#endif
+
+//#define PREDEFINED_ROUTE_CANTERBURY_UNIVERSITY
+	
+#ifdef PREDEFINED_ROUTE_CANTERBURY_UNIVERSITY
+	CLLocationCoordinate2D coordinates[] = {
+		{-43.522014, 172.583106},
+		{-43.521848, 172.582826},
+		{-43.523026, 172.581773},
+		{-43.522879, 172.581426},
+		{-43.522507, 172.581707},
+		{-43.522213, 172.581037},
+		{-43.522367, 172.580891}
+	};
+	
+	for (unsigned i = 0; i < 7; i += 1) {
+		[pathEditorController addPoint:coordinates[i]];
+	}
+#endif
+	
+	if (pathEditorController.points.count > 0) {
+		[pathEditorController setVisibleLocation:[pathEditorController.points objectAtIndex:0]];
+	}
+	
 	ARABrowserViewController * browserViewController = [[ARABrowserViewController new] autorelease];
 	browserViewController.pathController = pathController;
 	[tabBarController addChildViewController:browserViewController];
