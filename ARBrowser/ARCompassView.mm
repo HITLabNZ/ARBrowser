@@ -97,7 +97,7 @@ CLLocationDirection calculateDifference(CLLocationDistance a, CLLocationDirectio
 		ARWorldLocation * origin = [ARWorldLocation fromLocation:_location];
 		
 		for (ARWorldLocation * object in _locations) {
-			CLLocationDistance distance = [object sphericalDistanceTo:origin];
+			CLLocationDistance distance = [object sphericalDistanceFrom:origin];
 			
 			// Ignore objects further than 10km
 			if (distance > (10.0 * 1000.0)) continue;

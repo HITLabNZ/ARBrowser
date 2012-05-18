@@ -77,6 +77,7 @@ ARLocationCoordinate convertFromDegrees(CLLocationCoordinate2D location);
 /// @internal
 - (void) setBearing: (float)bearing;
 
-- (CLLocationDistance) sphericalDistanceTo:(ARWorldLocation *)destination;
+- (CLLocationDistance) sphericalDistanceFrom:(ARWorldLocation *)destination;
+- (CLLocationDistance) distanceFrom:(ARWorldLocation *)destination;
 
 @end

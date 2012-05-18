@@ -169,10 +169,14 @@ ARLocationCoordinate convertFromDegrees(CLLocationCoordinate2D location) {
 	return [NSString stringWithFormat:@"<ARWorldPoint: %0.8f %0.8f>", _coordinate.latitude, _coordinate.longitude];
 }
 
-- (CLLocationDistance) sphericalDistanceTo:(ARWorldLocation *)destination {
-	ARLocationCoordinate from = convertFromDegrees(_coordinate), to = convertFromDegrees(destination->_coordinate);
+- (CLLocationDistance) sphericalDistanceFrom:(ARWorldLocation *)location {
+	ARLocationCoordinate to = convertFromDegrees(_coordinate), from = convertFromDegrees(location->_coordinate);
 	
-	return calculateDistanceBetween(from, to, (_altitude + destination->_altitude) / 2.0);
+	return calculateDistanceBetween(from, to, (_altitude + location->_altitude) / 2.0);
+}
+
+- (CLLocationDistance) distanceFrom:(ARWorldLocation *)location {
+	return (_position - location.position).length();
 }
 
 @end
