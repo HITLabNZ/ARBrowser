@@ -118,8 +118,8 @@ const float ARACornerRadius = 40.0;
 	if (self.pathController.currentSegmentIndex != NSNotFound) {
 		ARAPathBearing pathBearing = [self.pathController currentBearing];
 		
-		self.localArrow.currentBearing = pathBearing.incomingBearing;
-		self.localArrow.destinationBearing = pathBearing.outgoingBearing;
+		self.localArrow.pathBearing = pathBearing;
+		self.localArrow.currentBearing = worldLocation.rotation;
 		
 		NSString * percentageThroughCorner = @"-";
 		

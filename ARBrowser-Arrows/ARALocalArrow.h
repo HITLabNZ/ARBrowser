@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 
+#import "ARAPath.h"
 #import "ARWorldPoint.h"
 
 @interface ARALocalArrow : NSObject {
@@ -17,8 +18,8 @@
 @property(nonatomic,assign) float angleScale;
 @property(nonatomic,assign) float radius;
 
+@property(nonatomic,assign) ARAPathBearing pathBearing;
 @property(nonatomic,assign) ARLocationRadians currentBearing;
-@property(nonatomic,assign) ARLocationRadians destinationBearing;
 
 - (void)draw;
 

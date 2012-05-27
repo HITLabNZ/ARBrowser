@@ -13,7 +13,7 @@
 
 @implementation ARALocalArrow
 
-@synthesize angleScale = _angleScale, radius = _radius, currentBearing = _currentBearing, destinationBearing = _destinationBearing;
+@synthesize angleScale = _angleScale, radius = _radius, currentBearing = _currentBearing, pathBearing = _pathBearing;
 
 static float scale_factor(CLLocationDegrees a, CLLocationDegrees b) {
 	CLLocationDegrees offset = b - a;
@@ -102,11 +102,21 @@ static void generateArrow(Vec3 bottom, Vec3 top, Vec3 up, float angle, std::vect
 	}		
 }
 
+static void drawDirectionalMarker() {
+	std::vector<Vec3> vertices;
+	
+	vertices.push_back(Vec3(-0.9, 0.0, 0.0));
+	vertices.push_back(Vec3(-0.75, 0.2, 0.0));
+	vertices.push_back(Vec3(-0.75, -0.2, 0.0));
+	
+	ARBrowser::renderVertices(vertices, GL_TRIANGLES);
+}
+
 - (void)draw {
-	float offsetBearing = _destinationBearing - _currentBearing;
+	float offsetBearing = _pathBearing.outgoingBearing - _pathBearing.incomingBearing;
 	
 	glPushMatrix();
-	glRotatef(_currentBearing, 0, 0, -1);
+	glRotatef(_pathBearing.incomingBearing, 0, 0, -1);
 	
 	std::vector<Vec3> vertices;
 	
@@ -115,8 +125,35 @@ static void generateArrow(Vec3 bottom, Vec3 top, Vec3 up, float angle, std::vect
 	glColor4f(27.0/255.0, 198.0/255.0, 224.0/255.0, 1.0);
 	
 	ARBrowser::renderVertices(vertices, GL_TRIANGLES);
-	
 	glPopMatrix();
+	
+	float difference = _pathBearing.outgoingBearing - _currentBearing;
+	if (fabs(difference) > 25.0) {
+		// Draw the directional marker:
+		glMatrixMode(GL_PROJECTION);
+		glPushMatrix();
+		
+		glLoadIdentity();
+		if (difference > 0.0)
+			glOrthof(1, -1, -1, 1, -1, 1);
+		else
+			glOrthof(-1, 1, -1, 1, -1, 1);
+		
+		glMatrixMode(GL_MODELVIEW);
+		glPushMatrix();
+		
+		glLoadIdentity();
+		
+		drawDirectionalMarker();
+		
+		glPopMatrix();
+		
+		glMatrixMode(GL_PROJECTION);
+		glPopMatrix();
+		
+		// We leave matrix mode as it was originally:
+		glMatrixMode(GL_MODELVIEW);
+	}
 }
 
 @end
