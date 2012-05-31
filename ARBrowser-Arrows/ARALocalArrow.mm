@@ -112,6 +112,11 @@ static void drawDirectionalMarker() {
 	ARBrowser::renderVertices(vertices, GL_TRIANGLES);
 }
 
+static float differenceBetweenAngles(float a, float b) {
+	float d = (a-b) * ARBrowser::D2R;
+	return atan2f(sinf(d), cosf(d)) * ARBrowser::R2D;
+}
+
 - (void)draw {
 	float offsetBearing = _pathBearing.outgoingBearing - _pathBearing.incomingBearing;
 	
@@ -127,12 +132,12 @@ static void drawDirectionalMarker() {
 	ARBrowser::renderVertices(vertices, GL_TRIANGLES);
 	glPopMatrix();
 	
-	float difference = _pathBearing.outgoingBearing - _currentBearing;
+	float difference = differenceBetweenAngles(_pathBearing.outgoingBearing, _currentBearing);
 	if (fabs(difference) > 25.0) {
 		// Draw the directional marker:
 		glMatrixMode(GL_PROJECTION);
 		glPushMatrix();
-		
+				
 		glLoadIdentity();
 		if (difference > 0.0)
 			glOrthof(1, -1, -1, 1, -1, 1);
