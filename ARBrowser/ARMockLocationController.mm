@@ -7,6 +7,7 @@
 //
 
 #import "ARMockLocationController.h"
+#import "ARWorldLocation.h"
 
 @implementation ARMockLocationController
 
