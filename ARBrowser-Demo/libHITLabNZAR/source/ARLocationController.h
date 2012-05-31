@@ -40,4 +40,3 @@ extern NSString * const ARAccelerationChanged;
 + sharedInstance;
 
 @end
-

@@ -11,8 +11,8 @@
 #define _ARTOOLKIT_MODEL_H
 
 #include "Texture2D.h"
-#include "Vector.h"
-#include "Matrix.h"
+#include "Math/Vector.h"
+#include "Math/Matrix.h"
 #include <string>
 #include <vector>
 #include <sstream>
