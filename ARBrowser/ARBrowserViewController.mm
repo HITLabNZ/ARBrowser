@@ -134,4 +134,15 @@ static float interpolate(float t, float a, float b) {
 	NSLog(@"Developer %@ at %@", developer, address);
 }
 
+// Optional - supply either -worldPoints or this:
+//- (NSArray *)worldPointsFromLocation:(ARWorldLocation *)origin withinDistance:(float)distance {
+	// You can apply your own filtering or asynchronous fetching here.
+//	return self.worldPoints;
+//}
+
+// This method may be deprecated in the future..
+- (void)renderInLocalCoordinatesForBrowserView:(ARBrowserView *)view {
+	
+}
+
 @end

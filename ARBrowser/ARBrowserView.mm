@@ -141,36 +141,43 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 	CMAcceleration gravity = [self.locationController currentGravity];
 	//NSLog(@"Bearing: %0.3f", origin.rotation);
 	
-	NSArray * worldPoints = [self.delegate worldPointsFromLocation:origin withinDistance:self.maximumDistance * 2.0];
+	NSArray * worldPoints = nil;
+	if ([self.delegate respondsToSelector:@selector(worldPointsFromLocation:withinDistance:)]) {
+		worldPoints = [self.delegate worldPointsFromLocation:origin withinDistance:self.maximumDistance * 2.0];
+	} else {
+		worldPoints = self.delegate.worldPoints;
+	}
 	
 	ARBrowser::VerticesT radarPoints, radarEdgePoints;
 	
-	for (ARWorldPoint * point in worldPoints) {
-		// Try to speed up:
-		//Vec3 delta = point.position - origin.position;
-		
-		// This method is pretty slow:
-		Vec3 delta = [origin calculateRelativePositionOf:point];
-		// Ignore altitude in distance calculations:
-		delta.z = 0;
-		
-		if (delta.length() == 0) {
-			radarPoints.push_back(delta);
-		} else {
-			// Normalize the distance of the point
-			//const float LF = 10.0;
-			//float length = log10f((delta.length() / LF) + 1) * LF;
-			float length = sqrt(delta.length() / maximumDistance);
+	if (worldPoints) {
+		for (ARWorldPoint * point in worldPoints) {
+			// Try to speed up:
+			//Vec3 delta = point.position - origin.position;
 			
-			// Normalize the vector so we can scale its length appropriately.
-			delta.normalize();
+			// This method is pretty slow:
+			Vec3 delta = [origin calculateRelativePositionOf:point];
+			// Ignore altitude in distance calculations:
+			delta.z = 0;
 			
-			if (length <= 1.0) {
-				delta *= (length * (ARBrowser::RadarDiameter / 2.0));
+			if (delta.length() == 0) {
 				radarPoints.push_back(delta);
 			} else {
-				delta *= (ARBrowser::RadarDiameter / 2.0);
-				radarEdgePoints.push_back(delta);
+				// Normalize the distance of the point
+				//const float LF = 10.0;
+				//float length = log10f((delta.length() / LF) + 1) * LF;
+				float length = sqrt(delta.length() / maximumDistance);
+				
+				// Normalize the vector so we can scale its length appropriately.
+				delta.normalize();
+				
+				if (length <= 1.0) {
+					delta *= (length * (ARBrowser::RadarDiameter / 2.0));
+					radarPoints.push_back(delta);
+				} else {
+					delta *= (ARBrowser::RadarDiameter / 2.0);
+					radarEdgePoints.push_back(delta);
+				}
 			}
 		}
 	}
