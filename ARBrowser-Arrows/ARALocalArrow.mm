@@ -104,12 +104,19 @@ static void generateArrow(Vec3 bottom, Vec3 top, Vec3 up, float angle, std::vect
 
 static void drawDirectionalMarker() {
 	std::vector<Vec3> vertices;
+	vertices.push_back(Vec3(-0.9, 0.0, 1.0));
+	vertices.push_back(Vec3(-0.75, 0.2, 1.0));
+	vertices.push_back(Vec3(-0.75, -0.2, 1.0));
 	
-	vertices.push_back(Vec3(-0.9, 0.0, 0.0));
-	vertices.push_back(Vec3(-0.75, 0.2, 0.0));
-	vertices.push_back(Vec3(-0.75, -0.2, 0.0));
-	
+	glColor4f(27.0/255.0, 198.0/255.0, 224.0/255.0, 1.0);
 	ARBrowser::renderVertices(vertices, GL_TRIANGLES);
+	
+	vertices.clear();
+	vertices.push_back(Vec3(-0.9 - 0.02, 0.0, 0.9));
+	vertices.push_back(Vec3(-0.75 + 0.02, 0.2 + 0.06, 0.9));
+	vertices.push_back(Vec3(-0.75 + 0.02, -0.2 - 0.06, 0.9));
+	glColor4f(1.0, 1.0, 1.0, 1.0);
+	ARBrowser::renderVertices(vertices, GL_TRIANGLES);	
 }
 
 static float differenceBetweenAngles(float a, float b) {
@@ -133,7 +140,7 @@ static float differenceBetweenAngles(float a, float b) {
 	glPopMatrix();
 	
 	float difference = differenceBetweenAngles(_pathBearing.outgoingBearing, _currentBearing);
-	if (fabs(difference) > 25.0) {
+	if (fabs(difference) > 20.0) {
 		// Draw the directional marker:
 		glMatrixMode(GL_PROJECTION);
 		glPushMatrix();
