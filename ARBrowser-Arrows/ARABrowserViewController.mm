@@ -71,7 +71,7 @@ const float ARACornerRadius = 40.0;
 	
 	if (!self.localArrow) {
 		self.localArrow = [[ARALocalArrow alloc] init];
-		self.localArrow.radius = 1.5;
+		self.localArrow.radius = 3.0;
 		self.localArrow.angleScale = 0.75;
 	}
 }
@@ -117,6 +117,9 @@ const float ARACornerRadius = 40.0;
 	
 	if (self.pathController.currentSegmentIndex != NSNotFound) {
 		ARAPathBearing pathBearing = [self.pathController currentBearing];
+		
+		// You can control the behaviour of the bearing calculation, e.g. whether the arrow responds to user bearing or not.
+		pathBearing.incomingBearing = worldLocation.rotation;
 		
 		self.localArrow.pathBearing = pathBearing;
 		self.localArrow.currentBearing = worldLocation.rotation;

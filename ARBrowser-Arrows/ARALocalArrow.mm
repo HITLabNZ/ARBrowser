@@ -33,73 +33,115 @@ static Vec3 point_on_circle(CLLocationDegrees degrees, Vec3 origin, float radius
 	return origin + Vec3(x * radius, y * radius, 0.0);
 }
 
-static void generateArrow(Vec3 bottom, Vec3 top, Vec3 up, float angle, std::vector<Vec3> & vertices) {
-	Mat44 rotation;
-	MatrixRotationZ(rotation, angle*PIf/180.0f);
+static Vec3 interpolate(float t, Vec3 a, Vec3 b) {
+	return ((1.0 - t) * a) + (t * b);
+}
+
+static Vec3 point_at_time(const std::vector<Vec3> points, float time) {
+	if (time <= 0.0) return points[0];
+	if (time >= 1.0) return points[points.size() - 1];
+	
+	float offset = time * (points.size() - 1);
+	std::size_t index = (std::size_t)offset;
+	
+	return interpolate(offset - index, points.at(index), points.at(index+1));
+}
+
+/// Cubic interpolate between four values
+template <typename InterpolateT, typename AnyT>
+inline AnyT cubic_interpolate (const InterpolateT & t, const AnyT & a, const AnyT & b, const AnyT & c, const AnyT & d)
+{
+	AnyT p = (d - c) - (a - b);
+	AnyT q = (a - b) - p;
+	AnyT r = c - a;
+	AnyT s = b;
+	
+	return p*(t*t*t) + q*(t*t) + r * t + s;
+}
+
+/** Hermite interpolation polynomial function.
+ 
+ Tension: 1 is high, 0 normal, -1 is low
+ Bias: 0 is even,
+ positive is towards first segment,
+ negative towards the other
+ */
+template <typename InterpolateT, typename AnyT>
+inline AnyT hermite_polynomial (const InterpolateT & t, const AnyT & p0, const AnyT & m0, const AnyT & p1, const AnyT & m1)
+{
+	InterpolateT t3 = t*t*t, t2 = t*t;
+	
+	InterpolateT h00 = 2*t3 - 3*t2 + 1;
+	InterpolateT h10 = t3 - 2*t2 + t;
+	InterpolateT h01 = -2*t3 + 3*t2;
+	InterpolateT h11 = t3 - t2;
+	
+	return p0 * h00 + m0 * h10 + p1 * h01 + m1 * h11;
+}
+
+static void drawArrow(Vec3 bottom, Vec3 top, Vec3 up, float angle) {
+	std::vector<Vec3> arrow;
 	
 	Vec3 delta = (top - bottom);
-	Vec3 direction = delta.normalized();
-	float length = delta.length();
-	float arrowLength = length / 5.0;
-	Vec3 side = direction.cross(up);
+	// Move the whole line segment forward proportionally:
+	// bottom += (delta * 0.1);
+	// top += (delta * 0.1);
 	
-	const float widthScale = 0.12 * 0.6;
+	Vec3 offset = delta / 2.0;
+	Vec3 middle = bottom + offset;
+	Vec3 offsetRotated;
 	
-	Vec3 arrowHeadBase = top + (direction * -arrowLength);
-	Vec3 points[] = {
-		top,
-		arrowHeadBase + (side * -3.0 * widthScale),
-		arrowHeadBase + (side * -1.0 * widthScale),
-		arrowHeadBase + (side *  1.0 * widthScale),
-		arrowHeadBase + (side *  3.0 * widthScale),
-		bottom + (delta * 1.0) + side * -1.0 * widthScale,
-		bottom + (delta * 1.0) + side *  1.0 * widthScale,
-		bottom + (delta * 0.8) + side * -1.0 * widthScale,
-		bottom + (delta * 0.8) + side *  1.0 * widthScale,
-		bottom + (delta * 0.6) + side * -1.0 * widthScale,
-		bottom + (delta * 0.6) + side *  1.0 * widthScale,
-		bottom + (delta * 0.4) + side * -1.0 * widthScale,
-		bottom + (delta * 0.4) + side *  1.0 * widthScale,
-		bottom + (delta * 0.2) + side * -1.0 * widthScale,
-		bottom + (delta * 0.2) + side *  1.0 * widthScale,
-		bottom + (side * -1.0 * widthScale),
-		bottom + (side *  1.0 * widthScale)
-	};
+	// Rotation Matrix
+	Mat44 rotation;
+	MatrixRotationZ(rotation, angle * ARBrowser::D2R);
+	MatrixVec3Multiply(offsetRotated, offset, rotation);
 	
-	for (std::size_t i = 0; i < 17; i += 1) {
-		float factor = (points[i] - bottom).length() / (length / 1.2);
+	// Now we have three points for the arrow:
+	arrow.push_back(bottom);
+	arrow.push_back(middle);
+	arrow.push_back(middle + offsetRotated);
+	
+	std::vector<Vec3> vertices;
+	vertices.push_back(bottom);
+	
+	Vec3 a = point_at_time(arrow, 0.2);
+	Vec3 b = point_at_time(arrow, 0.4);
+	Vec3 c = point_at_time(arrow, 0.6);
+	Vec3 d = point_at_time(arrow, 0.8);
+	
+	//vertices.push_back(arrow[0]);
+	Vec3 p1 = arrow[0], side;
+	
+	// ...we need to construct a nice curved shape, along with the arrow head:
+	for (float time = 0; time <= 1.0; time += 0.2) {
+		//Vec3 p = cubic_interpolate(time, a, b, c, d);
+		Vec3 p2 = hermite_polynomial(time, b, b-a, c, d-c);
 		
-		if (factor > 1.0) factor = 1.0;
+		Vec3 delta = (p2 - p1).normalize();
 		
-		Vec3 rotated;
-		MatrixVec3Multiply(rotated, points[i], rotation);
+		// Calculate the sideways vector
+		side = delta.cross(up) * 0.04;
 		
-		points[i] = points[i] * (1.0 - factor) + rotated * factor;
+		vertices.push_back(p1 + side);
+		vertices.push_back(p1 - side);
+		
+		p1 = p2;
 	}
 	
-	// Arrow head
-	vertices.push_back(points[1]);
-	vertices.push_back(points[2]);
-	vertices.push_back(points[0]);
+	// Last segment
+	vertices.push_back(arrow[2] + side);
+	vertices.push_back(arrow[2] - side);
 	
-	vertices.push_back(points[2]);
-	vertices.push_back(points[3]);
-	vertices.push_back(points[0]);
+	ARBrowser::renderVertices(vertices, GL_TRIANGLE_STRIP);
 	
-	vertices.push_back(points[3]);
-	vertices.push_back(points[4]);
-	vertices.push_back(points[0]);
+	vertices.clear();
 	
-	// Arrow body - could be improved.
-	for (std::size_t i = 9; i < 17; i += 2) {
-		vertices.push_back(points[i]);
-		vertices.push_back(points[i - 1]);
-		vertices.push_back(points[i - 2]);
-		
-		vertices.push_back(points[i + 1]);
-		vertices.push_back(points[i]);
-		vertices.push_back(points[i - 1]);
-	}		
+	// ...now draw arrow head:
+	vertices.push_back(arrow[2] + (side * 3));
+	vertices.push_back(arrow[2] - (side * 3));
+	vertices.push_back(arrow[2] + (arrow[2] - arrow[1]).normalize() * 0.5);
+	
+	ARBrowser::renderVertices(vertices, GL_TRIANGLES);
 }
 
 static void drawDirectionalMarker() {
@@ -130,13 +172,9 @@ static float differenceBetweenAngles(float a, float b) {
 	glPushMatrix();
 	glRotatef(_pathBearing.incomingBearing, 0, 0, -1);
 	
-	std::vector<Vec3> vertices;
-	
-	generateArrow(Vec3(0, 0, 0.5), Vec3(0, _radius, 1.0), Vec3(0, 0, 1), offsetBearing, vertices);
-	
 	glColor4f(27.0/255.0, 198.0/255.0, 224.0/255.0, 1.0);
+	drawArrow(Vec3(0, 0, 0.5), Vec3(0, _radius, 0.5), Vec3(0, 0, 1), offsetBearing);
 	
-	ARBrowser::renderVertices(vertices, GL_TRIANGLES);
 	glPopMatrix();
 	
 	float difference = differenceBetweenAngles(_pathBearing.outgoingBearing, _currentBearing);
