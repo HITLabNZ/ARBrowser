@@ -133,7 +133,10 @@ const float ARACornerRadius = 40.0;
 		self.bearingLabel.text = [NSString stringWithFormat:@"%0.2f => %0.2f; (%0.1f, %@)", pathBearing.incomingBearing, pathBearing.outgoingBearing, pathBearing.distanceFromMidpoint, percentageThroughCorner];
 	}
 	
-	[self.localArrow draw];
+	// Don't draw the arrow unless the bearing has been computed accurately:
+	if (locationController.currentHeading) {
+		[self.localArrow draw];
+	}
 }
 
 - (void) browserView: (ARBrowserView*)view didSelect:(ARWorldPoint*)point {
