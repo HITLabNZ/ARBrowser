@@ -186,6 +186,13 @@ static CLLocationDegrees interpolateBearing(CLLocationDegrees a, CLLocationDegre
 			bearing.outgoingBearing = interpolateBearing(bearing.incomingBearing, bearing.outgoingBearing, self.turningRatio + 1.0);
 		else
 			bearing.incomingBearing = interpolateBearing(bearing.incomingBearing, bearing.outgoingBearing, self.turningRatio);
+		
+		// You can control the behaviour of the bearing calculation, e.g. whether the arrow responds to user bearing or not.
+		
+		// As we ease in and ease out of the turn we should adjust the incoming bearing based on the users current rotation:
+		float r = 1 - (_turningRatio*_turningRatio);
+		
+		bearing.incomingBearing = interpolateBearing(bearing.incomingBearing, _currentLocation.rotation, r);
 	}
 	
 	return bearing;

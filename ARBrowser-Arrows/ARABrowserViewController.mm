@@ -118,9 +118,6 @@ const float ARACornerRadius = 100.0;
 	if (self.pathController.currentSegmentIndex != NSNotFound) {
 		ARAPathBearing pathBearing = [self.pathController currentBearing];
 		
-		// You can control the behaviour of the bearing calculation, e.g. whether the arrow responds to user bearing or not.
-		pathBearing.incomingBearing = worldLocation.rotation;
-		
 		self.localArrow.pathBearing = pathBearing;
 		self.localArrow.currentBearing = worldLocation.rotation;
 		
