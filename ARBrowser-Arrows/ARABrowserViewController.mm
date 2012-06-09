@@ -123,8 +123,8 @@ const float ARACornerRadius = 100.0;
 		
 		NSString * percentageThroughCorner = @"-";
 		
-		if (pathBearing.distanceFromMidpoint < ARACornerRadius) {
-			percentageThroughCorner = [NSString stringWithFormat:@"%0.1f%%", (pathBearing.distanceFromMidpoint / ARACornerRadius) * 100.0];
+		if (pathBearing.distanceFromMidpoint < self.pathController.turningRadius) {
+			percentageThroughCorner = [NSString stringWithFormat:@"%0.1f%%", (pathBearing.distanceFromMidpoint / self.pathController.turningRadius) * 100.0];
 		}
 		
 		self.bearingLabel.text = [NSString stringWithFormat:@"%0.2f => %0.2f; (%0.1f, %@)", pathBearing.incomingBearing, pathBearing.outgoingBearing, pathBearing.distanceFromMidpoint, percentageThroughCorner];
