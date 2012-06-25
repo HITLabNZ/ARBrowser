@@ -129,7 +129,7 @@
 	
 	// Don't draw the arrow unless the bearing has been computed accurately:
 	if (locationController.currentHeading) {
-		[self.localArrow draw];
+		[self.localArrow drawForBrowserView:view];
 	}
 }
 

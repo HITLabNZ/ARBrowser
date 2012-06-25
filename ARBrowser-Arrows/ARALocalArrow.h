@@ -9,6 +9,7 @@
 
 #import "ARAPath.h"
 #import "ARWorldPoint.h"
+#import "ARBrowserView.h"
 
 @interface ARALocalArrow : NSObject {
 	// Typicalyly, 0.75 would be a good value
@@ -21,6 +22,6 @@
 @property(nonatomic,assign) ARAPathBearing pathBearing;
 @property(nonatomic,assign) ARLocationRadians currentBearing;
 
-- (void)draw;
+- (void)drawForBrowserView:(ARBrowserView*)browserView;
 
 @end

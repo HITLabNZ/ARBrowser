@@ -166,23 +166,13 @@ static float differenceBetweenAngles(float a, float b) {
 	return atan2f(sinf(d), cosf(d)) * ARBrowser::R2D;
 }
 
-- (void)draw {
-	float offsetBearing = _pathBearing.outgoingBearing - _pathBearing.incomingBearing;
-	
-	glPushMatrix();
-	glRotatef(_pathBearing.incomingBearing, 0, 0, -1);
-	
-	glColor4f(27.0/255.0, 198.0/255.0, 224.0/255.0, 1.0);
-	drawArrow(Vec3(0, 0, 0.5), Vec3(0, _radius, 0.5), Vec3(0, 0, 1), offsetBearing);
-	
-	glPopMatrix();
-	
+- (void)drawDirectionalMarker {
 	float difference = differenceBetweenAngles(_pathBearing.outgoingBearing, _currentBearing);
 	if (fabs(difference) > 20.0) {
 		// Draw the directional marker:
 		glMatrixMode(GL_PROJECTION);
 		glPushMatrix();
-				
+		
 		glLoadIdentity();
 		if (difference > 0.0)
 			glOrthof(1, -1, -1, 1, -1, 1);
@@ -204,6 +194,59 @@ static float differenceBetweenAngles(float a, float b) {
 		// We leave matrix mode as it was originally:
 		glMatrixMode(GL_MODELVIEW);
 	}
+}
+
+- (void)draw3D {
+	float offsetBearing = _pathBearing.outgoingBearing - _pathBearing.incomingBearing;
+	
+	glPushMatrix();
+	glRotatef(_pathBearing.incomingBearing, 0, 0, -1);
+	
+	glColor4f(27.0/255.0, 198.0/255.0, 224.0/255.0, 1.0);
+	drawArrow(Vec3(0, 0, 0.5), Vec3(0, _radius, 0.5), Vec3(0, 0, 1), offsetBearing);
+	
+	glPopMatrix();
+	
+	[self drawDirectionalMarker];
+}
+
+- (void)draw2DInBrowserView:(ARBrowserView*)browserView {
+	float offsetBearing = _pathBearing.outgoingBearing - _pathBearing.incomingBearing;
+	
+	glMatrixMode(GL_PROJECTION);
+	glPushMatrix();
+	glLoadIdentity();
+	
+	CGSize viewSize = [browserView bounds].size;
+	
+	MATRIX orthoProjection;
+	MatrixOrthoRH(orthoProjection, viewSize.width / 100.0, viewSize.height / 100.0, -1, 1, false);
+	glMultMatrixf(orthoProjection.f);
+	
+	glMatrixMode(GL_MODELVIEW);
+	glPushMatrix();
+	glLoadIdentity();
+	
+	// Move whole arrow visualisation down:
+	glTranslatef(0.0, -1, 0.0);
+	
+	float currentBearing = -[browserView.locationController currentBearing];
+	glRotatef(_pathBearing.incomingBearing + currentBearing, 0, 0, -1);
+	glTranslatef(0.0, -_radius / 2.0, 0.0);
+	
+	glColor4f(27.0/255.0, 198.0/255.0, 224.0/255.0, 1.0);
+	drawArrow(Vec3(0, 0, 0.5), Vec3(0, _radius, 0.5), Vec3(0, 0, 1), offsetBearing);
+	
+	glPopMatrix();
+	
+	glMatrixMode(GL_PROJECTION);
+	glPopMatrix();
+	
+	glMatrixMode(GL_MODELVIEW);
+}
+
+- (void)drawForBrowserView:(ARBrowserView*)browserView {
+	[self draw2DInBrowserView:browserView];
 }
 
 @end
