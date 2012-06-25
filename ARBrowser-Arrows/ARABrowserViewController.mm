@@ -10,9 +10,6 @@
 #import "ARASegment.h"
 #import "ARLocationController.h"
 
-// The minimum distance from the corner at which point the turning arrow will be shown:
-const float ARACornerRadius = 100.0;
-
 @interface ARABrowserViewController ()
 
 @end

@@ -30,7 +30,7 @@
 	ARAPathController * pathController = [[ARAPathController new] autorelease];
 	
 	// The distance from the corner before bending arrow is shown:
-	pathController.turningRadius = 25.0 * 4.0;
+	pathController.turningRadius = 25.0 * 2.0;
 	
 	UITabBarController * tabBarController = [[UITabBarController new] autorelease];
 	
