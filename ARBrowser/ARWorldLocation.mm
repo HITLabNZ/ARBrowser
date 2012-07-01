@@ -179,4 +179,14 @@ ARLocationCoordinate convertFromDegrees(CLLocationCoordinate2D location) {
 	return (_position - location.position).length();
 }
 
+- (void)setLocationByInterpolatingFrom:(ARWorldLocation*)from to:(ARWorldLocation*)to atTime:(float)time {
+	// We have two GPS coordinates, interpolate between them, this method is a bit inexact.. the correct method would be to use SLERP.
+	CLLocationCoordinate2D coordinate;
+	
+	coordinate.latitude = from.coordinate.latitude * (1.0 - time) + to.coordinate.latitude * time;
+	coordinate.longitude = from.coordinate.longitude * (1.0 - time) + to.coordinate.longitude * time;
+	
+	[self setCoordinate:coordinate altitude:self.altitude];
+}
+
 @end

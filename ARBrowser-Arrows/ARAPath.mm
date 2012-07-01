@@ -11,11 +11,6 @@
 #import "ARASegment.h"
 
 /** Hermite interpolation polynomial function.
- 
- Tension: 1 is high, 0 normal, -1 is low
- Bias: 0 is even,
- positive is towards first segment,
- negative towards the other
  */
 template <typename InterpolateT, typename AnyT>
 inline AnyT hermite_polynomial (const InterpolateT & t, const AnyT & p0, const AnyT & m0, const AnyT & p1, const AnyT & m1) {

@@ -53,11 +53,16 @@
 	self.segmentIndexLabel.font = [UIFont systemFontOfSize:9.0];
 	[browserView addSubview:self.segmentIndexLabel];
 	
-	self.bearingLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 45, 180, 20)];
+	self.bearingLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 15+30, 180, 20)];
 	self.bearingLabel.backgroundColor = [UIColor whiteColor];
 	self.bearingLabel.font = [UIFont systemFontOfSize:9.0];
 	[browserView addSubview:self.bearingLabel];
 	
+	self.pathController.debugLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 15+60, 180, 20)];
+	self.pathController.debugLabel.backgroundColor = [UIColor whiteColor];
+	self.pathController.debugLabel.font = [UIFont systemFontOfSize:9.0];
+	[browserView addSubview:self.pathController.debugLabel];
+									 
 	[self setView:browserView];
 }
 
@@ -124,7 +129,7 @@
 			percentageThroughCorner = [NSString stringWithFormat:@"%0.1f%%", (pathBearing.distanceFromMidpoint / self.pathController.turningRadius) * 100.0];
 		}
 		
-		self.bearingLabel.text = [NSString stringWithFormat:@"%0.2f => %0.2f; (%0.1f, %@)", pathBearing.incomingBearing, pathBearing.outgoingBearing, pathBearing.distanceFromMidpoint, percentageThroughCorner];
+		self.bearingLabel.text = [NSString stringWithFormat:@"%0.2f => %0.2f : %0.2f; (%0.1f, %@)", pathBearing.incomingBearing, pathBearing.outgoingBearing, worldLocation.rotation, pathBearing.distanceFromMidpoint, percentageThroughCorner];
 	}
 	
 	// Don't draw the arrow unless the bearing has been computed accurately:

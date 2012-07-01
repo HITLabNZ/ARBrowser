@@ -8,8 +8,9 @@
 
 #import "ARAPathController.h"
 #import "ARASegment.h"
+#import "ARRendering.h"
 
-const float ARA_RECALIBRATION_DISTANCE = 50.0;
+const float ARA_RECALIBRATION_DISTANCE = 50.0 * 2.0;
 
 @interface ARAPathController ()
 @property(nonatomic,readwrite,retain) ARWorldLocation * currentLocation;
@@ -22,6 +23,8 @@ const float ARA_RECALIBRATION_DISTANCE = 50.0;
 @synthesize stepModel = _stepModel, markerModel = _markerModel;
 @synthesize path = _path, currentSegmentIndex = _currentSegmentIndex, currentLocation = _currentLocation;
 @synthesize turningRadius = _turningRadius, turning = _turning, turningRatio = _turningRatio;
+
+@synthesize debugLabel = _debugLabel;
 
 - init {
 	self = [super init];
@@ -172,8 +175,14 @@ const float ARA_RECALIBRATION_DISTANCE = 50.0;
 	return NO;
 }
 
-static CLLocationDegrees interpolateBearing(CLLocationDegrees a, CLLocationDegrees b, double ratio) {
-	return a * (1.0 - ratio) + b * ratio;
+static double interpolateBearing(double a, double b, double blend) {
+	a *= ARBrowser::D2R;
+	b *= ARBrowser::D2R;
+	
+    double ix = sin(a), iy = cos(a);
+    double jx = sin(b), jy = cos(b);
+    
+    return atan2(ix-(ix-jx)*blend, iy-(iy-jy)*blend) * ARBrowser::R2D;
 }
 
 - (ARAPathBearing) currentBearing {
@@ -190,7 +199,9 @@ static CLLocationDegrees interpolateBearing(CLLocationDegrees a, CLLocationDegre
 		// You can control the behaviour of the bearing calculation, e.g. whether the arrow responds to user bearing or not.
 		
 		// As we ease in and ease out of the turn we should adjust the incoming bearing based on the users current rotation:
-		float r = 1 - (_turningRatio*_turningRatio);
+		float r = 1.0 - (_turningRatio*_turningRatio);
+		
+		[_debugLabel setText:[NSString stringWithFormat:@"bearing: i(%0.2f -> %0.2f, %0.2f)", bearing.incomingBearing, _currentLocation.rotation, r]];
 		
 		bearing.incomingBearing = interpolateBearing(bearing.incomingBearing, _currentLocation.rotation, r);
 	}

@@ -95,7 +95,7 @@ static void drawArrow(Vec3 bottom, Vec3 top, Vec3 up, float angle) {
 	Mat44 rotation;
 	MatrixRotationZ(rotation, angle * ARBrowser::D2R);
 	MatrixVec3Multiply(offsetRotated, offset, rotation);
-	
+		
 	// Now we have three points for the arrow:
 	arrow.push_back(bottom);
 	arrow.push_back(middle);
@@ -104,10 +104,10 @@ static void drawArrow(Vec3 bottom, Vec3 top, Vec3 up, float angle) {
 	std::vector<Vec3> vertices;
 	vertices.push_back(bottom);
 	
-	Vec3 a = point_at_time(arrow, 0.2);
-	Vec3 b = point_at_time(arrow, 0.4);
-	Vec3 c = point_at_time(arrow, 0.6);
-	Vec3 d = point_at_time(arrow, 0.8);
+	Vec3 a = point_at_time(arrow, 0.0);
+	Vec3 b = point_at_time(arrow, 0.333);
+	Vec3 c = point_at_time(arrow, 0.666);
+	Vec3 d = point_at_time(arrow, 1.0);
 	
 	//vertices.push_back(arrow[0]);
 	Vec3 p1 = arrow[0], side;
@@ -120,7 +120,7 @@ static void drawArrow(Vec3 bottom, Vec3 top, Vec3 up, float angle) {
 		Vec3 delta = (p2 - p1).normalize();
 		
 		// Calculate the sideways vector
-		side = delta.cross(up) * 0.04;
+		side = delta.cross(up) * 0.06;
 		
 		vertices.push_back(p1 + side);
 		vertices.push_back(p1 - side);

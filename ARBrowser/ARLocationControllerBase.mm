@@ -156,7 +156,8 @@ int calculateRotationMatrixFromMagnetometer(CMAcceleration gravity, CMMagneticFi
 		
 		[result setCoordinate:derenzy altitude:EARTH_RADIUS];
 #else
-		[result setCoordinate:self.smoothedLocation altitude:EARTH_RADIUS + self.currentLocation.altitude];
+		// We truncate the altitude to ensure that all coordinates are on the surface of the same sphere. This isn't entirely correct but generally produces good behaviour.
+		[result setCoordinate:self.smoothedLocation altitude:EARTH_RADIUS/* + self.currentLocation.altitude*/];
 #endif
         [result setBearing:self.currentBearing];
 		

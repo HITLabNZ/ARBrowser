@@ -148,4 +148,36 @@ static float minimumDistance(Vec3 v, Vec3 w, Vec3 p) {
 
 #endif
 
+float time_for_closest_point(Vec3 a, Vec3 b, Vec3 point) {
+	float d = (b - a).lenSqr();
+	float t = 0;
+	
+	t += (point.x - a.x) * (b.x - a.x);
+	t += (point.y - a.y) * (b.y - a.y);
+	t += (point.z - a.z) * (b.z - a.z);
+	
+	return t / d;
+}
+
+- (ARASegmentDisposition)snapLocation:(ARWorldLocation *)location {
+	// Snap the location to the closet point on the segment:
+	float time = time_for_closest_point(self.from.position, self.to.position, location.position);
+	
+	[location setLocationByInterpolatingFrom:self.from to:self.to atTime:time];
+	
+	if (time <= 0.01) {
+		return ARASegmentAhead;
+	} else if (time < 0.5) {
+		return ARASegmentEntering;
+	} else if (time > 0.99) {
+		return ARASegmentBehind;
+	} else {
+		return ARASegmentExiting;
+	}
+}
+
+- (CLLocationDistance)distance {
+	return [_to distanceFrom:_from];
+}
+
 @end

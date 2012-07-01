@@ -80,4 +80,6 @@ ARLocationCoordinate convertFromDegrees(CLLocationCoordinate2D location);
 - (CLLocationDistance) sphericalDistanceFrom:(ARWorldLocation *)destination;
 - (CLLocationDistance) distanceFrom:(ARWorldLocation *)destination;
 
+- (void)setLocationByInterpolatingFrom:(ARWorldLocation*)from to:(ARWorldLocation*)to atTime:(float)time;
+
 @end

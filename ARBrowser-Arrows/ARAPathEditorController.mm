@@ -35,8 +35,11 @@
 - (void) addPoint:(CLLocationCoordinate2D)coordinate {
 	NSLog(@"Adding coordinate @ %0.6f, %0.6f", coordinate.latitude, coordinate.longitude);
 	
-	ARWorldPoint * point = [[ARWorldPoint new] autorelease];	
+	ARWorldPoint * point = [[ARWorldPoint new] autorelease];
+
+	// This altitude calculation isn't entirely correct, because if we are on a mountain the error could be large.
 	[point setCoordinate:coordinate altitude:EARTH_RADIUS];
+	
 	point.model = self.pathController.markerModel;
 	
 	[_points addObject:point];

@@ -36,4 +36,8 @@ typedef enum {
 
 - (ARASegmentDisposition)dispositionRelativeTo:(ARWorldLocation *)location;
 
+- (ARASegmentDisposition)snapLocation:(ARWorldLocation *)location;
+
+- (CLLocationDistance)distance;
+
 @end
