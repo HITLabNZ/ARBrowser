@@ -17,7 +17,7 @@
 	if (self.currentLocation && self.currentHeading) {
 		ARWorldLocation * result = [[ARWorldLocation new] autorelease];
         
-		[result setCoordinate:self.currentLocation.coordinate altitude:EARTH_RADIUS + self.currentLocation.altitude];
+		[result setCoordinate:self.currentLocation.coordinate altitude:self.currentLocation.altitude];
 		
         [result setBearing:self.currentHeading.trueHeading];
 		

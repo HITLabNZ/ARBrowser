@@ -8,7 +8,6 @@
 
 #import "ARWorldPoint.h"
 
-
 @implementation ARWorldPoint
 
 @synthesize model, metadata, fixed = _fixed;

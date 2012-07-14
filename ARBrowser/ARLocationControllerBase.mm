@@ -57,11 +57,14 @@ int calculateRotationMatrixFromMagnetometer(CMAcceleration gravity, CMMagneticFi
 @property(assign,readwrite) CMAcceleration northAxis;
 
 @property(assign,readwrite) CLLocationCoordinate2D smoothedLocation;
+@property(retain,readwrite) ARWorldLocation * worldLocation;
 @end
 
 @implementation ARLocationControllerBase
 
 @synthesize currentHeading = _currentHeading, currentLocation = _currentLocation, smoothedLocation = _smoothedLocation, northAxis = _northAxis, locationManager = _locationManager;
+
+@synthesize worldLocation = _worldLocation;
 
 - (id)init {
     self = [super init];
@@ -95,7 +98,9 @@ int calculateRotationMatrixFromMagnetometer(CMAcceleration gravity, CMMagneticFi
     
     [self.locationManager setDelegate:nil];
 	self.locationManager = nil;
-		
+	
+	self.worldLocation = nil;
+	
     [super dealloc];
 }
 
@@ -104,13 +109,31 @@ int calculateRotationMatrixFromMagnetometer(CMAcceleration gravity, CMMagneticFi
 	const double kFilteringFactor = 0.80;
 	
 	if (self.currentLocation) {
-		//Use a basic low-pass filter to smooth out changes in GPS data.
-		CLLocationCoordinate2D nextSmoothedLocation = {
-			self.smoothedLocation.latitude * kFilteringFactor + self.currentLocation.coordinate.latitude * (1.0 - kFilteringFactor),
-			self.smoothedLocation.longitude * kFilteringFactor + self.currentLocation.coordinate.longitude * (1.0 - kFilteringFactor)
-		};
+		CLLocationCoordinate2D currentLocationCoordinate = self.currentLocation.coordinate;
 		
-		self.smoothedLocation = nextSmoothedLocation;
+		// Calculate location change:
+		double latitudeChange = self.smoothedLocation.latitude - currentLocationCoordinate.latitude;
+		double longitudeChange = self.smoothedLocation.longitude - currentLocationCoordinate.longitude;
+		double change = (latitudeChange * latitudeChange) + (longitudeChange * longitudeChange);
+		
+		if (change == 0.0) {
+			return NO;
+		}
+		
+		if (change > 0.00000001) {
+			//Use a basic low-pass filter to smooth out changes in GPS data.
+			CLLocationCoordinate2D nextSmoothedLocation = {
+				self.smoothedLocation.latitude * kFilteringFactor + self.currentLocation.coordinate.latitude * (1.0 - kFilteringFactor),
+				self.smoothedLocation.longitude * kFilteringFactor + self.currentLocation.coordinate.longitude * (1.0 - kFilteringFactor)
+			};
+			
+			self.smoothedLocation = nextSmoothedLocation;
+		} else {
+			// Snap to the final position if the change is very small:
+			self.smoothedLocation = currentLocationCoordinate;
+		}
+		
+		[self updateWorldLocation];
 	}
 }
 
@@ -120,52 +143,38 @@ int calculateRotationMatrixFromMagnetometer(CMAcceleration gravity, CMMagneticFi
 		self.smoothedLocation = [newLocation coordinate];
 	}
 		
-	[self setCurrentLocation:newLocation];
+	self.currentLocation = newLocation;
+	
+	[self updateWorldLocation];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading {
     [self setCurrentHeading:newHeading];
-}
-
-//#define AR_DEBUG_LOCATION
-
-- (ARWorldLocation*) worldLocation
-{
-	if (self.currentLocation && self.currentHeading) {
-		ARWorldLocation * result = [[ARWorldLocation new] autorelease];
-        
-#ifdef AR_DEBUG_LOCATION
-		// Interpolation
-		CLLocationCoordinate2D path[] = {
-			{-43.515621, 172.554712},
-			{-43.516344, 172.554283},
-			{-43.516027, 172.553262}
-		};
-		
-		double currentTime = fmod(CACurrentMediaTime() / 16.0, 2.0);
-		std::size_t index = (std::size_t)currentTime;
-		double offset = currentTime - index;
-		
-		CLLocationCoordinate2D derenzy = {
-			path[index].latitude * (1.0 - offset) + path[index+1].latitude * offset,
-			path[index].longitude * (1.0 - offset) + path[index+1].longitude * offset
-		};
-		
-		//CLLocationCoordinate2D derenzy = {-43.516344, 172.554283};
-		//CLLocationCoordinate2D street = {(-43.516344 + -43.516027) / 2.0, (172.554283 + 172.553262) / 2.0};
-		
-		[result setCoordinate:derenzy altitude:EARTH_RADIUS];
-#else
-		// We truncate the altitude to ensure that all coordinates are on the surface of the same sphere. This isn't entirely correct but generally produces good behaviour.
-		[result setCoordinate:self.smoothedLocation altitude:EARTH_RADIUS/* + self.currentLocation.altitude*/];
-#endif
-        [result setBearing:self.currentBearing];
-		
-		return result;
-	}
 	
-	return nil;
+	if (self.worldLocation) {
+		// Avoid recalculating location based information.
+		[self.worldLocation setBearing:newHeading.trueHeading];
+	} else {
+		[self updateWorldLocation];
+	}
 }
+
+- (void) updateWorldLocation {
+	if (self.currentLocation && self.currentHeading) {
+		ARWorldLocation * updatedWorldLocation = [[ARWorldLocation new] autorelease];
+        
+		// We truncate the altitude to ensure that all coordinates are on the surface of the same sphere. This isn't entirely correct but generally produces good behaviour.
+		[updatedWorldLocation setCoordinate:self.smoothedLocation altitude:0.0 /* self.currentLocation.altitude */];
+        [updatedWorldLocation setBearing:self.currentBearing];
+		
+		self.worldLocation = updatedWorldLocation;
+	} else {
+		self.worldLocation = nil;
+	}
+}
+
+//#warning "AR_DEBUG_LOCATION defined!"
+//#define AR_DEBUG_LOCATION
 
 - (CMAcceleration) currentGravity
 {

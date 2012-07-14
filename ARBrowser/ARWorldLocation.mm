@@ -82,6 +82,8 @@ CLLocationDistance calculateDistanceBetween(ARLocationCoordinate a, ARLocationCo
 	// d = R.c
  	// where R is earth’s radius (mean radius = 6,371km);
 	
+	altitude += WGS84_A;
+	
 	ARLocationCoordinate delta;
 	delta.latitude = b.latitude - a.latitude;
 	delta.longitude = b.longitude - a.longitude;

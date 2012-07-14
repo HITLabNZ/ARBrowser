@@ -35,6 +35,7 @@ const double kSensorSampleFrequency = 60.0; //Hz
 @property(retain,readonly) CLLocation * currentLocation;
 @property(retain,readonly) CLHeading * currentHeading;
 @property(assign,readonly) CMAcceleration northAxis;
+@property(retain,readonly) ARWorldLocation * worldLocation;
 
 // These attributes will be improved in dervied classes depending on available sensors.
 - (CMAcceleration) currentGravity;
@@ -42,8 +43,6 @@ const double kSensorSampleFrequency = 60.0; //Hz
 // The rotation around the axis defined by gravity, and +Y pointing North.
 - (CLLocationDirection) currentBearing;
 - (CMAcceleration) northAxis;
-
-- (ARWorldLocation*) worldLocation;
 
 - (BOOL) calculateGlobalOrientation: (float[16])matrix;
 
