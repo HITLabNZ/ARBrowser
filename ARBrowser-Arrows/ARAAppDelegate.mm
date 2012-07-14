@@ -8,9 +8,6 @@
 
 #import "ARAAppDelegate.h"
 
-#import "ARABrowserViewController.h"
-#import "ARAPathEditorController.h"
-
 @implementation ARAAppDelegate
 
 @synthesize window = _window;
@@ -25,87 +22,57 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {	
+	[[UIApplication sharedApplication] setStatusBarHidden:YES];
+	
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-
-	ARAPathController * pathController = [[ARAPathController new] autorelease];
+	self.viewController = [UINavigationController new];
 	
-	// The distance from the corner before bending arrow is shown:
-	pathController.turningRadius = 25.0 * 2.0;
+	ARARouteSelectionViewController * routeSelectionViewController = [[ARARouteSelectionViewController alloc] init];
+	routeSelectionViewController.delegate = self;
+	routeSelectionViewController.navigationItem.title = @"Routes";
 	
-	UITabBarController * tabBarController = [[UITabBarController new] autorelease];
-	
-	ARAPathEditorController * pathEditorController = [[ARAPathEditorController new] autorelease];
-	pathEditorController.pathController = pathController;
-	[tabBarController addChildViewController:pathEditorController];
-	
-	// This is just testing data, and even with that, this is a pretty crappy way to load it.. but it is fine for now.
-#ifdef PREDEFINED_ROUTE_ICUBE_BUILDING
-	CLLocationCoordinate2D coordinates[] = {
-		{1.291992, 103.775976},
-		{1.292271, 103.775470},
-		{1.292573, 103.775565},
-		{1.292609, 103.775757},
-		{1.292408, 103.776214},
-		{1.292037, 103.776167},
-		{1.291862, 103.776241},
-		{1.291751, 103.776231},
-		{1.291787, 103.776036},
-		{1.292050, 103.775906}
-	};
-	
-	for (unsigned i = 0; i < 10; i += 1) {
-		[pathEditorController addPoint:coordinates[i]];
-	}
-#endif
-	
-//#define PREDEFINED_ROUTE_DERENZY_PL
-	
-#ifdef PREDEFINED_ROUTE_DERENZY_PL
-	CLLocationCoordinate2D coordinates[] = {
-		//{-43.515728, 172.555305},
-		{-43.515621, 172.554712},
-		{-43.516344, 172.554283},
-		{-43.516027, 172.553262}
-		//{-43.513813, 172.554516}
-	};
-	
-	for (unsigned i = 0; i < 3; i += 1) {
-		[pathEditorController addPoint:coordinates[i]];
-	}
-#endif
-
-//#define PREDEFINED_ROUTE_CANTERBURY_UNIVERSITY
-	
-#ifdef PREDEFINED_ROUTE_CANTERBURY_UNIVERSITY
-	CLLocationCoordinate2D coordinates[] = {
-		{-43.522014, 172.583106},
-		{-43.521848, 172.582826},
-		{-43.523026, 172.581773},
-		{-43.522879, 172.581426},
-		{-43.522507, 172.581707},
-		{-43.522213, 172.581037},
-		{-43.522367, 172.580891}
-	};
-	
-	for (unsigned i = 0; i < 7; i += 1) {
-		[pathEditorController addPoint:coordinates[i]];
-	}
-#endif
-	
-	if (pathEditorController.points.count > 0) {
-		[pathEditorController setVisibleLocation:[pathEditorController.points objectAtIndex:0]];
-	}
-	
-	ARABrowserViewController * browserViewController = [[ARABrowserViewController new] autorelease];
-	browserViewController.pathController = pathController;
-	[tabBarController addChildViewController:browserViewController];
-	
-	self.viewController = tabBarController;
+	[self.viewController pushViewController:routeSelectionViewController animated:NO];
 	
 	self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
 
     return YES;
+}
+
+- (void)selectedRouteWithPath:(NSString *)path {
+	ARABrowserViewController * browserViewController = [[ARABrowserViewController new] autorelease];
+	browserViewController.navigationItem.title = [[path lastPathComponent] stringByDeletingPathExtension];
+
+	ARAPathController * pathController = [[ARAPathController new] autorelease];
+	pathController.path = [ARAPath routeWithPath:path];
+	
+	browserViewController.pathController = pathController;
+	
+	[self.viewController pushViewController:browserViewController animated:YES];
+}
+
+- (void) startRoute:(id)sender {
+	ARAPathEditorController * pathEditorController = (ARAPathEditorController*)self.viewController.topViewController;
+	
+	ARABrowserViewController * browserViewController = [[ARABrowserViewController new] autorelease];
+	browserViewController.navigationItem.title = @"Custom Route";
+	
+	browserViewController.pathController = pathEditorController.pathController;
+	
+	[self.viewController pushViewController:browserViewController animated:YES];	
+}
+
+- (void)selectedCustomRoute {
+	ARAPathEditorController * pathEditorController = [[ARAPathEditorController new] autorelease];
+	pathEditorController.navigationItem.title = @"Path Editor";
+	
+	UIBarButtonItem * startRouteButton = [[[UIBarButtonItem alloc] initWithTitle:@"Start" style:UIBarButtonItemStylePlain target:self action:@selector(startRoute:)] autorelease];
+	pathEditorController.navigationItem.rightBarButtonItem = startRouteButton;	
+	
+	ARAPathController * pathController = [[ARAPathController new] autorelease];
+	pathController.path = [[ARAPath new] autorelease];
+	
+	[self.viewController pushViewController:pathEditorController animated:YES];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

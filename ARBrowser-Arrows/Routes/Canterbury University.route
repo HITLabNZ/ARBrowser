@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>points</key>
+	<array>
+		<dict>
+			<key>latitude</key>
+			<real>-43.522014</real>
+			<key>longitude</key>
+			<real>172.583106</real>
+			<key>metadata</key>
+			<dict>
+				<key>direction</key>
+				<string>Start outside the HITLabNZ.</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>latitude</key>
+			<string>-43.521848</string>
+			<key>longitude</key>
+			<string>172.582826</string>
+			<key>metadata</key>
+			<dict>
+				<key>icon</key>
+				<string>arrow270</string>
+				<key>directions</key>
+				<string>Turn left after the Old Math building.</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>latitude</key>
+			<real>-43.523026</real>
+			<key>longitude</key>
+			<real>172.581773</real>
+			<key>metadata</key>
+			<dict>
+				<key>icon</key>
+				<string>arrow090</string>
+				<key>directions</key>
+				<string>Turn right towards the MSCS building.</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>latitude</key>
+			<real>-43.522879</real>
+			<key>longitude</key>
+			<real>172.581426</real>
+			<key>metadata</key>
+			<dict>
+				<key>directions</key>
+				<string>Turn right between the two buildings.</string>
+				<key>icon</key>
+				<string>arrow090</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>latitude</key>
+			<real>-43.522507</real>
+			<key>longitude</key>
+			<real>172.581707</real>
+			<key>metadata</key>
+			<dict>
+				<key>directions</key>
+				<string>Turn left up the path.</string>
+				<key>icon</key>
+				<string>arrow270</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>latitude</key>
+			<real>-43.522213</real>
+			<key>longitude</key>
+			<real>172.581037</real>
+			<key>metadata</key>
+			<dict>
+				<key>icon</key>
+				<string>arrow270</string>
+				<key>directions</key>
+				<string>Turn left at the road.</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>latitude</key>
+			<real>-43.522367</real>
+			<key>longitude</key>
+			<real>172.580891</real>
+			<key>metadata</key>
+			<dict>
+				<key>icon</key>
+				<string>finish</string>
+				<key>directions</key>
+				<string>Goal reached.</string>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>

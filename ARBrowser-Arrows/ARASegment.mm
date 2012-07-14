@@ -11,7 +11,7 @@
 
 @implementation ARASegment
 
-@synthesize steps = _steps, from = _from, to = _to;
+@synthesize steps = _steps, from = _from, to = _to, metadata = _metadata;
 
 - initFrom:(ARWorldLocation *)from to:(ARWorldLocation *)to {
 	self = [super init];
@@ -21,6 +21,8 @@
 		self.to = to;
 		
 		self.steps = [NSArray array];
+		
+		//NSLog(@"From %@ to %@: Direct Distance = %0.2fm, Spherical Distance = %0.2fm", from, to, [to distanceFrom:from], [to sphericalDistanceFrom:from]);
 	}
 	
 	return self;

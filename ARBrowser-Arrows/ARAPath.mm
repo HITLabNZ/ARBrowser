@@ -24,9 +24,57 @@ inline AnyT hermite_polynomial (const InterpolateT & t, const AnyT & p0, const A
 	return p0 * h00 + m0 * h10 + p1 * h01 + m1 * h11;
 }
 
+static ARAPathBounds ARAPathBoundsFromCoordinate(CLLocationCoordinate2D coordinate) {
+	return (ARAPathBounds){coordinate, coordinate};
+}
+
+// This function won't correctly calculate the bounding box for longitudinal values that go between -180 and +180.
+static ARAPathBounds ARAPathBoundsIncludingCoordinate(ARAPathBounds bounds, CLLocationCoordinate2D coordinate) {
+	if (coordinate.latitude < bounds.minimum.latitude) {
+		bounds.minimum.latitude = coordinate.latitude;
+	} else if (coordinate.latitude > bounds.maximum.latitude) {
+		bounds.maximum.latitude = coordinate.latitude;
+	}
+	
+	if (coordinate.longitude < bounds.minimum.longitude) {
+		bounds.minimum.longitude = coordinate.longitude;
+	} else if (coordinate.longitude > bounds.maximum.longitude) {
+		bounds.maximum.longitude = coordinate.longitude;
+	}
+	
+	return bounds;
+}
+
+CGPoint ARAPathBoundsScaleCoordinate(ARAPathBounds mapBounds, CLLocationCoordinate2D coordinate, CGRect displayBounds, BOOL clip) {
+	// Computes a coordinate between 0...1 relative to the size of the bounds:
+	CLLocationCoordinate2D relativeCoordinate = {
+		(coordinate.latitude - mapBounds.minimum.latitude) / (mapBounds.maximum.latitude - mapBounds.minimum.latitude),
+		(coordinate.longitude - mapBounds.minimum.longitude) / (mapBounds.maximum.longitude - mapBounds.minimum.longitude)
+	};
+	
+	if (clip) {
+		if (relativeCoordinate.latitude < 0.0)
+			relativeCoordinate.latitude = 0.0;
+		else if (relativeCoordinate.latitude > 1.0)
+			relativeCoordinate.latitude = 1.0;
+		
+		if (relativeCoordinate.longitude < 0.0)
+			relativeCoordinate.longitude = 0.0;
+		else if (relativeCoordinate.longitude > 1.0)
+			relativeCoordinate.longitude = 1.0;
+	}
+	
+	CGPoint transformedPoint = {
+		(relativeCoordinate.latitude * displayBounds.size.width) + displayBounds.origin.x,
+		(relativeCoordinate.longitude * displayBounds.size.height) + displayBounds.origin.y
+	};
+	
+	return transformedPoint;
+}
+
 @implementation ARAPath
 
-@synthesize points = _points, segments = _segments;
+@synthesize points = _points, segments = _segments, bounds = _bounds;
 
 - initWithPoints:(NSArray *)points {
 	self = [super init];
@@ -57,19 +105,28 @@ inline AnyT hermite_polynomial (const InterpolateT & t, const AnyT & p0, const A
 	ARWorldPoint * from = [self.points objectAtIndex:0];
 	ARWorldPoint * to = [self.points objectAtIndex:1];
 	
+	ARAPathBounds bounds = ARAPathBoundsFromCoordinate(from.coordinate);
+	
+	// We have this loop to go over all points except for the last one, which is handled explicitly:
 	for (NSInteger i = 2; i < self.points.count; i += 1) {
 		ARWorldPoint * next = [self.points objectAtIndex:i];
 		
 		[segments addObject:[[ARASegment alloc] initFrom:from to:to]];
-				
+		
+		// Expand the bounds if necessary:
+		bounds = ARAPathBoundsIncludingCoordinate(bounds, to.coordinate);
+						
 		// Move along one step
 		from = to;
 		to = next;
 	}
 	
+	// Last point -> segment:
 	[segments addObject:[[ARASegment alloc] initFrom:from to:to]];
+	bounds = ARAPathBoundsIncludingCoordinate(bounds, to.coordinate);
 	
 	self.segments = segments;
+	_bounds = bounds;
 }
 
 - (ARAPathBearing)calculateBearingForSegment:(NSUInteger)index withinDistance:(float)distance fromLocation:(ARWorldLocation *)location {
@@ -120,6 +177,27 @@ inline AnyT hermite_polynomial (const InterpolateT & t, const AnyT & p0, const A
 	}
 	
 	return index;
+}
+
++ (ARAPath *) routeWithPath:(NSString *)path {	
+	NSDictionary * route = [NSDictionary dictionaryWithContentsOfFile:path];
+	NSMutableArray * points = [NSMutableArray array];
+	
+	for (NSDictionary * point in [route objectForKey:@"points"]) {
+		ARWorldPoint * worldPoint = [[ARWorldPoint alloc] init];
+		
+		CLLocationCoordinate2D coordinate = {
+			[[point objectForKey:@"latitude"] doubleValue],
+			[[point objectForKey:@"longitude"] doubleValue]
+		};
+		
+		[worldPoint setCoordinate:coordinate altitude:[[point objectForKey:@"altitude"] doubleValue]];
+		[worldPoint setMetadata:[[point objectForKey:@"metadata"] mutableCopy]];
+		
+		[points addObject:worldPoint];
+	}
+	
+	return [[ARAPath alloc] initWithPoints:points];
 }
 
 @end

@@ -10,13 +10,30 @@
 #import "ARASegment.h"
 #import "ARRendering.h"
 
-const float ARA_RECALIBRATION_DISTANCE = 50.0 * 2.0;
+const float ARA_RECALIBRATION_DISTANCE = 60.0;
 
 @interface ARAPathController ()
 @property(nonatomic,readwrite,retain) ARWorldLocation * currentLocation;
 @property(nonatomic,readwrite,assign) NSUInteger currentSegmentIndex;
 @property(nonatomic,readwrite,assign) BOOL turning;
 @end
+
+struct ARASegmentRatio {
+	CLLocationDistance current, next, total;
+	CLLocationDistance midpoint;
+};
+
+ARASegmentRatio calculateRatios(ARWorldLocation * from, ARWorldLocation * step, ARWorldLocation * to) {
+	ARASegmentRatio ratio;
+	
+	ratio.current = [step distanceFrom:from];
+	ratio.next = [to distanceFrom:step];
+	ratio.total = ratio.current + ratio.next;
+	
+	ratio.midpoint = ratio.current / ratio.total;
+	
+	return ratio;
+}
 
 @implementation ARAPathController
 
@@ -37,6 +54,9 @@ const float ARA_RECALIBRATION_DISTANCE = 50.0 * 2.0;
 		
 		self.currentSegmentIndex = NSNotFound;
 		self.turning = NO;
+		
+		// The distance from the corner before bending arrow is shown:
+		self.turningRadius = 40.0;
 	}
 	
 	return self;
@@ -109,6 +129,9 @@ const float ARA_RECALIBRATION_DISTANCE = 50.0 * 2.0;
 }
 
 - (BOOL)updateLocation:(ARWorldLocation *)location {
+	// Do a quick check to avoid useless calculations:
+	if (location == self.currentLocation) return NO;
+	
 	// As an aside - perhaps taking the device orientation into account could be used here to more accurately select segments which are equally likely.
 	self.currentLocation = location;
 	
@@ -117,6 +140,8 @@ const float ARA_RECALIBRATION_DISTANCE = 50.0 * 2.0;
 		self.currentSegmentIndex = [self.path calculateNearestSegmentForLocation:location];
 		self.turning = NO;
 		
+		if (self.currentSegmentIndex == NSNotFound) return NO;
+		
 		NSLog(@"Initial segment initialized to %d", self.currentSegmentIndex);
 		
 		return YES;
@@ -124,16 +149,18 @@ const float ARA_RECALIBRATION_DISTANCE = 50.0 * 2.0;
 	
 	// Lets consider the current segment, and check if the user has exited yet:
 	ARASegment * currentSegment = [self.path.segments objectAtIndex:self.currentSegmentIndex];
-	
+		
 	float distanceFromCurrentSegment = [currentSegment distanceFrom:location];
 	
-	// Check if we need to recalibrate (20m is arbitrary):
+	// Check if we need to recalibrate:
 	if (distanceFromCurrentSegment > ARA_RECALIBRATION_DISTANCE) {
 		self.currentSegmentIndex = [self.path calculateNearestSegmentForLocation:location];
+		
 		self.turning = NO;
 		
 		NSLog(@"Recalibrating segment to %d", self.currentSegmentIndex);
 		
+		// We might want to avoid returning YES, if the segment index didn't change.
 		return YES;
 	}
 	
@@ -143,6 +170,11 @@ const float ARA_RECALIBRATION_DISTANCE = 50.0 * 2.0;
 	if (self.currentSegmentIndex + 1 < self.path.segments.count) {
 		ARASegment * nextSegment = [self.path.segments objectAtIndex:self.currentSegmentIndex + 1];
 		float distanceFromCorner = [location distanceFrom:currentSegment.to];
+		
+		//ARASegmentRatio segmentRatio = calculateRatios(currentSegment.from, currentSegment.to, nextSegment.to);
+		//ARASegmentRatio locationRatio = calculateRatios(currentSegment.from, self.currentLocation, nextSegment.to);
+		
+		//ARASegmentDisposition currentDisposition = [currentSegment snapLocation:self.currentLocation];
 		
 		if (distanceFromCorner < _turningRadius) {
 			// If we are within the set radius from the corner, we are now turning.

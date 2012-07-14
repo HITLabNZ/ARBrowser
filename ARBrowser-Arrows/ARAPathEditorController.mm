@@ -21,6 +21,11 @@
 	
 	if (self != nil) {
 		self.points = [NSMutableArray array];
+		
+		_locationManager = [CLLocationManager new];
+		[_locationManager setDelegate:self];
+		
+		[_locationManager startUpdatingLocation];
 	}
 	
 	return self;
@@ -29,16 +34,27 @@
 - (void)dealloc {
 	self.points = nil;
 	
+	if (_locationManager) {
+		[_locationManager release];
+		_locationManager = nil;
+	}
+	
 	[super dealloc];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
+	[_locationManager stopUpdatingLocation];
+	
+	[self setVisibleLocation:newLocation];
 }
 
 - (void) addPoint:(CLLocationCoordinate2D)coordinate {
 	NSLog(@"Adding coordinate @ %0.6f, %0.6f", coordinate.latitude, coordinate.longitude);
 	
 	ARWorldPoint * point = [[ARWorldPoint new] autorelease];
-
+ 
 	// This altitude calculation isn't entirely correct, because if we are on a mountain the error could be large.
-	[point setCoordinate:coordinate altitude:EARTH_RADIUS];
+	[point setCoordinate:coordinate altitude:0.0];
 	
 	point.model = self.pathController.markerModel;
 	
@@ -69,7 +85,11 @@
 	UILongPressGestureRecognizer * dropPinGesture = [[[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleDropPinGesture:)] autorelease];
 	dropPinGesture.minimumPressDuration = 1.0; //user needs to press for 2 seconds
 	[mapView addGestureRecognizer:dropPinGesture];
-		
+	
+	if (self.pathController.path) {
+		[mapView addAnnotations:self.pathController.path.points];
+	}
+	
 	self.view = mapView;
 }
 

@@ -11,7 +11,7 @@
 
 #import "ARAPathController.h"
 
-@interface ARAPathEditorController : UIViewController {
+@interface ARAPathEditorController : UIViewController <CLLocationManagerDelegate> {
 	NSMutableArray * _points;
 	CLLocationManager * _locationManager;
 }
@@ -20,7 +20,6 @@
 @property(nonatomic,retain) NSMutableArray * points;
 
 - (void) addPoint:(CLLocationCoordinate2D)coordinate;
-
 - (void) setVisibleLocation:(CLLocation*)location;
 
 @end

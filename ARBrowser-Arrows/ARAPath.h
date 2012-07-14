@@ -17,9 +17,16 @@ typedef struct {
 	CLLocationDistance distanceFromMidpoint;
 } ARAPathBearing;
 
+typedef struct {
+	CLLocationCoordinate2D minimum, maximum;
+} ARAPathBounds;
+
+CGPoint ARAPathBoundsScaleCoordinate(ARAPathBounds mapBounds, CLLocationCoordinate2D coordinate, CGRect displayBounds, BOOL clip);
+
 @interface ARAPath : NSObject
 
 @property(nonatomic,retain) NSArray * points;
+@property(nonatomic,assign,readonly) ARAPathBounds bounds;
 
 /// For each point, we built a set of intermediate segments, this array contains lists of each segment corresponding to each point.
 @property(nonatomic,retain) NSArray * segments;
@@ -29,5 +36,7 @@ typedef struct {
 - (ARAPathBearing) calculateBearingForSegment:(NSUInteger)index withinDistance:(float)distance fromLocation:(ARWorldLocation*)location;
 
 - (NSUInteger) calculateNearestSegmentForLocation:(ARWorldLocation *)location;
+
++ (ARAPath *) routeWithPath:(NSString *)path;
 
 @end

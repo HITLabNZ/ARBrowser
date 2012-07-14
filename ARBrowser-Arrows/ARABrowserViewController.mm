@@ -18,11 +18,12 @@
 
 @synthesize pathController = _pathController, localArrow = _localArrow;
 @synthesize segmentIndexLabel = _segmentIndexLabel, bearingLabel = _bearingLabel;
+@synthesize navigationViewController = _navigationViewController;
 @dynamic worldPoints;
 
 - (void)loadView {
-	// Standard view size for iOS UIWindow
-	CGRect frame = CGRectMake(0, 0, 320, 480);
+	// Standard view size for iOS UIWindow, minus 50 for tab bar at bottom.
+	CGRect frame = CGRectMake(0, 0, 320, 480 - 50.0);
 	
 	// Initialize the OpenGL view
 	ARBrowserView * browserView = [[ARBrowserView alloc] initWithFrame:frame];
@@ -62,7 +63,14 @@
 	self.pathController.debugLabel.backgroundColor = [UIColor whiteColor];
 	self.pathController.debugLabel.font = [UIFont systemFontOfSize:9.0];
 	[browserView addSubview:self.pathController.debugLabel];
-									 
+	
+	self.navigationViewController = [[ARANavigationViewController alloc] init];
+	
+	CGRect navigationViewFrame = self.navigationViewController.view.frame;
+	navigationViewFrame.origin.y = frame.size.height - navigationViewFrame.size.height;
+	self.navigationViewController.view.frame = navigationViewFrame;
+	[browserView addSubview:self.navigationViewController.view];
+	
 	[self setView:browserView];
 }
 
@@ -75,6 +83,10 @@
 		self.localArrow = [[ARALocalArrow alloc] init];
 		self.localArrow.radius = 3.0;
 		self.localArrow.angleScale = 0.75;
+	}
+	
+	if (self.pathController) {
+		self.navigationViewController.miniMapView.path = self.pathController.path;
 	}
 }
 
@@ -112,7 +124,19 @@
 	ARLocationController * locationController = view.locationController;
 	
 	ARWorldLocation * worldLocation = locationController.worldLocation;
-	[self.pathController updateLocation:worldLocation];
+	
+	// Update the mini-map location:
+	self.navigationViewController.miniMapView.location = worldLocation;
+	
+	// Update the current segment if necessary:
+	if ([self.pathController updateLocation:worldLocation]) {
+		// Segment was updated:
+		ARWorldPoint * segmentTurn = (ARWorldPoint *)self.pathController.currentSegment.to;
+		NSDictionary * turnMetadata = [segmentTurn metadata];
+		
+		[self.navigationViewController.directionsLabel setText:[turnMetadata objectForKey:@"directions"]];
+		[self.navigationViewController.turnImageView setImage:[UIImage imageNamed:[turnMetadata objectForKey:@"icon"]]];
+	}
 	
 	ARASegmentDisposition disposition = [self.pathController.currentSegment dispositionRelativeTo:worldLocation];
 	self.segmentIndexLabel.text = [NSString stringWithFormat:@"Segment %d:%d (turning = %d, ratio = %0.3f)", self.pathController.currentSegmentIndex, disposition, self.pathController.turning, self.pathController.turningRatio];
@@ -130,6 +154,8 @@
 		}
 		
 		self.bearingLabel.text = [NSString stringWithFormat:@"%0.2f => %0.2f : %0.2f; (%0.1f, %@)", pathBearing.incomingBearing, pathBearing.outgoingBearing, worldLocation.rotation, pathBearing.distanceFromMidpoint, percentageThroughCorner];
+		
+		[self.navigationViewController setDistance:pathBearing.distanceFromMidpoint];
 	}
 	
 	// Don't draw the arrow unless the bearing has been computed accurately:

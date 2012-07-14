@@ -229,6 +229,7 @@ static float differenceBetweenAngles(float a, float b) {
 	
 	// Move whole arrow visualisation down:
 	glTranslatef(0.0, -1, 0.0);
+	glRotatef(45.0, 1.0, 0.0, 0.0);
 	
 	float currentBearing = -[browserView.locationController currentBearing];
 	glRotatef(_pathBearing.incomingBearing + currentBearing, 0, 0, -1);

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>points</key>
+	<array>
+		<dict>
+			<key>latitude</key>
+			<real>-43.516175</real>
+			<key>longitude</key>
+			<real>172.554341</real>
+			<key>metadata</key>
+			<dict>
+				<key>icon</key>
+				<string>arrow000</string>
+				<key>directions</key>
+				<string>Go straight ahead to Withells Rd.</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>latitude</key>
+			<real>-43.51611</real>
+			<key>longitude</key>
+			<real>172.55326</real>
+			<key>metadata</key>
+			<dict>
+				<key>icon</key>
+				<string>arrow270</string>
+				<key>directions</key>
+				<string>Turn left at Withells Rd.</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>latitude</key>
+			<real>-43.518735</real>
+			<key>longitude</key>
+			<real>172.551792</real>
+			<key>metadata</key>
+			<dict>
+				<key>icon</key>
+				<string>arrow270</string>
+				<key>directions</key>
+				<string>Turn left on to Staveley Rd.</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>latitude</key>
+			<real>-43.518942</real>
+			<key>longitude</key>
+			<real>172.552447</real>
+			<key>metadata</key>
+			<dict>
+				<key>icon</key>
+				<string>arrow000</string>
+				<key>directions</key>
+				<string>Continue along Staveley Rd.</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>latitude</key>
+			<real>-43.518927</real>
+			<key>longitude</key>
+			<real>172.553142</real>
+			<key>metadata</key>
+			<dict>
+				<key>icon</key>
+				<string>arrow000</string>
+				<key>directions</key>
+				<string>Continue along Staveley Rd.</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>latitude</key>
+			<real>-43.519803</real>
+			<key>longitude</key>
+			<real>172.556773</real>
+			<key>metadata</key>
+			<dict>
+				<key>icon</key>
+				<string>arrow270</string>
+				<key>directions</key>
+				<string>Turn left on to Colina St.</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>latitude</key>
+			<real>-43.519086</real>
+			<key>longitude</key>
+			<real>172.557218</real>
+			<key>metadata</key>
+			<dict>
+				<key>icon</key>
+				<string>arrow000</string>
+				<key>directions</key>
+				<string>Continue along Colina St.</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>latitude</key>
+			<real>-43.518757</real>
+			<key>longitude</key>
+			<real>172.557619</real>
+			<key>metadata</key>
+			<dict>
+				<key>icon</key>
+				<string>arrow000</string>
+				<key>directions</key>
+				<string>Continue along Colina St.</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>latitude</key>
+			<real>-43.517703</real>
+			<key>longitude</key>
+			<real>172.557965</real>
+			<key>metadata</key>
+			<dict>
+				<key>icon</key>
+				<string>arrow000</string>
+				<key>directions</key>
+				<string>Continue along Colina St.</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>latitude</key>
+			<real>-43.516971</real>
+			<key>longitude</key>
+			<real>172.557993</real>
+			<key>metadata</key>
+			<dict>
+				<key>icon</key>
+				<string>arrow000</string>
+				<key>directions</key>
+				<string>Cross the road to the far side.</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>latitude</key>
+			<real>-43.516791</real>
+			<key>longitude</key>
+			<real>172.557613</real>
+			<key>metadata</key>
+			<dict>
+				<key>icon</key>
+				<string>arrow000</string>
+				<key>directions</key>
+				<string>Continue along Maidstone Rd.</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>latitude</key>
+			<real>-43.516726</real>
+			<key>longitude</key>
+			<real>172.555941</real>
+			<key>metadata</key>
+			<dict>
+				<key>icon</key>
+				<string>arrow000</string>
+				<key>directions</key>
+				<string>Continue along Maidstone Rd.</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>latitude</key>
+			<real>-43.516232</real>
+			<key>longitude</key>
+			<real>172.554415</real>
+			<key>metadata</key>
+			<dict>
+				<key>icon</key>
+				<string>arrow090</string>
+				<key>directions</key>
+				<string>Turn right in to Derenzy Pl.</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>latitude</key>
+			<real>-43.516179</real>
+			<key>longitude</key>
+			<real>172.554492</real>
+			<key>metadata</key>
+			<dict>
+				<key>icon</key>
+				<string>finish</string>
+				<key>directions</key>
+				<string>Enter the driveway of 2 Derenzy Pl.</string>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>

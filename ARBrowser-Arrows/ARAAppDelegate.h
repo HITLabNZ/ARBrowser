@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@class ARABrowserViewController;
+#import "ARABrowserViewController.h"
+#import "ARAPathEditorController.h"
+#import "ARARouteSelectionViewController.h"
 
-@interface ARAAppDelegate : UIResponder <UIApplicationDelegate>
+@interface ARAAppDelegate : UIResponder <UIApplicationDelegate, ARARouteSelectionDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) UIViewController * viewController;
+@property (strong, nonatomic) UINavigationController * viewController;
 
 @end

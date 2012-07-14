@@ -24,8 +24,9 @@ typedef enum {
 
 @property(nonatomic,retain) ARWorldLocation * from;
 @property(nonatomic,retain) ARWorldLocation * to;
-
 @property(nonatomic,retain) NSArray * steps;
+
+@property(nonatomic,retain) NSMutableDictionary * metadata;
 
 - initFrom:(ARWorldLocation *)from to:(ARWorldLocation *)to;
 
