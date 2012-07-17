@@ -80,4 +80,7 @@ ARLocationCoordinate convertFromDegrees(CLLocationCoordinate2D location);
 
 - (void)setLocationByInterpolatingFrom:(ARWorldLocation*)from to:(ARWorldLocation*)to atTime:(float)time;
 
+// A helper that returns a unit vector pointing in the direction of the bearing.
+- (CGPoint) normalizedDirection;
+
 @end

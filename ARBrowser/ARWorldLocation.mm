@@ -191,4 +191,8 @@ ARLocationCoordinate convertFromDegrees(CLLocationCoordinate2D location) {
 	[self setCoordinate:coordinate altitude:self.altitude];
 }
 
+- (CGPoint)normalizedDirection {
+	return (CGPoint){sinf(_rotation * ARBrowser::D2R), -cosf(_rotation * ARBrowser::D2R)};
+}
+
 @end

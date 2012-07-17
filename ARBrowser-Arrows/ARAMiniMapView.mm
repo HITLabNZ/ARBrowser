@@ -36,9 +36,7 @@
 }
 
 - (void)drawRect:(CGRect)rect
-{
-	UIBezierPath * bezierPath = [UIBezierPath bezierPath];
-	
+{	
 	ARAPath * path = nil;
 	
 	if (_pathController == nil) return;
@@ -49,6 +47,9 @@
 	
 	ARAPathBounds bounds = ARAPathBoundsWithAspectRatio(path.bounds, self.bounds.size);
 	
+	UIBezierPath * bezierPath = [UIBezierPath bezierPath];
+	[bezierPath setLineWidth:2.0];
+	
 	ARASegment * firstSegment = [path.segments objectAtIndex:0];
 	
 	CGRect displayBounds = CGRectInset(self.bounds, 2.0, 2.0);
@@ -56,26 +57,45 @@
 	CGPoint start = ARAPathBoundsScaleCoordinate(bounds, firstSegment.from.coordinate, displayBounds, NO);
 	[bezierPath moveToPoint:start];
 	
-	for (ARASegment * segment in path.segments) {
-		CGPoint point = ARAPathBoundsScaleCoordinate(bounds, segment.from.coordinate, displayBounds, NO);
-		
+	NSInteger count = 0;
+	for (ARASegment * segment in path.segments) {		
+		CGPoint point = ARAPathBoundsScaleCoordinate(bounds, segment.to.coordinate, displayBounds, NO);
 		[bezierPath addLineToPoint:point];
+		
+		if (count == _pathController.currentSegmentIndex) {
+			[[UIColor greenColor] setStroke];
+			[bezierPath stroke];
+			
+			[bezierPath removeAllPoints];
+			[bezierPath moveToPoint:point];
+		}
+		
+		count += 1;
 	}
-	
-	ARASegment * lastSegment = path.segments.lastObject;
-	CGPoint end = ARAPathBoundsScaleCoordinate(bounds, lastSegment.to.coordinate, displayBounds, NO);
-	[bezierPath addLineToPoint:end];
-	
+		
 	[[UIColor blackColor] setStroke];
 	[bezierPath stroke];
 	
 	if (_location) {
 		CGPoint locationPoint = ARAPathBoundsScaleCoordinate(bounds, _location.coordinate, displayBounds, YES);
 		
-		UIBezierPath * marker = [UIBezierPath bezierPathWithArcCenter:locationPoint radius:2.0 startAngle:0.0 endAngle:360.0 clockwise:YES];
+		// Render positional marker:
+		UIBezierPath * marker = [UIBezierPath bezierPathWithArcCenter:locationPoint radius:4.0 startAngle:0.0 endAngle:360.0 clockwise:YES];
 		
 		[[UIColor blueColor] setFill];
 		[marker fill];
+		
+		[marker removeAllPoints];
+		
+		// Render directional marker:
+		[marker setLineWidth:2.0];
+		[marker moveToPoint:locationPoint];
+		
+		CGPoint direction = _location.normalizedDirection;
+		[marker addLineToPoint:(CGPoint){locationPoint.x + direction.x * 10.0, locationPoint.y + direction.y * 10.0}];
+		
+		[[UIColor blueColor] setStroke];
+		[marker stroke];
 	}
 }
 

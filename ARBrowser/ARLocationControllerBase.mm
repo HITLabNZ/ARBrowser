@@ -151,12 +151,12 @@ int calculateRotationMatrixFromMagnetometer(CMAcceleration gravity, CMMagneticFi
 - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading {
     [self setCurrentHeading:newHeading];
 	
-	if (self.worldLocation) {
+	//if (self.worldLocation) {
 		// Avoid recalculating location based information.
-		[self.worldLocation setBearing:newHeading.trueHeading];
-	} else {
+	//	[self.worldLocation setBearing:newHeading.trueHeading];
+	//} else {
 		[self updateWorldLocation];
-	}
+	//}
 }
 
 - (void) updateWorldLocation {

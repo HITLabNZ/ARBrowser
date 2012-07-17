@@ -136,6 +136,8 @@
 		
 		[self.navigationViewController.directionsLabel setText:[turnMetadata objectForKey:@"directions"]];
 		[self.navigationViewController.turnImageView setImage:[UIImage imageNamed:[turnMetadata objectForKey:@"icon"]]];
+		
+		[self.navigationViewController.miniMapView setNeedsDisplay];
 	}
 	
 	ARASegmentDisposition disposition = [self.pathController.currentSegment dispositionRelativeTo:worldLocation];
