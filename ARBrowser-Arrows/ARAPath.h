@@ -22,6 +22,7 @@ typedef struct {
 } ARAPathBounds;
 
 CGPoint ARAPathBoundsScaleCoordinate(ARAPathBounds mapBounds, CLLocationCoordinate2D coordinate, CGRect displayBounds, BOOL clip);
+ARAPathBounds ARAPathBoundsWithAspectRatio(ARAPathBounds bounds, CGSize aspect);
 
 @interface ARAPath : NSObject
 

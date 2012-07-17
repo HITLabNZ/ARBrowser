@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-#import "ARAPath.h"
+#import "ARAPathController.h"
 
 @interface ARAMiniMapView : UIView
 
-@property(nonatomic,retain) ARAPath * path;
+@property(nonatomic,retain) ARAPathController * pathController;
 @property(nonatomic,retain) ARWorldLocation * location;
 
 @end

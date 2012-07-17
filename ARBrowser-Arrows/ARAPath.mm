@@ -65,11 +65,35 @@ CGPoint ARAPathBoundsScaleCoordinate(ARAPathBounds mapBounds, CLLocationCoordina
 	}
 	
 	CGPoint transformedPoint = {
-		(relativeCoordinate.latitude * displayBounds.size.width) + displayBounds.origin.x,
-		(relativeCoordinate.longitude * displayBounds.size.height) + displayBounds.origin.y
+		(relativeCoordinate.longitude * displayBounds.size.width) + displayBounds.origin.x,
+		((1.0 - relativeCoordinate.latitude) * displayBounds.size.height) + displayBounds.origin.y
 	};
 	
 	return transformedPoint;
+}
+
+ARAPathBounds ARAPathBoundsWithAspectRatio(ARAPathBounds bounds, CGSize size) {
+	double width = bounds.maximum.longitude - bounds.minimum.longitude;
+	double height = bounds.maximum.latitude - bounds.minimum.latitude;
+	
+	double desiredAspectRatio = width / height;
+	double aspectRatio = size.width / size.height;
+	
+	if (desiredAspectRatio < aspectRatio) {
+		double requiredWidth = height * aspectRatio;
+		double difference = requiredWidth - width;
+		
+		bounds.maximum.longitude += (difference / 2.0);
+		bounds.minimum.longitude -= (difference / 2.0);
+	} else {
+		double requiredHeight = width * (1.0 / aspectRatio);
+		double difference = requiredHeight - height;
+		
+		bounds.maximum.latitude += (difference / 2.0);
+		bounds.minimum.latitude -= (difference / 2.0);
+	}
+	
+	return bounds;
 }
 
 @implementation ARAPath

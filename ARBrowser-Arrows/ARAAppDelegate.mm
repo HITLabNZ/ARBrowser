@@ -56,7 +56,6 @@
 	
 	ARABrowserViewController * browserViewController = [[ARABrowserViewController new] autorelease];
 	browserViewController.navigationItem.title = @"Custom Route";
-	
 	browserViewController.pathController = pathEditorController.pathController;
 	
 	[self.viewController pushViewController:browserViewController animated:YES];	
@@ -71,6 +70,7 @@
 	
 	ARAPathController * pathController = [[ARAPathController new] autorelease];
 	pathController.path = [[ARAPath new] autorelease];
+	pathEditorController.pathController = pathController;
 	
 	[self.viewController pushViewController:pathEditorController animated:YES];
 }

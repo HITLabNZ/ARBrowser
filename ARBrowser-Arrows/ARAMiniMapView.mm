@@ -10,7 +10,7 @@
 
 @implementation ARAMiniMapView
 
-@synthesize path = _path, location = _location;
+@synthesize pathController = _pathController, location = _location;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -39,24 +39,30 @@
 {
 	UIBezierPath * bezierPath = [UIBezierPath bezierPath];
 	
-	// Ensure that we have an array of segments for drawing:
-	if (self.path == nil || self.path.segments.count == 0) return;
+	ARAPath * path = nil;
 	
-	ARAPathBounds bounds = self.path.bounds;
-	ARASegment * firstSegment = [self.path.segments objectAtIndex:0];
+	if (_pathController == nil) return;
+	path = _pathController.path;
+		
+	// Ensure that we have an array of segments for drawing:
+	if (path == nil || path.segments.count == 0) return;
+	
+	ARAPathBounds bounds = ARAPathBoundsWithAspectRatio(path.bounds, self.bounds.size);
+	
+	ARASegment * firstSegment = [path.segments objectAtIndex:0];
 	
 	CGRect displayBounds = CGRectInset(self.bounds, 2.0, 2.0);
 	
 	CGPoint start = ARAPathBoundsScaleCoordinate(bounds, firstSegment.from.coordinate, displayBounds, NO);
 	[bezierPath moveToPoint:start];
 	
-	for (ARASegment * segment in self.path.segments) {
+	for (ARASegment * segment in path.segments) {
 		CGPoint point = ARAPathBoundsScaleCoordinate(bounds, segment.from.coordinate, displayBounds, NO);
 		
 		[bezierPath addLineToPoint:point];
 	}
 	
-	ARASegment * lastSegment = self.path.segments.lastObject;
+	ARASegment * lastSegment = path.segments.lastObject;
 	CGPoint end = ARAPathBoundsScaleCoordinate(bounds, lastSegment.to.coordinate, displayBounds, NO);
 	[bezierPath addLineToPoint:end];
 	

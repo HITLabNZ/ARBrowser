@@ -86,7 +86,7 @@
 	}
 	
 	if (self.pathController) {
-		self.navigationViewController.miniMapView.path = self.pathController.path;
+		self.navigationViewController.miniMapView.pathController = self.pathController;
 	}
 }
 
