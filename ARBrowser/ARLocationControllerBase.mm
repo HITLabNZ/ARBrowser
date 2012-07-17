@@ -117,7 +117,7 @@ int calculateRotationMatrixFromMagnetometer(CMAcceleration gravity, CMMagneticFi
 		double change = (latitudeChange * latitudeChange) + (longitudeChange * longitudeChange);
 		
 		if (change == 0.0) {
-			return NO;
+			return;
 		}
 		
 		if (change > 0.00000001) {
