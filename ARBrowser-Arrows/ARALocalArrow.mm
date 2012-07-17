@@ -79,8 +79,10 @@ inline AnyT hermite_polynomial (const InterpolateT & t, const AnyT & p0, const A
 	return p0 * h00 + m0 * h10 + p1 * h01 + m1 * h11;
 }
 
-static void drawArrow(Vec3 bottom, Vec3 top, Vec3 up, float angle) {
+static void drawArrow(Vec3 bottom, Vec3 top, Vec3 up, float angle, float border = 0.0) {
 	std::vector<Vec3> arrow;
+	
+	const float width = 0.1;
 	
 	Vec3 delta = (top - bottom);
 	// Move the whole line segment forward proportionally:
@@ -110,7 +112,7 @@ static void drawArrow(Vec3 bottom, Vec3 top, Vec3 up, float angle) {
 	Vec3 d = point_at_time(arrow, 1.0);
 	
 	//vertices.push_back(arrow[0]);
-	Vec3 p1 = arrow[0], side;
+	Vec3 p1 = arrow[0], direction, side;
 	
 	// ...we need to construct a nice curved shape, along with the arrow head:
 	for (float time = 0; time <= 1.0; time += 0.2) {
@@ -120,7 +122,8 @@ static void drawArrow(Vec3 bottom, Vec3 top, Vec3 up, float angle) {
 		Vec3 delta = (p2 - p1).normalize();
 		
 		// Calculate the sideways vector
-		side = delta.cross(up) * 0.06;
+		direction = delta.cross(up);
+		side = direction * (width + border);
 		
 		vertices.push_back(p1 + side);
 		vertices.push_back(p1 - side);
@@ -137,11 +140,13 @@ static void drawArrow(Vec3 bottom, Vec3 top, Vec3 up, float angle) {
 	vertices.clear();
 	
 	// ...now draw arrow head:
-	vertices.push_back(arrow[2] + (side * 3));
-	vertices.push_back(arrow[2] - (side * 3));
-	vertices.push_back(arrow[2] + (arrow[2] - arrow[1]).normalize() * 0.5);
+	Vec3 forward = (arrow[2] - arrow[1]).normalize();
+	vertices.push_back(arrow[2] + forward * (0.5 + border * 2.0));
+	vertices.push_back(arrow[2] + (direction * (width * 3.5 + border * 1.5)) - (forward * (0.2 + border)));
+	vertices.push_back(arrow[2] - (forward * (0.1 + border)));
+	vertices.push_back(arrow[2] - (direction * (width * 3.5 + border * 1.5)) - (forward * (0.2 + border)));
 	
-	ARBrowser::renderVertices(vertices, GL_TRIANGLES);
+	ARBrowser::renderVertices(vertices, GL_TRIANGLE_FAN);
 }
 
 static void drawDirectionalMarker() {
@@ -235,8 +240,15 @@ static float differenceBetweenAngles(float a, float b) {
 	glRotatef(_pathBearing.incomingBearing + currentBearing, 0, 0, -1);
 	glTranslatef(0.0, -_radius / 2.0, 0.0);
 	
-	glColor4f(27.0/255.0, 198.0/255.0, 224.0/255.0, 1.0);
-	drawArrow(Vec3(0, 0, 0.5), Vec3(0, _radius, 0.5), Vec3(0, 0, 1), offsetBearing);
+	glDisable(GL_DEPTH_TEST);
+	
+	glColor4f(0.0, 0.0, 0.0, 1.0);
+	drawArrow(Vec3(0, 0, 0.4), Vec3(0, _radius, 0.4), Vec3(0, 0, 1), offsetBearing, 0.1);
+	
+	glColor4f(1.0, 1.0, 1.0, 1.0);
+	drawArrow(Vec3(0, 0, 0.4), Vec3(0, _radius, 0.4), Vec3(0, 0, 1), offsetBearing);
+	
+	glEnable(GL_DEPTH_TEST);
 	
 	glPopMatrix();
 	
