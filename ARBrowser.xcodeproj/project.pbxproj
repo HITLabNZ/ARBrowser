@@ -45,8 +45,6 @@
 		7E233750134B41F100BEFB33 /* Transform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E233740134B41F100BEFB33 /* Transform.cpp */; };
 		7E233751134B41F100BEFB33 /* Vector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E233742134B41F100BEFB33 /* Vector.cpp */; };
 		7E233752134B41F100BEFB33 /* neon_matrix_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E233745134B41F100BEFB33 /* neon_matrix_impl.cpp */; };
-		7E233753134B41F100BEFB33 /* matrix_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E233749134B41F100BEFB33 /* matrix_impl.cpp */; };
-		7E233754134B41F100BEFB33 /* utility_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E23374B134B41F100BEFB33 /* utility_impl.cpp */; };
 		7E2D81F815AE80D200216574 /* ARANavigationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E2D81F715AE80D100216574 /* ARANavigationView.xib */; };
 		7E3B4A8A153C6892009B4835 /* ARALocalArrow.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7E3B4A89153C6892009B4835 /* ARALocalArrow.mm */; };
 		7E3CF615153EAD4300027867 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E3CF614153EAD4300027867 /* AudioToolbox.framework */; };
@@ -98,8 +96,6 @@
 		7E7E295D1370D93300338606 /* Transform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E233740134B41F100BEFB33 /* Transform.cpp */; };
 		7E7E295E1370D93700338606 /* Vector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E233742134B41F100BEFB33 /* Vector.cpp */; };
 		7E7E295F1370D93D00338606 /* neon_matrix_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E233745134B41F100BEFB33 /* neon_matrix_impl.cpp */; };
-		7E7E29601370D94300338606 /* matrix_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E233749134B41F100BEFB33 /* matrix_impl.cpp */; };
-		7E7E29611370D94300338606 /* utility_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E23374B134B41F100BEFB33 /* utility_impl.cpp */; };
 		7E7E29621370D95100338606 /* Texture2D.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E233724134AE94400BEFB33 /* Texture2D.m */; };
 		7E7E29631370D95800338606 /* ARWorldLocation.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7E233737134B40C200BEFB33 /* ARWorldLocation.mm */; };
 		7E7E29641370D95B00338606 /* ARModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7E61C97E1354B4E000857A4D /* ARModel.mm */; };
@@ -282,10 +278,6 @@
 		7E233745134B41F100BEFB33 /* neon_matrix_impl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = neon_matrix_impl.cpp; sourceTree = "<group>"; };
 		7E233746134B41F100BEFB33 /* neon_matrix_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = neon_matrix_impl.h; sourceTree = "<group>"; };
 		7E233748134B41F100BEFB33 /* common_macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = common_macros.h; sourceTree = "<group>"; };
-		7E233749134B41F100BEFB33 /* matrix_impl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = matrix_impl.cpp; sourceTree = "<group>"; };
-		7E23374A134B41F100BEFB33 /* matrix_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = matrix_impl.h; sourceTree = "<group>"; };
-		7E23374B134B41F100BEFB33 /* utility_impl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = utility_impl.cpp; sourceTree = "<group>"; };
-		7E23374C134B41F100BEFB33 /* utility_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utility_impl.h; sourceTree = "<group>"; };
 		7E23374D134B41F100BEFB33 /* vfp_clobbers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vfp_clobbers.h; sourceTree = "<group>"; };
 		7E2D81F715AE80D100216574 /* ARANavigationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ARANavigationView.xib; sourceTree = "<group>"; };
 		7E3B4A88153C6892009B4835 /* ARALocalArrow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARALocalArrow.h; sourceTree = "<group>"; };
@@ -604,10 +596,6 @@
 			isa = PBXGroup;
 			children = (
 				7E233748134B41F100BEFB33 /* common_macros.h */,
-				7E233749134B41F100BEFB33 /* matrix_impl.cpp */,
-				7E23374A134B41F100BEFB33 /* matrix_impl.h */,
-				7E23374B134B41F100BEFB33 /* utility_impl.cpp */,
-				7E23374C134B41F100BEFB33 /* utility_impl.h */,
 				7E23374D134B41F100BEFB33 /* vfp_clobbers.h */,
 			);
 			path = vfpmath;
@@ -939,8 +927,6 @@
 				7E233750134B41F100BEFB33 /* Transform.cpp in Sources */,
 				7E233751134B41F100BEFB33 /* Vector.cpp in Sources */,
 				7E233752134B41F100BEFB33 /* neon_matrix_impl.cpp in Sources */,
-				7E233753134B41F100BEFB33 /* matrix_impl.cpp in Sources */,
-				7E233754134B41F100BEFB33 /* utility_impl.cpp in Sources */,
 				7E8D4CB1134FE04A00868D6B /* ARBrowserView.mm in Sources */,
 				7E61C9771354AA2700857A4D /* ARLocationController.mm in Sources */,
 				7E61C97C1354B44B00857A4D /* ARWorldPoint.mm in Sources */,
@@ -976,8 +962,6 @@
 				7E7E295D1370D93300338606 /* Transform.cpp in Sources */,
 				7E7E295E1370D93700338606 /* Vector.cpp in Sources */,
 				7E7E295F1370D93D00338606 /* neon_matrix_impl.cpp in Sources */,
-				7E7E29601370D94300338606 /* matrix_impl.cpp in Sources */,
-				7E7E29611370D94300338606 /* utility_impl.cpp in Sources */,
 				7E7E29621370D95100338606 /* Texture2D.m in Sources */,
 				7E7E29631370D95800338606 /* ARWorldLocation.mm in Sources */,
 				7E7E29641370D95B00338606 /* ARModel.mm in Sources */,
