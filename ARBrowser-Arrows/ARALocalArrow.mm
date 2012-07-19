@@ -243,7 +243,7 @@ static float differenceBetweenAngles(float a, float b) {
 	glDisable(GL_DEPTH_TEST);
 	
 	glColor4f(1.0, 1.0, 1.0, 1.0);
-	drawArrow(Vec3(0, 0, 0.4), Vec3(0, _radius, 0.4), Vec3(0, 0, 1), offsetBearing, 0.1);
+	drawArrow(Vec3(0, 0, 0.4), Vec3(0, _radius, 0.4), Vec3(0, 0, 1), offsetBearing, 0.02);
 	
 	glColor4f(204.0 / 255.0, 201.0 / 255.0, 51.0 / 255.0, 1.0);
 	drawArrow(Vec3(0, 0, 0.4), Vec3(0, _radius, 0.4), Vec3(0, 0, 1), offsetBearing);
