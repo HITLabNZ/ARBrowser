@@ -41,8 +41,6 @@ ARASegmentRatio calculateRatios(ARWorldLocation * from, ARWorldLocation * step, 
 @synthesize path = _path, currentSegmentIndex = _currentSegmentIndex, currentLocation = _currentLocation;
 @synthesize turningRadius = _turningRadius, turning = _turning, turningRatio = _turningRatio;
 
-@synthesize debugLabel = _debugLabel;
-
 - init {
 	self = [super init];
 	
@@ -232,9 +230,7 @@ static double interpolateBearing(double a, double b, double blend) {
 		
 		// As we ease in and ease out of the turn we should adjust the incoming bearing based on the users current rotation:
 		float r = 1.0 - (_turningRatio*_turningRatio);
-		
-		[_debugLabel setText:[NSString stringWithFormat:@"bearing: i(%0.2f -> %0.2f, %0.2f)", bearing.incomingBearing, _currentLocation.rotation, r]];
-		
+				
 		bearing.incomingBearing = interpolateBearing(bearing.incomingBearing, _currentLocation.rotation, r);
 	}
 	

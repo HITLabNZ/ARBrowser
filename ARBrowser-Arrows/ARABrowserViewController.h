@@ -14,13 +14,18 @@
 #import "ARALocalArrow.h"
 #import "ARANavigationViewController.h"
 
+//#define ARA_DEBUG
+
 @interface ARABrowserViewController : UIViewController <EAGLViewDelegate, ARBrowserViewDelegate, CLLocationManagerDelegate>
 
 @property(nonatomic,retain) ARALocalArrow * localArrow;
 @property(nonatomic,retain) ARAPathController * pathController;
 @property(nonatomic,retain,readonly) NSArray * worldPoints;
+
+#ifdef ARA_DEBUG
 @property(nonatomic,retain) UILabel * segmentIndexLabel;
 @property(nonatomic,retain) UILabel * bearingLabel;
+#endif
 
 @property(nonatomic,retain) ARANavigationViewController * navigationViewController;
 

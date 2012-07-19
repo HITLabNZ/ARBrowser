@@ -17,7 +17,11 @@
 @implementation ARABrowserViewController
 
 @synthesize pathController = _pathController, localArrow = _localArrow;
+
+#ifdef ARA_DEBUG
 @synthesize segmentIndexLabel = _segmentIndexLabel, bearingLabel = _bearingLabel;
+#endif
+
 @synthesize navigationViewController = _navigationViewController;
 @dynamic worldPoints;
 
@@ -29,10 +33,12 @@
 	ARBrowserView * browserView = [[ARBrowserView alloc] initWithFrame:frame];
 	
 	// Print out FPS information.
-	[browserView setDebug:YES];
+	[browserView setDebug:NO];
 	
 	// Turn on the grid.
 	[browserView setDisplayGrid:NO];
+	
+	[browserView setDisplayRadar:NO];
 	
 	[browserView setAutoresizingMask:UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth];
 	
@@ -49,6 +55,7 @@
 	
 	[browserView setMaximumDistance:400.0];
 	
+#ifdef ARA_DEBUG
 	self.segmentIndexLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 15, 180, 20)];
 	self.segmentIndexLabel.backgroundColor = [UIColor whiteColor];
 	self.segmentIndexLabel.font = [UIFont systemFontOfSize:9.0];
@@ -59,10 +66,11 @@
 	self.bearingLabel.font = [UIFont systemFontOfSize:9.0];
 	[browserView addSubview:self.bearingLabel];
 	
-	self.pathController.debugLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 15+60, 180, 20)];
-	self.pathController.debugLabel.backgroundColor = [UIColor whiteColor];
-	self.pathController.debugLabel.font = [UIFont systemFontOfSize:9.0];
-	[browserView addSubview:self.pathController.debugLabel];
+	//self.pathController.debugLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 15+60, 180, 20)];
+	//self.pathController.debugLabel.backgroundColor = [UIColor whiteColor];
+	//self.pathController.debugLabel.font = [UIFont systemFontOfSize:9.0];
+	//[browserView addSubview:self.pathController.debugLabel];
+#endif
 	
 	self.navigationViewController = [[ARANavigationViewController alloc] init];
 	
@@ -70,7 +78,7 @@
 	navigationViewFrame.origin.y = frame.size.height - navigationViewFrame.size.height;
 	self.navigationViewController.view.frame = navigationViewFrame;
 	[browserView addSubview:self.navigationViewController.view];
-	
+		
 	[self setView:browserView];
 }
 
@@ -141,23 +149,26 @@
 	}
 	
 	ARASegmentDisposition disposition = [self.pathController.currentSegment dispositionRelativeTo:worldLocation];
+	
+#ifdef ARA_DEBUG
 	self.segmentIndexLabel.text = [NSString stringWithFormat:@"Segment %d:%d (turning = %d, ratio = %0.3f)", self.pathController.currentSegmentIndex, disposition, self.pathController.turning, self.pathController.turningRatio];
+#endif
 	
 	if (self.pathController.currentSegmentIndex != NSNotFound) {
 		ARAPathBearing pathBearing = [self.pathController currentBearing];
 		
 		self.localArrow.pathBearing = pathBearing;
 		self.localArrow.currentBearing = worldLocation.rotation;
-		
+
+#ifdef ARA_DEBUG
 		NSString * percentageThroughCorner = @"-";
 		
 		if (pathBearing.distanceFromMidpoint < self.pathController.turningRadius) {
 			percentageThroughCorner = [NSString stringWithFormat:@"%0.1f%%", (pathBearing.distanceFromMidpoint / self.pathController.turningRadius) * 100.0];
 		}
-		
+	
 		self.bearingLabel.text = [NSString stringWithFormat:@"%0.2f => %0.2f : %0.2f; (%0.1f, %@)", pathBearing.incomingBearing, pathBearing.outgoingBearing, worldLocation.rotation, pathBearing.distanceFromMidpoint, percentageThroughCorner];
-		
-		[self.navigationViewController setDistance:pathBearing.distanceFromMidpoint];
+#endif
 	}
 	
 	// Don't draw the arrow unless the bearing has been computed accurately:

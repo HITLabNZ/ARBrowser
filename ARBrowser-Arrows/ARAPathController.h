@@ -30,8 +30,6 @@
 /// True if the user is within a turn, e.g. distance from the turning point < turningRadius:
 @property(nonatomic,readonly,assign) BOOL turning;
 
-@property(nonatomic,retain) UILabel * debugLabel;
-
 // We formulate a number from -1 to +1.
 // -1 means we are entering the turn.
 // 0 means we are at the middle of the turn.
