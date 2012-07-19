@@ -233,7 +233,7 @@ static float differenceBetweenAngles(float a, float b) {
 	glLoadIdentity();
 	
 	// Move whole arrow visualisation down:
-	glTranslatef(0.0, -1, 0.0);
+	glTranslatef(0.0, -0.2, 0.0);
 	glRotatef(45.0, 1.0, 0.0, 0.0);
 	
 	float currentBearing = -[browserView.locationController currentBearing];
@@ -242,10 +242,10 @@ static float differenceBetweenAngles(float a, float b) {
 	
 	glDisable(GL_DEPTH_TEST);
 	
-	glColor4f(0.0, 0.0, 0.0, 1.0);
+	glColor4f(1.0, 1.0, 1.0, 1.0);
 	drawArrow(Vec3(0, 0, 0.4), Vec3(0, _radius, 0.4), Vec3(0, 0, 1), offsetBearing, 0.1);
 	
-	glColor4f(1.0, 1.0, 1.0, 1.0);
+	glColor4f(204.0 / 255.0, 201.0 / 255.0, 51.0 / 255.0, 1.0);
 	drawArrow(Vec3(0, 0, 0.4), Vec3(0, _radius, 0.4), Vec3(0, 0, 1), offsetBearing);
 	
 	glEnable(GL_DEPTH_TEST);

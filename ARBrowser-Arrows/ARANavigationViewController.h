@@ -10,12 +10,13 @@
 #import <CoreLocation/CoreLocation.h>
 
 #include "ARAMiniMapView.h"
+#include "ARAIconView.h"
 
 @interface ARANavigationViewController : UIViewController
 
 @property(nonatomic,retain) IBOutlet UILabel * directionsLabel;
 @property(nonatomic,retain) IBOutlet UILabel * distanceLabel;
-@property(nonatomic,retain) IBOutlet UIImageView * turnImageView;
+@property(nonatomic,retain) IBOutlet ARAIconView * turnImageView;
 @property(nonatomic,retain) IBOutlet ARAMiniMapView * miniMapView;
 
 - (void) setDistance:(CLLocationDistance)distance;

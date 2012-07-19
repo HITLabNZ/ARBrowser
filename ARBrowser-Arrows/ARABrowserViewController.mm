@@ -130,7 +130,6 @@
 
 - (void)renderInLocalCoordinatesForBrowserView:(ARBrowserView *)view {
 	ARLocationController * locationController = view.locationController;
-	
 	ARWorldLocation * worldLocation = locationController.worldLocation;
 	
 	// Update the mini-map location:
@@ -169,6 +168,14 @@
 	
 		self.bearingLabel.text = [NSString stringWithFormat:@"%0.2f => %0.2f : %0.2f; (%0.1f, %@)", pathBearing.incomingBearing, pathBearing.outgoingBearing, worldLocation.rotation, pathBearing.distanceFromMidpoint, percentageThroughCorner];
 #endif
+				
+		if (self.pathController.turning) {
+			self.navigationViewController.distanceLabel.text = @"Turning";
+			self.navigationViewController.turnImageView.overlayColor = [UIColor redColor];
+		} else {
+			[self.navigationViewController setDistance:pathBearing.distanceFromMidpoint];
+			self.navigationViewController.turnImageView.overlayColor = nil;
+		}
 	}
 	
 	// Don't draw the arrow unless the bearing has been computed accurately:

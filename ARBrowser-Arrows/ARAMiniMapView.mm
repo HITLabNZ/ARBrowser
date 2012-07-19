@@ -12,16 +12,6 @@
 
 @synthesize pathController = _pathController, location = _location;
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-		self.opaque = NO;
-    }
-    return self;
-}
-
 - (void)setLocation:(ARWorldLocation *)location {
 	if (location != _location) {
 		[self willChangeValueForKey:@"location"];
@@ -63,7 +53,8 @@
 		[bezierPath addLineToPoint:point];
 		
 		if (count == _pathController.currentSegmentIndex) {
-			[[UIColor greenColor] setStroke];
+			[[UIColor colorWithRed:204.0 / 255.0 green:201.0 / 255.0 blue:51.0 / 255.0 alpha:1.0] setStroke];
+			
 			[bezierPath stroke];
 			
 			[bezierPath removeAllPoints];
@@ -80,7 +71,7 @@
 		CGPoint locationPoint = ARAPathBoundsScaleCoordinate(bounds, _location.coordinate, displayBounds, YES);
 		
 		// Render positional marker:
-		UIBezierPath * marker = [UIBezierPath bezierPathWithArcCenter:locationPoint radius:4.0 startAngle:0.0 endAngle:360.0 clockwise:YES];
+		UIBezierPath * marker = [UIBezierPath bezierPathWithArcCenter:locationPoint radius:2.5 startAngle:0.0 endAngle:360.0 clockwise:YES];
 		
 		[[UIColor blueColor] setFill];
 		[marker fill];
@@ -88,7 +79,7 @@
 		[marker removeAllPoints];
 		
 		// Render directional marker:
-		[marker setLineWidth:2.0];
+		[marker setLineWidth:1.5];
 		[marker moveToPoint:locationPoint];
 		
 		CGPoint direction = _location.normalizedDirection;
