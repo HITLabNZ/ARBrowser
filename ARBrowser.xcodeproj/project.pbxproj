@@ -126,6 +126,7 @@
 		7E7E2A741370EB1500338606 /* Endian.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E23373A134B41F100BEFB33 /* Endian.h */; };
 		7E825DA215B571C7005A805A /* Singapore University (Reversed).route in Resources */ = {isa = PBXBuildFile; fileRef = 7E825DA015B571C6005A805A /* Singapore University (Reversed).route */; };
 		7E825DA315B571C7005A805A /* Singapore University.route in Resources */ = {isa = PBXBuildFile; fileRef = 7E825DA115B571C6005A805A /* Singapore University.route */; };
+		7E825DB915B7CCCF005A805A /* ARAIconView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E825DB815B7CCCF005A805A /* ARAIconView.m */; };
 		7E86C97D15295E8100CC3BEB /* ARCompassView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7E86C97C15295E8100CC3BEB /* ARCompassView.mm */; };
 		7E89F6EF14E3A9F900B50C90 /* ARVSGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E89F6EC14E3A4F800B50C90 /* ARVSGraphView.m */; };
 		7E8D4CB1134FE04A00868D6B /* ARBrowserView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7E8D4CB0134FE04A00868D6B /* ARBrowserView.mm */; };
@@ -328,6 +329,8 @@
 		7E7E29571370D8C100338606 /* HITLabNZAR-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HITLabNZAR-Prefix.pch"; sourceTree = "<group>"; };
 		7E825DA015B571C6005A805A /* Singapore University (Reversed).route */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "Singapore University (Reversed).route"; path = "Routes/Singapore University (Reversed).route"; sourceTree = "<group>"; };
 		7E825DA115B571C6005A805A /* Singapore University.route */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "Singapore University.route"; path = "Routes/Singapore University.route"; sourceTree = "<group>"; };
+		7E825DB715B7CCCF005A805A /* ARAIconView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARAIconView.h; sourceTree = "<group>"; };
+		7E825DB815B7CCCF005A805A /* ARAIconView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARAIconView.m; sourceTree = "<group>"; };
 		7E86C97B15295E8100CC3BEB /* ARCompassView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARCompassView.h; sourceTree = "<group>"; };
 		7E86C97C15295E8100CC3BEB /* ARCompassView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ARCompassView.mm; sourceTree = "<group>"; };
 		7E89F6EB14E3A4F800B50C90 /* ARVSGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARVSGraphView.h; sourceTree = "<group>"; };
@@ -710,6 +713,8 @@
 				7E4453DE15AFBE8100B6ADA4 /* ARANavigationViewController.mm */,
 				7E5536EC15B1416F00F1F211 /* ARAMiniMapView.h */,
 				7E5536ED15B1417000F1F211 /* ARAMiniMapView.mm */,
+				7E825DB715B7CCCF005A805A /* ARAIconView.h */,
+				7E825DB815B7CCCF005A805A /* ARAIconView.m */,
 				7EE00C491522240C0091206A /* Models */,
 				7E5536DD15B13A5500F1F211 /* Arrows */,
 				7EC0D452151ED895006F1D9F /* Supporting Files */,
@@ -996,6 +1001,7 @@
 				7E4453DF15AFBE8100B6ADA4 /* ARANavigationViewController.mm in Sources */,
 				7E5536DB15B1297500F1F211 /* ARARouteSelectionViewController.mm in Sources */,
 				7E5536EE15B1417000F1F211 /* ARAMiniMapView.mm in Sources */,
+				7E825DB915B7CCCF005A805A /* ARAIconView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
