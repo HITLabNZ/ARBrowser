@@ -165,7 +165,7 @@ ARASegmentRatio calculateRatios(ARWorldLocation * from, ARWorldLocation * step, 
 	//ARASegmentDisposition disposition = [currentSegment dispositionRelativeTo:location];
 	
 	// We may be in the next segment, if it exists:
-	if (self.currentSegmentIndex + 1 < self.path.segments.count) {
+	if (_currentSegmentIndex + 1 < _path.segments.count) {
 		ARASegment * nextSegment = [self.path.segments objectAtIndex:self.currentSegmentIndex + 1];
 		float distanceFromCorner = [location distanceFrom:currentSegment.to];
 		
@@ -175,13 +175,15 @@ ARASegmentRatio calculateRatios(ARWorldLocation * from, ARWorldLocation * step, 
 		//ARASegmentDisposition currentDisposition = [currentSegment snapLocation:self.currentLocation];
 		
 		if (distanceFromCorner < _turningRadius) {
-			// If we are within the set radius from the corner, we are now turning.
-			self.turning = YES;
-			
-			_turningRatio = distanceFromCorner / _turningRadius;
-			
+			if (!_turning) {
+				// If we are within the set radius from the corner, we are now turning.
+				self.turning = YES;
+			}
+
+			self.turningRatio = distanceFromCorner / _turningRadius;
+
 			float distanceToNextSegment = [nextSegment distanceFrom:location];
-			
+
 			if (distanceToNextSegment > distanceFromCurrentSegment) {
 				// We are closer to the current segment
 				_turningRatio = -_turningRatio;
