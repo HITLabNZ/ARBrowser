@@ -34,6 +34,8 @@ static NSUInteger indexOfPointInSequence(NSUInteger sequence, NSUInteger point, 
 
 -(void)dealloc {
 	[self setSequenceCount:0];
+
+	[super dealloc];
 }
 
 - (void)setSequenceCount:(NSUInteger)count {
