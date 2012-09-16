@@ -203,7 +203,7 @@ static float differenceBetweenAngles(float a, float b) {
 
 - (void)draw3D {
 	float offsetBearing = _pathBearing.outgoingBearing - _pathBearing.incomingBearing;
-	
+
 	glPushMatrix();
 	glRotatef(_pathBearing.incomingBearing, 0, 0, -1);
 	
@@ -216,7 +216,14 @@ static float differenceBetweenAngles(float a, float b) {
 }
 
 - (void)draw2DInBrowserView:(ARBrowserView*)browserView {
-	float offsetBearing = _pathBearing.outgoingBearing - _pathBearing.incomingBearing;
+	float offsetBearing = fmod(_pathBearing.outgoingBearing - _pathBearing.incomingBearing, 360.0);
+	if (offsetBearing < 0.0) offsetBearing += 360.0;
+
+	if (offsetBearing > 90 && offsetBearing < 180.0) {
+		offsetBearing = 90;
+	} else if (offsetBearing > 180.0 && offsetBearing < 270.0) {
+		offsetBearing = 270.0;
+	}
 	
 	glMatrixMode(GL_PROJECTION);
 	glPushMatrix();
