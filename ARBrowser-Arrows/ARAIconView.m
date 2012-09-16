@@ -42,8 +42,12 @@
 	[_overlayColor release];
 	_overlayColor = [overlayColor retain];
 	
-	if (_originalImage && _overlayColor) {
-		[super setImage:[ARAIconView tintedImage:self.originalImage withColor:_overlayColor]];
+	if (_originalImage) {
+		if (_overlayColor) {
+			[super setImage:[ARAIconView tintedImage:self.originalImage withColor:_overlayColor]];
+		} else {
+			[super setImage:_originalImage];
+		}
 	}
 }
 
