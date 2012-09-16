@@ -14,5 +14,6 @@
 
 @property(nonatomic,retain) ARAPathController * pathController;
 @property(nonatomic,retain) ARWorldLocation * location;
+@property(nonatomic,retain) UIImage * markerImage;
 
 @end

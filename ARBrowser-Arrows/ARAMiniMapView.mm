@@ -8,6 +8,8 @@
 
 #import "ARAMiniMapView.h"
 
+#include "ARRendering.h"
+
 @implementation ARAMiniMapView
 
 @synthesize pathController = _pathController, location = _location;
@@ -68,25 +70,42 @@
 	[bezierPath stroke];
 	
 	if (_location) {
-		CGPoint locationPoint = ARAPathBoundsScaleCoordinate(bounds, _location.coordinate, displayBounds, YES);
-		
-		// Render positional marker:
-		UIBezierPath * marker = [UIBezierPath bezierPathWithArcCenter:locationPoint radius:2.5 startAngle:0.0 endAngle:360.0 clockwise:YES];
-		
-		[[UIColor blueColor] setFill];
-		[marker fill];
-		
-		[marker removeAllPoints];
-		
-		// Render directional marker:
-		[marker setLineWidth:1.5];
-		[marker moveToPoint:locationPoint];
-		
-		CGPoint direction = _location.normalizedDirection;
-		[marker addLineToPoint:(CGPoint){locationPoint.x + direction.x * 10.0, locationPoint.y + direction.y * 10.0}];
-		
-		[[UIColor blueColor] setStroke];
-		[marker stroke];
+		if (self.markerImage) {
+			CGSize markerSize = self.markerImage.size;
+
+			CGPoint locationPoint = ARAPathBoundsScaleCoordinate(bounds, _location.coordinate, displayBounds, YES);
+
+			CGContextRef c = UIGraphicsGetCurrentContext();
+			CGContextSaveGState(c);
+
+			CGContextTranslateCTM(c, locationPoint.x, locationPoint.y);
+			CGContextRotateCTM(c, _location.rotation * ARBrowser::D2R);
+
+			
+			[self.markerImage drawAtPoint:(CGPoint){-markerSize.width / 2.0, -markerSize.height / 2.0}];
+			
+			CGContextRestoreGState(c);
+		} else {
+			CGPoint locationPoint = ARAPathBoundsScaleCoordinate(bounds, _location.coordinate, displayBounds, YES);
+			
+			// Render positional marker:
+			UIBezierPath * marker = [UIBezierPath bezierPathWithArcCenter:locationPoint radius:2.5 startAngle:0.0 endAngle:360.0 clockwise:YES];
+			
+			[[UIColor blueColor] setFill];
+			[marker fill];
+
+			[marker removeAllPoints];
+			
+			// Render directional marker:
+			[marker setLineWidth:1.5];
+			[marker moveToPoint:locationPoint];
+			
+			CGPoint direction = _location.normalizedDirection;
+			[marker addLineToPoint:(CGPoint){locationPoint.x + direction.x * 10.0, locationPoint.y + direction.y * 10.0}];
+			
+			[[UIColor blueColor] setStroke];
+			[marker stroke];
+		}
 	}
 }
 
