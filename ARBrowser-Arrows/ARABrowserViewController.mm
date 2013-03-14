@@ -92,7 +92,11 @@
 		self.localArrow.radius = 3.0;
 		self.localArrow.angleScale = 0.75;
 	}
-	
+
+	if (self.navigationViewController) {
+		self.navigationViewController.miniMapView.markerImage = [UIImage imageNamed:@"navi-fan.png"];
+	}
+
 	if (self.pathController) {
 		self.navigationViewController.miniMapView.pathController = self.pathController;
 	}
