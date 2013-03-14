@@ -172,7 +172,6 @@
 		7EFDDECC13E8DB8C00155C2B /* ARViewModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7EFDDECB13E8DB8C00155C2B /* ARViewModel.mm */; };
 		7EFDDECD13E8DB8C00155C2B /* ARViewModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7EFDDECB13E8DB8C00155C2B /* ARViewModel.mm */; };
 		904CE31C153FE45800C94FBB /* ARRendering.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 7E233733134B3FBF00BEFB33 /* ARRendering.h */; };
-		90C2BEDE154020A400FC7B75 /* ARMockLocationController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 90C2BEDD154020A400FC7B75 /* ARMockLocationController.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -378,8 +377,6 @@
 		7EF4A67315B195CB000EDC27 /* Derenzy Pl.route */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "Derenzy Pl.route"; path = "Routes/Derenzy Pl.route"; sourceTree = "<group>"; };
 		7EFDDECA13E8DB8C00155C2B /* ARViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARViewModel.h; sourceTree = "<group>"; };
 		7EFDDECB13E8DB8C00155C2B /* ARViewModel.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ARViewModel.mm; sourceTree = "<group>"; };
-		90C2BEDC154020A400FC7B75 /* ARMockLocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARMockLocationController.h; sourceTree = "<group>"; };
-		90C2BEDD154020A400FC7B75 /* ARMockLocationController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ARMockLocationController.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -535,8 +532,6 @@
 				7E8D4CB0134FE04A00868D6B /* ARBrowserView.mm */,
 				7E61C9751354AA2700857A4D /* ARLocationController.h */,
 				7E61C9761354AA2700857A4D /* ARLocationController.mm */,
-				90C2BEDC154020A400FC7B75 /* ARMockLocationController.h */,
-				90C2BEDD154020A400FC7B75 /* ARMockLocationController.mm */,
 				7E86C97B15295E8100CC3BEB /* ARCompassView.h */,
 				7E86C97C15295E8100CC3BEB /* ARCompassView.mm */,
 				7E233732134B3F6500BEFB33 /* Private */,
@@ -947,7 +942,6 @@
 				7EEAE9B5144F903800286695 /* ARLocationController3.mm in Sources */,
 				7EEAE9B8144F923B00286695 /* ARLocationController4.mm in Sources */,
 				7EEAE9BD144F92B300286695 /* ARLocationControllerBase.mm in Sources */,
-				90C2BEDE154020A400FC7B75 /* ARMockLocationController.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
