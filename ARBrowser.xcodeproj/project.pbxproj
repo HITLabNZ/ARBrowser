@@ -896,8 +896,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "// Disable script for now.\nexit 0\n\nexport PATH=/opt/local/bin/:$PATH\nexport DOXYGEN=`which doxygen`\n\ncd $BUILT_PRODUCTS_DIR/source\n\nls -la\necho \"Running doxygen: $DOXYGEN\"\n\n$DOXYGEN\n";
-			showEnvVarsInLog = 0;
+			shellScript = "\nexport PATH=/opt/local/bin/:$PATH\nexport DOXYGEN=`which doxygen`\n\n# SOURCE_PATH=$BUILT_PRODUCTS_DIR/libHITLabNZ/source\nexport SOURCE_PATH=$INSTALL_DIR/source\n\necho \"Preparing to run doxygen in: $SOURCE_PATH\"\ncd $SOURCE_PATH\n\nls -la\necho \"Running doxygen: $DOXYGEN\"\n\n$DOXYGEN\n";
 		};
 		7E68E76F13B9CF9C00AF5C31 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
