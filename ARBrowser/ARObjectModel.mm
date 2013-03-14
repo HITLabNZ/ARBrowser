@@ -46,8 +46,12 @@
 	[self loadMesh];
 	
 	glColor4f(1.0, 1.0, 1.0, 1.0);
-	
+
+	glPushMatrix();
+	glRotatef(90.0, 1.0, 0.0, 0.0);
+
 	mesh->render();
+	glPopMatrix();
 }
 
 - (ARBoundingSphere) boundingSphere
