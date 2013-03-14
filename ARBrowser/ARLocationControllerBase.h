@@ -37,6 +37,8 @@ const double kSensorSampleFrequency = 60.0; //Hz
 @property(assign,readonly) CMAcceleration northAxis;
 @property(retain,readonly) ARWorldLocation * worldLocation;
 
+@property(nonatomic,retain) CLLocation * fixedLocation;
+
 // These attributes will be improved in dervied classes depending on available sensors.
 - (CMAcceleration) currentGravity;
 

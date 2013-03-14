@@ -69,7 +69,7 @@ ARLocationCoordinate convertFromDegrees(CLLocationCoordinate2D location);
 
 /// Helper function to set location from a given CLLocation.
 /// @internal
-- (void) setLocation: (CLLocation*)location globalRadius:(double)radius;
+- (void) setLocation: (CLLocation*)location;
 
 /// Helper function to set heading from a given CLHeading.
 /// @internal

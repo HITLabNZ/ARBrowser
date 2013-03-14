@@ -156,9 +156,9 @@ ARLocationCoordinate convertFromDegrees(CLLocationCoordinate2D location) {
 	return r;
 }
 
-- (void) setLocation:(CLLocation*)_location globalRadius:(double)radius
+- (void) setLocation:(CLLocation*)location
 {
-	[self setCoordinate:[_location coordinate] altitude:radius + [_location altitude]];
+	[self setCoordinate:location.coordinate altitude:location.altitude];
 }
 
 - (void) setBearing: (float)bearing

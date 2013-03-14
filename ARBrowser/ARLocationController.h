@@ -24,6 +24,9 @@ extern NSString * const ARAccelerationChanged;
 @property(retain,readonly,nonatomic) CLLocation * currentLocation;
 @property(retain,readonly,nonatomic) CLHeading * currentHeading;
 
+/// Set a specific fixed location, which overrides the GPS:
+@property(nonatomic,retain) CLLocation * fixedLocation;
+
 /// The device's current gravity downwards vector.
 @property(assign,readonly,nonatomic) CMAcceleration currentGravity;
 

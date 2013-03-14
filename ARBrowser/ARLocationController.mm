@@ -16,7 +16,7 @@ NSString * const ARHeadingChanged = @"ARHeadingChanged";
 // Ignore the warning about incomplete implementation, this class is a facade.
 @implementation ARLocationController
 
-@dynamic currentHeading, currentLocation, currentBearing, currentGravity, northAxis, worldLocation;
+@dynamic currentHeading, currentLocation, currentBearing, currentGravity, northAxis, worldLocation, fixedLocation;
 
 // Cannot initialise this class.
 - (id)init

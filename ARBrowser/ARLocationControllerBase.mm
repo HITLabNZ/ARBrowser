@@ -138,6 +138,7 @@ int calculateRotationMatrixFromMagnetometer(CMAcceleration gravity, CMMagneticFi
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
+
 	if (self.currentLocation == nil) {
 		// First update:
 		self.smoothedLocation = [newLocation coordinate];
@@ -159,14 +160,33 @@ int calculateRotationMatrixFromMagnetometer(CMAcceleration gravity, CMMagneticFi
 	//}
 }
 
+- (void) setFixedLocation:(CLLocation *)fixedLocation
+{
+	[self willChangeValueForKey:@"fixedLocation"];
+
+	[_fixedLocation autorelease];
+	_fixedLocation = [fixedLocation retain];
+
+	if (_fixedLocation)
+		[self updateWorldLocation];
+
+	[self didChangeValueForKey:@"fixedLocation"];
+}
+
 - (void) updateWorldLocation {
 	if (self.currentLocation && self.currentHeading) {
 		ARWorldLocation * updatedWorldLocation = [[ARWorldLocation new] autorelease];
-        
-		// We truncate the altitude to ensure that all coordinates are on the surface of the same sphere. This isn't entirely correct but generally produces good behaviour.
-		[updatedWorldLocation setCoordinate:self.smoothedLocation altitude:0.0 /* self.currentLocation.altitude */];
-        [updatedWorldLocation setBearing:self.currentBearing];
-		
+
+		// If the user has specified to use a fixedLocation, we use this for the current world location, otherwise set it from the smoothed GPS data.
+		if (self.fixedLocation) {
+			[updatedWorldLocation setLocation:self.fixedLocation];
+		} else {
+			// We truncate the altitude to ensure that all coordinates are on the surface of the same sphere. This isn't entirely correct but generally produces good behaviour.
+			[updatedWorldLocation setCoordinate:self.smoothedLocation altitude:0.0 /* self.currentLocation.altitude */];
+		}
+
+		[updatedWorldLocation setBearing:self.currentBearing];
+
 		self.worldLocation = updatedWorldLocation;
 	} else {
 		self.worldLocation = nil;
