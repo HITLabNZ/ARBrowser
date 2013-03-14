@@ -326,6 +326,10 @@ namespace ARBrowser {
 			} else if (type_str == TOKEN_VERTEX_TEX) {
 				Vec2 tex;
 				str_stream >> tex.x >> tex.y;
+
+				// Invert texture coordinate:
+				tex.y = 1.0 - tex.y;
+
 				texcoords.push_back(tex);
 			} else if (type_str == TOKEN_VERTEX_NOR) {
 				Vec3 nor;
