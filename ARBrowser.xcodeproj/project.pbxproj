@@ -77,6 +77,7 @@
 		7E5536E915B13A5500F1F211 /* arrow315.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E5536E315B13A5500F1F211 /* arrow315.png */; };
 		7E5536EB15B13D3700F1F211 /* finish.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E5536EA15B13D3700F1F211 /* finish.png */; };
 		7E5536EE15B1417000F1F211 /* ARAMiniMapView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7E5536ED15B1417000F1F211 /* ARAMiniMapView.mm */; };
+		7E5C2B141605E5D900692536 /* navi-fan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E5C2B131605E5D900692536 /* navi-fan@2x.png */; };
 		7E5F6F83151EDB7B00A262B9 /* ARAPath.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7E5F6F82151EDB7B00A262B9 /* ARAPath.mm */; };
 		7E61C9741354A51B00857A4D /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E61C9731354A51B00857A4D /* CoreMotion.framework */; };
 		7E61C9771354AA2700857A4D /* ARLocationController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7E61C9761354AA2700857A4D /* ARLocationController.mm */; };
@@ -86,7 +87,7 @@
 		7E61C98B1354B69C00857A4D /* Models in Resources */ = {isa = PBXBuildFile; fileRef = 7E61C98A1354B69C00857A4D /* Models */; };
 		7E626F1F15222ADF0001C83E /* Models in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7EE00C491522240C0091206A /* Models */; };
 		7E68E75E13B9C81800AF5C31 /* Doxyfile in Resources */ = {isa = PBXBuildFile; fileRef = 7E68E75D13B9C81800AF5C31 /* Doxyfile */; };
-		7E68E76013B9C85D00AF5C31 /* Doxyfile in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E68E75D13B9C81800AF5C31 /* Doxyfile */; };
+		7E68E76013B9C85D00AF5C31 /* Doxyfile in Copy Files */ = {isa = PBXBuildFile; fileRef = 7E68E75D13B9C81800AF5C31 /* Doxyfile */; };
 		7E68E76813B9CF0B00AF5C31 /* Readme.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 7E68E76713B9CF0B00AF5C31 /* Readme.rtf */; };
 		7E741974152989BC00388013 /* ARAPathEditorController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7E741973152989BC00388013 /* ARAPathEditorController.mm */; };
 		7E74197615298A3300388013 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EBB6E2E13C550650028A3E7 /* MapKit.framework */; };
@@ -106,24 +107,24 @@
 		7E7E29691370D97100338606 /* ARBrowserView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7E8D4CB0134FE04A00868D6B /* ARBrowserView.mm */; };
 		7E7E296A1370D97400338606 /* ARLocationController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7E61C9761354AA2700857A4D /* ARLocationController.mm */; };
 		7E7E296B1370D97E00338606 /* ARRendering.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7E233734134B3FBF00BEFB33 /* ARRendering.mm */; };
-		7E7E29781370E50900338606 /* ARLocationController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E61C9751354AA2700857A4D /* ARLocationController.h */; };
-		7E7E29791370E50E00338606 /* ARBrowserView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E8D4CAF134FE04A00868D6B /* ARBrowserView.h */; };
-		7E7E297A1370E51100338606 /* EAGLView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E233713134AD2C500BEFB33 /* EAGLView.h */; };
-		7E7E297C1370E59300338606 /* Matrix.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E23373C134B41F100BEFB33 /* Matrix.h */; };
-		7E7E297E1370E5D700338606 /* Vector.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E233743134B41F100BEFB33 /* Vector.h */; };
-		7E7E297F1370E5D900338606 /* Transform.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E233741134B41F100BEFB33 /* Transform.h */; };
-		7E7E29801370E5E200338606 /* ARBrowserAppDelegate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E2336C8134AD1FF00BEFB33 /* ARBrowserAppDelegate.h */; };
-		7E7E29811370E5EA00338606 /* ARBrowserAppDelegate.mm in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E2336C9134AD1FF00BEFB33 /* ARBrowserAppDelegate.mm */; };
-		7E7E29831370E60A00338606 /* ARBrowserViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E2336CE134AD1FF00BEFB33 /* ARBrowserViewController.h */; };
-		7E7E29841370E60D00338606 /* ARBrowserViewController.mm in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E2336CF134AD1FF00BEFB33 /* ARBrowserViewController.mm */; };
-		7E7E29851370E61300338606 /* Texture2D.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E233723134AE94400BEFB33 /* Texture2D.h */; };
-		7E7E29871370E63F00338606 /* ARVideoBackground.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E233729134AEAC100BEFB33 /* ARVideoBackground.h */; };
-		7E7E29881370E64300338606 /* ARVideoFrameController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E233726134AE99D00BEFB33 /* ARVideoFrameController.h */; };
-		7E7E29891370E64500338606 /* ARModel.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E61C97D1354B4E000857A4D /* ARModel.h */; };
-		7E7E298A1370E64900338606 /* ARWorldPoint.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E61C97A1354B44B00857A4D /* ARWorldPoint.h */; };
-		7E7E298B1370E64D00338606 /* ARWorldLocation.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E233736134B40C200BEFB33 /* ARWorldLocation.h */; };
-		7E7E2A731370EB0B00338606 /* Quaternion.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E23373D134B41F100BEFB33 /* Quaternion.h */; };
-		7E7E2A741370EB1500338606 /* Endian.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E23373A134B41F100BEFB33 /* Endian.h */; };
+		7E7E29781370E50900338606 /* ARLocationController.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 7E61C9751354AA2700857A4D /* ARLocationController.h */; };
+		7E7E29791370E50E00338606 /* ARBrowserView.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 7E8D4CAF134FE04A00868D6B /* ARBrowserView.h */; };
+		7E7E297A1370E51100338606 /* EAGLView.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 7E233713134AD2C500BEFB33 /* EAGLView.h */; };
+		7E7E297C1370E59300338606 /* Matrix.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 7E23373C134B41F100BEFB33 /* Matrix.h */; };
+		7E7E297E1370E5D700338606 /* Vector.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 7E233743134B41F100BEFB33 /* Vector.h */; };
+		7E7E297F1370E5D900338606 /* Transform.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 7E233741134B41F100BEFB33 /* Transform.h */; };
+		7E7E29801370E5E200338606 /* ARBrowserAppDelegate.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 7E2336C8134AD1FF00BEFB33 /* ARBrowserAppDelegate.h */; };
+		7E7E29811370E5EA00338606 /* ARBrowserAppDelegate.mm in Copy Files */ = {isa = PBXBuildFile; fileRef = 7E2336C9134AD1FF00BEFB33 /* ARBrowserAppDelegate.mm */; };
+		7E7E29831370E60A00338606 /* ARBrowserViewController.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 7E2336CE134AD1FF00BEFB33 /* ARBrowserViewController.h */; };
+		7E7E29841370E60D00338606 /* ARBrowserViewController.mm in Copy Files */ = {isa = PBXBuildFile; fileRef = 7E2336CF134AD1FF00BEFB33 /* ARBrowserViewController.mm */; };
+		7E7E29851370E61300338606 /* Texture2D.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 7E233723134AE94400BEFB33 /* Texture2D.h */; };
+		7E7E29871370E63F00338606 /* ARVideoBackground.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 7E233729134AEAC100BEFB33 /* ARVideoBackground.h */; };
+		7E7E29881370E64300338606 /* ARVideoFrameController.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 7E233726134AE99D00BEFB33 /* ARVideoFrameController.h */; };
+		7E7E29891370E64500338606 /* ARModel.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 7E61C97D1354B4E000857A4D /* ARModel.h */; };
+		7E7E298A1370E64900338606 /* ARWorldPoint.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 7E61C97A1354B44B00857A4D /* ARWorldPoint.h */; };
+		7E7E298B1370E64D00338606 /* ARWorldLocation.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 7E233736134B40C200BEFB33 /* ARWorldLocation.h */; };
+		7E7E2A731370EB0B00338606 /* Quaternion.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 7E23373D134B41F100BEFB33 /* Quaternion.h */; };
+		7E7E2A741370EB1500338606 /* Endian.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 7E23373A134B41F100BEFB33 /* Endian.h */; };
 		7E825DA215B571C7005A805A /* Singapore University (Reversed).route in Resources */ = {isa = PBXBuildFile; fileRef = 7E825DA015B571C6005A805A /* Singapore University (Reversed).route */; };
 		7E825DA315B571C7005A805A /* Singapore University.route in Resources */ = {isa = PBXBuildFile; fileRef = 7E825DA115B571C6005A805A /* Singapore University.route */; };
 		7E825DB915B7CCCF005A805A /* ARAIconView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E825DB815B7CCCF005A805A /* ARAIconView.m */; };
@@ -133,11 +134,11 @@
 		7E9F5242152ADACA000855E8 /* ARASegment.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7E9F5241152ADACA000855E8 /* ARASegment.mm */; };
 		7EBB6E2A13C5465A0028A3E7 /* ARMainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EBB6E2813C5465A0028A3E7 /* ARMainWindow.xib */; };
 		7EBB6E2F13C550650028A3E7 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EBB6E2E13C550650028A3E7 /* MapKit.framework */; };
-		7EBB6E4213C5C4EE0028A3E7 /* ARMapViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7EDA1D4E13C49A7D00796B34 /* ARMapViewController.h */; };
-		7EBB6E4413C5C4F20028A3E7 /* ARMapViewController.mm in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7EDA1D4F13C49A7D00796B34 /* ARMapViewController.mm */; };
+		7EBB6E4213C5C4EE0028A3E7 /* ARMapViewController.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 7EDA1D4E13C49A7D00796B34 /* ARMapViewController.h */; };
+		7EBB6E4413C5C4F20028A3E7 /* ARMapViewController.mm in Copy Files */ = {isa = PBXBuildFile; fileRef = 7EDA1D4F13C49A7D00796B34 /* ARMapViewController.mm */; };
 		7EBB6E4613C5C50D0028A3E7 /* ARMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EBB6E4913C5C50D0028A3E7 /* ARMapViewController.xib */; };
-		7EBB6E4713C5C50D0028A3E7 /* ARMapViewController.xib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7EBB6E4913C5C50D0028A3E7 /* ARMapViewController.xib */; };
-		7EBB6E4A13C5C5290028A3E7 /* ARMainWindow.xib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7EBB6E2813C5465A0028A3E7 /* ARMainWindow.xib */; };
+		7EBB6E4713C5C50D0028A3E7 /* ARMapViewController.xib in Copy Files */ = {isa = PBXBuildFile; fileRef = 7EBB6E4913C5C50D0028A3E7 /* ARMapViewController.xib */; };
+		7EBB6E4A13C5C5290028A3E7 /* ARMainWindow.xib in Copy Files */ = {isa = PBXBuildFile; fileRef = 7EBB6E2813C5465A0028A3E7 /* ARMainWindow.xib */; };
 		7EBCD90913B85459007892CA /* ARObjectModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7EBCD90813B85457007892CA /* ARObjectModel.mm */; };
 		7EBCD90A13B87967007892CA /* ARObjectModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7EBCD90813B85457007892CA /* ARObjectModel.mm */; };
 		7EBE521214D60D7E0054B478 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E23372E134B3E1500BEFB33 /* CoreVideo.framework */; };
@@ -170,7 +171,7 @@
 		7EF4A67415B195CB000EDC27 /* Derenzy Pl.route in Resources */ = {isa = PBXBuildFile; fileRef = 7EF4A67315B195CB000EDC27 /* Derenzy Pl.route */; };
 		7EFDDECC13E8DB8C00155C2B /* ARViewModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7EFDDECB13E8DB8C00155C2B /* ARViewModel.mm */; };
 		7EFDDECD13E8DB8C00155C2B /* ARViewModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7EFDDECB13E8DB8C00155C2B /* ARViewModel.mm */; };
-		904CE31C153FE45800C94FBB /* ARRendering.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E233733134B3FBF00BEFB33 /* ARRendering.h */; };
+		904CE31C153FE45800C94FBB /* ARRendering.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 7E233733134B3FBF00BEFB33 /* ARRendering.h */; };
 		90C2BEDE154020A400FC7B75 /* ARMockLocationController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 90C2BEDD154020A400FC7B75 /* ARMockLocationController.mm */; };
 /* End PBXBuildFile section */
 
@@ -202,37 +203,38 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7E7E29771370E4CF00338606 /* CopyFiles */ = {
+		7E7E29771370E4CF00338606 /* Copy Files */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			dstPath = source;
-			dstSubfolderSpec = 16;
+			dstSubfolderSpec = 6;
 			files = (
-				7EBB6E4A13C5C5290028A3E7 /* ARMainWindow.xib in CopyFiles */,
-				7EBB6E4713C5C50D0028A3E7 /* ARMapViewController.xib in CopyFiles */,
-				7EBB6E4213C5C4EE0028A3E7 /* ARMapViewController.h in CopyFiles */,
-				7EBB6E4413C5C4F20028A3E7 /* ARMapViewController.mm in CopyFiles */,
-				7E68E76013B9C85D00AF5C31 /* Doxyfile in CopyFiles */,
-				7E7E29811370E5EA00338606 /* ARBrowserAppDelegate.mm in CopyFiles */,
-				7E7E297C1370E59300338606 /* Matrix.h in CopyFiles */,
-				7E7E2A731370EB0B00338606 /* Quaternion.h in CopyFiles */,
-				7E7E297E1370E5D700338606 /* Vector.h in CopyFiles */,
-				7E7E298B1370E64D00338606 /* ARWorldLocation.h in CopyFiles */,
-				7E7E2A741370EB1500338606 /* Endian.h in CopyFiles */,
-				7E7E29891370E64500338606 /* ARModel.h in CopyFiles */,
-				7E7E297F1370E5D900338606 /* Transform.h in CopyFiles */,
-				7E7E298A1370E64900338606 /* ARWorldPoint.h in CopyFiles */,
-				7E7E29791370E50E00338606 /* ARBrowserView.h in CopyFiles */,
-				7E7E29881370E64300338606 /* ARVideoFrameController.h in CopyFiles */,
-				7E7E297A1370E51100338606 /* EAGLView.h in CopyFiles */,
-				7E7E29871370E63F00338606 /* ARVideoBackground.h in CopyFiles */,
-				7E7E29781370E50900338606 /* ARLocationController.h in CopyFiles */,
-				7E7E29801370E5E200338606 /* ARBrowserAppDelegate.h in CopyFiles */,
-				7E7E29831370E60A00338606 /* ARBrowserViewController.h in CopyFiles */,
-				7E7E29841370E60D00338606 /* ARBrowserViewController.mm in CopyFiles */,
-				904CE31C153FE45800C94FBB /* ARRendering.h in CopyFiles */,
-				7E7E29851370E61300338606 /* Texture2D.h in CopyFiles */,
+				7EBB6E4A13C5C5290028A3E7 /* ARMainWindow.xib in Copy Files */,
+				7EBB6E4713C5C50D0028A3E7 /* ARMapViewController.xib in Copy Files */,
+				7EBB6E4213C5C4EE0028A3E7 /* ARMapViewController.h in Copy Files */,
+				7EBB6E4413C5C4F20028A3E7 /* ARMapViewController.mm in Copy Files */,
+				7E68E76013B9C85D00AF5C31 /* Doxyfile in Copy Files */,
+				7E7E29811370E5EA00338606 /* ARBrowserAppDelegate.mm in Copy Files */,
+				7E7E297C1370E59300338606 /* Matrix.h in Copy Files */,
+				7E7E2A731370EB0B00338606 /* Quaternion.h in Copy Files */,
+				7E7E297E1370E5D700338606 /* Vector.h in Copy Files */,
+				7E7E298B1370E64D00338606 /* ARWorldLocation.h in Copy Files */,
+				7E7E2A741370EB1500338606 /* Endian.h in Copy Files */,
+				7E7E29891370E64500338606 /* ARModel.h in Copy Files */,
+				7E7E297F1370E5D900338606 /* Transform.h in Copy Files */,
+				7E7E298A1370E64900338606 /* ARWorldPoint.h in Copy Files */,
+				7E7E29791370E50E00338606 /* ARBrowserView.h in Copy Files */,
+				7E7E29881370E64300338606 /* ARVideoFrameController.h in Copy Files */,
+				7E7E297A1370E51100338606 /* EAGLView.h in Copy Files */,
+				7E7E29871370E63F00338606 /* ARVideoBackground.h in Copy Files */,
+				7E7E29781370E50900338606 /* ARLocationController.h in Copy Files */,
+				7E7E29801370E5E200338606 /* ARBrowserAppDelegate.h in Copy Files */,
+				7E7E29831370E60A00338606 /* ARBrowserViewController.h in Copy Files */,
+				7E7E29841370E60D00338606 /* ARBrowserViewController.mm in Copy Files */,
+				904CE31C153FE45800C94FBB /* ARRendering.h in Copy Files */,
+				7E7E29851370E61300338606 /* Texture2D.h in Copy Files */,
 			);
+			name = "Copy Files";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -308,6 +310,7 @@
 		7E5536EA15B13D3700F1F211 /* finish.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = finish.png; sourceTree = "<group>"; };
 		7E5536EC15B1416F00F1F211 /* ARAMiniMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARAMiniMapView.h; sourceTree = "<group>"; };
 		7E5536ED15B1417000F1F211 /* ARAMiniMapView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ARAMiniMapView.mm; sourceTree = "<group>"; };
+		7E5C2B131605E5D900692536 /* navi-fan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navi-fan@2x.png"; sourceTree = "<group>"; };
 		7E5F6F81151EDB7B00A262B9 /* ARAPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARAPath.h; sourceTree = "<group>"; };
 		7E5F6F82151EDB7B00A262B9 /* ARAPath.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ARAPath.mm; sourceTree = "<group>"; };
 		7E61C9731354A51B00857A4D /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
@@ -725,6 +728,7 @@
 		7EC0D452151ED895006F1D9F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				7E5C2B131605E5D900692536 /* navi-fan@2x.png */,
 				7EC0D453151ED895006F1D9F /* ARBrowser-Arrows-Info.plist */,
 				7EC0D454151ED895006F1D9F /* InfoPlist.strings */,
 				7EC0D457151ED895006F1D9F /* main.mm */,
@@ -777,7 +781,7 @@
 			buildPhases = (
 				7E7E294F1370D8C100338606 /* Sources */,
 				7E7E29501370D8C100338606 /* Frameworks */,
-				7E7E29771370E4CF00338606 /* CopyFiles */,
+				7E7E29771370E4CF00338606 /* Copy Files */,
 				7E68E76113B9C86400AF5C31 /* ShellScript */,
 			);
 			buildRules = (
@@ -879,6 +883,7 @@
 				7EF4A67415B195CB000EDC27 /* Derenzy Pl.route in Resources */,
 				7E825DA215B571C7005A805A /* Singapore University (Reversed).route in Resources */,
 				7E825DA315B571C7005A805A /* Singapore University.route in Resources */,
+				7E5C2B141605E5D900692536 /* navi-fan@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -896,7 +901,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export PATH=/opt/local/bin/:$PATH\nexport DOXYGEN=`which doxygen`\n\ncd $BUILT_PRODUCTS_DIR/source\n\nls -la\necho \"Running doxygen: $DOXYGEN\"\n\n$DOXYGEN\n";
+			shellScript = "// Disable script for now.\nexit 0\n\nexport PATH=/opt/local/bin/:$PATH\nexport DOXYGEN=`which doxygen`\n\ncd $BUILT_PRODUCTS_DIR/source\n\nls -la\necho \"Running doxygen: $DOXYGEN\"\n\n$DOXYGEN\n";
 			showEnvVarsInLog = 0;
 		};
 		7E68E76F13B9CF9C00AF5C31 /* ShellScript */ = {
@@ -1205,11 +1210,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				DSTROOT = /tmp/HITLabNZAR.dst;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(PROJECT_DIR)/ARBrowser-Demo";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HITLabNZAR/HITLabNZAR-Prefix.pch";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INSTALL_PATH = /libHITLabNZAR;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-mno-thumb";
 				OTHER_LDFLAGS = "-ObjC";
@@ -1221,10 +1228,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				DSTROOT = /tmp/HITLabNZAR.dst;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "$(PROJECT_DIR)/ARBrowser-Demo";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HITLabNZAR/HITLabNZAR-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INSTALL_PATH = /libHITLabNZAR;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = (
 					"-mno-thumb",
