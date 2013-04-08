@@ -110,6 +110,17 @@ ARLocationCoordinate convertFromDegrees(CLLocationCoordinate2D location) {
 
 @synthesize coordinate = _coordinate, altitude = _altitude, position = _position, rotation = _rotation;
 
+- initWithCoordinate:(CLLocationCoordinate2D)coordinate altitude:(ARLocationAltitude)altitude
+{
+	self = [super init];
+
+	if (self) {
+		[self setCoordinate:coordinate altitude:altitude];
+	}
+
+	return self;
+}
+
 + (ARWorldLocation *) fromLocation: (CLLocation *)location {
 	ARWorldLocation * worldLocation = [[ARWorldLocation new] autorelease];
 	

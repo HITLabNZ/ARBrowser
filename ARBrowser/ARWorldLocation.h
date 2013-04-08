@@ -55,6 +55,8 @@ ARLocationCoordinate convertFromDegrees(CLLocationCoordinate2D location);
 /// The rotation from north, i.e. heading direction.
 @property(readonly) CLLocationDirection rotation;
 
+- initWithCoordinate:(CLLocationCoordinate2D)coordinate altitude:(ARLocationAltitude)altitude;
+
 + (ARWorldLocation *) fromLocation: (CLLocation *)location;
 
 /// Calculates the position in cartesian coordinates from a given latitude/longitude pair and altitude.
