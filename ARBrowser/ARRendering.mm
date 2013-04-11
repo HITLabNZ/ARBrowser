@@ -491,6 +491,8 @@ namespace ARBrowser {
 			}
 		}
 	}
+
+	const bool DRAW_BOUNDING_BOX = false;
 	
 	void Model::render () {		
 		if (m_mesh.size() > 0) {			
@@ -537,30 +539,32 @@ namespace ARBrowser {
 			glDisableClientState(GL_NORMAL_ARRAY);
 			
 			// Bounding Box Debug
-			VerticesT vertices;
-			Vec3 a = m_boundingBox.min;
-			Vec3 b = m_boundingBox.max;
-			
-			vertices.push_back(Vec3(a.x, a.y, a.z));
-			vertices.push_back(Vec3(b.x, a.y, a.z));
+			if (DRAW_BOUNDING_BOX) {
+				VerticesT vertices;
+				Vec3 a = m_boundingBox.min;
+				Vec3 b = m_boundingBox.max;
+				
+				vertices.push_back(Vec3(a.x, a.y, a.z));
+				vertices.push_back(Vec3(b.x, a.y, a.z));
 
-			vertices.push_back(Vec3(a.x, a.y, a.z));
-			vertices.push_back(Vec3(a.x, b.y, a.z));
-			
-			vertices.push_back(Vec3(a.x, a.y, a.z));
-			vertices.push_back(Vec3(a.x, a.y, b.z));
-			
-			vertices.push_back(Vec3(b.x, b.y, b.z));
-			vertices.push_back(Vec3(a.x, b.y, b.z));
-			
-			vertices.push_back(Vec3(b.x, b.y, b.z));
-			vertices.push_back(Vec3(b.x, a.y, b.z));
-			
-			vertices.push_back(Vec3(b.x, b.y, b.z));
-			vertices.push_back(Vec3(b.x, b.y, a.z));
-			
-			glColor4f(0.0, 1.0, 0.0, 1.0);
-			renderVertices(vertices, GL_LINES);
+				vertices.push_back(Vec3(a.x, a.y, a.z));
+				vertices.push_back(Vec3(a.x, b.y, a.z));
+				
+				vertices.push_back(Vec3(a.x, a.y, a.z));
+				vertices.push_back(Vec3(a.x, a.y, b.z));
+				
+				vertices.push_back(Vec3(b.x, b.y, b.z));
+				vertices.push_back(Vec3(a.x, b.y, b.z));
+				
+				vertices.push_back(Vec3(b.x, b.y, b.z));
+				vertices.push_back(Vec3(b.x, a.y, b.z));
+				
+				vertices.push_back(Vec3(b.x, b.y, b.z));
+				vertices.push_back(Vec3(b.x, b.y, a.z));
+				
+				glColor4f(0.0, 1.0, 0.0, 1.0);
+				renderVertices(vertices, GL_LINES);
+			}
 		}
 	}
 
