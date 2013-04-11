@@ -100,12 +100,6 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 		std::vector<ARBrowser::BoundingSphere> spheres;
 		
 		for (ARWorldPoint * worldPoint in worldPoints) {
-			ARBoundingSphere boundingSphere = [[worldPoint model] boundingSphere];
-			ARBrowser::BoundingSphere sphere(boundingSphere.center, boundingSphere.radius);
-			
-			// We don't support this yet, but it was supported in the old API.
-			// sphere.transform([worldPoint transformation]);
-			
 			// We need to calculate collision detection in the same coordinate system as drawn on screen.
 			Vec3 offset = [origin calculateRelativePositionOf:worldPoint];
 			
@@ -116,6 +110,12 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 			if (distance < minimumDistance || distance > maximumDistance) {
 				continue;
 			}
+		
+			ARBoundingSphere boundingSphere = [worldPoint.model boundingSphere];
+			ARBrowser::BoundingSphere sphere(boundingSphere.center, boundingSphere.radius);
+			
+			// We don't support this yet, but it was supported in the old API.
+			sphere = sphere.transform([worldPoint transform]);
 			
 			sphere.radius *= [self scaleFactorFor:worldPoint atDistance:distance];
 			sphere.center += offset;
@@ -424,7 +424,7 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 		//glScalef(scale, scale, scale);
 		
 		glRotatef(p.point.rotation, 0.0, 0.0, 1.0);
-		
+		glMultMatrixf(p.point.transform.f);
 		[p.point.model draw];
 		
 		// Render the bounding sphere for debugging.

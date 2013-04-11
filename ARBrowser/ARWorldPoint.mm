@@ -10,13 +10,13 @@
 
 @implementation ARWorldPoint
 
-@synthesize model, metadata, fixed = _fixed;
-
 - (id)init
 {
     self = [super init];
     if (self) {
-        metadata = [[NSMutableDictionary alloc] init];
+        self.metadata = [[NSMutableDictionary alloc] init];
+		
+		MatrixIdentity(_transform);
     }
     
     return self;
@@ -24,13 +24,13 @@
 
 - (void)dealloc
 {
-	[metadata release];
+	self.metadata = nil;
 
     [super dealloc];
 }
 
 - (NSString*) description {
-	id name = [metadata objectForKey:@"name"];
+	id name = [_metadata objectForKey:@"name"];
 	
 	if (name)
 		return [NSString stringWithFormat:@"<ARWorldPoint: %0.8f %0.8f '%@'>", _coordinate.latitude, _coordinate.longitude, name];
@@ -40,12 +40,12 @@
 
 - (NSString*) title
 {
-	NSString * title = [metadata objectForKey:@"title"];
+	NSString * title = [_metadata objectForKey:@"title"];
 	
 	if (title)
 		return title;
 	
-	NSString * name = [metadata objectForKey:@"name"];
+	NSString * name = [_metadata objectForKey:@"name"];
 	
 	if (name)
 		return name;
@@ -55,7 +55,7 @@
 
 - (NSString*) subtitle
 {
-	NSString * subtitle = [metadata objectForKey:@"subtitle"];
+	NSString * subtitle = [_metadata objectForKey:@"subtitle"];
 	
 	if (subtitle)
 		return subtitle;

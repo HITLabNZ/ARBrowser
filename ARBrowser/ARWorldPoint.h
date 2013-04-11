@@ -26,14 +26,13 @@ typedef struct {
 @end
 
 /// Provides a renderable model and associated metadata for a given ARWorldLocation.
-@interface ARWorldPoint : ARWorldLocation <MKAnnotation> {
-	id<ARRenderable> model;
-	
-	NSMutableDictionary * metadata;
-}
+@interface ARWorldPoint : ARWorldLocation <MKAnnotation>
 
 /// The renderable model for the given location.
 @property(nonatomic,retain) id<ARRenderable> model;
+
+/// The local transform applied to the model.
+@property(nonatomic,assign) Mat44 transform;
 
 /// The associated metadata for the given location.
 /// This property is the primary method by which additional data should be managed for a specific point, e.g. street address, telephone number.
