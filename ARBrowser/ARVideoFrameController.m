@@ -11,41 +11,6 @@
 // Some implementation was based on the implementation from
 // http://www.benjaminloulier.com/posts/2-ios4-and-direct-access-to-the-camera
 
-/*
- 
- AVCaptureDevice* camera = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
- if (camera == nil) {
- return;
- }
- 
- captureSession = [[AVCaptureSession alloc] init];
- AVCaptureDeviceInput *newVideoInput = [[[AVCaptureDeviceInput alloc] initWithDevice:camera error:nil] autorelease];
- [captureSession addInput:newVideoInput];
- 
- captureLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:captureSession];
- captureLayer.frame = captureView.bounds;
- [captureLayer setOrientation:AVCaptureVideoOrientationPortrait];
- [captureLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
- [captureView.layer addSublayer:captureLayer];
- 
- // Start the session. This is done asychronously since -startRunning doesn't return until the session is running.
- dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
- [captureSession startRunning];
- });
- }
- 
- - (void)stopCameraPreview
- {	
- [captureSession stopRunning];
- [captureLayer removeFromSuperlayer];
- [captureSession release];
- [captureLayer release];
- captureSession = nil;
- captureLayer = nil;
-
- 
- */
-
 @implementation ARVideoFrameController
 
 @synthesize delegate;
@@ -69,6 +34,21 @@
 			
 			[self release];
 			return nil;
+		}
+
+		// Without this setting, focus tends to be very slow and cause problems.
+		AVCaptureFocusMode wantedFocusMode = AVCaptureFocusModeContinuousAutoFocus;
+		if ([captureDevice isFocusModeSupported:wantedFocusMode]) {
+			NSError * error = nil;
+			
+			if ([captureDevice lockForConfiguration:&error]) {
+				[captureDevice setFocusMode:wantedFocusMode];
+				[captureDevice unlockForConfiguration];
+			} else {
+				NSLog(@"lockForConfiguration error: %@", error);
+
+				return nil;
+			}
 		}
 			
 		NSError * error = nil;
@@ -110,7 +90,7 @@
 		captureSession = [AVCaptureSession new];
 		
 		[captureSession beginConfiguration];
-		
+
 		if ([captureSession canSetSessionPreset:AVCaptureSessionPresetMedium]) {
 			[captureSession setSessionPreset:AVCaptureSessionPresetMedium];
 		} else if ([captureSession canSetSessionPreset:AVCaptureSessionPresetLow]) {
