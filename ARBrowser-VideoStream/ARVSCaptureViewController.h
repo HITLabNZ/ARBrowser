@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreMotion/CoreMotion.h>
+#import <CoreLocation/CoreLocation.h>
 #import "ARVideoFrameController.h"
 #import "ARVSGraphView.h"
 
@@ -17,7 +18,7 @@ double length(CMAcceleration vector);
 
 typedef CMAcceleration ARVSVelocity;
 
-@interface ARVSCaptureViewController : UIViewController <ARVideoFrameControllerDelegate> {
+@interface ARVSCaptureViewController : UIViewController <ARVideoFrameControllerDelegate, CLLocationManagerDelegate> {
 	ARVSLogger * _logger;
 	
 	NSUInteger _frameOffset;
@@ -30,7 +31,11 @@ typedef CMAcceleration ARVSVelocity;
 	
 	UITextView * _velocityTextView;
 	ARVSGraphView * _graphView;
+
+	NSTimeInterval _timestampOffset;
 }
+
+@property(nonatomic,retain) CLLocationManager * locationManager;
 
 @property(retain) ARVSLogger * logger;
 @property(retain) UITextView * velocityTextView;

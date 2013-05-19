@@ -44,6 +44,8 @@
 	self = [super init];
 	
 	if (self) {
+		self.startDate = [NSDate date];
+
 		[self setPath:path];
 		
 		NSFileManager * fileManager = [NSFileManager defaultManager];
@@ -63,6 +65,11 @@
 	}
 	
 	return self;
+}
+
+- (NSTimeInterval) timestamp
+{
+	return [[NSDate date] timeIntervalSinceDate:self.startDate];
 }
 
 - (void)close {

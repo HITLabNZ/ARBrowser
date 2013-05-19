@@ -18,10 +18,8 @@ double length(CMAcceleration vector) {
 
 @synthesize logger = _logger, velocityTextView = _velocityTextView;
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Release any cached data, images, etc that aren't in use.
+-(NSUInteger)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskPortrait;
 }
 
 - (void)dealloc {
@@ -160,6 +158,33 @@ double length(CMAcceleration vector) {
 		NSString * velocityString = [NSString stringWithFormat:@"%0.3f m/s: %0.3f, %0.3f, %0.3f\n(%0.3f, %0.3f, %0.3f)", speed, velocity.x, velocity.y, velocity.z, acceleration.x, acceleration.y, acceleration.z];
 		[self.velocityTextView performSelector:@selector(setText:) onThread:[NSThread mainThread] withObject:velocityString waitUntilDone:NO];
 	}];
+
+	NSTimeInterval uptime = [NSProcessInfo processInfo].systemUptime;
+	NSTimeInterval nowTimeIntervalSince1970 = [[NSDate date] timeIntervalSince1970];
+	_timestampOffset = nowTimeIntervalSince1970 - uptime;
+
+	self.locationManager = [[CLLocationManager alloc] init];
+	[self.locationManager setDesiredAccuracy:kCLLocationAccuracyBestForNavigation];
+	[self.locationManager setDelegate:self];
+	
+	[self.locationManager setHeadingOrientation:CLDeviceOrientationPortrait];
+	
+	[self.locationManager startUpdatingLocation];
+	[self.locationManager startUpdatingHeading];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
+	CLLocationCoordinate2D coordinate = newLocation.coordinate;
+
+	NSTimeInterval timestamp = newLocation.timestamp.timeIntervalSince1970 - _timestampOffset;
+
+	[self.logger logWithFormat:@"Location, %0.4f, %0.6f, %0.6f, %0.4f, %0.4f", timestamp, coordinate.latitude, coordinate.longitude, newLocation.horizontalAccuracy, newLocation.verticalAccuracy];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading {
+	NSTimeInterval timestamp = newHeading.timestamp.timeIntervalSince1970 - _timestampOffset;
+
+	[self.logger logWithFormat:@"Heading, %0.4f, %0.4f, %0.4f", timestamp, newHeading.magneticHeading, newHeading.trueHeading];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -173,12 +198,6 @@ double length(CMAcceleration vector) {
 	[_motionManager stopAccelerometerUpdates];
 	
 	[super viewWillDisappear:animated];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 @end

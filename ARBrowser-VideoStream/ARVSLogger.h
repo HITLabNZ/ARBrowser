@@ -11,15 +11,15 @@
 
 @interface ARVSLogger : NSObject {
 	NSString * _path;
-	
 	NSFileHandle * _fileHandle;
-	
 	NSTimer * _syncTimer;
-	
 	NSUInteger _logCounter;
 }
 
+@property(nonatomic,retain) NSDate * startDate;
 @property(readonly,retain) NSString * path;
+
+- (NSTimeInterval)timestamp;
 
 + loggerForDocumentName:(NSString*)name;
 

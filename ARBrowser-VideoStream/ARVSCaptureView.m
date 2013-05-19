@@ -19,7 +19,7 @@
 	self = [super initWithFrame:frame pixelFormat:GL_RGB565_OES depthFormat:GL_DEPTH_COMPONENT16_OES preserveBackbuffer:YES];
 	
 	if (self) {
-		videoFrameController = [[ARVideoFrameController alloc] initWithRate:2];
+		videoFrameController = [[ARVideoFrameController alloc] initWithRate:10];
 		videoBackground = [[ARVideoBackground alloc] init];
 		
 		[videoFrameController start];
