@@ -67,4 +67,17 @@
 	}
 }
 
+- (ARBrowser::BoundingBox) boundingBox
+{
+	[self loadMesh];
+
+	if (mesh) {
+		return mesh->boundingBox();
+	} else {
+		ARBrowser::BoundingBox box;
+		
+		return box;
+	}
+}
+
 @end

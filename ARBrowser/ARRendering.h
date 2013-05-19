@@ -122,6 +122,8 @@ namespace ARBrowser {
 		/// @returns t1 The time of entry of the line into the box.
 		/// @returns t2 The time of exit of the line into the box.
 		bool intersectsWith(Vec3 origin, Vec3 direction, float & t1, float & t2) const;
+
+		BoundingBox transform(const Mat44 & transform) const;
 	};
 	
 	/// A basic sphere that can be transformed and provides basic intersection tests.
@@ -167,6 +169,13 @@ namespace ARBrowser {
 	
 	/// Find intersections using a given point on the screen, and a set of bounding spheres.
 	bool findIntersection(const Mat44 & proj, const Mat44 & view, float viewport[4], const Vec3 & origin, Vec2 screenCoords, const std::vector<BoundingSphere> & spheres, IntersectionResult & result);
+
+	struct Ray {
+		Vec3 origin, direction;
+	};
+
+	Ray calculateRayFromScreenCoordinates(const Mat44 & proj, const Mat44 & view, float viewport[4], Vec2 screenCoords);
+
 }
 
 #endif

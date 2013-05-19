@@ -23,15 +23,6 @@ struct ARBrowserVisibleWorldPoint {
 	}
 };
 
-/// @internal
-struct ARBrowserViewState {
-	Mat44 projectionMatrix, viewMatrix;
-	
-	ARBrowser::VerticesT grid;
-	
-	ARBrowser::IntersectionResult intersectionResult;
-};
-
 static Vec2 positionInView (UIView * view, UITouch * touch)
 {
 	CGPoint locationInView = [touch locationInView:view];
@@ -39,6 +30,30 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 	
 	return Vec2(locationInView.x, bounds.size.height - locationInView.y);
 }
+
+@interface ARBrowserView () {
+	ARVideoFrameController * videoFrameController;
+	ARVideoBackground * videoBackground;
+	
+	/// @internal
+	struct ARBrowserViewState * state;
+	
+	float minimumDistance, maximumDistance;
+	
+	/// Objects closer than near distance will be scaled down in size,
+	/// and vise versa for far distance.
+	float nearDistance, farDistance;
+	
+	BOOL displayRadar, displayGrid;
+	
+	/// The center of the radar on the screen.
+	CGPoint radarCenter;
+
+	Mat44 _projectionMatrix, _viewMatrix;
+	
+	ARBrowser::VerticesT _grid;
+}
+@end
 
 @implementation ARBrowserView
 
@@ -58,8 +73,7 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 		// Initialise the location controller
 		self.locationController = [ARLocationController sharedInstance];
 		
-		state = new ARBrowserViewState;
-		ARBrowser::generateGrid(state->grid);
+		ARBrowser::generateGrid(_grid);
 		
 		minimumDistance = 2.0;
 		nearDistance = minimumDistance * 2.0;
@@ -76,29 +90,21 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 	return self;
 }
 
-- (float) scaleFactorFor:(ARWorldPoint*)point atDistance:(float)distance {
-	// Bypass relative scaling... temporary hack for Urban Navigation project.
-	return 1.0;
-	
-	if (distance < nearDistance) {
-		return (distance / nearDistance) * [self.delegate browserView:self scaleFactorFor:point atDistance:nearDistance];
-	} else if (distance > farDistance) {
-		return (distance / farDistance) * [self.delegate browserView:self scaleFactorFor:point atDistance:farDistance];
-	} else {
-		return [self.delegate browserView:self scaleFactorFor:point atDistance:distance];
-	}
-}
-
 - (void)touchesBegan: (NSSet *)touches withEvent: (UIEvent *)event
 {
 	for (UITouch * touch in touches) {
-		Vec2 now = positionInView(self, touch);
-		ARBrowser::IntersectionResult result;
+		// viewport: (X, Y, Width, Height)
+		CGRect bounds = [self bounds];
+		float viewport[4] = {bounds.origin.x, bounds.origin.y, bounds.size.width, bounds.size.height};
+
+		ARBrowser::Ray ray = ARBrowser::calculateRayFromScreenCoordinates(_projectionMatrix, _viewMatrix, viewport, positionInView(self, touch));
 		
 		ARWorldLocation * origin = [self.locationController worldLocation];
 		NSArray * worldPoints = [[self delegate] worldPoints];
-		std::vector<ARBrowser::BoundingSphere> spheres;
-		
+
+		ARWorldPoint * closestWorldPoint = nil;
+		float closestIntersection = INFINITY, t1, t2;
+
 		for (ARWorldPoint * worldPoint in worldPoints) {
 			// We need to calculate collision detection in the same coordinate system as drawn on screen.
 			Vec3 offset = [origin calculateRelativePositionOf:worldPoint];
@@ -110,28 +116,26 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 			if (distance < minimumDistance || distance > maximumDistance) {
 				continue;
 			}
-		
-			ARBoundingSphere boundingSphere = [worldPoint.model boundingSphere];
-			ARBrowser::BoundingSphere sphere(boundingSphere.center, boundingSphere.radius);
-			
-			// We don't support this yet, but it was supported in the old API.
-			sphere = sphere.transform([worldPoint transform]);
-			
-			sphere.radius *= [self scaleFactorFor:worldPoint atDistance:distance];
-			sphere.center += offset;
-			
-			spheres.push_back(sphere);
+
+			ARBrowser::BoundingBox box = [worldPoint.model boundingBox];			
+			box = box.transform([worldPoint transform]);
+
+			box.min += offset;
+			box.max += offset;
+
+			//ARBrowser::BoundingSphere sphere(box.center(), box.radius());
+
+			// Box ray-slab intersection requires a line segment, not just a line.
+			if (box.intersectsWith(ray.origin, ray.direction * maximumDistance, t1, t2)) {
+				if (t1 < closestIntersection) {
+					closestIntersection = t1;
+					closestWorldPoint = worldPoint;
+				}
+			}
 		}
-		
-		Vec3 worldOrigin(0, 0, 0);
-		
-		// viewport: (X, Y, Width, Height)
-		CGRect bounds = [self bounds];
-		float viewport[4] = {bounds.origin.x, bounds.origin.y, bounds.size.width, bounds.size.height};
-		
-		if (ARBrowser::findIntersection(state->projectionMatrix, state->viewMatrix, viewport, worldOrigin, now, spheres, result)) {
-			ARWorldPoint * selected = [worldPoints objectAtIndex:result.index];
-			[self.delegate browserView:self didSelect:selected];
+
+		if (closestWorldPoint) {
+			[self.delegate browserView:self didSelect:closestWorldPoint];
 		}
 	}
 }
@@ -248,7 +252,7 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 	
 	if (!flat) {		
 		Mat44 inverseViewMatrix;
-		MatrixInverse(inverseViewMatrix, state->viewMatrix);
+		MatrixInverse(inverseViewMatrix, _viewMatrix);
 		
 		// This matrix now contains the transform where +Y maps to North
 		// The North axis of the phone is mapped to global North axis.
@@ -348,14 +352,14 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 	
 	glRotatef([origin rotation], 0, 0, 1);
 	
-	glGetFloatv(GL_PROJECTION_MATRIX, state->projectionMatrix.f);
-	glGetFloatv(GL_MODELVIEW_MATRIX, state->viewMatrix.f);
+	glGetFloatv(GL_PROJECTION_MATRIX, _projectionMatrix.f);
+	glGetFloatv(GL_MODELVIEW_MATRIX, _viewMatrix.f);
 	
 	glColor4f(0.7, 0.7, 0.7, 0.2);
 	glLineWidth(2.0);
 	
 	if (displayGrid) {
-		ARBrowser::renderVertices(state->grid);
+		ARBrowser::renderVertices(_grid);
 		ARBrowser::renderAxis();
 	}
 	
@@ -420,9 +424,6 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 		
 		glTranslatef(p.delta.x, p.delta.y, p.delta.z);
 		
-		//float scale = [self scaleFactorFor:p.point atDistance:p.distance];
-		//glScalef(scale, scale, scale);
-		
 		glRotatef(p.point.rotation, 0.0, 0.0, 1.0);
 		glMultMatrixf(p.point.transform.f);
 		[p.point.model draw];
@@ -464,9 +465,7 @@ static Vec2 positionInView (UIView * view, UITouch * touch)
 	
 	[videoFrameController release];	
 	[videoBackground release];
-	
-	delete state;
-	
+		
 	[super dealloc];
 }
 

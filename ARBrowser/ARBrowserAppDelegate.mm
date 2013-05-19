@@ -13,6 +13,8 @@
 #import "ARWorldPoint.h"
 #import "ARModel.h"
 
+#import "ARRendering.h"
+
 @implementation ARBrowserAppDelegate
 
 @synthesize window = _window, browserViewController = _browserViewController, mapViewController = _mapViewController, mainViewController = _mainViewController, informationView = _informationView;
@@ -67,7 +69,8 @@
 	[cuteCenter.metadata setObject:@"Singapore" forKey:@"address"];
 	[cuteCenter.metadata setObject:@"Wang Yuan" forKey:@"developer"];
 	//[worldPoints addObject:cuteCenter];
-	
+
+	/*
 	for (NSInteger i = -30; i < 30; i += 2) {
 		ARWorldPoint * testMarker = [ARWorldPoint new];
 		
@@ -79,6 +82,7 @@
 		
 		[worldPoints addObject:testMarker];
 	}
+	*/
 	
 	[self setWorldPoints:worldPoints];
 

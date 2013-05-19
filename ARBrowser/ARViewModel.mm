@@ -192,4 +192,11 @@
 	return sphere;
 }
 
+- (ARBrowser::BoundingBox) boundingBox
+{
+	ARBrowser::BoundingBox box(Vec3(-_scale, -_scale, -_scale), Vec3(_scale, _scale, _scale));
+
+	return box;
+}
+
 @end

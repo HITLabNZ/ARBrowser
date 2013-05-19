@@ -612,6 +612,15 @@ namespace ARBrowser {
 		return true;
 	}
 
+	BoundingBox BoundingBox::transform(const Mat44 & transform) const {
+		Vec3 newMin, newMax;
+		
+		MatrixVec3Multiply(newMin, min, transform);
+		MatrixVec3Multiply(newMax, max, transform);
+		
+		return BoundingBox(newMin, newMax);
+	}
+
 	BoundingSphere::BoundingSphere(Vec3 _center, float _radius) : center(_center), radius(_radius) {
 		
 	}
@@ -761,6 +770,35 @@ namespace ARBrowser {
 		}
 		
 		return hit;
+	}
+
+	Ray calculateRayFromScreenCoordinates(const Mat44 & proj, const Mat44 & view, float viewport[4], Vec2 screenCoords)
+	{
+				Mat44 projInv, viewInv;
+		
+		MatrixInverse(projInv, proj);
+		MatrixInverse(viewInv, view);
+		
+		// viewport = (X, Y, Width, Height)
+		// Convert screen coordinate to clip coordinates
+		screenCoords.x -= viewport[0];
+		screenCoords.y -= viewport[1];
+		
+		screenCoords.x /= viewport[2];
+		screenCoords.y /= viewport[3];
+		
+		screenCoords.x = (screenCoords.x * 2.0) - 1.0;
+		screenCoords.y = (screenCoords.y * 2.0) - 1.0;
+		
+		// We are looking down -z axis
+		// I'm not completely sure why this is 1, and not -1, but the coordinates end up reversed otherwise!
+		Vec3 front(screenCoords.x, screenCoords.y, 1);
+		Vec3 p2 = calculatePoint(projInv, viewInv, front);
+				
+		Vec3 origin(viewInv.f[12], viewInv.f[13], viewInv.f[14]);
+		Vec3 direction = (p2 - origin).normalized();
+
+		return {origin, direction};
 	}
 }
 

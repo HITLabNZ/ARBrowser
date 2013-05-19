@@ -8,20 +8,17 @@
 
 #import "ARVideoFrameController.h"
 
-// Some implementation was based on the implementation from
-// http://www.benjaminloulier.com/posts/2-ios4-and-direct-access-to-the-camera
-
 @implementation ARVideoFrameController
 
-@synthesize delegate;
-
 - init {
-	return [self initWithRate:60];
+	return [self initWithRate:30];
 }
 
 - initWithRate:(NSUInteger)rate
 {
-	if ((self = [super init])) {
+	self = [super init];
+
+	if (self) {
 		for (NSUInteger i = 0; i < ARVideoFrameBuffers; ++i) {
 			videoFrames[i].data = NULL;
 			videoFrames[i].index = 0;
@@ -32,7 +29,6 @@
 		if (captureDevice == nil) {
 			NSLog(@"Couldn't acquire AVCaptureDevice!");
 			
-			[self release];
 			return nil;
 		}
 
@@ -50,14 +46,13 @@
 				return nil;
 			}
 		}
-			
+
 		NSError * error = nil;
 		AVCaptureDeviceInput *captureInput = [AVCaptureDeviceInput deviceInputWithDevice:captureDevice error:&error];
 		
 		if (error) {
 			NSLog(@"Couldn't create AVCaptureDeviceInput: %@", error);
 			
-			[self release];
 			return nil;
 		}
 		
@@ -72,7 +67,6 @@
 		dispatch_queue_t cameraQueue;
 		cameraQueue = dispatch_queue_create("cameraQueue", NULL);
 		[captureOutput setSampleBufferDelegate:self queue:cameraQueue];
-		dispatch_release(cameraQueue);
 		
 		// Set the video capture mode, 32BGRA is the only universally supported output format from camera.
 		[captureOutput setVideoSettings:[NSDictionary dictionaryWithObjectsAndKeys:
@@ -102,23 +96,18 @@
 		
 		// Set the frame rate of the camera capture
 		CMTime secondsPerFrame = CMTimeMake(1, rate);
+
+		// iOS5 changes
+		AVCaptureConnection *captureConnection = [captureOutput connectionWithMediaType:AVMediaTypeVideo];
 		
-		if ([[[UIDevice currentDevice] systemVersion] floatValue] < 5.0) {
-			// iOS4 
-			captureOutput.minFrameDuration = secondsPerFrame;
-		} else {
-			// iOS5 changes
-			AVCaptureConnection *captureConnection = [captureOutput connectionWithMediaType:AVMediaTypeVideo];
-			
-			if ([captureConnection isVideoMinFrameDurationSupported]) {
-				NSLog(@"Setting minimum frame duration = %0.3f", (1.0 / rate));
-				captureConnection.videoMinFrameDuration = secondsPerFrame;
-			}
-			
-			if ([captureConnection isVideoMaxFrameDurationSupported]) {
-				NSLog(@"Setting maximum frame duration = %0.3f", (1.0 / rate));
-				captureConnection.videoMaxFrameDuration = secondsPerFrame;
-			}
+		if ([captureConnection isVideoMinFrameDurationSupported]) {
+			NSLog(@"Setting minimum frame duration = %0.3f", (1.0 / rate));
+			captureConnection.videoMinFrameDuration = secondsPerFrame;
+		}
+		
+		if ([captureConnection isVideoMaxFrameDurationSupported]) {
+			NSLog(@"Setting maximum frame duration = %0.3f", (1.0 / rate));
+			captureConnection.videoMaxFrameDuration = secondsPerFrame;
 		}
 		
 		[captureSession commitConfiguration];
@@ -142,14 +131,12 @@
 		[output setSampleBufferDelegate:nil queue:nil];
 		[captureSession removeOutput:output];
 	}	
-	
-	[captureSession release];
-	
+
 	for (NSUInteger i = 0; i < ARVideoFrameBuffers; ++i) {
 		free(videoFrames[i].data);
 		videoFrames[i].data = NULL;
 	}
-	
+
 	[super dealloc];
 }
 
@@ -173,6 +160,7 @@
 		
 		// Get the current frame time:
 		CMTime frameTime = CMSampleBufferGetPresentationTimeStamp(sampleBuffer);
+		videoFrame->timestamp = CMTimeGetSeconds(frameTime);
 		
 		// Acquire the image buffer data:
 		CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
@@ -204,13 +192,13 @@
 		videoFrame->index = nextIndex;
 		index = nextIndex;
 
-		if (delegate) {
+		if (_delegate) {
 			CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();	
 			CGContextRef bitmapContext = CGBitmapContextCreate(baseAddress, width, height, 8, bytesPerRow, colorSpace, kCGBitmapByteOrder32Little | kCGImageAlphaPremultipliedFirst); 
 			CGImageRef bitmap = CGBitmapContextCreateImage(bitmapContext); 
 			
 			// Call the delegate with the bitmap image:
-			[delegate videoFrameController:self didCaptureFrame:bitmap atTime:frameTime];
+			[_delegate videoFrameController:self didCaptureFrame:bitmap atTime:frameTime];
 			
 			CGContextRelease(bitmapContext); 
 			CGColorSpaceRelease(colorSpace);

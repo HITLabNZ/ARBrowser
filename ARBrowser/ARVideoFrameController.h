@@ -25,7 +25,10 @@ enum {
 typedef struct {
 	/// The frame number
 	int index;
-	
+
+	/// The frame timestamp - the system time the frame was recorded:
+	double timestamp;
+
 	/// Details for implementing the OpenGL video background.
 	GLenum pixelFormat, internalFormat, dataType;
 	

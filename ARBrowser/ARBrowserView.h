@@ -27,35 +27,13 @@
 /// Called when an object is selected on screen by the user.
 - (void)browserView: (ARBrowserView*)view didSelect:(ARWorldPoint*)point;
 
-- (float)browserView: (ARBrowserView*)view scaleFactorFor:(ARWorldPoint*)point atDistance:(float)distance;
-
 /// Render things like grids, markers, etc:
 - (void) renderInLocalCoordinatesForBrowserView:(ARBrowserView *)view;
 
 @end
 
-/// @internal
-struct ARBrowserViewState;
-
 /// The main augmented reality view, which combines the ARVideoBackground with the ARLocationController.
-@interface ARBrowserView : EAGLView {
-	ARVideoFrameController * videoFrameController;
-	ARVideoBackground * videoBackground;
-	
-	/// @internal
-	struct ARBrowserViewState * state;
-	
-	float minimumDistance, maximumDistance;
-	
-	/// Objects closer than near distance will be scaled down in size,
-	/// and vise versa for far distance.
-	float nearDistance, farDistance;
-	
-	BOOL displayRadar, displayGrid;
-	
-	/// The center of the radar on the screen.
-	CGPoint radarCenter;
-}
+@interface ARBrowserView : EAGLView
 
 /// The delegate for the ARBrowserView must implement ARBrowserViewDelegate.
 @property(nonatomic,assign) id<ARBrowserViewDelegate> delegate;

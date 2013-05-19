@@ -16,6 +16,10 @@ typedef struct {
 	float radius;
 } ARBoundingSphere;
 
+namespace ARBrowser {
+	class BoundingBox;
+};
+
 /// Provides the basic interface for renderable objects on the screen.
 @protocol ARRenderable
 /// Draw the object.
@@ -23,6 +27,9 @@ typedef struct {
 
 /// Return a bounding sphere for the object.
 - (ARBoundingSphere) boundingSphere;
+
+/// Returns a bounding box for the object.
+- (ARBrowser::BoundingBox) boundingBox;
 @end
 
 /// Provides a renderable model and associated metadata for a given ARWorldLocation.

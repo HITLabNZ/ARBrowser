@@ -197,10 +197,6 @@
 	//NSLog(@"Developer %@ at %@", developer, address);
 }
 
-- (float) browserView: (ARBrowserView*)view scaleFactorFor:(ARWorldPoint*)point atDistance:(float)distance {
-	return 1.0;
-}
-
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	return NO;
 }
